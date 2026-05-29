@@ -3,5 +3,5 @@ Google Scholar,String A,2026-05-26,,Person 1,
 IEEE Xplore,String A,2026-05-26,,Person 2,
 ACM Digital Library,String A,2026-05-26,,Person 3,
 Semantic Scholar,String A,2026-05-28,299,Person 4,Automatically has the 'Has PDF' filter on and sorted by relevance once search button is hit
-arXiv,String A,2026-05-27,1102 ,Person 5,
-CORE,String A,2026-05-27,20859,Person 5,
+arXiv,String C,2026-05-27,9 ,Person 5,
+CORE,String C,2026-05-27,61146 ,Person 5,
