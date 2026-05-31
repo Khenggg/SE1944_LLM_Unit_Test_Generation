@@ -2,7 +2,7 @@ database,search_string,date,number_of_results,member,notes
 Google Scholar,String A,2026-05-31,1000,Person 1,"Crawled with Google Scholar scraper; selected 20 unique records for raw_records_google_scholar.csv; abstracts enriched from OpenAlex when confidently matched"
 Google Scholar,String B,2026-05-31,820,Person 1,"Crawled with Google Scholar scraper; skipped records already selected from earlier strings and selected next 20 unique records; abstracts enriched from OpenAlex when confidently matched"
 Google Scholar,String C,2026-05-31,1089,Person 1,"Crawled with Google Scholar scraper; skipped records already selected from earlier strings and selected next 20 unique records; abstracts enriched from OpenAlex when confidently matched"
-IEEE Xplore,String A,2026-05-26,,Person 2,
+IEEE Xplore,String A,2026-05-26,,Person 2,Filtered from CrossRef API member 263 (IEEE) for String A due to IEEE scraping protection. Full text not checked.
 ACM Digital Library,String A,31/05/2026,18,Person 3,Full Boolean: ('large language model' OR 'LLM' OR 'GPT' OR 'ChatGPT') AND ('unit test generation' OR 'test case generation' OR 'automated unit testing') AND ('branch coverage' OR 'code coverage' OR 'mutation score' OR 'mutation testing'). ACM DL does not accept full Boolean string directly; performed via targeted keyword search. Filters: year >= 2018; Research Article / Conference Paper.
 Semantic Scholar,String A,2026-05-28,299,Person 4,Automatically has the 'Has PDF' filter on and sorted by relevance once search button is hit
 arXiv,String C,2026-05-27,9 ,Person 5,
