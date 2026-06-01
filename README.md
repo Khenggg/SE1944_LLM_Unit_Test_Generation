@@ -9,6 +9,7 @@ Branch này dùng để gom output cá nhân của các thành viên và chuẩn
 | `Khang/` | `origin/Khang` | Mini-SLR cá nhân nguồn Google Scholar. |
 | `Phuoc/` | `origin/Phuoc` | Nội dung lấy từ branch remote của Phước. |
 | `pham-an-khang/` | `origin/pham-an-khang` | Nội dung lấy từ branch remote `pham-an-khang`. |
+| `Nhu-Y/` | `origin/Nhu-Y` | Nội dung lấy từ branch remote của Như Ý. |
 | `Đỗ Long Vỹ/` | Local upload | Thành viên không dùng GitHub, folder đã được đưa trực tiếp vào branch tổng hợp. |
 
 ## Cấu trúc tổng hợp nhóm
@@ -19,6 +20,7 @@ Branch này dùng để gom output cá nhân của các thành viên và chuẩn
 - `gap-statement-final.md`
 - `rq-final.md`
 - `hypotheses-draft.md`
+- `member-audit.md`
 
 ## Quy tắc làm tiếp
 
