@@ -36,29 +36,28 @@
 ║                        SCREENING – ROUND 1 (Vòng 1)                              ║
 ║                                                                                  ║
 ║   ┌──────────────────────────────────┐     ┌─────────────────────────────────┐   ║
-║   │  Title + Abstract screened       │────▶│  Excluded (N = 0)               │   ║
+║   │  Title + Abstract screened       │────▶│  Excluded (N = 1)               │   ║
 ║   │  (N = 10)                        │     │                                 │   ║
 ║   │                                  │     │  EC (reasons):                  │   ║
-║   │  Reviewer: Huỳnh Cao Phước       │     │  • None                         │   ║
-║   │  Criteria applied: IC1–IC6       │     │                                 │   ║
-║   │                  + EC1–EC7       │     │                                 │   ║
-║   │                                  │     │                                 │   ║
+║   │  Reviewer: Huỳnh Cao Phước       │     │  • Focuses on system/repository-│   ║
+║   │  Criteria applied: IC1–IC6       │     │    level testing & bug discovery│   ║
+║   │                  + EC1–EC7       │     │    rather than unit test or     │   ║
+║   │                                  │     │    coverage (AX008)             │   ║
 ║   └──────────────────────────────────┘     └─────────────────────────────────┘   ║
 ║             │                                                                    ║
-║             │  Records retained for full-text screening (N = 10)                 ║
-║             │  (including 1 unsure record AX008)                                 ║
+║             │  Records retained for full-text screening (N = 9)                  ║
 ║             ▼                                                                    ║
 ╠══════════════════════════════════════════════════════════════════════════════════╣
 ║                        SCREENING – ROUND 2 (Vòng 2)                              ║
 ║                                                                                  ║
 ║   ┌──────────────────────────────────┐     ┌─────────────────────────────────┐   ║
-║   │  Full-text assessed              │────▶│  Excluded (N = 1)               │   ║
-║   │  (N = 10)                        │     │                                 │   ║
-║   │                                  │     │  Reason (EC6):                  │   ║
-║   │  Reviewer: Huỳnh Cao Phước       │     │  • Focuses on system/repository-│   ║
-║   │  Criteria applied: IC1–IC6       │     │    level testing & bug discovery│   ║
-║   │                  + EC1–EC7       │     │    rather than unit test or     │   ║
-║   │  (full paper content reviewed)   │     │    coverage (AX008)             │   ║
+║   │  Full-text assessed              │────▶│  Excluded (N = 0)               │   ║
+║   │  (N = 9)                         │     │                                 │   ║
+║   │                                  │     │  Reason:                        │   ║
+║   │  Reviewer: Huỳnh Cao Phước       │     │  • None                         │   ║
+║   │  Criteria applied: IC1–IC6       │     │                                 │   ║
+║   │                  + EC1–EC7       │     │                                 │   ║
+║   │  (full paper content reviewed)   │     │                                 │   ║
 ║   └──────────────────────────────────┘     └─────────────────────────────────┘   ║
 ║             │                                                                    ║
 ║             │  Studies included in synthesis (N = 9)                             ║
