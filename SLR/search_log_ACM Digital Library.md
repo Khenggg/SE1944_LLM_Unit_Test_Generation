@@ -1,4 +1,4 @@
-```markdown
+
 # Search Log
 
 | Field                                         | Value                                                                                                                                                                                                                           |
@@ -10,4 +10,4 @@
 | **Filter**                                    | 2018–2026, Research Article, Conference Paper, Software Engineering / Computing Methodologies                                                                                                                                   |
 | **Number of initial results**                 | 25                                                                                                                                                                                                                              |
 | **Number of results collected for screening** | 11                                                                                                                                                                                                                              |
-```
+
