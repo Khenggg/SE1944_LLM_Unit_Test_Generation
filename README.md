@@ -1,48 +1,28 @@
-# Khang - Google Scholar Mini-SLR
+# SE1944 Team SLR Integration
 
-This branch contains Khang's individual RBL-1 mini-SLR for the topic **LLM for Unit Test Case Generation**.
+Branch này dùng để gom output cá nhân của các thành viên và chuẩn bị phần tổng hợp nhóm.
 
-Only the Google Scholar source is included in this branch. Other members' sources, legacy mixed-source files, and team synthesis files were removed intentionally.
+## Thành viên / nguồn dữ liệu
 
-## Required Structure
+| Thành viên / folder | Nguồn | Ghi chú |
+| --- | --- | --- |
+| `Khang/` | `origin/Khang` | Mini-SLR cá nhân nguồn Google Scholar. |
+| `Phuoc/` | `origin/Phuoc` | Nội dung lấy từ branch remote của Phước. |
+| `pham-an-khang/` | `origin/pham-an-khang` | Nội dung lấy từ branch remote `pham-an-khang`. |
+| `Đỗ Long Vỹ/` | Local upload | Thành viên không dùng GitHub, folder đã được đưa trực tiếp vào branch tổng hợp. |
 
-```text
-Khang/
-+-- SLR/
-|   +-- search-log.md
-|   +-- 01_all_records.csv
-|   +-- 02_after_screening_v1.csv
-|   +-- 03_final_included.csv
-|   +-- ie_criteria.md
-|   +-- prisma-flow.md
-|   +-- evidence-table.md
-|   +-- gap-statement.md
-+-- experiment/
-    +-- 01_rq.md
-    +-- hypotheses.md
-```
+## Cấu trúc tổng hợp nhóm
 
-## Topic
+`team-synthesis/` chứa 4 file nhóm cần hoàn thiện sau khi đối chiếu output từng thành viên:
 
-LLM for Unit Test Case Generation
+- `evidence-table-merged.md`
+- `gap-statement-final.md`
+- `rq-final.md`
+- `hypotheses-draft.md`
 
-## Initial RQ
+## Quy tắc làm tiếp
 
-Đối với Java/Python functions ở cyclomatic complexity trung bình, GPT-4 tự động sinh unit test cases so với test cases viết thủ công bởi sinh viên có đạt branch coverage >= 80% và mutation score >= 60% không?
-
-## Current Counts
-
-| Stage | Count |
-| --- | ---: |
-| Google Scholar raw hits | 2909 |
-| Google Scholar selected/exported records before dedup | 60 |
-| Duplicate records removed | 19 |
-| Records after dedup | 41 |
-| V1 INCLUDE | 19 |
-| V1 UNSURE | 5 |
-| V1 EXCLUDE | 17 |
-| Full-text/final-prioritization assessed | 24 |
-| Not selected after V2/final prioritization | 20 |
-| Final included papers | 4 |
-
-The PRISMA counts are recorded in `SLR/prisma-flow.md` and must match the CSV row counts.
+- Gộp evidence table theo DOI/title, bỏ trùng paper.
+- Nếu cùng paper nhưng extraction khác nhau, mở paper gốc để xác nhận, không tự lấy trung bình hoặc chọn số thuận mắt.
+- GAP nhóm phải dựa trên evidence table merged, không dựa trên bỏ phiếu sở thích.
+- RQ final và hypotheses draft phải dùng threshold, metric, dataset/baseline đã được evidence table ủng hộ.
