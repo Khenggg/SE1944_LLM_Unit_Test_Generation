@@ -2,19 +2,25 @@
 
 ## Main RQ
 
-Với các hàm Java/Python có độ phức tạp trung bình, GPT-4 tự sinh unit test có đạt branch coverage >= 80% và mutation score >= 60% không, khi so với unit test viết thủ công bởi sinh viên?
+For medium-complexity Java or Python functions/classes, can GPT-4 generate unit tests that reach branch coverage >= 80% and mutation score >= 60%, compared with student-written unit tests for the same code?
 
 ## Sub-questions
 
-1. GPT-4 có đạt branch coverage trung bình >= 80% trên bộ hàm được chọn không?
-2. GPT-4 có đạt mutation score trung bình >= 60% trên bộ hàm được chọn không?
-3. Unit test do GPT-4 sinh tốt hơn, tương đương, hay kém hơn unit test do sinh viên viết thủ công?
-4. Những loại hàm hoặc tình huống nào khiến GPT-4 sinh test kém hiệu quả?
+1. Does the GPT-4 test set reach average branch coverage >= 80%?
+2. Does the GPT-4 test set reach average mutation score >= 60%?
+3. Compared with student-written tests, where is GPT-4 better, similar, or worse?
+4. Which code patterns cause weak GPT-4 tests, such as missing boundary cases, weak assertions, or compile failures?
 
 ## Metrics
 
-- Branch coverage: measured by JaCoCo or equivalent tool.
-- Mutation score: measured by PIT/PiTest or equivalent tool.
-- Compile/pass status: whether generated tests compile and run successfully.
-- Optional effort metric: time spent writing manual tests.
+- Branch coverage: measured with JaCoCo for Java and coverage.py branch coverage for Python.
+- Mutation score: measured with PIT/PiTest for Java and a Python mutation testing tool such as mutmut or Cosmic Ray for Python.
+- Compile/pass status: generated tests must compile and run before coverage/mutation results are accepted.
+- Optional effort metric: time spent writing student tests.
 
+## Out of Scope
+
+- Generating production code.
+- UI/API/acceptance-test generation.
+- Requirement-to-test generation without executable unit tests.
+- Evaluating text similarity between generated and reference tests.

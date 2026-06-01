@@ -1,6 +1,8 @@
 # SLR Workflow
 
-Use this folder for the PRISMA-based literature review.
+Use this folder for the PRISMA-based literature review. This is the main working folder for RBL-1.
+
+RBL-1 stops at SLR, evidence table, GAP, refined RQ, and H0/H1. Dataset creation, GPT test generation, student tests, and coverage/mutation tool execution belong to the later experiment phase.
 
 ## Phase 1 Source Assignment
 
@@ -16,14 +18,17 @@ This assignment is only for initial paper collection. After raw records are coll
 
 ## File Order
 
-1. Fill `search_log.csv` for every database and search string using the Phase 1 source assignment above.
-2. Export raw records into `raw_records_*.csv`.
-3. Merge all records into `01_all_records.csv`.
-4. Remove duplicates and save the result in `01_all_records_dedup.csv`.
-5. Screen title and abstract in `02_after_screening_v1.csv`.
-6. Screen full text and save final included papers in `03_final_included.csv`.
-7. Summarize included papers in `evidence_table.csv`.
-8. Write the research gap in `gap_evidence.md`.
+1. Derive keyword seeds from PICO in `keyword_seed.md`.
+2. Build Boolean search strings in `search_strings.md`.
+3. Fill `search_log.csv` for every database and search string using the Phase 1 source assignment above.
+4. Export raw records into `raw_records_*.csv`.
+5. Merge all records into `01_all_records.csv`.
+6. Remove duplicates and save the result in `01_all_records_dedup.csv`.
+7. Screen title and abstract in `02_after_screening_v1.csv`.
+8. Screen full text and save final included papers in `03_final_included.csv`.
+9. Record counts in `prisma_flow.md`.
+10. Summarize included papers in `evidence_table.csv`.
+11. Write the research gap in `gap_evidence.md`.
 
 ## Decisions
 
