@@ -1,4 +1,4 @@
-# Evidence Table - Đỗ Long Vỹ
+# Evidence Table - Đỗ Long Vỹ IEEE Xplore
 
 Converted from the member evidence extraction table. Records: N = 2.
 

@@ -18,9 +18,9 @@ Chuẩn đối chiếu là folder `Khang/`, vì đây là phần Google Scholar 
 | --- | --- | --- | --- |
 | `Khang/` | `origin/Khang` | Đúng chuẩn | Không có lỗi cấu trúc lớn. |
 | `pham-an-khang/` | `origin/pham-an-khang` | Đã đúng cấu trúc file chuẩn | Đã chuyển RQ/hypotheses vào `experiment/` và chuẩn hóa tên file trong `SLR/`. Nội dung screening vẫn cần kiểm tra học thuật riêng. |
-| `Phuoc/` | `origin/Phuoc` | Chưa đúng chuẩn | Đã thu gọn về arXiv+CORE; còn sai tên `prisma_flow.md`, `evidence_table.csv`, `gap_evidence.md`, và RQ/hypotheses đang nằm ở root. |
+| `Phuoc/` | `origin/Phuoc` | Đã đúng cấu trúc file chuẩn | Đã thu gọn về arXiv+CORE và đã chuẩn hóa tên file/folder; nội dung `03_final_included.csv` vẫn cần sửa để khớp PRISMA/evidence. |
 | `Nhu-Y/` | `origin/Nhu-Y` | Chưa đúng chuẩn | Đã có `experiment/01_rq.md`, `experiment/hypotheses.md`, và `SLR/gap-statement.md`; còn thiếu `SLR/search-log.md` và `SLR/evidence-table.md` đúng tên chuẩn. |
-| `Đỗ Long Vỹ/` | Local upload | Đã đúng tên file chuẩn | Đã đổi tên file trong `SLR/`; `01_all_records.csv` vẫn đang chứa dữ liệu nhiều nguồn, không chỉ IEEE Xplore. |
+| `Đỗ Long Vỹ/` | Local upload | Đã đúng cấu trúc file chuẩn | Dữ liệu đã thu về IEEE Xplore; evidence table và GAP còn chưa khớp số lượng final included. |
 
 ## Chi tiết từng thành viên
 
@@ -54,14 +54,14 @@ Kết luận: dữ liệu đã được cập nhật theo branch remote mới v�
 | Hạng mục | Kết quả |
 | --- | --- |
 | Remote mới nhất | Đã cập nhật từ `origin/Phuoc`, commit `a1992ae`. |
-| File đúng chuẩn | `SLR/search-log.md`, `SLR/01_all_records.csv`, `SLR/02_after_screening_v1.csv`, `SLR/03_final_included.csv`, `SLR/ie_criteria.md`. |
-| File thiếu hoặc sai tên | `SLR/prisma-flow.md` đang là `SLR/prisma_flow.md`; `SLR/evidence-table.md` đang là `SLR/evidence_table.csv`; `SLR/gap-statement.md` đang là `SLR/gap_evidence.md`. |
-| Experiment | `01_rq.md` và `hypotheses.md` đang nằm ở root folder, chưa nằm trong `experiment/`. |
+| File đúng chuẩn | Đủ 10/10 file chuẩn: `SLR/search-log.md`, `SLR/01_all_records.csv`, `SLR/02_after_screening_v1.csv`, `SLR/03_final_included.csv`, `SLR/ie_criteria.md`, `SLR/prisma-flow.md`, `SLR/evidence-table.md`, `SLR/gap-statement.md`, `experiment/01_rq.md`, `experiment/hypotheses.md`. |
+| File thiếu hoặc sai tên | Không còn lỗi tên file/cấu trúc. |
+| Experiment | `01_rq.md` và `hypotheses.md` đã nằm trong `experiment/`. |
 | `01_all_records.csv` | 10 records: arXiv = 9, CORE = 1. |
 | `02_after_screening_v1.csv` | 10 records: `INCLUDE=9`, `UNSURE=1`. |
 | `03_final_included.csv` | 10 records, chưa có cột `v2_decision`; PRISMA/evidence nói final included nên là 9. |
 
-Kết luận: Phước đã chuyển từ bộ tổng hợp nhiều nguồn sang scope cá nhân arXiv+CORE, nên đúng hướng hơn. Việc còn lại là chuẩn hóa tên file, chuyển RQ/hypotheses vào `experiment/`, và làm cho `03_final_included.csv` khớp với PRISMA/evidence table.
+Kết luận: Phước đã chuyển từ bộ tổng hợp nhiều nguồn sang scope cá nhân arXiv+CORE và đã đúng cấu trúc. Việc còn lại là làm cho `03_final_included.csv` khớp với PRISMA/evidence table.
 
 ### Nhu-Y
 
@@ -84,15 +84,15 @@ Kết luận: bản mới từ remote đã tốt hơn vì có `experiment/` và 
 | Nguồn | Folder local do Khang đưa vào vì thành viên không dùng GitHub. |
 | File đúng chuẩn | Đủ 10/10 file chuẩn: `SLR/search-log.md`, `SLR/01_all_records.csv`, `SLR/02_after_screening_v1.csv`, `SLR/03_final_included.csv`, `SLR/ie_criteria.md`, `SLR/prisma-flow.md`, `SLR/evidence-table.md`, `SLR/gap-statement.md`, `experiment/01_rq.md`, `experiment/hypotheses.md`. |
 | File thiếu hoặc sai tên | Không còn lỗi tên file/cấu trúc. |
-| `01_all_records.csv` | 130 records từ nhiều nguồn, không chỉ IEEE Xplore. |
-| `02_after_screening_v1.csv` | 70 records: `INCLUDE=43`, `EXCLUDE=18`, `UNSURE=9`. |
-| `03_final_included.csv` | 23 records: `INCLUDE=12`, `EXCLUDE=5`, `UNSURE=2`, blank `v2_decision=4`. |
+| `01_all_records.csv` | 25 records, tất cả từ IEEE Xplore. |
+| `02_after_screening_v1.csv` | 25 records: `INCLUDE=19`, `EXCLUDE=5`, `UNSURE=1`. |
+| `03_final_included.csv` | 5 records, tất cả từ IEEE Xplore; chưa có cột `v2_decision`, `v2_reason`, `reviewer`. |
 
-Kết luận: folder đã đúng chuẩn đặt tên. Điểm cần kiểm tra kỹ là dữ liệu vẫn đang chứa nhiều nguồn trong khi search log nói về IEEE Xplore.
+Kết luận: folder đã đúng chuẩn đặt tên và scope dữ liệu đã khớp IEEE Xplore. Điểm cần kiểm tra kỹ là evidence table mới có 2 paper trong khi PRISMA/final included nói 5 paper.
 
 ## Việc nên sửa tiếp
 
-1. Chuẩn hóa tiếp `Phuoc/` và `Nhu-Y/` theo đúng `Khang/` trước khi merge evidence.
+1. Chuẩn hóa tiếp `Nhu-Y/` theo đúng `Khang/` trước khi merge evidence.
 2. Không gộp evidence vào `evidence-table-merged.md` khi chưa xác nhận DOI/title và paper gốc.
-3. Với `Phuoc/` và `Đỗ Long Vỹ/`, cần xác nhận lại nguồn phụ trách để tránh một người chứa toàn bộ records của nhóm.
+3. Với `Phuoc/` và `Đỗ Long Vỹ/`, cần làm cho PRISMA, `03_final_included.csv`, evidence table và GAP dùng cùng một tập final included.
 4. Với `Nhu-Y/`, cần bổ sung `database`, `doi`, `url` nếu có, và đồng bộ decision casing thành `INCLUDE`.
