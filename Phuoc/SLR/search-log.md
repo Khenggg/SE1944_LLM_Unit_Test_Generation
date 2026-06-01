@@ -9,3 +9,5 @@
 | **Filter** | 2024–2026, AI-Assisted Filter by Google Antigravity |
 | **Number of initial results** | 61155 |
 | **Number of final results collected for screening** | 10 |
+| **Number of final papers included after screening** | 9 |
+
