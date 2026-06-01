@@ -54,9 +54,3 @@ Merge rule: papers were merged by title, DOI, or URL when the same study could b
 | 31 | What Inputs Drive Effective Large Language Model-Based Unit Test Generation? (2025) | https://doi.org/10.1109/MS.2025.3621625 | Đỗ Long Vỹ | GPT-3.5, GPT-4, StarCoder | Java open-source projects (medium complexity) | Statement Coverage, Branch Coverage | Providing dependent class context significantly improves coverage compared to fuzzing or zero-context prompts | Limited to medium-complexity projects; context dependency overhead not evaluated |
 | 32 | Navigating the Labyrinth: Path-Sensitive Unit Test Generation with Large Language Models (2025) | https://doi.org/10.1109/ase63991.2025.00063 | Đỗ Long Vỹ | GPT-4, DeepSeek-Coder | Path-intensive / multi-branch functions | Path Coverage, Branch Coverage, Execution feasibility | Path-sensitive prompting improves test generation for complex control-flow structures |  Limited generalization to real-world large systems |
 | 33 | Leveraging Large Language Models for Python Unit Test (2024) | https://doi.org/10.1109/aitest62860.2024.00020 | Đỗ Long Vỹ | GPT-3.5, GPT-4 | Standalone Python functional methods | Syntax correctness rate, Test adequacy, Block coverage | Newer LLMs improve syntactic correctness but still lack reliable semantic test logic | Requires human validation; weak functional correctness guarantees |
-
-## Issues To Resolve Before Final Submission
-
-- `Phuoc/SLR/03_final_included.csv` currently has 10 rows, while PRISMA and the evidence table state that final included papers equal 9.
-- `Đỗ Long Vỹ/SLR/evidence-table.md` currently has 2 papers, while PRISMA and `03_final_included.csv` state that final included papers equal 5.
-- Some `Nhu-Y/` records have uncertain URL/source metadata and should be verified before final reporting.
