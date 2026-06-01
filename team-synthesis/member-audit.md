@@ -19,7 +19,7 @@ Chuẩn đối chiếu là folder `Khang/`, vì đây là phần Google Scholar 
 | `Khang/` | `origin/Khang` | Đúng chuẩn | Không có lỗi cấu trúc lớn. |
 | `pham-an-khang/` | `origin/pham-an-khang` | Đã đúng cấu trúc file chuẩn | Đã chuyển RQ/hypotheses vào `experiment/` và chuẩn hóa tên file trong `SLR/`. Nội dung screening vẫn cần kiểm tra học thuật riêng. |
 | `Phuoc/` | `origin/Phuoc` | Chưa đúng chuẩn | Nhiều file tổng hợp đang là CSV hoặc tên snake_case; thiếu `prisma-flow.md`, `experiment/01_rq.md`, `experiment/hypotheses.md`. |
-| `Nhu-Y/` | `origin/Nhu-Y` | Chưa đúng chuẩn | Đã có `experiment/01_rq.md` và `experiment/hypotheses.md`; còn thiếu `SLR/search-log.md`, `SLR/evidence-table.md`, `SLR/gap-statement.md` đúng tên chuẩn. |
+| `Nhu-Y/` | `origin/Nhu-Y` | Chưa đúng chuẩn | Đã có `experiment/01_rq.md`, `experiment/hypotheses.md`, và `SLR/gap-statement.md`; còn thiếu `SLR/search-log.md` và `SLR/evidence-table.md` đúng tên chuẩn. |
 | `Đỗ Long Vỹ/` | Local upload | Đã đúng tên file chuẩn | Đã đổi tên file trong `SLR/`; `01_all_records.csv` vẫn đang chứa dữ liệu nhiều nguồn, không chỉ IEEE Xplore. |
 
 ## Chi tiết từng thành viên
@@ -67,15 +67,15 @@ Kết luận: Phước có nhiều dữ liệu, nhưng hiện giống một bộ
 
 | Hạng mục | Kết quả |
 | --- | --- |
-| Remote mới nhất | Đã cập nhật từ `origin/Nhu-Y`, commit `965de85`. |
-| File đúng chuẩn | `SLR/01_all_records.csv`, `SLR/02_after_screening_v1.csv`, `SLR/03_final_included.csv`, `SLR/ie_criteria.md`, `SLR/prisma-flow.md`, `experiment/01_rq.md`, `experiment/hypotheses.md`. |
-| File thiếu hoặc sai tên | `SLR/search-log.md` đang là `SLR/search_log_ACM Digital Library.csv`; `SLR/evidence-table.md` đang là `SLR/evidence_table.md`; thiếu `SLR/gap-statement.md`. |
+| Remote mới nhất | Đã cập nhật từ `origin/Nhu-Y`, commit `d239a98`. |
+| File đúng chuẩn | `SLR/01_all_records.csv`, `SLR/02_after_screening_v1.csv`, `SLR/03_final_included.csv`, `SLR/ie_criteria.md`, `SLR/prisma-flow.md`, `SLR/gap-statement.md`, `experiment/01_rq.md`, `experiment/hypotheses.md`. |
+| File thiếu hoặc sai tên | `SLR/search-log.md` đang là `SLR/search_log_ACM Digital Library.csv`; `SLR/evidence-table.md` đang là `SLR/evidence_table.md`. |
 | Experiment | Đã có `experiment/01_rq.md` và `experiment/hypotheses.md`. |
 | `01_all_records.csv` | 11 records; header còn thiếu `database`, `doi`, `url` so với Khang. |
 | `02_after_screening_v1.csv` | 11 records: `INCLUDE=11`. |
 | `03_final_included.csv` | 11 records: `v2_decision=Include`; nên đổi về `INCLUDE` để đồng bộ casing. |
 
-Kết luận: bản mới từ remote đã tốt hơn vì có `experiment/`, nhưng vẫn cần chuẩn hóa tên file trong `SLR/`, bổ sung `gap-statement.md`, và chuẩn hóa tên/cột CSV.
+Kết luận: bản mới từ remote đã tốt hơn vì có `experiment/` và `gap-statement.md`, nhưng vẫn cần chuẩn hóa tên file trong `SLR/` và chuẩn hóa tên/cột CSV.
 
 ### Đỗ Long Vỹ
 
