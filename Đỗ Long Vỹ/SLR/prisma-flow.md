@@ -44,3 +44,29 @@ Since the dataset was exported independently from a single database source, no i
 * Count of `v1_decision = EXCLUDE`: **5**
 * Count of `v1_decision = INCLUDE or UNSURE`: **20**
 * Rows in `SLR/03_final_included_ieee.csv`: **5**
+
+
+
+flowchart TD
+    A["IEEE Xplore selected/exported records (n = 25)"]
+    B["Duplicates removed (n = 0)"]
+    C["Records after deduplication (n = 25)"]
+    D["Title and abstract screened (n = 25)"]
+    E["Excluded at V1 (n = 5)"]
+    F["Full-text/final prioritization assessed (n = 20)"]
+    G["Excluded or not selected after V2 (n = 15)"]
+    H["Final included studies (n = 5)"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    D --> F
+    F --> G
+    F --> H
+
+    style A fill:#1B365D,stroke:#333,stroke-width:2px,color:#fff
+    style C fill:#f9f9f9,stroke:#333,stroke-width:1px
+    style E fill:#FCE8E6,stroke:#C5221F,stroke-width:1px,color:#C5221F
+    style G fill:#FCE8E6,stroke:#C5221F,stroke-width:1px,color:#C5221F
+    style H fill:#E6F4EA,stroke:#137333,stroke-width:2px,color:#137333
