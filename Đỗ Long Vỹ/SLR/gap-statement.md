@@ -1,23 +1,24 @@
-# GAP STATEMENT - ĐỖ LONG VỸ (IEEE XPLORE)
+### GAP STATEMENT – ĐỖ LONG VỸ (IEEE XPLORE)
 
 ## Summary from Final Included Papers (N = 5)
 
-Dựa trên kết quả sàng lọc cuối cùng, 5 bài báo cốt lõi (Final Papers) đã được trích xuất để làm nền tảng cho nghiên cứu:
+Based on the final screening results, five core papers (Final Papers) were selected as the foundation for this study:
 
-1. **Số lượng:** Cả 5 bài báo [IEEE001, IEEE003, IEEE004, IEEE011, IEEE025] tập trung vào việc sử dụng LLM (GPT-4, Codex, Llama) để sinh Unit Test tự động cho Java và Python .
-2. **Công nghệ:** 100% các bài báo này sử dụng các mô hình tiên tiến như GPT-4 hoặc Codex để tối ưu hóa khả năng viết mã kiểm thử .
-3. **Chỉ số đo lường:** 5/5 bài sử dụng Code Coverage (Branch/Statement) làm thước đo chính .
+1. **Quantity:** All five papers [IEEE001, IEEE003, IEEE004, IEEE011, IEEE025] focus on the application of Large Language Models (LLMs) for automated unit test generation in Java and Python.
+2. **Technology:** 100% of these studies employ advanced models such as GPT-4 or Codex to enhance test code generation capabilities.
+3. **Evaluation Metrics:** All five papers use **Code Coverage** (Branch Coverage and/or Statement Coverage) as the primary evaluation metric.
 
-## GAP-M - Metric Gap (Khoảng trống về Chỉ số đo lường)
+## GAP-M – Metric Gap
 
-Mặc dù cả 5 bài báo đều đạt được độ bao phủ nhánh (Branch Coverage) ấn tượng, nhưng chỉ có **2/5 bài** ([IEEE001], [IEEE003]) thực hiện đo lường **Mutation Score** . Điều này cho thấy các nghiên cứu hiện tại vẫn đang tập trung vào việc "phủ kín dòng lệnh" hơn là kiểm chứng khả năng "phát hiện lỗi thực tế" của AI. Nghiên cứu của nhóm sẽ lấp đầy khoảng trống này bằng cách đặt ngưỡng Mutation Score >= 60% làm điều kiện bắt buộc .
+Although all five studies achieved promising Branch Coverage results, only **2 out of 5 papers** ([IEEE001], [IEEE003]) evaluated **Mutation Score** as an additional quality metric. This indicates that current research primarily emphasizes code coverage rather than assessing the actual fault-detection capability of AI-generated test cases. The proposed study aims to address this gap by establishing a **Mutation Score threshold of at least 60%** as a mandatory evaluation criterion.
 
-## GAP-C - Comparison Gap (Khoảng trống về Đối tượng so sánh)
+## GAP-C – Comparison Gap
 
-Trong số 5 bài báo này, đa số tập trung so sánh LLM với các công cụ tự động (như EvoSuite, Pynguin) . Chỉ có **1/5 bài** ([IEEE025]) có sự đối chứng với lập trình viên, nhưng chưa bài nào thực hiện so sánh trực tiếp với **sinh viên ngành Kỹ thuật Phần mềm** trên cùng một tập bài tập Java/Python trung bình . Đây là cơ sở để nghiên cứu của em đưa đối tượng sinh viên vào làm nhóm đối chứng (Control Group) .
+Among the five selected papers, most studies compare LLM-based approaches with automated testing tools such as EvoSuite and Pynguin. Only **1 out of 5 papers** ([IEEE025]) includes a comparison with human developers. However, none of the studies directly compare LLM-generated test cases with those produced by **Software Engineering students** using the same set of medium-complexity Java/Python programming exercises. This gap provides the rationale for including students as the **Control Group** in the proposed research.
 
-## Proposed Contribution (Đóng góp đề xuất)
+## Proposed Contribution
 
-Nghiên cứu này sẽ sử dụng 5 bài báo trên làm hệ quy chiếu (Baseline) để:
-* Chứng minh GPT-4 có thể đạt hiệu năng vượt trội hơn sinh viên về cả **Branch Coverage (80%)** và **Mutation Score (60%)** .
-* Xác lập một tập dữ liệu đối chứng thực tế giữa AI và người học trong môi trường giáo dục đại học.
+This study will use the five selected papers as a baseline reference to:
+
+* Demonstrate that GPT-4 can outperform Software Engineering students in terms of both **Branch Coverage (80%)** and **Mutation Score (60%)**.
+* Establish a practical benchmark dataset for comparing AI-generated and human-generated unit tests within a higher education environment.
