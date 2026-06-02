@@ -1,4 +1,4 @@
-### GAP STATEMENT – ĐỖ LONG VỸ (IEEE XPLORE)
+# GAP STATEMENT – ĐỖ LONG VỸ (IEEE XPLORE)
 
 ## Summary from Final Included Papers (N = 5)
 
