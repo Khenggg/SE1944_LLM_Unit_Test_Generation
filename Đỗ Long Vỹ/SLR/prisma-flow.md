@@ -70,3 +70,5 @@ flowchart TD
     style E fill:#FCE8E6,stroke:#C5221F,stroke-width:1px,color:#C5221F
     style G fill:#FCE8E6,stroke:#C5221F,stroke-width:1px,color:#C5221F
     style H fill:#E6F4EA,stroke:#137333,stroke-width:2px,color:#137333
+
+<img width="1364" height="1366" alt="mermaid-diagram" src="https://github.com/user-attachments/assets/843f5ba5-3171-40f1-a124-4e9e558de64f" />
