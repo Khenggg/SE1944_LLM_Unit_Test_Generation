@@ -1,98 +1,47 @@
-# PRISMA Flowchart – Systematic Literature Review (arXiv+CORE Scope)
-## Research Question: For Java/Python functions at medium cyclomatic complexity (P), could GPT-4 automatic generation of unit test cases (I) compared to manually written test cases (C) achieve >=80% branch coverage and >=60% mutation score (O)?
-**Date of search:** 27 May 2026 | **Database:** arXiv+CORE
+# PRISMA Flow - Phuoc OpenAlex
 
----
+## Identification
 
+Records identified from OpenAlex raw search hits: 119
+
+Records selected/exported before deduplication: 67
+
+## Deduplication
+
+Records before deduplication: 67  
+Duplicate records removed: 16  
+Records after deduplication: 51
+
+## Screening V1 - Title and Abstract
+
+Records screened: 51  
+Records excluded at V1: 11  
+Records included at V1: 36  
+Records unsure at V1: 4  
+Records included or unsure for full-text: 40
+
+## Screening V2 - Full Text
+
+Full-text/final-prioritization papers assessed: 40  
+Full-text/final-prioritization papers excluded or not selected: 33  
+Final included papers: 7
+
+## Consistency Check
+
+- Rows in `SLR/01_all_records.csv` = 67.
+- Rows in `SLR/01_all_records_dedup.csv` = 51.
+- Rows in `SLR/02_after_screening_v1.csv` = 51.
+- Count(`v1_decision = EXCLUDE`) = 11.
+- Count(`v1_decision = INCLUDE or UNSURE`) = 40.
+- Rows in `SLR/03_final_included.csv` = 7.
+
+```mermaid
+flowchart TD
+    A["OpenAlex selected/exported records (n = 67)"] --> B["Duplicates removed (n = 16)"]
+    B --> C["Records after deduplication (n = 51)"]
+    C --> D["Title/abstract screened (n = 51)"]
+    D --> E["Excluded at V1 (n = 11)"]
+    D --> F["Full-text/final prioritization assessed (n = 40)"]
+    F --> G["Excluded or not selected after V2 (n = 33)"]
+    F --> H["Final included studies (n = 7)"]
 ```
-╔══════════════════════════════════════════════════════════════════════════════════╗
-║                        IDENTIFICATION                                            ║
-║                                                                                  ║
-║   Records identified through database searching                                  ║
-║                                                                                  ║
-║   ┌─────────────────────────┐         ┌─────────────────────────┐                ║
-║   │ arXiv                   │         │ CORE                    │                ║
-║   │ (N = 9)                 │         │ (N = 61146)             │                ║
-║   │ Search date: 27/05/2026 │         │ Search date: 27/05/2026 │                ║
-║   │ Search string: boolean  │         │ Search string: boolean  │                ║
-║   │ (LLM/GPT) AND           │         │ (LLM/GPT) AND           │                ║
-║   │ (software/unit testing) │         │ (software/unit testing) │                ║
-║   │ AND (mutation/coverage) │         │ AND (mutation/coverage) │                ║
-║   └─────────────────────────┘         └─────────────────────────┘                ║
-║                │                                   │                             ║
-║                └─────────────────┬─────────────────┘                             ║
-║                                  │                                               ║
-║                      61155 records retrieved and filtered by AI                  ║
-║                  based on relevance (N = 10 candidate records logged)            ║
-║                                  ▼                                               ║
-╠══════════════════════════════════════════════════════════════════════════════════╣
-║             │                                                                    ║
-║   ┌────────────────────────────────────────────────────────────────┐             ║
-║   │  Records after deduplication / pre-exclusion (N = 10)          │             ║
-║   └────────────────────────────────────────────────────────────────┘             ║
-║             │                                                                    ║
-║             ▼                                                                    ║
-╠══════════════════════════════════════════════════════════════════════════════════╣
-║                        SCREENING – ROUND 1 (Vòng 1)                              ║
-║                                                                                  ║
-║   ┌──────────────────────────────────┐     ┌─────────────────────────────────┐   ║
-║   │  Title + Abstract screened       │────▶│  Excluded (N = 1)               │   ║
-║   │  (N = 10)                        │     │                                 │   ║
-║   │                                  │     │  EC (reasons):                  │   ║
-║   │  Reviewer: Huỳnh Cao Phước       │     │  • Focuses on system/repository-│   ║
-║   │  Criteria applied: IC1–IC6       │     │    level testing & bug discovery│   ║
-║   │                  + EC1–EC7       │     │    rather than unit test or     │   ║
-║   │                                  │     │    coverage (AX008)             │   ║
-║   └──────────────────────────────────┘     └─────────────────────────────────┘   ║
-║             │                                                                    ║
-║             │  Records retained for full-text screening (N = 9)                  ║
-║             ▼                                                                    ║
-╠══════════════════════════════════════════════════════════════════════════════════╣
-║                        SCREENING – ROUND 2 (Vòng 2)                              ║
-║                                                                                  ║
-║   ┌──────────────────────────────────┐     ┌─────────────────────────────────┐   ║
-║   │  Full-text assessed              │────▶│  Excluded (N = 0)               │   ║
-║   │  (N = 9)                         │     │                                 │   ║
-║   │                                  │     │  Reason:                        │   ║
-║   │  Reviewer: Huỳnh Cao Phước       │     │  • None                         │   ║
-║   │  Criteria applied: IC1–IC6       │     │                                 │   ║
-║   │                  + EC1–EC7       │     │                                 │   ║
-║   │  (full paper content reviewed)   │     │                                 │   ║
-║   └──────────────────────────────────┘     └─────────────────────────────────┘   ║
-║             │                                                                    ║
-║             │  Studies included in synthesis (N = 9)                             ║
-║             ▼                                                                    ║
-╠══════════════════════════════════════════════════════════════════════════════════╣
-║                        INCLUDED                                                  ║
-║                                                                                  ║
-║   ┌────────────────────────────────────────────────────────────────┐             ║
-║   │  Studies included in Evidence Table (N = 9)                    │             ║
-║   │                                                                │             ║
-║   │  AX001 – WeiZhe Xu et al., 2026, arXiv                         │             ║
-║   │  AX002 – Yibo Wang et al., 2025, arXiv                         │             ║
-║   │  AX003 – Dong Huang et al., 2025, arXiv                        │             ║
-║   │  AX004 – Bei Chu et al., 2025, arXiv                           │             ║
-║   │  AX005 – Lin Yang et al., 2024, arXiv                          │             ║
-║   │  AX006 – Guancheng Wang et al., 2026, arXiv                    │             ║
-║   │  AX007 – HITS (Wang et al., 2024, ASE)                         │             ║
-║   │  CORE001 – KTester (Li et al., 2025, ICSE)                     │             ║
-║   │  AX009 – Sabaat Haroon et al., 2026, arXiv                     │             ║
-║   └────────────────────────────────────────────────────────────────┘             ║
-╚══════════════════════════════════════════════════════════════════════════════════╝
-```
-
----
-
-## Summary Statistics
-
-| Stage | Count |
-|---|---|
-| Records identified (arXiv+CORE, Huỳnh Cao Phước scope) | 61155 |
-| Candidate records retrieved and logged | 10 |
-| **Round 1** – Title + Abstract screened | 10 |
-| **Round 1** – Excluded | 0 |
-| **Round 2** – Full-text assessed | 10 |
-| **Round 2** – Excluded (EC6 – Repo-level / bug discovery focus) | 1 |
-| **Final included in Evidence Table** | **9** |
-
----

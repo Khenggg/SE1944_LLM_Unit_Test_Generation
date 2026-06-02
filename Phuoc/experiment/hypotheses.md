@@ -1,121 +1,28 @@
-# Statistical Hypotheses & Experimental Design
+# Hypotheses - SE1944
 
-This document details the formal null and alternative hypotheses formulated for our empirical study, the choice of statistical testing, and our predicted outcomes mapped to the empirical findings of our 9 SLR papers.
+## RQ1
 
----
+Do GPT-4-generated unit tests achieve branch coverage >= 80%?
 
-## Statistical Framework: Wilcoxon Signed-Rank Test
+- **H0_1:** GPT-4-generated unit tests do not achieve branch coverage >= 80%.
+- **H1_1:** GPT-4-generated unit tests achieve branch coverage >= 80%.
 
-Our evaluation uses the **Wilcoxon Signed-Rank Test** (a non-parametric statistical method) to evaluate the performance of GPT-4 against the baseline. 
+## RQ2
 
-### Why Wilcoxon?
-1. **Non-Normal Distribution**: Code coverage and mutation scores are bounded metrics (0–100%) that violate normal distribution assumptions.
-2. **Paired Observations**: We are evaluating paired samples (GPT-4 vs. manual test suites) tested on the **exact same** target functions.
-3. **Robustness**: Non-parametric tests are highly robust against outliers and smaller sample sizes.
+Do GPT-4-generated unit tests achieve mutation score >= 60%?
 
-### Metric Definitions for Function i:
-* BC_GPT4(i) & BC_Manual(i): Branch coverage achieved by GPT-4 and student manual suites, respectively.
-* MS_GPT4(i) & MS_Manual(i): Mutation score achieved by GPT-4 and student manual suites, respectively.
+- **H0_2:** GPT-4-generated unit tests do not achieve mutation score >= 60%.
+- **H1_2:** GPT-4-generated unit tests achieve mutation score >= 60%.
 
----
+## RQ3
 
-## Formal Hypotheses Formulation
+Are GPT-4-generated tests different from student-written tests on the same Java/Python functions?
 
-### Hypothesis Set 0: Branch Coverage Threshold
-> **H00 (Null)**: The median branch coverage achieved by GPT-4 generated unit tests on medium-complexity Java/Python functions is strictly less than 80%.
->
-> H00: median(BC_GPT4) < 80%
->
-> **H00a (Alternative)**: The median branch coverage achieved by GPT-4 generated unit tests is greater than or equal to 80%.
->
-> H00a: median(BC_GPT4) >= 80%
->
-> * **Statistical Test**: One-sample Wilcoxon signed-rank test against the fixed value of 80%.
+- **H0_3:** There is no statistically significant difference between GPT-4-generated tests and student-written tests.
+- **H1_3:** There is a statistically significant difference between GPT-4-generated tests and student-written tests.
 
----
+## Planned Statistical Test
 
-### Hypothesis Set 1: Mutation Score Threshold
-> **H01 (Null)**: The median mutation score achieved by GPT-4 generated unit tests on medium-complexity Java/Python functions is strictly less than 60%.
->
-> H01: median(MS_GPT4) < 60%
->
-> **H01a (Alternative)**: The median mutation score achieved by GPT-4 generated unit tests is greater than or equal to 60%.
->
-> H01a: median(MS_GPT4) >= 60%
->
-> * **Statistical Test**: One-sample Wilcoxon signed-rank test against the fixed value of 60%.
-
----
-
-### Hypothesis Set 2: Branch Coverage Parity (GPT-4 vs. Manual)
-> **H02 (Null)**: There is no significant difference in branch coverage between GPT-4 generated unit tests and student manually written unit tests.
->
-> H02: median(BC_GPT4 - BC_Manual) = 0
->
-> **H02a (Alternative)**: There is a significant difference in branch coverage between GPT-4 generated unit tests and student manually written unit tests.
->
-> H02a: median(BC_GPT4 - BC_Manual) != 0
->
-> * **Statistical Test**: Paired Wilcoxon signed-rank test (two-tailed).
-
----
-
-### Hypothesis Set 3: Mutation Score Parity (GPT-4 vs. Manual)
-> **H03 (Null)**: There is no significant difference in mutation score between GPT-4 generated unit tests and student manually written unit tests.
->
-> H03: median(MS_GPT4 - MS_Manual) = 0
->
-> **H03a (Alternative)**: There is a significant difference in mutation score between GPT-4 generated unit tests and student manually written unit tests.
->
-> H03a: median(MS_GPT4 - MS_Manual) != 0
->
-> * **Statistical Test**: Paired Wilcoxon signed-rank test (two-tailed).
-
----
-
-### Hypothesis Set 4: Dual-Metric Simultaneous Achievement
-> **H04 (Null)**: The probability of GPT-4 generated tests simultaneously meeting both target thresholds (Branch Coverage >= 80% and Mutation Score >= 60%) is less than or equal to 50% across the dataset.
->
-> H04: P(BC_GPT4 >= 80% and MS_GPT4 >= 60%) <= 0.5
->
-> **H04a (Alternative)**: The probability of GPT-4 generated tests simultaneously meeting both target thresholds is greater than 50% (achieved on the majority of functions).
->
-> H04a: P(BC_GPT4 >= 80% and MS_GPT4 >= 60%) > 0.5
->
-> * **Statistical Test**: One-tailed Binomial test on the proportion of functions satisfying both criteria.
-
----
-
-## Empirical Predictions & SLR Literature Alignment
-
-Below is the synthesized mapping of our hypotheses to the actual empirical evidence collected from our 9 SLR primary studies:
-
-### 1. Target Branch Coverage (H00)
-* **Prediction**: **Mixed / Context-Dependent**
-* **SLR Evidence**: Vanilla prompting is insufficient to reach the 80% branch coverage threshold on complex real-world code (`AX003`, `AX005`). However, specialized prompting architectures successfully cross the 80% threshold: `AX006` CAT call-chain injection improves branch coverage by 21.74%, `AX007` (HITS) leverages method slicing, `CORE001` utilizes project structure injection, and `AX001` applies covered-code elimination.
-
-### 2. Target Mutation Score (H01)
-* **Prediction**: **Mixed / Framework-Dependent**
-* **SLR Evidence**: Plain GPT-4 assertions suffer from semantic gaps on un-leaked real-world code, with mutation scores dropping to a low of ~41% (`AX003`). Achieving the >= 60% mutation score requires structured frameworks: `AX007` shows slicing preserves assertion power, and `CORE001` shows project knowledge injection improves test assertion quality.
-
-### 3. Branch Coverage Parity (H02)
-* **Prediction**: **Likely Reject H02 (Significant Difference)**
-* **SLR Evidence**: Human-written test suites continue to outperform plain LLM generators in complex settings. `AX009` shows that human-written suites are robust, whereas LLM tests are brittle and degrade severely under software evolution. `AX003` confirms professional code coverage exceeds vanilla GPT-4 capability on real repositories.
-
-### 4. Mutation Score Parity (H03)
-* **Prediction**: **Likely Reject H03 (Significant Difference)**
-* **SLR Evidence**: Real human developers write semantically deeper checks. `AX003` highlights that GPT-4 struggle to synthesize assertions on complex methods, leading to mutation scores (~41%) significantly lower than manual developer tests.
-
-### 5. Dual-Metric Co-achievement (H04)
-* **Prediction**: **Likely Fail to Reject H04 (Thresholds Not Simultaneously Met on Vanilla GPT-4)**
-* **SLR Evidence**: Meeting both targets simultaneously is a major bottleneck. `AX003` proves that high structural branch coverage does not translate into high mutation scores. Only advanced, complex frameworks like `AX007` (HITS method slicing) or `CORE001` (KTester) have demonstrated the capability to satisfy both criteria simultaneously on non-trivial methods.
-
----
-
-## Experimental Design Parameters
-
-* **Significance Level (alpha)**: alpha = 0.05 with Bonferroni correction applied for multiple comparison adjustments.
-* **Effect Size (r)**: Wilcoxon effect size calculated as r = Z / sqrt(N):
-  * **Small Effect**: r ~ 0.1
-  * **Medium Effect**: r ~ 0.3
-  * **Large Effect**: r ~ 0.5
+- One-sample Wilcoxon signed-rank test for comparing branch coverage against 80%.
+- One-sample Wilcoxon signed-rank test for comparing mutation score against 60%.
+- Paired Wilcoxon signed-rank test if comparing GPT-generated tests and student-written tests on the same functions.
