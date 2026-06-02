@@ -47,28 +47,5 @@ Since the dataset was exported independently from a single database source, no i
 
 
 
-flowchart TD
-    A["IEEE Xplore selected/exported records (n = 25)"]
-    B["Duplicates removed (n = 0)"]
-    C["Records after deduplication (n = 25)"]
-    D["Title and abstract screened (n = 25)"]
-    E["Excluded at V1 (n = 5)"]
-    F["Full-text/final prioritization assessed (n = 20)"]
-    G["Excluded or not selected after V2 (n = 15)"]
-    H["Final included studies (n = 5)"]
-
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    D --> F
-    F --> G
-    F --> H
-
-    style A fill:#1B365D,stroke:#333,stroke-width:2px,color:#fff
-    style C fill:#f9f9f9,stroke:#333,stroke-width:1px
-    style E fill:#FCE8E6,stroke:#C5221F,stroke-width:1px,color:#C5221F
-    style G fill:#FCE8E6,stroke:#C5221F,stroke-width:1px,color:#C5221F
-    style H fill:#E6F4EA,stroke:#137333,stroke-width:2px,color:#137333
 
 <img width="1364" height="1366" alt="mermaid-diagram" src="https://github.com/user-attachments/assets/843f5ba5-3171-40f1-a124-4e9e558de64f" />
