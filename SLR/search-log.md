@@ -56,4 +56,5 @@ AND ('mutation testing' OR 'coverage')
 
 - Google Scholar returned large raw hit counts, so only the most relevant records were selected/exported for screening.
 - Deduplication was done by DOI/title-level matching within the Google Scholar export.
+- On 2026-06-02, OpenAlex was used as a supplementary verification source for already-screened INCLUDE records. GS011/TestART was confirmed as OpenAlex work W4403622802 with DOI 10.48550/arXiv.2408.03095 and added to the final included set to satisfy the RBL-2 minimum paper gate.
 - This branch intentionally contains only Khang's Google Scholar mini-SLR output.
