@@ -7,11 +7,12 @@ flowchart TD
     classDef subNode fill:#fff,stroke:#e74c3c,stroke-width:2px,color:#c0392b,stroke-dasharray: 5 5;
     classDef resultNode fill:#d4edda,stroke:#28a745,stroke-width:2px,color:#155724,font-weight:bold,rx:5px,ry:5px;
     
-    A["Identification<br/>Records from database searching<br/>(N = 257)"]:::mainNode --> B["Screening<br/>After deduplication<br/>(N = 250)"]:::mainNode
+    A1["Identification<br/>Semantic Scholar Search<br/>(N = 270)"]:::mainNode --> A2["Collected via Zotero<br/>(N = 257)"]:::mainNode
+    A2 --> B["Screening<br/>After deduplication<br/>(N = 250)"]:::mainNode
     
     B --> C{"Title & Abstract<br/>Screened<br/>(N = 250)"}:::mainNode
     
-    C -- Excluded --> D["Records Excluded (N = 228)<br/>- EC3: 181<br/>- EC4: 24<br/>- EC6: 17<br/>- EC5: 1<br/>- Other: 5"]:::subNode
+    C -- Excluded --> D["Records Excluded (N = 228)<br/>- EC3: 181<br/>- EC4: 24<br/>- EC6: 17<br/>- EC5: 1<br/>- Other (IC4 fails): 5"]:::subNode
     
     C -- Passed (10 INCLUDE, 12 UNSURE) --> E{"Full-text Assessed<br/>(N = 22)"}:::mainNode
     
