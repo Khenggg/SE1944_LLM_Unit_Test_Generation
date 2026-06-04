@@ -18,7 +18,7 @@ flowchart TD
     
     E -- Excluded --> F["Full-text Excluded (N = 10)<br/>- EC5: 6<br/>- EC4: 3<br/>- EC3: 1"]:::subNode
     
-    E -- Included --> G["Included<br/>Final Included Papers<br/>(N = 12)"]:::resultNode
+    E -- Included --> G["Final Included Papers<br/>(N = 12)"]:::resultNode
 ```
 
 ### Screening Steps Detail
@@ -29,11 +29,11 @@ flowchart TD
 | Deduplication | Removed 7 duplicates, 250 records kept into screening. |
 | Screening v1 (Title and Abstract) | Screened 250 records. Excluded 228 records at v1. 10 INCLUDE and 12 UNSURE kept to round 2 |
 | Screening v2 (Full-text) | Screened 22 records in detail. Excluded 10 records at v2. |
-| Final Inclusion | 12 records for evidence_table_csv. |
+| Final Inclusion | 12 records for evidence_table.csv. |
 
 **Consistency Check:**
 - Rows in 01_all_records.csv after deduplication = 250 
 - Count(v1_decision = EXCLUDE) in 02_after_screening_v1.csv = 228
 - Count(v1 = INCLUDE + UNSURE) in 02_after_screening_v1.csv = 22
-- Count(v2_decision = EXCLUDE) in 03_final_included.csv = 10
-- Count(v2_decision = INCLUDE) in 03_final_included.csv = 12 => Included in evidence_table.csv
+- Count(v2_decision = EXCLUDE) in round 2 full-text screening = 10
+- Count(v2_decision = INCLUDE) exclusively in 03_final_included.csv = 12 => Included in evidence_table.csv
