@@ -19,7 +19,7 @@ Current research on LLM-based unit test generation predominantly reports structu
 
 ## Secondary Gaps
 
-| Gap Area | Evidence from Merged Literature | Implications for SE1944 |
+| Gap Area | Evidence from Merged Literature | Implications |
 | --- | --- | --- |
 | **Metric Gap** | While 29/37 papers report coverage, only 16/37 report mutation scores. | Relying solely on structural coverage is insufficient to capture the true fault-finding effectiveness of a test suite. Both metrics must be evaluated simultaneously. |
 | **Comparison Gap** | 5/37 papers compare LLM outputs to developer-written tests, while only 1/37 compares them to student-written tests. | The SE1944 project has a clear and novel contribution in establishing a student-written baseline, addressing a relatively unexplored area in software engineering education. |
