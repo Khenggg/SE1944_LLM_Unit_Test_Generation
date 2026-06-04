@@ -44,12 +44,12 @@ Chúng tôi thực hiện đánh giá tính khả thi trước khi tiến hành 
 
 | Tiêu chí | Mức | Ghi chú |
 |---|---|---|
-| **Dataset** | ✅ An toàn | Dataset bao gồm các bài làm thực hành/lab của sinh viên đã được thu thập đầy đủ và lưu trữ sẵn trên GitHub classroom. |
-| **Tool/API** | ✅ An toàn | Nhóm đã có tài khoản API OpenAI (GPT-4/GPT-4o) hoạt động ổn định và ngân sách thử nghiệm trong mức cho phép. |
-| **Compute** | ✅ An toàn | Chạy local test runner (pytest/unittest cho Python, Maven/JUnit cho Java) trên máy cá nhân không tốn tài nguyên GPU. |
-| **Ground truth** | ✅ An toàn | Các test suite viết thủ công bởi sinh viên chính là ground truth baseline đã có sẵn nhãn và kết quả thực thi. |
-| **Skills** | ✅ An toàn | Nhóm thành thạo các công cụ đo coverage (pytest-cov/JaCoCo) và mutation testing (mutmut/PIT). |
-| **Thời gian** | ✅ An toàn | Đã thiết lập sẵn pipeline chạy thử nghiệm tự động, chỉ mất 2-3 ngày để quét toàn bộ dataset. |
-| **Contribution**| ✅ An toàn | Kết quả so sánh trực tiếp này đóng vai trò quan trọng trong việc đánh giá khả năng thay thế hoặc hỗ trợ của AI trong đào tạo và capstone project. |
+| **Dataset** |  An toàn | Dataset bao gồm các bài làm thực hành/lab của sinh viên đã được thu thập đầy đủ và lưu trữ sẵn trên GitHub classroom. |
+| **Tool/API** |  An toàn | Nhóm đã có tài khoản API OpenAI (GPT-4/GPT-4o) hoạt động ổn định và ngân sách thử nghiệm trong mức cho phép. |
+| **Compute** |  An toàn | Chạy local test runner (pytest/unittest cho Python, Maven/JUnit cho Java) trên máy cá nhân không tốn tài nguyên GPU. |
+| **Ground truth** |  An toàn | Các test suite viết thủ công bởi sinh viên chính là ground truth baseline đã có sẵn nhãn và kết quả thực thi. |
+| **Skills** |  An toàn | Nhóm thành thạo các công cụ đo coverage (pytest-cov/JaCoCo) và mutation testing (mutmut/PIT). |
+| **Thời gian** |  An toàn | Đã thiết lập sẵn pipeline chạy thử nghiệm tự động, chỉ mất 2-3 ngày để quét toàn bộ dataset. |
+| **Contribution**| An toàn | Kết quả so sánh trực tiếp này đóng vai trò quan trọng trong việc đánh giá khả năng thay thế hoặc hỗ trợ của AI trong đào tạo và capstone project. |
 
-**Kết quả:** 0 ❌ / 0 ⚠️ → **An toàn**. GAP được chốt để đưa vào thiết kế thực nghiệm.
+**Kết quả:** 0  / 0  → **An toàn**. GAP được chốt để đưa vào thiết kế thực nghiệm.
