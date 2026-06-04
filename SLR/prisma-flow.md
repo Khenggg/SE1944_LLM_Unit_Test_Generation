@@ -16,7 +16,7 @@ flowchart TD
     
     C -- Passed (10 INCLUDE, 12 UNSURE) --> E{"Full-text Assessed<br/>(N = 22)"}:::mainNode
     
-    E -- Excluded --> F["Full-text Excluded (N = 10)<br/>- EC5: 6<br/>- EC4: 3<br/>- EC3: 1"]:::subNode
+    E -- Excluded --> F["Records Excluded (N = 10)<br/>- EC5: 6<br/>- EC4: 3<br/>- EC3: 1"]:::subNode
     
     E -- Included --> G["Final Included Papers<br/>(N = 12)"]:::resultNode
 ```
