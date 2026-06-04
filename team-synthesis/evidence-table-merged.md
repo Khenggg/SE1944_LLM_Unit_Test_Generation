@@ -2,7 +2,7 @@
 
 Sources: individual evidence tables from `Khang/`, `pham-an-khang/`, `Nhu-Y/`, `Phuoc/`, and `Đỗ Long Vỹ/`.
 
-Merge rule: papers were merged by title, DOI, or URL when the same study could be identified. If a paper appeared in multiple member folders, one representative row was kept and all sources were listed in `Source member`. This table represents the evidence currently available in the repository; metadata conflicts should still be verified against the original papers before final submission.
+Papers were merged by title, DOI, or URL when the same study could be identified. If a paper appeared in multiple member folders, one representative row was kept and all sources were listed in `Source member`. This table represents the evidence currently available in the repository; metadata conflicts should still be verified against the original papers before final submission.
 
 ## Merge Summary
 
