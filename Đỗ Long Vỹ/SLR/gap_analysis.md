@@ -40,4 +40,4 @@
 | **Timeline Constraints** | Safe | Execution phase estimated at 2 weeks, leaving a 1-week safety buffer before proposal submission. |
 | **Value of Negative Result**| Safe | Even if the LLM fails to beat students, it establishes a solid baseline for AI-driven academic grading tools. |
 
-* **Final Feasibility Decision:** **SAFE TO PROCEED** (0 Blockers ❌, 1 Manageable Risk ⚠️).
+* **Final Feasibility Decision:** **SAFE TO PROCEED** (0 Blockers , 1 Manageable Risk ).
