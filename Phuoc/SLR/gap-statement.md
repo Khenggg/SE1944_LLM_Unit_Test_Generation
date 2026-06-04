@@ -13,7 +13,7 @@ From the 7 OpenAlex final included papers:
 
 ## GAP-M - Metric Gap
 
-The `Metric` and `Kết quả` columns show that while branch/statement coverage is widely measured, mutation score is often treated as a secondary metric or auxiliary evaluation. This represents a significant gap because branch coverage alone does not guarantee the strength of the generated assertions. A dual evaluation assessing both structural coverage (branch coverage ≥ 80%) and fault-detection capability (mutation score ≥ 60%) concurrently is missing.
+The `Metric` and `Kết quả` columns show that while branch/statement coverage is widely measured, mutation score is often treated as a secondary metric or auxiliary evaluation. This represents a significant gap because branch coverage alone does not guarantee the strength of the generated assertions. A dual evaluation assessing both structural coverage (branch coverage ≥ 30.22%) and fault-detection capability (mutation score ≥ 35.3%) concurrently is missing.
 
 ## GAP-D - Dataset Gap
 

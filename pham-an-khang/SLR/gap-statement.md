@@ -1,45 +1,28 @@
-# GAP Evidence
+# Gap Statement – LLM for Unit Test Case Generation
+Evidence table: N = 12 papers | Date: 2026-06-03
 
-## Draft GAP
+## Summary from Evidence Table
+From the 12 final included papers:
+- 12/12 papers evaluate LLM-based unit test generation.
+- 12/12 papers explicitly include GPT-family models (GPT-4, GPT-3.5, GPT-4o, GPT-4o-mini).
+- 11/12 papers evaluate structural adequacy through branch/line/statement coverage.
+- 12/12 papers explicitly evaluate mutation score or mutant coverage.
+- 2/12 papers use student-written tests as a baseline, but there is a lack of large-scale direct comparison against student-written tests on the same source code.
+- 12/12 papers focus on Java/Python (all 12 focus on Java, only 1 focuses on Python).
 
-Previous studies have used LLMs for unit test generation, but the evidence is still limited for GPT-4 on medium-complexity Java/Python functions while measuring both branch coverage and mutation score and comparing directly with hand-crafted manual unit tests.
+## Identified Gaps
 
-## Evidence Notes
+### GAP-T (Technology): Lack of isolated evaluation of GPT-4 against student-written tests.
+**Evidence:** While all 12/12 papers employ LLMs like GPT-4, most studies (such as SS040 and SS109) only compare GPT-4's performance against traditional automated tools (like EvoSuite or Randoop) instead of directly comparing it with student-written tests on the same codebase.
 
-### Which papers measure coverage?
+### GAP-M (Metric): Lack of comprehensive test quality assessment.
+**Evidence:** Although structural adequacy (11/12 papers) and mutation score (12/12 papers) are prevalent functional metrics, very few studies assess critical code quality metrics like test smells or test readability alongside these functional metrics. Currently, only SS139 addresses test smells.
 
-6 of the 7 strictly included papers (SS001, SS006, SS007, SS008, SS009, SS011) report branch coverage:
+### GAP-D (Dataset): Lack of evaluation on medium cyclomatic complexity functions.
+**Evidence:** The datasets used in most studies (such as SS014, SS040, and SS109) evaluate overly simple, purely algorithmic functions (like HumanEval) or general bug-finding datasets (like Defects4J) without explicitly categorizing structural complexity. Only SS080 mentions cyclomatic complexity, but it does so on an extremely small scale (only 6 classes).
 
-- **Branch coverage ≥80% achieved** by: SS011 (Multi-LLM Chaining, 99.05% on Java), SS008 (80% median, 89% overall on Python).
-- **Branch coverage <80%** by: SS006 (30.22% on Java), SS009 (35.2% on Python).
-- Branch coverage is highly dependent on prompting strategy and cyclomatic complexity. On complex repositories (SS006, SS009), vanilla prompting falls far short of the 80% threshold, while coverage-guided feedback loops (SS008) or method slicing (SS007) significantly improve outcomes.
+### GAP-S (Limitation): Limited scale of direct human comparison.
+**Evidence:** Very few studies possess a large enough paired-comparison dataset to adequately evaluate GPT-4's test generation capability directly against test cases manually authored by students in a controlled environment.
 
-### Which papers measure mutation score?
-
-5 of the 7 strictly included papers (SS001, SS004, SS006, SS009, SS011) report mutation score:
-
-- **Mutation score ≥60% achieved** by: SS001 (MUTGEN, 89.5%), SS004 (MuTAP, 93.57%), SS011 (Multi-LLM Chaining, 94.32%).
-- **Mutation score <60%** by: SS006 (40.21%).
-- Mutation-feedback loop techniques (SS001, SS004, SS011) achieve exceptionally high mutation scores, whereas vanilla GPT-4 prompting on complex Java classes (SS006) achieves only 40.21%.
-
-### Which papers compare against manual tests, EvoSuite, Randoop, or developer tests?
-
-- **vs. manual/developer tests**: Only SS009 (TestGenEval) compares GPT-4o to developer-written tests, serving as the closest to our Comparison (C).
-- **vs. EvoSuite**: SS001, SS006, SS007
-- **vs. Randoop**: SS001, SS011
-- **No study directly compares GPT-4 to student-written manual unit tests** — this is the primary gap.
-
-### Which papers use Java/Python?
-
-- **Java**: SS001, SS006, SS007, SS011 (4 papers)
-- **Python**: SS004, SS008, SS009 (3 papers)
-
-### Which limitations justify this project?
-
-1. **No GPT-4 vs. student manual tests comparison**: No study directly compares GPT-4 automated tests to student-written/manually-written unit tests as the primary comparator.
-2. **Cyclomatic complexity not controlled**: Only SS007 (HITS) decomposes complex methods specifically. The other papers do not stratify or control results specifically for "medium cyclomatic complexity" (CC=5–15).
-3. **Dual-metric evaluation gap**: While 5 papers report both metrics, simultaneous achievement of both branch coverage (≥80%) and mutation score (≥60%) is only achieved on simple algorithmic benchmarks (SS011, SS001) rather than real-world complex code.
-
-## Identified Research Gap
-
-**No existing study evaluates GPT-4 automatic test generation specifically on Java/Python functions at medium cyclomatic complexity (CC=5–15) while simultaneously measuring both branch coverage (≥80%) and mutation score (≥60%) and comparing the results against student-written manually-written unit tests.**
+## Final GAP Statement
+Existing evidence evaluates LLM-generated unit tests across benchmarks and automated tool baselines, but it does not provide a paired comparison between GPT-4-generated tests and student-written tests on the same medium-complexity Java/Python units. This study will address that gap using branch coverage and mutation score as dual quality metrics.

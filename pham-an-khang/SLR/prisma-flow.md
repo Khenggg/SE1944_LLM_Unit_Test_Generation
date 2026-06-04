@@ -1,95 +1,39 @@
-# PRISMA Flowchart – Systematic Literature Review (Semantic Scholar Scope)
-## Research Question: For Java/Python functions at medium cyclomatic complexity (P), could GPT-4 automatic generation of unit test cases (I) compared to manually written test cases (C) achieve >=80% branch coverage and >=60% mutation score (O)?
-**Date of search:** 26–28 May 2026 | **Database:** Semantic Scholar
+# PRISMA Flow Diagram
 
----
-
-```
-╔══════════════════════════════════════════════════════════════════════════════════╗
-║                        IDENTIFICATION                                           ║
-║                                                                                 ║
-║   Records identified through database searching                                 ║
-║                                                                                 ║
-║   ┌─────────────────────────┐                                                   ║
-║   │ Semantic Scholar        │                                                   ║
-║   │ (N = 299)               │                                                   ║
-║   │ Search date: 28/05/2026 │                                                   ║
-║   │ Search string: boolean  │                                                   ║
-║   │ (LLM/GPT/ChatGPT) AND   │                                                   ║
-║   │ (unit test generation)  │                                                   ║
-║   │ AND (branch coverage /  │                                                   ║
-║   │ mutation testing)       │                                                   ║
-║   └─────────────────────────┘                                                   ║
-║             │                                                                   ║
-║             │   299 records retrieved from Semantic Scholar and filtered        ║
-║             │   by AI based on relevance (N = 17 candidate records logged)      ║
-║             ▼                                                                   ║
-╠══════════════════════════════════════════════════════════════════════════════════╣
-║             │                                                                   ║
-║   ┌────────────────────────────────────────────────────────────────┐            ║
-║   │  Records after deduplication / pre-exclusion (N = 17)          │            ║
-║   └────────────────────────────────────────────────────────────────┘            ║
-║             │                                                                   ║
-║             ▼                                                                   ║
-╠══════════════════════════════════════════════════════════════════════════════════╣
-║                        SCREENING – ROUND 1 (Vòng 1)                             ║
-║                                                                                 ║
-║   ┌──────────────────────────────────┐     ┌─────────────────────────────────┐  ║
-║   │  Title + Abstract screened       │────▶│  Excluded (N = 4)               │  ║
-║   │  (N = 17)                        │     │                                 │  ║
-║   │                                  │     │  EC (reasons):                  │  ║
-║   │  Reviewer: Person 4              │     │  • IC6 not met: JS only (SS002) │  ║
-║   │  Criteria applied: IC1–IC6       │     │  • EC2: PDF not found (SS012)   │  ║
-║   │                  + EC1–EC7       │     │  • EC5: SLR/Survey (SS014)      │  ║
-║   │                                  │     │  • EC2: PDF not found (SS015)   │  ║
-║   └──────────────────────────────────┘     └─────────────────────────────────┘  ║
-║             │                                                                   ║
-║             │  Records retained for full-text screening (N = 13)                ║
-║             ▼                                                                   ║
-╠══════════════════════════════════════════════════════════════════════════════════╣
-║                        SCREENING – ROUND 2 (Vòng 2)                             ║
-║                                                                                 ║
-║   ┌──────────────────────────────────┐     ┌─────────────────────────────────┐  ║
-║   │  Full-text assessed              │────▶│  Excluded (N = 6)               │  ║
-║   │  (N = 13)                        │     │                                 │  ║
-║   │                                  │     │  Reason (EC6):                  │  ║
-║   │  Reviewer: Person 4              │     │  • Lacks core GPT-4 evaluation  │  ║
-║   │  Criteria applied: IC1–IC6       │     │    and/or critical branch       │  ║
-║   │                  + EC1–EC7       │     │    coverage and mutation score  │  ║
-║   │  (full paper content reviewed)   │     │    metrics necessary for PICO   │  ║
-║   └──────────────────────────────────┘     └─────────────────────────────────┘  ║
-║             │                                                                   ║
-║             │  Studies included in synthesis (N = 7)                            ║
-║             ▼                                                                   ║
-╠══════════════════════════════════════════════════════════════════════════════════╣
-║                        INCLUDED                                                 ║
-║                                                                                 ║
-║   ┌────────────────────────────────────────────────────────────────┐            ║
-║   │  Studies included in Evidence Table (N = 7)                    │            ║
-║   │                                                                │            ║
-║   │  SS001 – MUTGEN (Wang et al., 2026, IEEE TSE)                  │            ║
-║   │  SS004 – MuTAP (Dakhel et al., 2024, IST)                      │            ║
-║   │  SS006 – LLMs & Prompting Eval (Ouédraogo et al., 2024, ASE)   │            ║
-║   │  SS007 – HITS (Wang et al., 2024, ASE)                         │            ║
-║   │  SS008 – CoverUp (Pizzorno & Berger, 2025, ACM FSE)            │            ║
-║   │  SS009 – TestGenEval (Jain et al., 2025, ICLR)                 │            ║
-║   │  SS011 – Multi-LLM Chaining (Kumar et al., 2025, IEEE Access)  │            ║
-║   └────────────────────────────────────────────────────────────────┘            ║
-╚══════════════════════════════════════════════════════════════════════════════════╝
+```mermaid
+flowchart TD
+    %% Define Styles
+    classDef mainNode fill:#eef2f5,stroke:#3b5998,stroke-width:2px,color:#000,font-weight:bold,rx:5px,ry:5px;
+    classDef subNode fill:#fff,stroke:#e74c3c,stroke-width:2px,color:#c0392b,stroke-dasharray: 5 5;
+    classDef resultNode fill:#d4edda,stroke:#28a745,stroke-width:2px,color:#155724,font-weight:bold,rx:5px,ry:5px;
+    
+    A1["Identification<br/>Semantic Scholar Search<br/>(N = 270)"]:::mainNode --> A2["Collected via Zotero<br/>(N = 257)"]:::mainNode
+    A2 --> B["Screening<br/>After deduplication<br/>(N = 250)"]:::mainNode
+    
+    B --> C{"Title & Abstract<br/>Screening<br/>(N = 250)"}:::mainNode
+    
+    C -- Excluded --> D["Records Excluded (N = 228)<br/>- EC3: 181<br/>- EC4: 24<br/>- EC6: 17<br/>- EC5: 1<br/>- Other (IC4 fails): 5"]:::subNode
+    
+    C -- Passed (10 INCLUDE, 12 UNSURE) --> E{"Full-text Screening<br/>(N = 22)"}:::mainNode
+    
+    E -- Excluded --> F["Records Excluded (N = 10)<br/>- EC5: 6<br/>- EC4: 3<br/>- EC3: 1"]:::subNode
+    
+    E -- Included --> G["Final Included Papers<br/>(N = 12)"]:::resultNode
 ```
 
----
+### Screening Steps Detail
 
-## Summary Statistics
-
-| Stage | Count |
+| Step | Details |
 |---|---|
-| Records identified (Semantic Scholar, Person 4 scope) | 299 |
-| Candidate records retrieved and logged | 17 |
-| **Round 1** – Title + Abstract screened | 17 |
-| **Round 1** – Excluded (JS only: 1; PDF not found: 2; SLR: 1) | 4 |
-| **Round 2** – Full-text assessed | 13 |
-| **Round 2** – Excluded (EC6 – lack of PICO-aligned content) | 6 |
-| **Final included in Evidence Table** | **7** |
+| Identification | 270 records identified from Semantic Scholar raw search (see search-log.md for details). 257 records were successfully collected via Zotero for screening.|
+| Deduplication | Removed 7 duplicates, 250 records kept into screening. |
+| Screening v1 (Title and Abstract) | Screened 250 records. Excluded 228 records at v1. 10 INCLUDE and 12 UNSURE kept to round 2 |
+| Screening v2 (Full-text) | Screened 22 records in detail. Excluded 10 records at v2. |
+| Final Inclusion | 12 records for evidence_table.csv. |
 
----
+**Consistency Check:**
+- Rows in 01_all_records.csv after deduplication = 250 
+- Count(v1_decision = EXCLUDE) in 02_after_screening_v1.csv = 228
+- Count(v1 = INCLUDE + UNSURE) in 02_after_screening_v1.csv = 22
+- Count(v2_decision = EXCLUDE) in round 2 full-text screening = 10
+- Count(v2_decision = INCLUDE) exclusively in 03_final_included.csv = 12 => Included in evidence_table.csv

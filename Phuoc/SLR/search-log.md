@@ -1,26 +1,38 @@
 # Search Log - LLM for Unit Test Case Generation
 
-**Thành viên:** Phuoc
+**Thành viên:** Huỳnh Cao Phước
 
 **Nguồn phụ trách:** OpenAlex
 
 **Ngày thực hiện:** 2026-05-02
 
-## Query Strings
+---
+
+## Chuỗi tìm kiếm (Query Strings)
 
 ### String A
 
+**Query nguyên văn:**
 ```text
 ('large language model' OR 'LLM' OR 'GPT' OR 'ChatGPT')
 AND ('unit test generation' OR 'test case generation' OR 'automated unit testing')
 AND ('branch coverage' OR 'code coverage' OR 'mutation score' OR 'mutation testing')
 ```
 
+**Database:** OpenAlex  
+**Bộ lọc:** Year 2020–2026, English only  
+**Ngày search:** 2026-05-02  
+**Số kết quả:** 119 papers  
+
+---
+
 ## Search Execution Log
 
 | Database | String | Date | Raw search hits | Notes |
 | --- | --- | --- | ---: | --- |
 | OpenAlex | String A | 2026-05-02 | 119 | Search query executed on OpenAlex API; 67 records passed completeness criteria and were selected/exported |
+
+---
 
 ## Tổng hợp trước dedup
 
@@ -32,6 +44,33 @@ AND ('branch coverage' OR 'code coverage' OR 'mutation score' OR 'mutation testi
 | **Sau dedup** | | **51** |
 | **Số bị loại do trùng** | | **16** |
 
+---
+
+## Phần S — Cross-reference Search (Snowballing)
+
+> Snowballing không có query string.
+
+**Phương pháp:** Backward snowballing — đọc reference list của các paper đã pass V2 screening.  
+**Thực hiện:** Đọc reference list của từng paper trong số 7 paper final included.  
+**Công cụ:** CrossRef (crossref.org) để lookup metadata từ DOI; Google Scholar để tìm kiếm bản copy.  
+**Ngày thực hiện:** 2026-06-02  
+**Paper included đã scan:** 7 papers  
+**Paper mới phát hiện:** 0 paper pass IC (Đã scan 7 paper, không có paper mới pass IC).  
+
+---
+
+## Access Restrictions & Paywalled Papers
+
+Các tài liệu sau đây trong `03_final_included.csv` bị hạn chế truy cập do chính sách trả phí hoặc tường lửa bảo mật, được ghi nhận thông tin truy cập thay thế tại đây:
+1. **OA024** (Zeyu Lu et al., 2026 - *Beyond Coverage: Automatic Test Suite Augmentation...*): Tài liệu trả phí (paywalled) của ACM.
+   - **DOI:** [10.1145/3798251](https://doi.org/10.1145/3798251)
+   - **URL:** [ACM Digital Library](https://doi.org/10.1145/3798251)
+2. **OA048** (Radia Tabassum, 2026 - *A Comparative Evaluation of Search-Based and Mutation-Driven LLM Test Generation...*): Luận văn Thạc sĩ, chặn tải xuống tự động qua API bằng tường lửa của thư viện Đại học Helsinki (Doria).
+   - **URL:** [Doria Repository](https://www.doria.fi/handle/10024/194889)
+   - **Direct PDF Landing:** [URN link](https://urn.fi/URN:NBN:fi-fe2026021235473)
+
+---
+
 ## Screening Execution Logs
 
 ### Vòng 1: Title + Abstract Screening (`02_after_screening_v1.csv`)
@@ -39,7 +78,7 @@ AND ('branch coverage' OR 'code coverage' OR 'mutation score' OR 'mutation testi
 | Quyết định | Số lượng | Mô tả lý do phân loại |
 | --- | ---: | --- |
 | **INCLUDE** | 36 | Các bài báo nghiên cứu trực tiếp về việc sử dụng LLM để sinh unit test cho Java/Python và có nhắc đến việc đo lường độ phủ hoặc điểm đột biến (mutation score) trong tóm tắt. |
-| **EXCLUDE** | 11 | Bị loại trừ do vi phạm các tiêu chí loại trừ rõ ràng: viết bằng ngôn ngữ khác tiếng Anh (Thụy Điển, Pháp, Indonesia, Ukraina - vi phạm IC1), đánh giá trên đối tượng ngôn ngữ khác Java/Python như C/C++ hay smart contract/Solidity (vi phạm IC6), hoặc chỉ tập trung vào sinh seed fuzzing chứ không phải unit test (vi phạm EC4/EC3). |
+| **EXCLUDE** | 11 | Bị loại trừ do vi phạm các tiêu chí loại trừ rõ ràng: viết bằng ngôn ngữ khác tiếng Anh (Thụy Điển, Pháp, Indonesia, Ukraina - vi phạm IC-L), đánh giá trên đối tượng ngôn ngữ khác Java/Python như C/C++ hay smart contract/Solidity (vi phạm IC-P/IC-I), hoặc chỉ tập trung vào sinh seed fuzzing chứ không phải unit test (vi phạm EC-O). |
 | **UNSURE** | 4 | Các nghiên cứu về nền tảng/nền móng kiểm thử hoặc sinh testcase phát hiện lỗ hổng bảo mật chưa rõ ngôn ngữ kiểm thử hoặc các metrics đo lường; được giữ lại để đọc full-text ở vòng 2 theo nguyên tắc không loại nhầm. |
 | **Tổng cộng** | **51** | |
 
@@ -50,6 +89,8 @@ AND ('branch coverage' OR 'code coverage' OR 'mutation score' OR 'mutation testi
 | **INCLUDE** | 7 | Các nghiên cứu chất lượng cao nhất, thỏa mãn đầy đủ tất cả các khía cạnh của câu hỏi nghiên cứu PICO: sinh unit test Java/Python bằng LLM (như GPT-4), đánh giá thực nghiệm chặt chẽ đo lường cả **branch coverage** (độ bao phủ nhánh) và **mutation score** (điểm đột biến), có so sánh đối chứng với kiểm thử thủ công hoặc các công cụ SBST (như EvoSuite, Pynguin). |
 | **EXCLUDE** | 33 | Các bài báo mặc dù liên quan đến LLM và unit testing nhưng bị loại ở vòng này do thiếu sót các yếu tố cốt lõi: chỉ đo line/statement coverage mà hoàn toàn không đo mutation score; chỉ phân tích lý thuyết/khảo sát (survey) không có thực nghiệm đo lường trực tiếp; hoặc kiểm thử mức hệ thống/tích hợp không khớp với mục tiêu unit testing. |
 | **Tổng cộng** | **40** | (Đánh giá trên nhóm INCLUDE + UNSURE từ vòng 1) |
+
+---
 
 ## Ghi chú & Giải thích kết quả
 

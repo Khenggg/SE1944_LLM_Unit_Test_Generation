@@ -1,35 +1,35 @@
 # Gap Statement Final
 
-Nguồn chính: `team-synthesis/evidence-table-merged.md`.
+**Primary Source:** `team-synthesis/evidence-table-merged.md`
 
 ## Evidence Count
 
-| Nhóm bằng chứng | Số lượng trong 30 paper unique | Nhận xét |
+| Evidence Group | Count among 37 unique primary studies | Remarks |
 | --- | ---: | --- |
-| Có dùng coverage/code coverage/branch coverage | 22/30 | Coverage là metric phổ biến nhất trong các paper đã trích xuất. |
-| Có dùng mutation score/mutation testing/mutant information | 10/30 | Mutation xuất hiện ít hơn coverage và thường nằm trong các phương pháp feedback/mutation-guided. |
-| Có so sánh với human/developer-written tests | 2/30 | Có evidence gần với human baseline, nhưng không đúng student-written baseline của SE1944. |
-| Có so sánh trực tiếp với student-written tests | 0/30 | Đây là khoảng trống rõ nhất so với đề tài nhóm. |
-| Kiểm soát trực tiếp medium cyclomatic complexity CC=5-15 | 0/30 | Một số paper nói về complexity/complex methods, nhưng chưa dùng đúng population của nhóm. |
-| Đánh giá đồng thời branch coverage và mutation score trên GPT-4/GPT-4o | Có nhưng rời rạc | Các paper mạnh thường dùng benchmark/tool setting riêng, không đi kèm student baseline. |
+| Utilizes coverage / code coverage / branch coverage | 29/37 | Structural coverage remains the most universally adopted evaluation metric in the extracted studies. |
+| Utilizes mutation score / mutation testing / mutant information | 16/37 | Mutation testing appears less frequently than structural coverage and is predominantly found in studies proposing feedback-driven or mutation-guided test generation methodologies. |
+| Evaluates against human or developer-written tests | 5/37 | Some evidence exists comparing LLM generation against professional developers, but this does not perfectly represent a student-written baseline. |
+| Direct comparison with student-written tests | 1/37 | Only one study explicitly addresses student programming assignments, highlighting a severe lack of research tailored to educational contexts. |
+| Directly controls for medium cyclomatic complexity (CC=5-15) | 1/37 | A few papers focus on "complex methods" or report results on real-world functions (like the ULT benchmark), but strict population control for medium cyclomatic complexity is largely absent. |
+| Simultaneously evaluates branch coverage and mutation score using GPT-4/GPT-4o | Present but fragmented | Strong evidence exists (e.g., studies using the ULT benchmark) reporting both metrics simultaneously, but they typically utilize custom benchmarks without benchmarking against student-written baselines. |
 
-## GAP Chính
+## Primary Gap (GAP)
 
-Các nghiên cứu hiện có về LLM-based unit test generation chủ yếu báo cáo structural coverage hoặc cải thiện pass/compile rate. Một nhóm nhỏ hơn có dùng mutation score để đo khả năng phát hiện lỗi. Tuy nhiên, gần như không có nghiên cứu nào đánh giá GPT-4/GPT-4o-generated unit tests trên cùng một tập Java/Python functions có độ phức tạp cyclomatic trung bình, đồng thời đo cả branch coverage và mutation score, rồi so sánh trực tiếp với student-written tests.
+Current research on LLM-based unit test generation predominantly reports structural coverage improvements or enhancements in compilation and pass rates. While a smaller subset of studies employs mutation scores to accurately measure fault-detection capabilities, there is an almost complete absence of research that evaluates GPT-4/GPT-4o-generated unit tests on a controlled set of medium-complexity Java/Python functions (Cyclomatic Complexity between 5 and 15) by simultaneously measuring both branch coverage and mutation score, and directly comparing these results against student-written tests.
 
-## GAP Phụ
+## Secondary Gaps
 
-| GAP | Bằng chứng từ evidence merged | Ý nghĩa cho SE1944 |
+| Gap Area | Evidence from Merged Literature | Implications for SE1944 |
 | --- | --- | --- |
-| Metric gap | 22/30 paper có coverage, nhưng chỉ 10/30 có mutation score/mutation testing. | Nếu chỉ dùng coverage thì chưa đo được khả năng bắt lỗi thật của test suite. |
-| Comparison gap | 2/30 paper có human/developer-written comparison; 0/30 có student-written comparison. | Đề tài SE1944 có đóng góp rõ ở baseline sinh viên. |
-| Dataset/complexity gap | 0/30 paper kiểm soát đúng medium CC=5-15; một số paper dùng benchmark đơn giản hoặc repo phức tạp. | Nhóm cần định nghĩa dataset theo function-level và cyclomatic complexity trung bình. |
-| Method gap | Các kết quả cao thường cần feedback loop, chaining, slicing, mutation guidance hoặc coverage guidance. | Khi thiết kế experiment, cần ghi rõ prompt/feedback policy thay vì nói chung chung là GPT-4. |
+| **Metric Gap** | While 29/37 papers report coverage, only 16/37 report mutation scores. | Relying solely on structural coverage is insufficient to capture the true fault-finding effectiveness of a test suite. Both metrics must be evaluated simultaneously. |
+| **Comparison Gap** | 5/37 papers compare LLM outputs to developer-written tests, while only 1/37 compares them to student-written tests. | The SE1944 project has a clear and novel contribution in establishing a student-written baseline, addressing a relatively unexplored area in software engineering education. |
+| **Dataset & Complexity Gap** | Only 1/37 papers strictly controls for medium complexity (CC=5-15). Most studies either use simplistic benchmarks (like HumanEval) or highly complex legacy enterprise repositories. | The research must strictly define and curate the dataset at the function level, ensuring all evaluated methods fall within the medium cyclomatic complexity range to avoid skewed results. |
+| **Methodological Gap** | The highest reported results generally depend on complex iterative feedback loops, method slicing, or mutation-guided prompting. | The experiment design must explicitly define the prompt engineering policy (e.g., zero-shot vs. chain-of-thought vs. iterative feedback) rather than treating "GPT-4" as a generalized monolith. |
 
-## Final GAP Statement
+## Final Gap Statement
 
-Existing studies show that LLMs can generate unit tests with useful coverage, especially when supported by feedback loops, method slicing, or mutation guidance. However, the literature still lacks a direct evaluation of GPT-4/GPT-4o-generated unit tests against student-written tests on the same medium-complexity Java/Python functions, using both branch coverage and mutation score as outcome metrics.
+Existing empirical studies demonstrate that Large Language Models (LLMs) can generate unit test suites with substantial coverage, particularly when augmented by iterative feedback loops, context-aware method slicing, or mutation guidance. However, the current literature still lacks a direct, rigorously controlled evaluation of GPT-4/GPT-4o-generated unit tests against student-written tests on the exact same medium-complexity Java and Python functions. Specifically, there is a prominent research gap in assessing these test suites simultaneously using both branch coverage and mutation score to determine their comprehensive fault-detection capabilities in an educational context.
 
-## Hướng nghiên cứu của nhóm
+## Research Direction
 
-Nhóm sẽ kiểm tra khoảng trống này bằng cách chọn cùng một tập Java/Python functions có cyclomatic complexity trung bình, sinh unit tests bằng GPT-4/GPT-4o, thu student-written tests cho cùng functions, rồi so sánh bằng branch coverage, mutation score và compile/pass status.
+To address this gap, the research will curate a controlled dataset of Java and Python functions featuring medium cyclomatic complexity. The study will generate unit tests for these functions using GPT-4/GPT-4o, collect corresponding student-written tests for the exact same functions, and perform a paired statistical comparison using structural branch coverage, mutation score, and compilation/pass status as the primary quantitative metrics.
