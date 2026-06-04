@@ -1,0 +1,12 @@
+id,title,authors,year,venue,search_string
+ACM001,"An Initial Investigation of ChatGPT Unit Test Generation Capability","Yuan et al.",2023,"ACM Conference/Workshop","String A"
+ACM002,"Evaluating and Improving ChatGPT for Unit Test Generation","Tang et al.",2024,"ACM Transactions on Software Engineering and Methodology","String A"
+ACM003,"Unit Test Generation using Generative AI: A Comparative Performance Analysis of Autogeneration Tools","Unknown",2024,"LLM4Code / ACM","String A"
+ACM004,"On the Evaluation of Large Language Models in Unit Test Generation","Unknown",2024,"ASE / ACM","String A"
+ACM005,"Automated Unit Test Generation via Chain-of-Thought Prompt and Reinforcement Learning from Coverage Feedback","Unknown",2025,"ACM Transactions on Software Engineering and Methodology","String A"
+ACM006,"PRIMG: Efficient LLM-driven Test Generation Using Mutant Information","Unknown",2025,"ACM Conference/Workshop","String C"
+ACM007,"Benchmarking LLMs for Unit Test Generation from Real-World Functions","Unknown",2025,"ACM Transactions / Journal","String A"
+ACM008,"Effective Test Generation Using Pre-trained Large Language Models","Unknown",2024,"Information and Software Technology","String C"
+ACM009,"ChatUniTest: A ChatGPT-based Automated Unit Test Generation Tool","Unknown",2023,"arXiv / Tool Paper","String B"
+ACM010,"Software Testing with Large Language Models","Wang et al.",2024,"Survey / Preprint","String C"
+ACM011,"A Survey on Large Language Models for Software Testing","Unknown",2024,"Survey Paper","String C"
