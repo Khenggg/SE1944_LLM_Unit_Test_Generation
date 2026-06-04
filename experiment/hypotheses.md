@@ -1,33 +1,18 @@
-# Hypotheses - LLM-based Unit Test Generation
+# Hypotheses - RBL-1
 
-## RQ1 - Branch Coverage
+Date: 2026-06-04  
+Status: inherited/kept for traceability. RBL-2 uses `hypotheses-draft.md` as the updated version.
 
-H0: LLM-generated unit tests do not achieve branch coverage greater than or equal to the selected threshold.
+## Preliminary RQ
 
-H1: LLM-generated unit tests achieve branch coverage greater than or equal to the selected threshold.
+Can LLM-generated unit tests improve automated unit test quality when evaluated using coverage-related and mutation-related metrics?
 
-Statistical test dự kiến: Wilcoxon signed-rank test or one-sample test depending on the dataset.
+## Preliminary Hypotheses
 
-## RQ2 - Mutation Score
+**H0:** LLM-generated unit tests do not improve unit test quality when evaluated using coverage-related and mutation-related metrics.
 
-H0: LLM-generated unit tests do not achieve mutation score greater than or equal to the selected threshold.
+**H1:** LLM-generated unit tests improve unit test quality when evaluated using coverage-related and mutation-related metrics.
 
-H1: LLM-generated unit tests achieve mutation score greater than or equal to the selected threshold.
+## Note
 
-Statistical test dự kiến: Wilcoxon signed-rank test.
-
-## RQ3 - Comparison with Human-written Tests
-
-H0: There is no significant difference between LLM-generated unit tests and human-written unit tests in terms of branch coverage and mutation score.
-
-H1: There is a significant difference between LLM-generated unit tests and human-written unit tests in terms of branch coverage and mutation score.
-
-Statistical test dự kiến: Mann-Whitney U test or Wilcoxon signed-rank test, depending on whether the samples are paired.
-
-## Expected Metrics
-
-- Branch coverage
-- Code coverage
-- Mutation score
-- Test pass rate
-- Number of generated test cases
+This RBL-1 file is intentionally less specific. The RBL-2 file `hypotheses-draft.md` replaces it with testable comparative hypotheses, explicit metrics, and a planned statistical test.
