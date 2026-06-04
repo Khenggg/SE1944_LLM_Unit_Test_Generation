@@ -40,6 +40,6 @@ For Java/Python functions with medium cyclomatic complexity, can GPT-4/GPT-4o-ge
 
 ## Scope & Threshold Rationale
 
-The consolidated evidence from the Systematic Literature Review demonstrates that the highest quality, most reliable results are predominantly achieved by state-of-the-art models like GPT-4 and GPT-4o, often enhanced by iterative feedback loops. Therefore, the final research questions explicitly target `GPT-4/GPT-4o-generated unit tests` rather than a generalized "LLM" terminology. *(Note: If the research team lacks access to GPT-4o during the empirical execution phase, the intervention terminology must be updated to reflect the actual model deployed before final report submission).*
+The consolidated evidence from the Systematic Literature Review demonstrates that the highest quality, most reliable results are predominantly achieved by state-of-the-art models like GPT-4 and GPT-4o, often enhanced by iterative feedback loops. Therefore, the final research questions explicitly target GPT-4/GPT-4o-generated unit tests rather than a generalized "LLM" terminology.
 
 **Threshold Justification:** The baseline thresholds of 74% for branch coverage and 58% for mutation score are derived directly from the consolidated SLR evidence (specifically paper M010 utilizing the UnLeakedTestBench - ULT). These specific values represent the most robust, empirically grounded floor thresholds achieved on real-world, non-contaminated complex code, providing a scientifically sound benchmark for evaluating LLM test generation efficacy in a realistic scenario.
