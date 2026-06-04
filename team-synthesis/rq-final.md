@@ -1,7 +1,7 @@
 # Research Question Final
 
 > [!NOTE]
-> Please note that this document represents the "technical final RQ" up until this point in the research synthesis process. This should not be considered the exact, absolute final RQ, as there is one more major phase of the project incoming that may necessitate further refinements to these questions.
+> Please note that this document represents the "technical final RQ" up until this point in the research synthesis process. This should not be considered the exact, absolute final RQ, as there is one more major phase incoming (RBL-3) that would necessitate further refinements to these questions.
 
 ## Topic
 
