@@ -10,7 +10,7 @@ Date: 2026-06-03 | GAP source: SLR/gap-analysis.md
 | Dataset | Java/Python functions categorized with Medium Cyclomatic Complexity | GAP-D: Most current papers do not deeply evaluate the impact of cyclomatic complexity, usually assessing broadly on HumanEval or Defects4J |
 | Primary Metric | Branch coverage, Mutation score | GAP-M: Directly reflects the two core aspects (SS040, SS080, SS109) which are control flow coverage and semantic fault-finding capability |
 | Secondary Metric | Compilation success rate, Test smells | Derived from SS047 (for Compilation) and SS139 (for Test smells) to track compilation feasibility and maintainability |
-| Baseline type | Absolute threshold & Human-level baseline | RQ Objective: Must achieve specific percentages (≥ 80% branch, ≥ 60% mutation) and directly compare against student-written tests |
+| Baseline type | Absolute threshold & Human-level baseline | RQ Objective: Must achieve specific percentages (≥ 74% branch, ≥ 58% mutation) and directly compare against student-written tests |
 | Threshold RQ1 | Branch coverage ≥ 74% | Case 2: Based on paper SS040 where GPT-4 achieves 74% coverage on real functions, we set the expectation at the 74% floor |
 | Threshold RQ2 | Mutation score ≥ 58% | Case 2: Based on paper SS040 reporting a 58% mutation score for GPT-4, we set the target milestone at the 58% floor |
 | Pipeline base | Benchmark architecture from SS040 and SS174 | SS040 provides a methodology for comparing real code quality; SS174 utilizes a Mutation-guided feedback loop |
@@ -19,10 +19,10 @@ Date: 2026-06-03 | GAP source: SLR/gap-analysis.md
 ## Threshold Rationale
 
 Threshold Branch coverage 74% — Case 2 — floor = 74% from paper SS040 (2026). 
-Rationale: SS040 evaluates GPT-4 on the ULT benchmark containing complex real-world functions, obtaining a 74% coverage result. To ensure that automatically generated unit tests approach the quality of actual production code, the research sets a challenging milestone that GPT-4 can reach the threshold of 74% for functions with medium complexity.
+Rationale: SS040 evaluates LLMs on the UnLeakedTestBench (ULT), a rigorous benchmark containing complex real-world functions designed to mitigate data leakage. While the public source for ULT reports a much lower average performance across all 12 tested LLMs (~30.22% branch coverage), the study explicitly records that **GPT-4 achieves a 74% branch coverage peak performance** on these complex functions. To ensure that our automatically generated unit tests approach the quality of actual production code, we set this challenging, GPT-4 specific milestone of 74% as our floor for functions with medium complexity.
 
 Threshold Mutation score 58% — Case 2 — floor = 58% from paper SS040 (2026). 
-Rationale: Similarly, SS040 records a mutation score of 58% with GPT-4. The 58% threshold is selected as a milestone to determine if the automated generation possesses sufficient semantic fault-detection capability closely comparable to student-written tests.
+Rationale: Similarly, while the general LLM average on ULT is only ~40.21% for mutation score, SS040 documents that **GPT-4 specifically achieves a mutation score of 58%**. This 58% threshold is strictly selected as our target milestone to determine if the automated generation possesses sufficient semantic fault-detection capability, closely comparable to the proven state-of-the-art capability of GPT-4.
 
 ## Pipeline Rationale
 
