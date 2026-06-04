@@ -6,12 +6,12 @@ Các giả thuyết thống kê dưới đây bám sát thiết kế trong `Phuo
 ---
 
 ## RQ1 — Branch Coverage Threshold (Absolute Target)
-Kiểm định xem unit test do GPT-4/GPT-4o sinh ra có đạt độ bao phủ nhánh tối thiểu 70% trên các hàm có độ phức tạp cyclomatic trung bình hay không.
+Kiểm định xem unit test do GPT-4/GPT-4o sinh ra có đạt độ bao phủ nhánh tối thiểu 30.22% trên các hàm có độ phức tạp cyclomatic trung bình hay không.
 
-- **H0_1:** Trung vị (median) branch coverage của unit test sinh bởi GPT-4/GPT-4o nhỏ hơn 70%.
-- **H1_1:** Trung vị (median) branch coverage của unit test sinh bởi GPT-4/GPT-4o lớn hơn hoặc bằng 70%.
+- **H0_1:** Trung vị (median) branch coverage của unit test sinh bởi GPT-4/GPT-4o nhỏ hơn 30.22%.
+- **H1_1:** Trung vị (median) branch coverage của unit test sinh bởi GPT-4/GPT-4o lớn hơn hoặc bằng 30.22%.
 
-*   **Statistical test dự kiến:** One-sample Wilcoxon signed-rank test đối chứng với giá trị 70% ($\alpha = 0.05$).
+*   **Statistical test dự kiến:** One-sample Wilcoxon signed-rank test đối chứng với giá trị 30.22% ($\alpha = 0.05$).
 
 ---
 
@@ -41,9 +41,9 @@ Kiểm định đối chứng trực tiếp chất lượng giữa test suite t�
 ---
 
 ## RQ4 — Simultaneous Success Rate (Dual Metric Target)
-Kiểm định xem tỷ lệ số hàm đạt đồng thời cả hai ngưỡng chất lượng (branch coverage >= 70% và mutation score >= 35.3%) có vượt quá mức đa số (50%) hay không.
+Kiểm định xem tỷ lệ số hàm đạt đồng thời cả hai ngưỡng chất lượng (branch coverage >= 30.22% và mutation score >= 35.3%) có vượt quá mức đa số (50%) hay không.
 
-- **H0_4:** Tỷ lệ số hàm đạt đồng thời cả branch coverage >= 70% và mutation score >= 35.3% nhỏ hơn hoặc bằng 50%.
-- **H1_4:** Tỷ lệ số hàm đạt đồng thời cả branch coverage >= 70% và mutation score >= 35.3% lớn hơn 50%.
+- **H0_4:** Tỷ lệ số hàm đạt đồng thời cả branch coverage >= 30.22% và mutation score >= 35.3% nhỏ hơn hoặc bằng 50%.
+- **H1_4:** Tỷ lệ số hàm đạt đồng thời cả branch coverage >= 30.22% và mutation score >= 35.3% lớn hơn 50%.
 
 *   **Statistical test dự kiến:** Exact Binomial Test kiểm định tỷ lệ thành công nhị phân đối chứng với mốc 50% ($\alpha = 0.05$).

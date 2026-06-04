@@ -2,10 +2,10 @@
 
 ## RQ1
 
-Do GPT-4-generated unit tests achieve branch coverage >= 70%?
+Do GPT-4-generated unit tests achieve branch coverage >= 30.22%?
 
-- **H0_1:** GPT-4-generated unit tests do not achieve branch coverage >= 70%.
-- **H1_1:** GPT-4-generated unit tests achieve branch coverage >= 70%.
+- **H0_1:** GPT-4-generated unit tests do not achieve branch coverage >= 30.22%.
+- **H1_1:** GPT-4-generated unit tests achieve branch coverage >= 30.22%.
 
 ## RQ2
 
@@ -23,6 +23,6 @@ Are GPT-4-generated tests different from student-written tests on the same Java/
 
 ## Planned Statistical Test
 
-- One-sample Wilcoxon signed-rank test for comparing branch coverage against 70%.
+- One-sample Wilcoxon signed-rank test for comparing branch coverage against 30.22%.
 - One-sample Wilcoxon signed-rank test for comparing mutation score against 35.3%.
 - Paired Wilcoxon signed-rank test if comparing GPT-generated tests and student-written tests on the same functions.

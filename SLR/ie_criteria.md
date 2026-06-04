@@ -1,7 +1,7 @@
 # IE Criteria – LLM for Unit Test Case Generation
 **Thành viên:** Huỳnh Cao Phước
-**RQ:** "Đối với Java/Python functions ở cyclomatic complexity trung bình, GPT-4/GPT-4o tự động sinh unit test cases so với test cases viết thủ công bởi sinh viên có đạt branch coverage >= 70% và mutation score >= 35.3% không?"
-**PICO:** P=Java/Python functions ở cyclomatic complexity trung bình | I=GPT-4/GPT-4o tự động sinh unit test cases | C=Test cases viết thủ công bởi sinh viên | O=Branch coverage >= 70% và mutation score >= 35.3%
+**RQ:** "Đối với Java/Python functions ở cyclomatic complexity trung bình, GPT-4/GPT-4o tự động sinh unit test cases so với test cases viết thủ công bởi sinh viên có đạt branch coverage >= 30.22% và mutation score >= 35.3% không?"
+**PICO:** P=Java/Python functions ở cyclomatic complexity trung bình | I=GPT-4/GPT-4o tự động sinh unit test cases | C=Test cases viết thủ công bởi sinh viên | O=Branch coverage >= 30.22% và mutation score >= 35.3%
 
 ---
 
