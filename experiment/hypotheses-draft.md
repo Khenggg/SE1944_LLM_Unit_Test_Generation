@@ -4,17 +4,17 @@ Date: 2026-06-03
 
 ## Final RQ Draft
 
-For medium-complexity Java/Python functions or classes, do GPT-4/GPT-4o-generated unit tests achieve branch coverage >= 80% and mutation score >= 57%, and how do they compare with student-written tests for the same code units?
+For medium-complexity Java/Python functions or classes, do GPT-4/GPT-4o-generated unit tests achieve branch coverage >= 56.5% and mutation score >= 57%, and how do they compare with student-written tests for the same code units?
 
 ## RQ1 - Branch Coverage Threshold
 
-H0_1: GPT-4/GPT-4o-generated unit tests do not achieve median branch coverage >= 80% on the selected medium-complexity Java/Python units.
+H0_1: GPT-4/GPT-4o-generated unit tests do not achieve median branch coverage >= 56.5% on the selected medium-complexity Java/Python units.
 
-H1_1: GPT-4/GPT-4o-generated unit tests achieve median branch coverage >= 80% on the selected medium-complexity Java/Python units.
+H1_1: GPT-4/GPT-4o-generated unit tests achieve median branch coverage >= 56.5% on the selected medium-complexity Java/Python units.
 
-Statistical test: One-sample Wilcoxon signed-rank test against 80% (alpha = 0.05).
+Statistical test: One-sample Wilcoxon signed-rank test against 56.5% (alpha = 0.05).
 
-Threshold source: Case 2 from experiment/design-rationale.md. GS022 reports above 80% coverage on HumanEval, and GS001 reports up to 96.3% branch coverage.
+Threshold source: Case 2 from experiment/design-rationale.md and SLR/evidence-table.md. GS030 reports ChatGPT-3.5 branch coverage = 56.5% in Table 4, so 56.5% is used as the evidence-table floor for RQ1. GS057 remains supporting branch-coverage evidence, but it is not the main threshold source because it evaluates LLM-agent settings rather than direct ChatGPT/GPT output.
 
 ## RQ2 - Mutation Score Threshold
 

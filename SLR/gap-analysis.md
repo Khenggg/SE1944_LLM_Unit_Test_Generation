@@ -1,15 +1,15 @@
 # GAP Analysis - LLM Unit Test Generation
 
-Evidence table: N = 5 papers | Date: 2026-06-03
+Evidence table: N = 7 papers | Date: 2026-06-03
 
 ## GAP Table
 
 | Column | Finding | GAP Type | Counter-evidence Check |
 | --- | --- | --- | --- |
-| Tool/LLM | The evidence includes ChatGPT, Codex, GPT-3.5-Turbo, GPT-4o, DeepSeek, Gemini, and LLM-based repair/generation frameworks. A pure technology gap is weak because GPT-family models are already represented. | GAP-T | Checked 5 papers; not selected as primary because GS001, GS022, and GS046 already cover GPT-family models. |
-| Dataset | Existing datasets are small custom Python methods, Java benchmark classes, HumanEval/SF110, Defects4J-style Java classes, and TestART experimental datasets. None provides a paired setup where the same medium-complexity Java/Python units are tested by both GPT-generated tests and student-written tests. | GAP-D | Checked 5 papers; confirmed as primary GAP. |
-| Metric | Coverage is common, but mutation score is less consistent. Only GS001 and GS046 explicitly report mutation score in the current Google Scholar evidence set. | GAP-M | Checked 5 papers; selected as secondary GAP. |
-| Limitation | At least 3/5 papers report dataset scope, transfer, validity, or generation-overhead limitations. | GAP-S | Checked 5 papers; supports the dataset/feasibility argument but is not primary. |
+| Tool/LLM | The evidence includes ChatGPT, Codex, GPT-3.5-Turbo, GPT-4o, DeepSeek, Gemini, Davinci, and LLM-based repair/generation frameworks. A pure technology gap is weak because GPT-family models and LLM-agent frameworks are already represented. | GAP-T | Checked 7 papers; not selected as primary because GS001, GS022, GS030, GS046, and GS057 already cover GPT-family or LLM-agent test generation. |
+| Dataset | Existing datasets are small custom Python methods, Java benchmark classes, HumanEval/SF110, HPC C++ OpenMP/MPI projects, Defects4J/GrowingBugs-style Java classes, and TestART experimental datasets. None provides a paired setup where the same medium-complexity Java/Python units are tested by both GPT-generated tests and student-written tests. | GAP-D | Checked 7 papers; confirmed as primary GAP. |
+| Metric | Coverage is common, but mutation score is less consistent. GS001, GS046, and GS057 explicitly report mutation-related evaluation; GS030 provides a direct ChatGPT-3.5 branch coverage floor value. | GAP-M | Checked 7 papers; selected as secondary GAP. |
+| Limitation | At least 5/7 papers report dataset scope, transfer, validity, generation-overhead, compilation, test-smell, or agent-loop cost limitations. | GAP-S | Checked 7 papers; supports the dataset/feasibility argument but is not primary. |
 
 ## Primary GAP: GAP-D
 
@@ -28,10 +28,12 @@ GAP statement: No included paper evaluates GPT-4/GPT-4o-generated unit tests on 
 | GS001 - Impact of code context and prompting strategies (2026) | No | Uses 12 custom Python methods and a software practitioner baseline, but not student-written tests for the same code and not a medium-complexity paired student dataset. |
 | GS017 - ChatGPT vs SBST (2024) | No | Compares ChatGPT with EvoSuite/SBST on 207 Java classes, not with student-written tests. |
 | GS022 - Using LLMs to Generate JUnit Tests (2024) | No | Uses HumanEval and EvoSuite SF110 Java benchmarks; no student-written baseline for the same classes. |
+| GS030 - Harnessing the Power of LLMs for HPC unit tests (2024) | No | Uses ChatGPT-3.5 and Davinci for HPC/C++ OpenMP/MPI projects and reports line/branch coverage against original project tests, but not GPT-4/GPT-4o on paired medium-complexity Java/Python coursework units with student-written tests. |
 | GS046 - ChatGPT vs DeepSeek mutation testing (2025) | No | Evaluates GPT-4o and DeepSeek on six Defects4J Java classes with mutation testing, but no student-written tests. |
 | GS011 - TestART (2024) | No | Evaluates an LLM-based generation/repair method against baseline models/EvoSuite; no student-written/manual-test baseline. |
+| GS057 - Test vs Mutant (2026) | No | Evaluates AdverTest on Defects4J and GrowingBugs with explicit branch coverage and mutant feedback, but it does not compare GPT/GPT-4o-generated tests with student-written tests on the same medium-complexity units. |
 
-Conclusion: Confirmed. No counter-evidence in the 5-paper evidence table invalidates the primary GAP.
+Conclusion: Confirmed. No counter-evidence in the 7-paper evidence table invalidates the primary GAP.
 
 ## Feasibility Check - Primary GAP
 
