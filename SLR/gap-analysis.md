@@ -5,18 +5,18 @@ Evidence table: N = 7 papers | Ngày: 2026-06-03
 
 | Cột | Phát hiện | Loại GAP | Phản chứng |
 |---|---|---|---|
-| **Tool/LLM** | 5/7 papers đánh giá họ mô hình GPT/Codex của OpenAI, nhưng thiếu sự tối ưu hóa với các mô hình agentic hoặc prompt feedback loops thế hệ mới. | GAP-T | ✅ Kiểm tra 7 papers |
-| **Dataset** | Các bài báo chủ yếu sử dụng các repository-scale benchmark chuẩn (Defects4J, HumanEval), hoàn toàn chưa có so sánh đối chứng trực tiếp với kiểm thử thủ công cấp độ lớp học (student-written tests). | GAP-D | ✅ Kiểm tra 7 papers |
-| **Metric** | Branch coverage và mutation score thường được đo lường tách biệt hoặc coi mutation score là metric phụ họa chứ không được tích hợp thành một tiêu chí kép đánh giá độ mạnh của test suite. | GAP-M | ✅ Kiểm tra 7 papers |
-| **Hạn chế** | 5/7 papers cùng thừa nhận LLM gặp khó khăn lớn khi sinh test cho các hàm có nhiều lớp phụ thuộc (dependencies) hoặc kiểu dữ liệu tự định nghĩa phức tạp. | GAP-S | ✅ Kiểm tra 7 papers |
+| **Tool/LLM** | Nhiều công cụ/framework đã thử nghiệm sinh test bằng LLM (như AdverTest, MuTAP, EvoGPT), do đó Tool gap không phải GAP chính; nghiên cứu chỉ dùng GPT-4/GPT-4o làm intervention để phục vụ GAP-D. | GAP-T | Đã kiểm tra 7 papers |
+| **Dataset** | Các bài báo chủ yếu sử dụng các repository-scale benchmark chuẩn (Defects4J, HumanEval), hoàn toàn chưa có so sánh đối chứng trực tiếp với kiểm thử thủ công cấp độ lớp học (student-written tests). | GAP-D | Đã kiểm tra 7 papers |
+| **Metric** | Branch coverage và mutation score thường được đo lường tách biệt hoặc coi mutation score là metric phụ họa chứ không được tích hợp thành một tiêu chí kép đánh giá độ mạnh của test suite. | GAP-M | Đã kiểm tra 7 papers |
+| **Hạn chế** | 5/7 papers cùng thừa nhận LLM gặp khó khăn lớn khi sinh test cho các hàm có nhiều lớp phụ thuộc (dependencies) hoặc kiểu dữ liệu tự định nghĩa phức tạp. | GAP-S | Đã kiểm tra 7 papers |
 
 ---
 
 ## GAP Chính: GAP-D (Dataset / Comparison Baseline Gap)
 Chưa có nghiên cứu thực nghiệm nào thực hiện đánh giá đối chứng trực tiếp giữa chất lượng unit test sinh bởi LLM thế hệ mới (GPT-4) và unit test được viết thủ công bởi sinh viên ngành Kỹ thuật Phần mềm trên cùng một tập các hàm có độ phức tạp cyclomatic trung bình (CC = 5–15).
 
-## GAP Secondary: GAP-M (Metric Gap)
-Thiếu một Parading đánh giá đồng thời (dual-evaluation) hợp nhất cả branch coverage (độ bao phủ cấu trúc) và mutation score (hiệu quả phát hiện lỗi thực tế) để xác định mức độ tin cậy thực tế của test suite được sinh ra.
+## GAP Secondary: GAP-S (Shared Limitation Gap)
+Các mô hình LLM gặp khó khăn lớn khi sinh test cho các hàm có nhiều lớp phụ thuộc (dependencies) hoặc kiểu dữ liệu tự định nghĩa phức tạp. Đây là hạn chế chung được thừa nhận ở 5/7 nghiên cứu trong Evidence Table (ví dụ: Dakhel'24, Huang'26, Chang'26).
 
 ---
 
@@ -44,12 +44,12 @@ Chúng tôi thực hiện đánh giá tính khả thi trước khi tiến hành 
 
 | Tiêu chí | Mức | Ghi chú |
 |---|---|---|
-| **Dataset** |  An toàn | Dataset bao gồm các bài làm thực hành/lab của sinh viên đã được thu thập đầy đủ và lưu trữ sẵn trên GitHub classroom. |
-| **Tool/API** |  An toàn | Nhóm đã có tài khoản API OpenAI (GPT-4/GPT-4o) hoạt động ổn định và ngân sách thử nghiệm trong mức cho phép. |
-| **Compute** |  An toàn | Chạy local test runner (pytest/unittest cho Python, Maven/JUnit cho Java) trên máy cá nhân không tốn tài nguyên GPU. |
-| **Ground truth** |  An toàn | Các test suite viết thủ công bởi sinh viên chính là ground truth baseline đã có sẵn nhãn và kết quả thực thi. |
-| **Skills** |  An toàn | Nhóm thành thạo các công cụ đo coverage (pytest-cov/JaCoCo) và mutation testing (mutmut/PIT). |
-| **Thời gian** |  An toàn | Đã thiết lập sẵn pipeline chạy thử nghiệm tự động, chỉ mất 2-3 ngày để quét toàn bộ dataset. |
+| **Dataset** | Cảnh báo | Dataset từ GitHub Classroom chưa được trích xuất và làm sạch hoàn chỉnh. Biện pháp giảm thiểu: Sẽ tiến hành trích xuất thủ công các hàm có CC = 5-15 và lọc bỏ các code không compile được trong 1 tuần tới. |
+| **Tool/API** | Cảnh báo | Chưa chạy thử nghiệm quy mô lớn trên API OpenAI. Biện pháp giảm thiểu: Sẽ chạy thử nghiệm nhỏ với 2-3 hàm trước để cấu hình prompt và ước lượng chi phí token trước khi chạy hàng loạt. |
+| **Compute** | An toàn | Chạy local test runner (pytest/unittest cho Python, Maven/JUnit cho Java) trên máy cá nhân không tốn tài nguyên GPU. |
+| **Ground truth** | An toàn | Các test suite viết thủ công bởi sinh viên chính là ground truth baseline đã có sẵn nhãn và kết quả thực thi. |
+| **Skills** | An toàn | Nhóm thành thạo các công cụ đo coverage (pytest-cov/JaCoCo) và mutation testing (mutmut/PIT). |
+| **Thời gian** | An toàn | Đã thiết lập sẵn pipeline chạy thử nghiệm tự động, chỉ mất 2-3 ngày để quét toàn bộ dataset. |
 | **Contribution**| An toàn | Kết quả so sánh trực tiếp này đóng vai trò quan trọng trong việc đánh giá khả năng thay thế hoặc hỗ trợ của AI trong đào tạo và capstone project. |
 
-**Kết quả:** 0  / 0  → **An toàn**. GAP được chốt để đưa vào thiết kế thực nghiệm.
+**Kết quả:** 0 rủi ro / 2 cảnh báo → **An toàn (sau khi áp dụng biện pháp giảm thiểu)**. GAP được chốt để đưa vào thiết kế thực nghiệm.
