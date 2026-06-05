@@ -42,7 +42,7 @@ LLM for Unit Test Case Generation
 | V1 UNSURE | 5 |
 | V1 EXCLUDE | 17 |
 | Full-text/final-prioritization assessed | 24 |
-| Not selected after V2/final prioritization | 20 |
-| Final included papers | 4 |
+| Not selected after V2/final prioritization | 17 |
+| Final included papers | 7 |
 
 The PRISMA counts are recorded in `SLR/prisma-flow.md` and must match the CSV row counts.

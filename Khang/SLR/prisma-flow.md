@@ -23,8 +23,8 @@ Records included or unsure for full-text: 24
 ## Screening V2 - Full Text
 
 Full-text/final-prioritization papers assessed: 24  
-Full-text/final-prioritization papers excluded or not selected: 20  
-Final included papers: 4
+Full-text/final-prioritization papers excluded or not selected: 17  
+Final included papers: 7
 
 ## Consistency Check
 
@@ -32,7 +32,7 @@ Final included papers: 4
 - Rows in `SLR/02_after_screening_v1.csv` = 41.
 - Count(`v1_decision = EXCLUDE`) = 17.
 - Count(`v1_decision = INCLUDE or UNSURE`) = 24.
-- Rows in `SLR/03_final_included.csv` = 4.
+- Rows in `SLR/03_final_included.csv` = 7.
 
 ```mermaid
 flowchart TD
@@ -41,6 +41,6 @@ flowchart TD
     C --> D["Title/abstract screened (n = 41)"]
     D --> E["Excluded at V1 (n = 17)"]
     D --> F["Full-text/final prioritization assessed (n = 24)"]
-    F --> G["Excluded or not selected after V2 (n = 20)"]
-    F --> H["Final included studies (n = 4)"]
+    F --> G["Excluded or not selected after V2 (n = 17)"]
+    F --> H["Final included studies (n = 7)"]
 ```

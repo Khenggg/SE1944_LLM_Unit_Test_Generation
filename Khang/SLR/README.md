@@ -25,4 +25,4 @@ This branch contains Khang's individual per-member SLR output for the Google Sch
 | V1 INCLUDE | 19 |
 | V1 UNSURE | 5 |
 | V1 EXCLUDE | 17 |
-| Final included | 4 |
+| Final included | 7 |
