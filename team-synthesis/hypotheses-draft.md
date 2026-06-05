@@ -4,21 +4,21 @@ The statistical hypotheses defined below are directly aligned with the research 
 
 ## RQ1 - Branch Coverage Threshold
 
-Do GPT-4/GPT-4o-generated unit tests achieve a branch coverage of >=74% on the selected medium-complexity Java and Python functions?
+Do GPT-4/GPT-4o-generated unit tests achieve a branch coverage of >=30.22% on the selected medium-complexity Java and Python functions?
 
-- **H0_1 (Null Hypothesis):** The median branch coverage of GPT-4/GPT-4o-generated unit tests is strictly less than 74%.
-- **H1_1 (Alternative Hypothesis):** The median branch coverage of GPT-4/GPT-4o-generated unit tests is at least 74%.
+- **H0_1 (Null Hypothesis):** The median branch coverage of GPT-4/GPT-4o-generated unit tests is strictly less than 30.22%.
+- **H1_1 (Alternative Hypothesis):** The median branch coverage of GPT-4/GPT-4o-generated unit tests is at least 30.22%.
 
-**Planned Statistical Test:** One-sample Wilcoxon signed-rank test, evaluating the sample median against the constant threshold value of 74%.
+**Planned Statistical Test:** One-sample Wilcoxon signed-rank test, evaluating the sample median against the constant threshold value of 30.22%.
 
 ## RQ2 - Mutation Score Threshold
 
-Do GPT-4/GPT-4o-generated unit tests achieve a mutation score of >=58% on the exact same selected functions?
+Do GPT-4/GPT-4o-generated unit tests achieve a mutation score of >=35.3% on the exact same selected functions?
 
-- **H0_2 (Null Hypothesis):** The median mutation score of GPT-4/GPT-4o-generated unit tests is strictly less than 58%.
-- **H1_2 (Alternative Hypothesis):** The median mutation score of GPT-4/GPT-4o-generated unit tests is at least 58%.
+- **H0_2 (Null Hypothesis):** The median mutation score of GPT-4/GPT-4o-generated unit tests is strictly less than 35.3%.
+- **H1_2 (Alternative Hypothesis):** The median mutation score of GPT-4/GPT-4o-generated unit tests is at least 35.3%.
 
-**Planned Statistical Test:** One-sample Wilcoxon signed-rank test, evaluating the sample median against the constant threshold value of 58%.
+**Planned Statistical Test:** One-sample Wilcoxon signed-rank test, evaluating the sample median against the constant threshold value of 35.3%.
 
 ## RQ3 - Comparison With Student-Written Tests
 
@@ -38,8 +38,8 @@ Is there a statistically significant difference in branch coverage and mutation 
 
 What is the proportion of functions where GPT-4/GPT-4o-generated unit tests successfully reach both the branch coverage and mutation score thresholds simultaneously?
 
-- **H0_4 (Null Hypothesis):** The proportion of functions for which GPT-4/GPT-4o-generated tests simultaneously achieve both branch coverage >=74% and mutation score >=58% is <= 50%.
-- **H1_4 (Alternative Hypothesis):** The proportion of functions for which GPT-4/GPT-4o-generated tests simultaneously achieve both branch coverage >=74% and mutation score >=58% is > 50%.
+- **H0_4 (Null Hypothesis):** The proportion of functions for which GPT-4/GPT-4o-generated tests simultaneously achieve both branch coverage >=30.22% and mutation score >=35.3% is <= 50%.
+- **H1_4 (Alternative Hypothesis):** The proportion of functions for which GPT-4/GPT-4o-generated tests simultaneously achieve both branch coverage >=30.22% and mutation score >=35.3% is > 50%.
 
 **Planned Statistical Test:** Exact binomial test or sign test evaluating the per-function binary pass/fail rate against the 50% majority threshold.
 

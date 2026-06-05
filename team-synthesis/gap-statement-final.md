@@ -4,13 +4,13 @@
 
 ## Evidence Count
 
-| Evidence Group | Count among 37 unique primary studies | Remarks |
+| Evidence Group | Count among 36 unique primary studies | Remarks |
 | --- | ---: | --- |
-| Utilizes coverage / code coverage / branch coverage | 29/37 | Structural coverage remains the most universally adopted evaluation metric in the extracted studies. |
-| Utilizes mutation score / mutation testing / mutant information | 16/37 | Mutation testing appears less frequently than structural coverage and is predominantly found in studies proposing feedback-driven or mutation-guided test generation methodologies. |
-| Evaluates against human or developer-written tests | 5/37 | Some evidence exists comparing LLM generation against professional developers, but this does not perfectly represent a student-written baseline. |
-| Direct comparison with student-written tests | 1/37 | Only one study explicitly addresses student programming assignments, highlighting a severe lack of research tailored to educational contexts. |
-| Directly controls for medium cyclomatic complexity (CC=5-15) | 1/37 | A few papers focus on "complex methods" or report results on real-world functions (like the ULT benchmark), but strict population control for medium cyclomatic complexity is largely absent. |
+| Utilizes coverage / code coverage / branch coverage | 28/36 | Structural coverage remains the most universally adopted evaluation metric in the extracted studies. |
+| Utilizes mutation score / mutation testing / mutant information | 16/36 | Mutation testing appears less frequently than structural coverage and is predominantly found in studies proposing feedback-driven or mutation-guided test generation methodologies. |
+| Evaluates against human or developer-written tests | 5/36 | Some evidence exists comparing LLM generation against professional developers, but this does not perfectly represent a student-written baseline. |
+| Direct comparison with student-written tests | 1/36 | Only one study explicitly addresses student programming assignments, highlighting a severe lack of research tailored to educational contexts. |
+| Directly controls for medium cyclomatic complexity (CC=5-15) | 1/36 | A few papers focus on "complex methods" or report results on real-world functions (like the ULT benchmark), but strict population control for medium cyclomatic complexity is largely absent. |
 | Simultaneously evaluates branch coverage and mutation score using GPT-4/GPT-4o | Present but fragmented | Strong evidence exists (e.g., studies using the ULT benchmark) reporting both metrics simultaneously, but they typically utilize custom benchmarks without benchmarking against student-written baselines. |
 
 ## Primary Gap (GAP)
@@ -21,9 +21,9 @@ Current research on LLM-based unit test generation predominantly reports structu
 
 | Gap Area | Evidence from Merged Literature | Implications |
 | --- | --- | --- |
-| **Metric Gap** | While 29/37 papers report coverage, only 16/37 report mutation scores. | Relying solely on structural coverage is insufficient to capture the true fault-finding effectiveness of a test suite. Both metrics must be evaluated simultaneously. |
-| **Comparison Gap** | 5/37 papers compare LLM outputs to developer-written tests, while only 1/37 compares them to student-written tests. | The SE1944 project has a clear and novel contribution in establishing a student-written baseline, addressing a relatively unexplored area in software engineering education. |
-| **Dataset & Complexity Gap** | Only 1/37 papers strictly controls for medium complexity (CC=5-15). Most studies either use simplistic benchmarks (like HumanEval) or highly complex legacy enterprise repositories. | The research must strictly define and curate the dataset at the function level, ensuring all evaluated methods fall within the medium cyclomatic complexity range to avoid skewed results. |
+| **Metric Gap** | While 28/36 papers report coverage, only 16/36 report mutation scores. | Relying solely on structural coverage is insufficient to capture the true fault-finding effectiveness of a test suite. Both metrics must be evaluated simultaneously. |
+| **Comparison Gap** | 5/36 papers compare LLM outputs to developer-written tests, while only 1/36 compares them to student-written tests. | The SE1944 project has a clear and novel contribution in establishing a student-written baseline, addressing a relatively unexplored area in software engineering education. |
+| **Dataset & Complexity Gap** | Only 1/36 papers strictly controls for medium complexity (CC=5-15). Most studies either use simplistic benchmarks (like HumanEval) or highly complex legacy enterprise repositories. | The research must strictly define and curate the dataset at the function level, ensuring all evaluated methods fall within the medium cyclomatic complexity range to avoid skewed results. |
 | **Methodological Gap** | The highest reported results generally depend on complex iterative feedback loops, method slicing, or mutation-guided prompting. | The experiment design must explicitly define the prompt engineering policy (e.g., zero-shot vs. chain-of-thought vs. iterative feedback) rather than treating "GPT-4" as a generalized monolith. |
 
 ## Final Gap Statement
