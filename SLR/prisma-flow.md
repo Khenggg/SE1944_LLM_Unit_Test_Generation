@@ -10,11 +10,11 @@ flowchart TD
     A1["Identification<br/>Semantic Scholar Search<br/>(N = 270)"]:::mainNode --> A2["Collected via Zotero<br/>(N = 257)"]:::mainNode
     A2 --> B["Screening<br/>After deduplication<br/>(N = 250)"]:::mainNode
     
-    B --> C{"Title & Abstract<br/>Screened<br/>(N = 250)"}:::mainNode
+    B --> C{"Title & Abstract<br/>Screening<br/>(N = 250)"}:::mainNode
     
     C -- Excluded --> D["Records Excluded (N = 228)<br/>- EC3: 181<br/>- EC4: 24<br/>- EC6: 17<br/>- EC5: 1<br/>- Other (IC4 fails): 5"]:::subNode
     
-    C -- Passed (10 INCLUDE, 12 UNSURE) --> E{"Full-text Assessed<br/>(N = 22)"}:::mainNode
+    C -- Passed (10 INCLUDE, 12 UNSURE) --> E{"Full-text Screening<br/>(N = 22)"}:::mainNode
     
     E -- Excluded --> F["Records Excluded (N = 10)<br/>- EC5: 6<br/>- EC4: 3<br/>- EC3: 1"]:::subNode
     
