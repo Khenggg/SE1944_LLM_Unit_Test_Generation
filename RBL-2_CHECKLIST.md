@@ -1,37 +1,21 @@
-# RBL-2 Submission Checklist
+# RBL-2 Revised Checklist After Feedback
 
-## SLR/gap-analysis.md
+## Fixed items
 
-- [x] Evidence table gate check included
-- [x] GAP table included
-- [x] Primary GAP selected
-- [x] Counter-evidence check performed paper by paper
-- [x] Feasibility check included
-- [x] Final GAP statement written
+- [x] Evidence file name standardized as `SLR/evidence-table.md`.
+- [x] Primary GAP is one GAP only: `GAP-M`.
+- [x] Secondary GAP is `GAP-T`.
+- [x] ACM010 and ACM011 are treated as background/survey sources, not primary empirical evidence.
+- [x] P3 weakness is acknowledged: current evidence table is weak for absolute numerical thresholds.
+- [x] Comparative design is used to avoid unsupported threshold values.
+- [x] Dataset source is clarified: ULT / UnLeakedTestBench from ACM007.
+- [x] Model/tool cost plan is clarified: GPT-4o mini default, 10-16 calls maximum.
+- [x] Operating environment is clarified: Windows/VS Code or Colab fallback; Python, pytest, coverage.py, mutmut.
+- [x] Feasibility warnings are limited to 2 and both have mitigation.
 
-## experiment/design-rationale.md
+## Remaining before final submission
 
-- [x] Design decision table included
-- [x] Every decision points back to evidence table or GAP analysis
-- [x] Baseline defined
-- [x] Metric choices explained
-- [x] Threshold rationale explained
-- [x] Pipeline base paper identified
-
-## experiment/01_rq.md
-
-- [x] Final RQ1 written
-- [x] Final RQ2 written
-- [x] PICO mapping included
-
-## experiment/hypotheses-draft.md
-
-- [x] H0/H1 for RQ1 written
-- [x] H0/H1 for RQ2 written
-- [x] Expected statistical test included
-- [x] Alpha value included
-- [x] Metric specified
-
-## Manual action before final submission
-
-- [ ] Copy included paper PDFs into `SLR/papers/`
+- [ ] Copy final included paper PDFs into `SLR/papers/`.
+- [ ] During experiment stage, create `experiment/selected-functions.md`.
+- [ ] During experiment stage, create `experiment/prompts/`.
+- [ ] During experiment stage, create `experiment/results/raw-results.csv`.

@@ -32,3 +32,7 @@ Source: `experiment/01_rq.md`, `experiment/design-rationale.md`
 ## Statistical Test Rationale
 
 Mutation score and branch coverage are numeric outputs. The planned experiment evaluates the same Python functions under two prompt strategies, so the observations are paired. Because the result distribution is unknown and the sample size is small, the Wilcoxon signed-rank test is safer than a paired t-test. If the final data become unpaired because many generated tests fail, the main analysis will first report pass rate and then use only valid paired observations for Wilcoxon.
+
+## Implementation Scope
+
+The hypotheses will be tested on 5-8 Python functions sampled from ULT / UnLeakedTestBench, the benchmark associated with ACM007. The operating environment is Python with pytest, coverage.py, and mutmut. The default model is GPT-4o mini or an equivalent accessible ChatGPT model if API access is unavailable.
