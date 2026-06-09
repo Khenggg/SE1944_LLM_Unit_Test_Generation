@@ -42,5 +42,8 @@ Recommended minimal pipeline:
 
 ## Environmental & Resource Constraints
 
-- Running JaCoCo (for branch coverage) and PIT/MutPy (for mutation testing) on 10-20 medium-complexity functions is well within the capabilities of a standard student laptop (only requiring about 8GB RAM and modern multi-core CPU, no cloud clusters or HPC environments needed).
-- API calls to the GPT-4o API for only 20 functions will consume a highly constrained amount of tokens, keeping the financial burden negligible.
+While code coverage (JaCoCo) is lightweight, mutation testing (PIT for Java, MutPy for Python) is a highly resource-intensive process. It generates dozens of modified versions of the code (mutants) and runs the test suite against each one. On a standard university student laptop (e.g., 8GB RAM, quad-core CPU), running mutation testing globally could lead to severe system lag, thermal throttling, or infinite execution loops.
+
+To mitigate hardware constraints, the evaluation methodology strictly scopes the mutation testing to the specific target medium-complexity class rather than the entire project. The mutation tools are configured to use a curated subset of core mutators (avoiding the `ALL` group) and limit execution to a maximum of 2 threads with strict timeouts. This guarantees runtimes remain under a few minutes per class while maintaining the laptop's responsiveness.
+
+Furthermore, GPT-4o API pricing ($5/1M input, $15/1M output tokens) presents a financial constraint for university students in Vietnam when converting USD to VND. To address this, the development and debugging of the automation scripts will initially be conducted using `gpt-4o-mini`, which is over 95% cheaper. The evaluation pipeline also implements a local caching mechanism to ensure that test outputs for identical prompts are never fetched from the API twice. The `gpt-4o` model will be exclusively reserved for the final evaluation run, keeping the total API cost strictly manageable within the project budget.
