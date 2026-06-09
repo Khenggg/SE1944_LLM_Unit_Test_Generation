@@ -29,7 +29,7 @@ Evaluation Data Reference Notes
 - Source Papers: SS014, SS137
 - Context: These papers evaluate LLMs on simple, small-sized algorithmic functions (HumanEval). This is explicitly referenced as part of GAP-D, highlighting why we must shift our focus toward "medium cyclomatic complexity" functions for a more realistic evaluation.
   SS014 explores LLM capabilities over HumanEval variants.
-  SS137 assesses prompt generation performance on HumanEval, focusing on pass rates rather than deep structural coverage.
+  SS137 assesses prompt generation performance on HumanEval-X (covering both Java and Python), focusing on pass rates rather than deep structural coverage.
 
 5. Traditional Tool Comparisons & Code Quality
 - Source Papers: SS109, SS139
