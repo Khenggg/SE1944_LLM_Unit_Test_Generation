@@ -5,13 +5,13 @@ Evidence table: N = 12 papers | Date: 2026-06-03
 
 | Column | Findings | GAP Type | Counter Evidence Check |
 |---|---|---|---|
-| Tool/LLM | Most of the 12/12 studies use popular model families (GPT-4, GPT-3.5, Claude, Gemini). However, very few studies focus on isolating the pure performance evaluation of GPT-4 compared to student-written tests. Most evaluate via automated tools. | GAP-T | Checked 12 papers. Most studies compare against automated tools (EvoSuite) rather than conducting in-depth comparisons against students. |
-| Dataset | Datasets used are mainly HumanEval (small size, purely algorithmic functions) or Defects4J (bug-focused). There is a severe lack of analysis based on "medium cyclomatic complexity" (except SS080 which only tested 6 classes, lacking generalizability). | GAP-D | Checked 12 papers. Only SS080 mentions cyclomatic complexity, but its test sample is excessively small. |
+| Tool/LLM | Most of the 12/12 studies use popular model families (GPT-4, GPT-3.5, Claude, Gemini). However, very few studies focus on isolating the pure performance evaluation of GPT-4o compared to student-written tests. Most evaluate via automated tools. | GAP-T | Checked 12 papers. Most studies (SS040, SS109, SS174) compare against automated tools (EvoSuite) rather than conducting in-depth comparisons against students. |
+| Dataset | Datasets used are mainly HumanEval (small size, purely algorithmic functions, SS014, SS137) or Defects4J (bug-focused, SS047, SS080, SS174). There is a severe lack of analysis based on "medium cyclomatic complexity" (except SS080 which only tested 6 classes, lacking generalizability). | GAP-D | Checked 12 papers. Only SS080 mentions cyclomatic complexity, but its test sample is excessively small. |
 | Metric | 11/12 use branch/line coverage and 12/12 use mutation score. Very few studies consider aspects like test smells or code quality of unit tests. | GAP-M | Checked 12 papers. Only SS139 measures test smells. |
 | Limitations | Studies face limitations regarding API budgets, execution time, or lacking large real-world data from developers (SS014, SS032, SS080, SS139). | GAP-S | Checked 12 papers. Very few papers have a sufficiently large paired-comparison dataset with students. |
 
 ## Primary GAP: GAP-D
-Current studies primarily focus on small code snippets (HumanEval) or existing bugs (Defects4J), lacking specific categorization by structural complexity. Evaluating LLM capabilities on a large dataset of functions with medium cyclomatic complexity compared to student-written tests remains a notable gap.
+Current studies primarily focus on small code snippets (HumanEval in SS014, SS137) or existing bugs (Defects4J in SS047, SS080, SS174), lacking specific categorization by structural complexity. Evaluating LLM capabilities on a large dataset of functions with medium cyclomatic complexity compared to student-written tests remains a notable gap.
 
 ## Secondary GAP: GAP-S
 Many studies are limited by their evaluation sample size (only a few classes or assignments), which leads to a lack of generalizability to real-world scenarios.
@@ -51,4 +51,4 @@ Conclusion: Confirmed (GAP exists). Although one study (SS080) touches upon cycl
 Result: 0 blockers / 2 warnings. This GAP is feasible. Recommended scope: one language first, 10-20 medium-complexity units, automated branch coverage and mutation score, and student-written tests collected from available coursework or team-authored baseline tests.
 
 ## Final GAP Statement
-Existing Semantic Scholar evidence evaluates LLM-generated unit tests across benchmarks and tool baselines, but it does not provide a paired comparison between GPT-4-generated tests and student-written tests on the same medium-complexity Java/Python units. This study will address that gap using branch coverage and mutation score as dual quality metrics.
+Existing Semantic Scholar evidence evaluates LLM-generated unit tests across benchmarks and tool baselines, but it does not provide a paired comparison between GPT-4o-generated tests and student-written tests on the same medium-complexity Java/Python units. This study will address that gap using branch coverage and mutation score as dual quality metrics.
