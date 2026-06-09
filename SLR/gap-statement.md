@@ -19,7 +19,7 @@ From the 12 final included papers:
 **Evidence:** Although structural adequacy (11/12 papers) and mutation score (12/12 papers) are prevalent functional metrics, only 1 study (SS139) assesses critical code quality metrics like test smells or test readability alongside these functional metrics. Currently, only SS139 addresses test smells.
 
 ### GAP-D (Dataset): Lack of evaluation on medium cyclomatic complexity functions.
-**Evidence:** The datasets used in most studies evaluate overly simple, purely algorithmic functions (like HumanEval in SS014 and SS137) or general bug-finding datasets (like Defects4J in SS047 and SS174) without explicitly categorizing structural complexity. Only SS080 mentions cyclomatic complexity, but it does so on an extremely small scale (only 6 classes).
+**Evidence:** The datasets used in most studies evaluate overly simple, purely algorithmic functions (like [HumanEval](https://github.com/openai/human-eval) in SS014 and SS137) or general bug-finding datasets (like [Defects4J](https://github.com/rjust/defects4j) in SS047 and SS174) without explicitly categorizing structural complexity. Only SS080 mentions cyclomatic complexity, but it does so on an extremely small scale (only 6 classes).
 
 ### GAP-S (Scale): Limited scale of direct human comparison.
 **Evidence:** Only 1 study (SS032) possesses a paired-comparison dataset evaluating against student-written test cases, but its scale is limited to only 6 assignments, which is inadequate to fully evaluate GPT-4o's test generation capability in a controlled environment.

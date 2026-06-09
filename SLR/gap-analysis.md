@@ -6,12 +6,12 @@ Evidence table: N = 12 papers | Date: 2026-06-03
 | Column | Findings | GAP Type | Counter Evidence Check |
 |---|---|---|---|
 | Tool/LLM | Most of the 12/12 studies use popular model families (GPT-4, GPT-3.5, Claude, Gemini). However, only 1 study (SS032) focuses on isolating the pure performance evaluation of GPT-4o compared to student-written tests. Most evaluate via automated tools. | GAP-T | Checked 12 papers. Most studies (SS040, SS109, SS174) compare against automated tools (EvoSuite) rather than conducting in-depth comparisons against students. |
-| Dataset | Datasets used are mainly HumanEval (SS014, SS137), known for small size and purely algorithmic functions, or the bug-focused Defects4J (SS047, SS080, SS174). There is a severe lack of analysis based on "medium cyclomatic complexity" (except SS080 which only tested 6 classes, lacking generalizability). | GAP-D | Checked 12 papers. Only SS080 mentions cyclomatic complexity, but its test sample is excessively small. |
+| Dataset | Datasets used are mainly [HumanEval](https://github.com/openai/human-eval) (SS014, SS137), known for small size and purely algorithmic functions, or the bug-focused [Defects4J](https://github.com/rjust/defects4j) (SS047, SS080, SS174). There is a severe lack of analysis based on "medium cyclomatic complexity" (except SS080 which only tested 6 classes, lacking generalizability). | GAP-D | Checked 12 papers. Only SS080 mentions cyclomatic complexity, but its test sample is excessively small. |
 | Metric | 11/12 use branch/line coverage and 12/12 use mutation score. Only 1 study (SS139) considers aspects like test smells or code quality of unit tests. | GAP-M | Checked 12 papers. Only SS139 measures test smells. |
 | Scale | Studies are restricted by their evaluation scale, lacking large real-world data from developers or paired student comparisons (SS014, SS032, SS080, SS139). | GAP-S | Checked 12 papers. Only 1 paper (SS032) compares against student-written tests, and its scale is limited to 6 assignments. |
 
 ## Primary GAP: GAP-D
-Current studies primarily focus on small code snippets (HumanEval in SS014, SS137) or existing bugs (Defects4J in SS047, SS080, SS174), lacking specific categorization by structural complexity. Evaluating LLM capabilities on a large dataset of functions with medium cyclomatic complexity compared to student-written tests remains a notable gap.
+Current studies primarily focus on small code snippets ([HumanEval](https://github.com/openai/human-eval) in SS014, SS137) or existing bugs ([Defects4J](https://github.com/rjust/defects4j) in SS047, SS080, SS174), lacking specific categorization by structural complexity. Evaluating LLM capabilities on a large dataset of functions with medium cyclomatic complexity compared to student-written tests remains a notable gap.
 
 ## Secondary GAP: GAP-S
 Many studies are limited by their evaluation sample size (only a few classes or assignments), which leads to a lack of generalizability to real-world scenarios.
@@ -40,7 +40,7 @@ Conclusion: Confirmed (GAP exists). Although one study (SS080) touches upon cycl
 
 | Criterion | Level | Notes |
 |---|---|---|
-| Dataset | ⚠️ (Warning) | Need to collect student-written tests. Can use Defects4J or open-source repos as backup but primary goal requires student tests. |
+| Dataset | ⚠️ (Warning) | Need to collect student-written tests. Can use [Defects4J](https://github.com/rjust/defects4j) or open-source repos as backup but primary goal requires student tests. |
 | Tool/API | ⚠️ (Warning) | GPT-4 API is accessible, but budget and API limits need to be tested beforehand. |
 | Compute | ✅ (Safe) | CPU needed to run JUnit, coverage tool, and mutation tool (Pitest). GPU not required. |
 | Ground truth | ✅ (Safe) | Use available student-written tests in open-source repos as baselines. |
