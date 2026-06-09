@@ -7,8 +7,8 @@ From the 12 final included papers:
 - 12/12 papers explicitly include GPT-family models (GPT-4, GPT-3.5, GPT-4o, GPT-4o-mini).
 - 11/12 papers evaluate structural adequacy through branch/line/statement coverage.
 - 12/12 papers explicitly evaluate mutation score or mutant coverage.
-- 2/12 papers (SS032, SS080) use student-written tests as a baseline, but there is a lack of large-scale direct comparison against student-written tests on the same source code.
-- 12/12 papers focus on Java/Python (all 12 focus on Java, only 1 (SS040) focuses on Python).
+- 1/12 papers (SS032) uses student-written tests as a baseline, but there is a lack of large-scale direct comparison against student-written tests on the same source code.
+- 12/12 papers focus on Java and/or Python (most evaluate Java exclusively, while a small subset (SS040, SS137) includes Python benchmarks).
 
 ## Identified Gaps
 
