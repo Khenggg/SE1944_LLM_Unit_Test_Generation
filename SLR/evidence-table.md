@@ -4,7 +4,7 @@ Final included papers from Google Scholar: N = 16.
 
 > This table is narrowed to V2-included papers with extractable numeric evidence, satisfying IC-E for RBL-1 and the RBL-2 gate N > 5.
 
-| # | ID | Paper | URL/DOI | Tool/LLM | Dataset | Metric | Ket qua | Han che tu neu |
+| # | ID | Paper | URL/DOI | Tool/LLM | Dataset | Metric | Results | Self-reported limitations |
 | ---: | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | GS005 | Mutation-Guided Unit Test Generation With a Large Language Model (2026, IEEE Transactions on Software …) | https://doi.org/10.1109/tse.2026.3682975 | MUTGEN; LLM with mutation-feedback prompting; EvoSuite and vanilla-prompt baselines | 204 subjects from two benchmarks | line/branch/code coverage; mutation score | Some suites reached 100% coverage but only 4% mutation score; MUTGEN significantly outperformed EvoSuite and vanilla prompt-based strategies on mutation score. | Coverage alone is a weak proxy for fault detection; live/uncovered mutants and mutation-operator effects remain limitations discussed by the paper. |
 | 2 | GS009 | Using Large Language Models to Generate JUnit Tests: An Empirical Study (2024, Proceedings of the 28th …) | https://doi.org/10.1145/3661167.3661216 | Codex; GPT-3.5-Turbo; StarCoder | HumanEval and EvoSuite SF110 Java benchmarks | compilation rate; test correctness; coverage; test smells | Codex achieved above 80% coverage on HumanEval; no evaluated model achieved more than 2% coverage on EvoSuite SF110. | Strong performance on simple benchmark tasks did not transfer to harder Java benchmark code; generated JUnit tests may compile poorly or contain test smells. |

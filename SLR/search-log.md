@@ -1,10 +1,10 @@
 # Search Log - LLM for Unit Test Generation
 
-**Thanh vien:** Khang
+**Member:** Khang
 
-**Nguon phu trach:** Google Scholar
+**Assigned source:** Google Scholar
 
-**Ngay thuc hien:** 2026-06-05
+**Search date:** 2026-06-05
 
 ---
 
@@ -26,7 +26,7 @@ Medium cyclomatic complexity is not included as a mandatory search term because 
 
 ## PICO Mapping
 
-| PICO | Noi dung | Thanh phan trong search string |
+| PICO | Content | Search-string component |
 | --- | --- | --- |
 | P - Population | Java/Python unit-level code; medium complexity is applied later during experiment design | `"JUnit" OR "pytest"` |
 | I - Intervention | LLM-based test generation using ChatGPT, GPT-4, or Codex | `"ChatGPT" OR "GPT-4" OR "Codex"` |
@@ -39,14 +39,14 @@ Medium cyclomatic complexity is not included as a mandatory search term because 
 | --- | --- | --- | ---: | ---: | --- |
 | Google Scholar | String A | 2026-06-05 | 249 | 249 | Raw result count is below the RBL-1 upper bound of 500; the authoritative deduplicated dataset used for screening is `SLR/01_all_records.csv`. |
 
-## Tong hop truoc dedup
+## Search Count Summary
 
-| Database | String | Ket qua |
+| Database | String | Result count |
 | --- | --- | ---: |
 | Google Scholar | String A | 249 |
-| **Tong truoc dedup** | | **249** |
-| **Sau dedup** | | **246** |
-| **So bi loai do trung lap** | | **3** |
+| **Total before deduplication** | | **249** |
+| **After deduplication** | | **246** |
+| **Duplicates removed** | | **3** |
 
 ## Metadata Enrichment
 
@@ -54,9 +54,7 @@ Medium cyclomatic complexity is not included as a mandatory search term because 
 | --- | --- | --- |
 | OpenAlex API | Verify DOI/title metadata and fill missing DOI/metadata where confidently matched | 155/246 deduped records have DOI after enrichment; 91/246 still have no DOI |
 
-Note: The authoritative deduplicated dataset for later screening is `SLR/01_all_records.csv` with 246 rows; its DOI count is 155 with DOI and 91 without DOI.
-
-## Current RBL-1 Status
+## Screening Status
 
 | Step | Status | N |
 | --- | --- | ---: |
@@ -70,10 +68,9 @@ Note: The authoritative deduplicated dataset for later screening is `SLR/01_all_
 | V2 excluded | Done | 99 |
 | Final included with extractable numeric evidence | Done | 16 |
 
-## Ghi chu
+## Screening Notes
 
-- Day la ban lam lai tu dau theo RBL-1, khong su dung cac so V1/V2/final tu pipeline cu.
-- Chi su dung mot search string duy nhat tu PICO.
 - Deduplication was done by DOI when available, otherwise by normalized title.
-- `02_after_screening_v1.csv` da duoc tao lai tu 246 record moi.
-- `03_final_included.csv` da duoc tao lai tu 115 record INCLUDE/UNSURE sau V1; final included N = 16, tat ca co ket qua so extractable trong `evidence-table.md` va dat yeu cau RBL-2 N > 5.
+- `02_after_screening_v1.csv` contains all 246 deduplicated records with V1 decisions.
+- `03_final_included.csv` contains all 246 records with V2 fields; V1-excluded records keep blank V2 fields.
+- Final included N = 16, and all included papers have extractable numeric evidence in `evidence-table.md`.

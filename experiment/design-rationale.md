@@ -2,93 +2,71 @@
 
 Date: 2026-06-05 | GAP source: `SLR/gap-analysis.md` | Evidence source: `SLR/evidence-table.md` (N = 16)
 
-## Bang quyet dinh
+## Decision Table
 
-| Quyet dinh | Gia tri chot | Nguon goc |
+| Decision | Final value | Source |
 | --- | --- | --- |
-| **Primary GAP** | Paired comparison gap: chua co included paper so sanh GPT-4o-generated tests voi student-written coursework/assignment tests tren cung medium-complexity Java/Python units (phan biet voi so sanh code lap trinh vien chuyen nghiep nhu trong AgoneTest). | `SLR/gap-analysis.md`, GAP-D, 16-paper counter-evidence check. |
-| **Secondary GAP** | Dung ca branch coverage va mutation score. | GS005 canh bao 100% coverage van co the chi 4% mutation score; GS017/GS022/GS024/GS025/GS051/GS089 co mutation-related evidence. |
-| **LLM/Tool** | GPT-4o (gpt-4o-2024-05-13) la primary; GPT-4o mini la downscope/amendment neu budget/API bi chan. | RQ/GAP-D tap trung GPT-4o; GPT-family evidence co trong GS010, GS022, GS024, GS028, GS051, GS080, GS089, GS118. |
-| **Prompt strategy** | Fixed zero-shot/structured prompt, temperature = 0, toi da 1 repair attempt neu test khong compile/run. | Reproducibility requirement; GS010 va GS206 cho thay repair/refinement co ich nhung minimal experiment khong nen thanh complex pipeline. |
-| **Dataset** | 10-20 Java hoac Python functions/classes co medium cyclomatic complexity, approximately CC = 5-15 where measurable, co student-written coursework/assignment tests cho cung units. | GAP-D va feasibility check trong `SLR/gap-analysis.md`. |
-| **Metric chinh 1** | Branch coverage. | GS017 bao cao branch coverage 30.22%; GS019, GS025, GS051, GS089, GS163, GS206 co coverage-related evidence. |
-| **Metric chinh 2** | Mutation score. | GS005, GS017, GS022, GS024, GS025, GS051, GS089. |
-| **Metric phu** | Compile/execution success rate. | GS010, GS028, GS089, GS118, GS206. |
-| **Baseline type RQ1/RQ2** | Absolute literature-backed thresholds. | RBL-2 section 3A: absolute claim can threshold value. |
-| **Baseline type RQ3** | Paired student-written coursework tests. | GAP-D yeu cau cung code units co GPT-generated tests va student-written coursework/assignment tests. |
-| **Threshold RQ1** | Branch coverage >= 30.22%. | Case 2 within directly usable branch-coverage evidence: GS017 reports average branch coverage 30.22% on ULT. |
+| **Primary GAP** | Paired comparison gap: no included paper compares GPT-4o-generated tests with student-written coursework/assignment tests on the same medium-complexity Java/Python units. This is distinct from professional-developer baselines such as AgoneTest. | `SLR/gap-analysis.md`, GAP-D, 16-paper counter-evidence check. |
+| **Secondary GAP** | Evaluate both branch coverage and mutation score. | GS005 warns that 100% coverage can still pair with only 4% mutation score; GS017/GS022/GS024/GS025/GS051/GS089 provide mutation-related evidence. |
+| **LLM/Tool** | GPT-4o (gpt-4o-2024-05-13) as the primary model; GPT-4o mini as the downscope option if budget/API access is blocked. | RQ/GAP-D focuses on GPT-4o; GPT-family evidence appears in GS010, GS022, GS024, GS028, GS051, GS080, GS089, and GS118. |
+| **Prompt strategy** | Fixed zero-shot structured prompt, temperature = 0, maximum one repair attempt if the test does not compile/run. | Reproducibility requirement; GS010 and GS206 show repair/refinement can help, but the minimal experiment should avoid becoming a complex pipeline. |
+| **Dataset** | 10-20 Java or Python functions/classes with medium cyclomatic complexity, approximately CC = 5-15 where measurable, with student-written coursework/assignment tests for the same units. | GAP-D and feasibility check in `SLR/gap-analysis.md`. |
+| **Primary metric 1** | Branch coverage. | GS017 reports branch coverage at 30.22%; GS019, GS025, GS051, GS089, GS163, and GS206 include coverage-related evidence. |
+| **Primary metric 2** | Mutation score. | GS005, GS017, GS022, GS024, GS025, GS051, and GS089. |
+| **Secondary metric** | Compile/execution success rate. | GS010, GS028, GS089, GS118, and GS206. |
+| **Baseline type RQ1/RQ2** | Absolute literature-backed thresholds. | RBL-2 section 3A: an absolute claim needs a threshold value. |
+| **Baseline type RQ3** | Paired student-written coursework tests. | GAP-D requires the same code units to have both GPT-generated tests and student-written coursework/assignment tests. |
+| **Threshold RQ1** | Branch coverage >= 30.22%. | Case 2: GS017 reports average branch coverage at 30.22% on ULT. |
 | **Threshold RQ2** | Mutation score >= 4%. | Case 2 strict floor: GS005 reports suites with 100% coverage but only 4% mutation score. |
-| **Reference target RQ2** | Mutation score >= 40.21% as secondary H0/H1 threshold. | GS017 reports average mutation score 40.21% on ULT; secondary H0/H1 threshold / stronger reference target. |
-| **Pipeline base** | GS017 for real-world function benchmark framing; GS005/GS022 for mutation-score justification; GS028/GS051/GS089 as comparison examples. | Evidence table rows GS005, GS017, GS022, GS028, GS051, GS089. |
-| **Statistical tests** | One-sample Wilcoxon for threshold checks; paired Wilcoxon for GPT vs student comparison. | RBL-2 guidance for continuous percentage metrics and paired comparison. |
+| **Reference target RQ2** | Mutation score >= 40.21% as a secondary H0/H1 threshold. | GS017 reports average mutation score at 40.21% on ULT. |
+| **Pipeline base** | GS017 for real-world function benchmark framing; GS005/GS022 for mutation-score justification; GS028/GS051/GS089 as comparison examples. | Evidence table rows GS005, GS017, GS022, GS028, GS051, and GS089. |
+| **Statistical tests** | One-sample Wilcoxon for threshold checks; paired Wilcoxon for GPT-vs-student comparison. | RBL-2 guidance for continuous percentage metrics and paired comparison. |
 
-## Ly giai threshold
+## Threshold Rationale
 
-### RQ1 - Branch coverage >= 30.22%
+### RQ1 - Branch Coverage >= 30.22%
 
-**Case:** Case 2. Evidence table co ket qua so nhung khong co paper nao de xuat universal acceptance threshold cho branch coverage.
+**Case:** Case 2. The evidence table contains numeric results, but no paper proposes a universal acceptance threshold for branch coverage.
 
-**Nguon:** GS017 bao cao average branch coverage **30.22%** tren ULT, gom real-world Python function-level tasks. Day la source gan nhat voi RQ vi no do branch coverage cho LLM-generated unit tests tren real-world functions.
+**Source:** GS017 reports average branch coverage at **30.22%** on ULT, including real-world Python function-level tasks. This is the closest threshold source because it measures branch coverage for LLM-generated unit tests on real-world functions.
 
-**Ly do khong dung cac so khac:** GS009 bao cao generic coverage va co HumanEval/SF110 gap; GS019 dung JavaScript npm APIs ngoai scope Java/Python; GS028 bao cao statement coverage; GS025 dung fine-tuning va iterative feedback; GS051 dung multi-LLM chaining. Cac paper nay la supporting evidence, khong phai threshold source truc tiep cho minimal GPT-4/GPT-4o experiment.
+**Why other values are not used:** GS009 reports generic coverage and has a HumanEval/SF110 setting gap; GS019 uses JavaScript npm APIs outside the Java/Python scope; GS028 reports statement coverage; GS025 uses fine-tuning and iterative feedback; GS051 uses multi-LLM chaining. These papers are supporting evidence, not direct threshold sources for the minimal GPT-4/GPT-4o experiment.
 
-### RQ2 - Mutation score >= 4%
+### RQ2 - Mutation Score >= 4%
 
-**Case:** Case 2. Khong paper nao trong evidence table de xuat universal threshold cho mutation score, nen RBL-2 yeu cau dung floor value tu ket qua so.
+**Case:** Case 2. No paper in the evidence table proposes a universal threshold for mutation score, so RBL-2 requires using a floor value from numeric evidence.
 
-**Nguon:** GS005 bao cao co test suites dat 100% coverage nhung chi **4% mutation score**. Vi day la gia tri mutation-score floor trong evidence table va cung la canh bao ve coverage-only evaluation, nguong H0/H1 duoc chon la **4%**.
+**Source:** GS005 reports test suites that reached 100% coverage but only **4% mutation score**. Because this is the mutation-score floor in the evidence table and a warning against coverage-only evaluation, the H0/H1 threshold is **4%**.
 
-**Reference target:** GS017 bao cao average mutation score **40.21%** tren ULT. Gia tri nay duoc giu lam stronger reference target khi dien giai ket qua, va duoc thiet lap nhu mot RQ phu hoac secondary threshold de kiem tra tinh hieu qua khoa hoc.
+**Reference target:** GS017 reports average mutation score at **40.21%** on ULT. This value is kept as a stronger reference target and secondary threshold for interpretation.
 
-## Pipeline rationale
+## Pipeline Rationale
 
-Pipeline toi thieu can tra loi truc tiep GAP-D: cung code units, hai test suites, cung metric.
+The minimal pipeline directly answers GAP-D: same code units, two test-suite sources, same metrics.
 
-1. Chon 10-20 Java hoac Python functions/classes co CC = 5-15 where measurable.
-2. Thu thap student-written coursework/assignment tests cho dung cac units do.
-3. Sinh GPT-4o (gpt-4o-2024-05-13) tests bang fixed prompt va temperature 0.
-4. Chay compile/execution checks va ghi failure rate.
-5. Do branch coverage va mutation score cho GPT-generated tests.
-6. Do cung metrics cho student-written coursework/assignment tests.
-7. So sanh GPT-generated tests voi thresholds RQ1/RQ2 va voi paired student-written coursework/assignment tests RQ3.
+1. Select 10-20 Java or Python functions/classes with CC = 5-15 where measurable.
+2. Collect student-written coursework/assignment tests for those same units.
+3. Generate GPT-4o (gpt-4o-2024-05-13) tests with a fixed prompt and temperature 0.
+4. Run compile/execution checks and record the failure rate.
+5. Measure branch coverage and mutation score for GPT-generated tests.
+6. Measure the same metrics for student-written coursework/assignment tests.
+7. Compare GPT-generated tests against RQ1/RQ2 thresholds and against paired student-written coursework/assignment tests for RQ3.
 
-## Tooling decision
+## Tooling Decision
 
-| Language option | Coverage tool | Mutation tool | Ghi chu |
+| Language option | Coverage tool | Mutation tool | Note |
 | --- | --- | --- | --- |
-| Java | JaCoCo | PIT/PITest | Phu hop voi JUnit evidence trong GS009, GS022, GS028, GS051, GS206. Setup nang hon nhung mutation tooling ro. |
-| Python | coverage.py | mutmut hoac Cosmic Ray | Phu hop voi GS017, GS025, GS026. Setup nhanh hon cho function-level dataset nho. |
+| Java | JaCoCo | PIT/PITest | Fits JUnit evidence in GS009, GS022, GS028, GS051, and GS206. Setup is heavier, but mutation tooling is clear. |
+| Python | coverage.py | mutmut or Cosmic Ray | Fits GS017, GS025, and GS026. Setup is faster for a small function-level dataset. |
 
-**Starting rule:** Chon ngon ngu nao da co student-written coursework/assignment tests truoc. Neu ca hai deu co, Java manh hon cho comparability voi PIT/JUnit papers; Python manh hon neu can setup nhanh.
+**Starting rule:** Choose the language that already has student-written coursework/assignment tests. If both are available, Java is stronger for comparability with PIT/JUnit papers; Python is stronger for fast setup.
 
-## Downscope rule
+## Downscope Rule
 
-| Constraint | Downscope hop le |
+| Constraint | Valid downscope |
 | --- | --- |
-| Khong co paired student coursework/assignment tests cho ca Java va Python | Dung 1 ngon ngu duy nhat. |
-| Dataset qua lon hoac khong on dinh | Giam ve 10 units va ghi ro pilot-scale. |
-| GPT-4/GPT-4o qua dat | Dung GPT-4o mini, cap nhat ten model trong tat ca files. |
-| Mutation testing qua cham | Giu mutation score cho subset nho hon; khong bo han mutation score vi GAP-M phu thuoc vao no. |
-| Test compile fail nhieu | Cho phep 1 repair/regeneration attempt va bao cao compile success rate. |
-
-## Doi chieu RBL-2
-
-| Yeu cau RBL-2 | Trang thai trong file nay |
-| --- | --- |
-| Moi design decision co nguon evidence table | Done - moi dong trong bang quyet dinh co source. |
-| Threshold ghi Case va ly giai | Done - RQ1/RQ2 deu la Case 2. |
-| Pipeline co base paper | Done - GS017, GS005/GS022, GS028/GS051. |
-| Baseline match claim | Done - RQ1/RQ2 absolute thresholds, RQ3 paired student baseline. |
-| Statistical test duoc chon truoc | Done - Wilcoxon one-sample va paired Wilcoxon. |
-
-| Design Element | Choice / Value | Source / Rationale |
-| --- | --- | --- |
-| **LLM/Tool** | GPT-4o (gpt-4o-2024-05-13) | `SLR/evidence-table.md` |
-| **Dataset** | 10-20 medium-complexity Java/Python units | `SLR/gap-analysis.md` |
-| **Metric** | Branch coverage & mutation score | GS005, GS017, GS089 |
-| **Thresholds** | Branch >= 30.22%, Mutation >= 4% & >= 40.21% (ref) | GS017 & GS005 |
-| **Statistical test** | One-sample & Paired Wilcoxon | Standard RBL-2 guideline |
-
-## Design claim
-
-Thiet ke nay hop le cho RBL-2 vi moi quyet dinh chinh deu trace ve evidence table: GAP-D quy dinh student-written paired baseline, GS005/GS017/GS022/GS024/GS025/GS051/GS089 quy dinh dual metrics, GS017 cung cap branch threshold 30.22%, va GS005 cung cap strict mutation floor 4%. Scope nho giup experiment kha thi trong boi canh coursework.
+| No paired student coursework/assignment tests for both Java and Python | Use only one language. |
+| Dataset is too large or unstable | Reduce to 10 units and report it as pilot-scale. |
+| GPT-4/GPT-4o is too expensive | Use GPT-4o mini and update the model name across files. |
+| Mutation testing is too slow | Keep mutation score on a smaller subset; do not remove mutation score because GAP-M depends on it. |
+| Many generated tests fail to compile | Allow one repair/regeneration attempt and report compile success rate. |
