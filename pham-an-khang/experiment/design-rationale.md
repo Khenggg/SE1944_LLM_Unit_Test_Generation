@@ -42,7 +42,7 @@ Recommended minimal pipeline:
 
 ## Environmental & Resource Constraints
 
-While code coverage (JaCoCo) is lightweight, mutation testing (PIT for Java, MutPy for Python) is a highly resource-intensive process. It generates dozens of modified versions of the code (mutants) and runs the test suite against each one. On a standard university student laptop (e.g., 8GB RAM, quad-core CPU), running mutation testing globally could lead to severe system lag, thermal throttling, or infinite execution loops.
+While code coverage (JaCoCo) is lightweight, mutation testing (PIT for Java, MutPy for Python) is a highly resource-intensive process. It generates dozens of modified versions of the code (mutants) and runs the test suite against each one. On a standard university student laptop, running mutation testing globally could lead to severe system lag, thermal throttling, or infinite execution loops.
 
 To mitigate hardware constraints, the evaluation methodology strictly scopes the mutation testing to the specific target medium-complexity class rather than the entire project. The mutation tools are configured to use a curated subset of core mutators (avoiding the `ALL` group) and limit execution to a maximum of 2 threads with strict timeouts. This guarantees runtimes remain under a few minutes per class while maintaining the laptop's responsiveness.
 
