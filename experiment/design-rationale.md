@@ -1,94 +1,94 @@
 # Experiment Design Rationale — LLM-based Unit Test Generation with Coverage and Mutation Testing
 
-Ngày: 2026-06-04 | GAP source: `SLR/gap-analysis.md`
+Date: 2026-06-04 | GAP source: `SLR/gap-analysis.md`
 
-## Bảng Quyết Định
+## Decision Table
 
-| Quyết định    | Giá trị                                                                        | Nguồn gốc                                                                     |
-| ------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| LLM/Tool      | GPT-4o mini (OpenAI API); fallback: ChatGPT UI với model/date logged thủ công  | GAP-T: cột Tool/LLM                                                           |
-| Dataset       | ULT / UnLeakedTestBench — 5–8 Python functions sampled from public GitHub repo | GAP-D / benchmark từ ACM007                                                   |
-| Metric chính  | Mutation score (tính bằng mutmut)                                              | GAP-M: cột Metric                                                             |
-| Metric phụ    | Branch coverage (tính bằng coverage.py --branch)                               | Kế thừa từ ACM007                                                             |
-| Baseline type | Comparative — zero-shot prompting                                              | Claim type RQ: comparative                                                    |
-| Threshold RQ1 | Không có ngưỡng tuyệt đối                                                      | Case 3: không có kết quả số đủ trong evidence table — dùng comparative claim  |
-| Threshold RQ2 | Không áp dụng                                                                  | RQ2 (branch coverage) là secondary/descriptive — không cần threshold          |
-| Pipeline base | ACM007 — Huang et al., 2024                                                    | Base paper gần nhất có mutation score + real-world functions + LLM evaluation |
+| Decision         | Value                                                                          | Source / Rationale                                                                                               |
+| ---------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| LLM/Tool         | GPT-4o mini (OpenAI API); fallback: ChatGPT UI with model/date logged manually | GAP-T: Tool/LLM column                                                                                           |
+| Dataset          | ULT / UnLeakedTestBench — 5–8 Python functions sampled from public GitHub repo | GAP-D / benchmark from ACM007                                                                                    |
+| Primary metric   | Mutation score (computed using mutmut)                                         | GAP-M: Metric column                                                                                             |
+| Secondary metric | Branch coverage (computed using coverage.py --branch)                          | Inherited from ACM007                                                                                            |
+| Baseline type    | Comparative — zero-shot prompting                                              | RQ claim type: comparative                                                                                       |
+| Threshold RQ1    | No absolute threshold                                                          | Case 3: evidence table does not provide sufficient consistent numerical results — comparative claim used instead |
+| Threshold RQ2    | Not applicable                                                                 | RQ2 (branch coverage) is secondary/descriptive — no threshold required                                           |
+| Pipeline base    | ACM007 — Huang et al., 2024                                                    | Closest base paper with mutation score + real-world functions + LLM evaluation                                   |
 
-## Lý giải threshold
+## Threshold Rationale
 
-**Threshold RQ1 — Case 3: không có ngưỡng tuyệt đối**
+**Threshold RQ1 — Case 3: no absolute threshold**
 
-Evidence table (N = 9 papers) không cung cấp kết quả số đủ nhất quán để dùng Case 1 (paper đề xuất ngưỡng cụ thể) hoặc Case 2 (floor value từ kết quả thấp nhất). Nhiều records chỉ mô tả kết quả định tính hoặc không so sánh cùng prompt strategy. Do đó RQ1 dùng **comparative claim**: structured/CoT prompting được so sánh với zero-shot prompting trên cùng tập hàm, đo bằng Wilcoxon signed-rank test. Nếu p < 0.05 và median mutation score của structured/CoT cao hơn zero-shot thì H1 được chấp nhận.
+The evidence table (N = 9 papers) does not provide sufficiently consistent numerical results to apply Case 1 (a paper proposes a specific threshold) or Case 2 (floor value from the lowest reported result). Many records describe results qualitatively or do not compare prompt strategies under the same conditions. Therefore, RQ1 uses a **comparative claim**: structured/CoT prompting is compared with zero-shot prompting on the same set of functions, evaluated using the Wilcoxon signed-rank test. H1 is accepted if p < 0.05 and the median mutation score for structured/CoT is higher than for zero-shot.
 
-**Threshold RQ2 — không áp dụng**
+**Threshold RQ2 — not applicable**
 
-Branch coverage được báo cáo như secondary/descriptive metric. Không cần ngưỡng pass/fail vì mục tiêu là mô tả tương quan giữa branch coverage và mutation score, không phải kiểm định hypothesis riêng.
+Branch coverage is reported as a secondary/descriptive metric. No pass/fail threshold is required because the goal is to describe the relationship between branch coverage and mutation score, not to test a separate hypothesis.
 
-## Lý do chọn dataset
+## Dataset Rationale
 
-ULT / UnLeakedTestBench từ ACM007 là nguồn phù hợp nhất vì ACM007 là base paper gần nhất trong evidence table: đánh giá LLM trên real-world Python functions và đã dùng branch coverage và mutation score làm metrics. Dùng ULT tốt hơn tạo dataset mới vì dataset đã public, có thể tải ngay, và giảm rủi ro GAP-D. RBL-2 scope: 5–8 functions có dependencies đơn giản, chạy được local mà không cần external services.
+ULT / UnLeakedTestBench from ACM007 is the most appropriate source because ACM007 is the closest base paper in the evidence table: it evaluates LLMs on real-world Python functions and uses both branch coverage and mutation score as metrics. Using ULT is preferable to creating a new dataset because it is publicly available, immediately downloadable, and reduces GAP-D risk. RBL-2 scope: 5–8 functions with simple dependencies that can run locally without external services.
 
-**Fallback rule:** Nếu một function có lỗi dependencies, thay bằng function khác trong cùng ULT benchmark và ghi lại replacement trong experiment log.
+**Fallback rule:** If a function has dependency errors, replace it with another function from the same ULT benchmark and record the replacement in the experiment log.
 
-## Lý do chọn pipeline
+## Pipeline Rationale
 
-Pipeline dựa trên evaluation paradigm của ACM007: input là Python function, output là pytest test file, metrics là branch coverage (coverage.py) và mutation score (mutmut). Mỗi thành phần có nguồn gốc rõ ràng:
+The pipeline is based on the evaluation paradigm of ACM007: input is a Python function, output is a pytest test file, metrics are branch coverage (coverage.py) and mutation score (mutmut). Each component has a clear source:
 
-| Thành phần        | Ghi rõ                                 | Nguồn                                                   |
-| ----------------- | -------------------------------------- | ------------------------------------------------------- |
-| LLM/Tool          | GPT-4o mini, OpenAI API                | GAP-T — cột Tool/LLM                                    |
-| Prompt strategy   | Zero-shot vs structured/CoT            | Paper ACM005 (CoT); ACM001, ACM007 (zero-shot baseline) |
-| Temperature       | 0 (deterministic, reproducibility)     | Reproducibility                                         |
-| Metric tool chính | mutmut (mutation score)                | GAP-M — cột Metric                                      |
-| Metric tool phụ   | coverage.py --branch (branch coverage) | Kế thừa từ ACM007                                       |
-| Baseline type     | Comparative (zero-shot)                | Claim type của RQ                                       |
+| Component             | Specification                          | Source                                            |
+| --------------------- | -------------------------------------- | ------------------------------------------------- |
+| LLM/Tool              | GPT-4o mini, OpenAI API                | GAP-T — Tool/LLM column                           |
+| Prompt strategy       | Zero-shot vs structured/CoT            | ACM005 (CoT); ACM001, ACM007 (zero-shot baseline) |
+| Temperature           | 0 (deterministic, for reproducibility) | Reproducibility requirement                       |
+| Primary metric tool   | mutmut (mutation score)                | GAP-M — Metric column                             |
+| Secondary metric tool | coverage.py --branch (branch coverage) | Inherited from ACM007                             |
+| Baseline type         | Comparative (zero-shot)                | RQ claim type                                     |
 
-## Định nghĩa prompt strategy
+## Prompt Strategy Definition
 
-| Prompt strategy | Mô tả                                                                                                                                                                                       |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Zero-shot       | Model nhận function/source code và được yêu cầu tạo pytest unit tests trực tiếp. Không có ví dụ, checklist, hay bước reasoning.                                                             |
-| Structured/CoT  | Model nhận function/source code và được yêu cầu: (1) xác định input classes, (2) liệt kê edge cases, (3) xác định expected behavior, (4) tạo executable pytest tests. Output chỉ chứa code. |
+| Prompt strategy | Description                                                                                                                                                                                                                      |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Zero-shot       | The model receives the function/source code and is asked directly to generate pytest unit tests. No examples, checklist, or structured reasoning steps are provided.                                                             |
+| Structured/CoT  | The model receives the function/source code and is asked to: (1) identify input classes, (2) list edge cases, (3) identify expected behavior, and (4) generate executable pytest tests. The final output must contain code only. |
 
-## Operating environment
+## Operating Environment
 
-| Component           | Môi trường                                                     |
-| ------------------- | -------------------------------------------------------------- |
-| OS                  | Windows 10/11 local hoặc Google Colab nếu local setup thất bại |
-| Editor              | VS Code                                                        |
-| Python              | 3.12 (recommended); 3.10+ acceptable                           |
-| Virtual environment | `.venv` trong project folder                                   |
-| Test framework      | pytest                                                         |
-| Coverage tool       | coverage.py với branch coverage enabled                        |
-| Mutation tool       | mutmut                                                         |
-| Hardware            | CPU only; không cần GPU                                        |
-| Output folder       | `experiment/results/`                                          |
+| Component           | Planned environment                                               |
+| ------------------- | ----------------------------------------------------------------- |
+| OS                  | Windows 10/11 local machine, or Google Colab if local setup fails |
+| Editor              | VS Code                                                           |
+| Python              | 3.12 (recommended); 3.10+ acceptable                              |
+| Virtual environment | `.venv` inside the project folder                                 |
+| Test framework      | pytest                                                            |
+| Coverage tool       | coverage.py with branch coverage enabled                          |
+| Mutation tool       | mutmut                                                            |
+| Hardware            | CPU only; no GPU required                                         |
+| Output folder       | `experiment/results/`                                             |
 
 ## Timeline
 
-| Giai đoạn                              | Thời gian  | Output                                              |
-| -------------------------------------- | ---------- | --------------------------------------------------- |
-| Dataset download + function selection  | 1–2 giờ    | `selected-functions.md`                             |
-| Prompt template preparation            | 30–45 phút | `prompts/zero-shot.md`, `prompts/structured-cot.md` |
-| LLM generation                         | 1–2 giờ    | Generated test files                                |
-| Local test execution + environment fix | 1–2 giờ    | pytest pass/fail log                                |
-| Coverage + mutation testing            | 2–4 giờ    | Raw metric CSV                                      |
-| Statistical analysis + write-up        | 1–2 giờ    | Result summary                                      |
+| Stage                                    | Time estimate | Output                                              |
+| ---------------------------------------- | ------------- | --------------------------------------------------- |
+| Dataset download and function selection  | 1–2 hours     | `selected-functions.md`                             |
+| Prompt template preparation              | 30–45 minutes | `prompts/zero-shot.md`, `prompts/structured-cot.md` |
+| LLM generation                           | 1–2 hours     | Generated test files                                |
+| Local test execution and environment fix | 1–2 hours     | pytest pass/fail log                                |
+| Coverage and mutation testing            | 2–4 hours     | Raw metric CSV                                      |
+| Statistical analysis and write-up        | 1–2 hours     | Result summary                                      |
 
-Tổng: ~7–13 giờ cho mini-pilot. Nếu thiếu thời gian: giảm từ 8 xuống 5 functions.
+Total: ~7–13 hours for the mini-pilot. If time is limited, reduce from 8 to 5 functions first.
 
-## Risk mitigation
+## Risk Mitigation
 
-| Rủi ro                        | Mức sau mitigation | Mitigation                                                                                        |
-| ----------------------------- | ------------------ | ------------------------------------------------------------------------------------------------- |
-| Dataset dependency errors     | ⚠️                 | Chọn functions có dependencies đơn giản. Replace broken functions từ cùng ULT và log replacement. |
-| API cost / access             | ⚠️                 | Dùng GPT-4o mini, cap 10–16 calls, fallback ChatGPT UI.                                           |
-| Mutation testing chậm         | ✅                 | Chỉ 5–8 functions nhỏ; chạy mutmut sau khi pytest pass.                                           |
-| Generated tests không compile | ✅                 | Track pass rate riêng. Chỉ dùng valid paired outputs cho Wilcoxon.                                |
-| Environment setup lâu         | ✅                 | Python-only stack: pytest, coverage.py, mutmut. Không dùng Java/JUnit/PIT.                        |
-| Timeline tight                | ✅                 | Giữ RQ1 là primary. RQ2 là secondary/descriptive nếu cần.                                         |
+| Risk                             | Level after mitigation | Mitigation                                                                                                               |
+| -------------------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Dataset dependency errors        | ⚠️                     | Select functions with simple dependencies. Replace broken functions from the same ULT benchmark and log the replacement. |
+| API cost or access problem       | ⚠️                     | Use GPT-4o mini, cap at 10–16 calls, and fall back to ChatGPT UI if API is unavailable.                                  |
+| Mutation testing is slow         | ✅                     | Only 5–8 small functions; run mutmut only after pytest passes.                                                           |
+| Generated tests do not compile   | ✅                     | Track pass rate separately. Only valid paired outputs are used for Wilcoxon.                                             |
+| Environment setup takes too long | ✅                     | Python-only stack: pytest, coverage.py, mutmut. No Java/JUnit/PIT required.                                              |
+| Timeline becomes tight           | ✅                     | Keep RQ1 as primary. Treat RQ2 as secondary/descriptive if needed.                                                       |
 
-## Final design decision
+## Final Design Decision
 
-Primary GAP: **GAP-M** — Secondary GAP: **GAP-T**. Experiment dùng 5–8 Python functions từ ULT / UnLeakedTestBench (ACM007). So sánh zero-shot với structured/CoT prompting dùng GPT-4o mini. Chạy local với Python, pytest, coverage.py, mutmut. Metric chính: mutation score; metric phụ: branch coverage. Claim là comparative (không có absolute threshold) vì evidence table không đủ kết quả số nhất quán.
+Primary GAP: **GAP-M** — Secondary GAP: **GAP-T**. The experiment uses 5–8 Python functions from ULT / UnLeakedTestBench (ACM007). It compares zero-shot with structured/CoT prompting using GPT-4o mini. The study runs locally with Python, pytest, coverage.py, and mutmut. Primary metric: mutation score; secondary metric: branch coverage. The claim is comparative rather than threshold-based because the evidence table does not provide sufficient consistent numerical results.
