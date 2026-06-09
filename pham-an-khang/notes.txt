@@ -8,7 +8,7 @@ Evaluation Data Reference Notes
   The 74% branch coverage peak for the GPT-4 family is referenced in the Experimental Results section detailing the LLM performance on complex real-world functions to mitigate data leakage.
   The 58% mutation score peak is explicitly stated alongside the coverage metrics in the overall performance summary table/graphs.
   Context: The average performance of other models is much lower (~30.22% coverage, ~40.21% mutation score), proving that our chosen thresholds (74% / 58%) represent a rigorous top-tier baseline.
-- Dataset Repository: The ULT dataset itself contains 3,909 decontaminated Python functions and is accessible at github.com/huangd1999/UnLeakedTestBench
+- Dataset Repository: The ULT dataset itself contains 3,909 decontaminated Python functions and is accessible at https://github.com/huangd1999/UnLeakedTestBench
 
 2. Defects4J Dataset & Defect-Focused Baselines
 - Source Papers: SS047, SS080, SS174
@@ -16,7 +16,7 @@ Evaluation Data Reference Notes
   SS080 (SBQS 2025) uses 6 classes from Defects4J to compare GPT-4o and DeepSeek V3 using mutation testing.
   SS174 (TSE 2026) uses Defects4J as the primary benchmark to demonstrate an 18% mutation score improvement using Mutation-Guided Generation.
   SS047 (ASE 2025) evaluates prompt semantics on Defects4J to report a 46% line coverage increase and a 26% downstream compilation rate increase.
-- Dataset Repository: The widely-used Java bug repository github.com/rjust/defects4j
+- Dataset Repository: The widely-used Java bug repository https://github.com/rjust/defects4j
 
 3. Student Programming Assignments (Human Baselines)
 - Source Paper: SS032 - Automatic Unit Test Generation for Programming Assignments Using Large Language Models (CSEE&T 2025)
@@ -30,6 +30,7 @@ Evaluation Data Reference Notes
 - Context: These papers evaluate LLMs on simple, small-sized algorithmic functions (HumanEval). This is explicitly referenced as part of GAP-D, highlighting why we must shift our focus toward "medium cyclomatic complexity" functions for a more realistic evaluation.
   SS014 explores LLM capabilities over HumanEval variants.
   SS137 assesses prompt generation performance on HumanEval-X (covering both Java and Python), focusing on pass rates rather than deep structural coverage.
+- Dataset Repository: The HumanEval dataset repository: https://github.com/openai/human-eval
 
 5. Traditional Tool Comparisons & Code Quality
 - Source Papers: SS109, SS139
