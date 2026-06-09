@@ -1,43 +1,80 @@
-# Hypotheses Draft - LLM Unit Test Generation
+# Hypotheses Draft - LLM for Unit Test Case Generation
 
-Date: 2026-06-03
+Date: 2026-06-05 | Source: `experiment/design-rationale.md`
 
 ## Final RQ Draft
 
-For medium-complexity Java/Python functions or classes, do GPT-4/GPT-4o-generated unit tests achieve branch coverage >= 56.5% and mutation score >= 57%, and how do they compare with student-written tests for the same code units?
+For medium-complexity Java/Python functions or classes, approximately CC = 5-15 where measurable, do GPT-4o (gpt-4o-2024-05-13) generated unit tests achieve branch coverage >= 30.22% and mutation score >= 4%, and how do they compare with student-written coursework tests for the same code units?
+
+## Threshold sources
+
+| Metric | Threshold | Case | Source | Role |
+| --- | ---: | --- | --- | --- |
+| Branch coverage | 30.22% | Case 2 | GS017 reports average branch coverage 30.22% on ULT real-world Python functions. | Main RQ1 threshold. |
+| Mutation score | 4% | Case 2 | GS005 reports suites with 100% coverage but only 4% mutation score. | Main RQ2 strict floor threshold. |
+| Mutation score | 40.21% | Secondary H0/H1 | GS017 reports average mutation score 40.21% on ULT. | Secondary H0/H1 threshold / stronger reference target. |
 
 ## RQ1 - Branch Coverage Threshold
 
-H0_1: GPT-4/GPT-4o-generated unit tests do not achieve median branch coverage >= 56.5% on the selected medium-complexity Java/Python units.
+Kiem dinh xem GPT-4o (gpt-4o-2024-05-13) generated unit tests co dat median branch coverage toi thieu 30.22% tren medium-complexity Java/Python units hay khong.
 
-H1_1: GPT-4/GPT-4o-generated unit tests achieve median branch coverage >= 56.5% on the selected medium-complexity Java/Python units.
+- **H0_1:** Median branch coverage cua GPT-4o (gpt-4o-2024-05-13) generated unit tests nho hon 30.22%.
+- **H1_1:** Median branch coverage cua GPT-4o (gpt-4o-2024-05-13) generated unit tests lon hon hoac bang 30.22%.
 
-Statistical test: One-sample Wilcoxon signed-rank test against 56.5% (alpha = 0.05).
+**Statistical test du kien:** One-sample Wilcoxon signed-rank test against 30.22% (alpha = 0.05).
 
-Threshold source: Case 2 from experiment/design-rationale.md and SLR/evidence-table.md. GS030 reports ChatGPT-3.5 branch coverage = 56.5% in Table 4, so 56.5% is used as the evidence-table floor for RQ1. GS057 remains supporting branch-coverage evidence, but it is not the main threshold source because it evaluates LLM-agent settings rather than direct ChatGPT/GPT output.
+**Rationale:** Branch coverage la continuous percentage metric. Wilcoxon phu hop vi sample du kien nho va khong nen gia dinh normal distribution.
 
 ## RQ2 - Mutation Score Threshold
 
-H0_2: GPT-4/GPT-4o-generated unit tests do not achieve median mutation score >= 57% on the selected medium-complexity Java/Python units.
+Kiem dinh xem GPT-4o (gpt-4o-2024-05-13) generated unit tests co dat cac nguong mutation score (nguong san 4% va nguong khoa hoc 40.21%) tren medium-complexity Java/Python units hay khong.
 
-H1_2: GPT-4/GPT-4o-generated unit tests achieve median mutation score >= 57% on the selected medium-complexity Java/Python units.
+### RQ2a - Mutation Score Strict Floor (4%)
+- **H0_2a:** Median mutation score cua GPT-4o (gpt-4o-2024-05-13) generated unit tests nho hon 4%.
+- **H1_2a:** Median mutation score cua GPT-4o (gpt-4o-2024-05-13) generated unit tests lon hon hoac bang 4%.
 
-Statistical test: One-sample Wilcoxon signed-rank test against 57% (alpha = 0.05).
+### RQ2b - Mutation Score Reference Target (40.21%)
+- **H0_2b:** Median mutation score cua GPT-4o (gpt-4o-2024-05-13) generated unit tests nho hon 40.21%.
+- **H1_2b:** Median mutation score cua GPT-4o (gpt-4o-2024-05-13) generated unit tests lon hon hoac bang 40.21%.
 
-Threshold source: Case 2 from experiment/design-rationale.md. GS001 reports 57% average mutation score, used as the evidence-table floor value; GS046 reports higher valid mutation-score results.
+**Statistical test du kien:** One-sample Wilcoxon signed-rank test against 4% and 40.21% respectively (alpha = 0.05).
 
-## RQ3 - Student-Written Test Comparison
+**Rationale:** Mutation score la continuous percentage metric. Wilcoxon phu hop vi sample du kien nho va khong gia dinh distribution normal. Nguong 4% la strict floor tu GS005, trong khi 40.21% tu GS017 dung de danh gia hieu qua muc do trung binh thuc te.
 
-H0_3: GPT-4/GPT-4o-generated unit tests are not better than student-written tests on the same code units for branch coverage and mutation score.
+## RQ3 - Comparison with Student-Written Coursework Tests
 
-H1_3: GPT-4/GPT-4o-generated unit tests are better than student-written tests on the same code units for branch coverage and/or mutation score.
+Kiem dinh xem GPT-4o (gpt-4o-2024-05-13) generated tests co dat hieu qua cao hon (tieu chi branch coverage va mutation score) so voi student-written coursework tests tren cung code units hay khong.
 
-Statistical test: Paired Wilcoxon signed-rank test on per-unit metric differences (GPT-generated score minus student-written score), alpha = 0.05.
+### RQ3a - Branch coverage comparison
 
-Comparison source: GAP-D in SLR/gap-analysis.md. No included paper provides the paired student-written comparison for the same medium-complexity code units.
+- **H0_3a:** Median branch coverage cua GPT-4o (gpt-4o-2024-05-13) generated tests **khong lon hon** branch coverage cua student-written coursework tests tren cung code units.
+- **H1_3a:** Median branch coverage cua GPT-4o (gpt-4o-2024-05-13) generated tests **lon hon** branch coverage cua student-written coursework tests tren cung code units.
 
-## Metric Interpretation
+### RQ3b - Mutation score comparison
 
-- Branch coverage is a continuous percentage score, so Wilcoxon signed-rank is used instead of a parametric t-test.
-- Mutation score is also a continuous percentage score, so Wilcoxon signed-rank is used for the threshold test.
-- RQ3 uses paired comparison because both GPT-generated tests and student-written tests are evaluated on the same code units.
+- **H0_3b:** Median mutation score cua GPT-4o (gpt-4o-2024-05-13) generated tests **khong lon hon** mutation score cua student-written coursework tests tren cung code units.
+- **H1_3b:** Median mutation score cua GPT-4o (gpt-4o-2024-05-13) generated tests **lon hon** mutation score cua student-written coursework tests tren cung code units.
+
+**Statistical test du kien:** Paired Wilcoxon signed-rank test on per-unit differences (GPT-generated score minus student-written score), alpha = 0.05. Bao cao direction va effect size sau khi test.
+
+**Comparison source:** GAP-D trong `SLR/gap-analysis.md`. Khong included paper nao co paired student-written coursework comparison tren cung medium-complexity Java/Python units.
+
+## Metric interpretation
+
+- **Branch coverage:** Do muc do test exercise cac branch/control-flow outcomes.
+- **Mutation score:** Do kha nang phat hien loi gia lap; bat buoc vi GS005 cho thay coverage cao co the di kem mutation score rat thap.
+- **Compile/execution success rate:** Bao cao descriptive nhu metric phu; khong phai H0/H1 chinh tru khi proposal sau nay downscope ve pass/fail analysis.
+
+## Doi chieu RBL-2
+
+| Yeu cau RBL-2 | Trang thai trong file nay |
+| --- | --- |
+| H0/H1 co threshold cu the | Done - RQ1 30.22%, RQ2 4%. |
+| Threshold khop voi design-rationale.md | Done - cung GS017/GS005. |
+| H1 doi lap logic voi H0 | Done - threshold checks va paired comparison tach rieng. |
+| Statistical test duoc chon truoc | Done - one-sample Wilcoxon va paired Wilcoxon. |
+| Baseline C khong bi thieu | Done - RQ3 dung student coursework tests; RQ1/RQ2 dung literature-backed thresholds. |
+
+## Amendment rule
+
+Neu experiment doi model, ngon ngu, dataset size, hoac threshold, phai cap nhat dong bo `experiment/design-rationale.md`, `experiment/hypotheses.md`, va `experiment/01_rq.md` truoc khi dua vao proposal/team synthesis. Neu GPT-4o (gpt-4o-2024-05-13) bi thay bang model khac (vd: GPT-4o mini) do chi phi, intervention phai duoc rename nhat quan trong tat ca files.

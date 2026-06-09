@@ -1,60 +1,79 @@
-# Search Log - LLM for Unit Test Case Generation
+# Search Log - LLM for Unit Test Generation
 
-**Thành viên:** Khang
+**Thanh vien:** Khang
 
-**Nguồn phụ trách:** Google Scholar
+**Nguon phu trach:** Google Scholar
 
-**Ngày thực hiện:** 2026-05-31
+**Ngay thuc hien:** 2026-06-05
 
-## Query Strings
+---
 
-### String A
+## Query String
 
-```text
-('large language model' OR 'LLM' OR 'GPT' OR 'ChatGPT')
-AND ('unit test generation' OR 'test case generation' OR 'automated unit testing')
-AND ('branch coverage' OR 'code coverage' OR 'mutation score' OR 'mutation testing')
-```
-
-### String B
+### String A - PICO-based search string
 
 ```text
-('GPT' OR 'ChatGPT' OR 'large language model')
-AND ('JUnit' OR 'pytest' OR 'unit test')
-AND ('test generation' OR 'automated test generation')
+("ChatGPT" OR "GPT-4" OR "Codex") "unit test generation" ("branch coverage" OR "mutation score") ("JUnit" OR "pytest")
 ```
 
-### String C
+This string intentionally does not include `"student-written coursework/assignment tests"`. Student-written coursework/assignment tests are the comparison baseline in the final RQ, but forcing that term into the main search string would over-filter the result set and would not match the 249-record Google Scholar scraper export used in this review.
 
-```text
-('large language model' OR 'GPT')
-AND ('software testing' OR 'unit testing')
-AND ('mutation testing' OR 'coverage')
-```
+## Final RQ Alignment
+
+For Java/Python functions or classes with medium cyclomatic complexity, this SLR supports the following experiment direction: evaluate GPT-4/GPT-4o-generated unit tests using branch coverage and mutation score, then compare the generated tests with student-written coursework/assignment tests on the same code units.
+
+Medium cyclomatic complexity is not included as a mandatory search term because it would over-filter the literature. It is applied later as an experiment dataset constraint and as part of the GAP-D framing.
+
+## PICO Mapping
+
+| PICO | Noi dung | Thanh phan trong search string |
+| --- | --- | --- |
+| P - Population | Java/Python unit-level code; medium complexity is applied later during experiment design | `"JUnit" OR "pytest"` |
+| I - Intervention | LLM-based test generation using ChatGPT, GPT-4, or Codex | `"ChatGPT" OR "GPT-4" OR "Codex"` |
+| C - Comparison | Student-written coursework/assignment tests on the same code units for the experiment; literature-backed thresholds for absolute checks | Not used as search term to avoid over-filtering |
+| O - Outcome | Branch coverage and mutation score | `"branch coverage" OR "mutation score"` |
 
 ## Search Execution Log
 
-| Database | String | Date | Raw search hits | Notes |
-| --- | --- | --- | ---: | --- |
-| Google Scholar | String A | 2026-05-31 | 1000 | Crawled with Google Scholar scraper; selected 20 unique records for raw_records_google_scholar.csv; abstracts enriched from OpenAlex when confidently matched |
-| Google Scholar | String B | 2026-05-31 | 820 | Crawled with Google Scholar scraper; skipped records already selected from earlier strings and selected next 20 unique records; abstracts enriched from OpenAlex when confidently matched |
-| Google Scholar | String C | 2026-05-31 | 1089 | Crawled with Google Scholar scraper; skipped records already selected from earlier strings and selected next 20 unique records; abstracts enriched from OpenAlex when confidently matched |
+| Database | String | Date | Raw search hits | Records exported | Notes |
+| --- | --- | --- | ---: | ---: | --- |
+| Google Scholar | String A | 2026-06-05 | 249 | 249 | Raw result count is below the RBL-1 upper bound of 500; the authoritative deduplicated dataset used for screening is `SLR/01_all_records.csv`. |
 
-## Tổng hợp trước dedup
+## Tong hop truoc dedup
 
-| Database | String | Kết quả |
+| Database | String | Ket qua |
 | --- | --- | ---: |
-| Google Scholar | String A | 1000 |
-| Google Scholar | String B | 820 |
-| Google Scholar | String C | 1089 |
-| **Tổng raw search hits** | | **2909** |
-| **Records selected/exported before dedup** | | **60** |
-| **Sau dedup** | | **41** |
-| **Số bị loại do trùng** | | **19** |
+| Google Scholar | String A | 249 |
+| **Tong truoc dedup** | | **249** |
+| **Sau dedup** | | **246** |
+| **So bi loai do trung lap** | | **3** |
 
-## Ghi chú
+## Metadata Enrichment
 
-- Google Scholar returned large raw hit counts, so only the most relevant records were selected/exported for screening.
-- Deduplication was done by DOI/title-level matching within the Google Scholar export.
-- On 2026-06-02, OpenAlex was used as a supplementary verification source for already-screened INCLUDE records. GS011/TestART was confirmed as OpenAlex work W4403622802 with DOI 10.48550/arXiv.2408.03095 and added to the final included set to satisfy the RBL-2 minimum paper gate.
-- This branch intentionally contains only Khang's Google Scholar mini-SLR output.
+| Source | Purpose | Result |
+| --- | --- | --- |
+| OpenAlex API | Verify DOI/title metadata and fill missing DOI/metadata where confidently matched | 155/246 deduped records have DOI after enrichment; 91/246 still have no DOI |
+
+Note: The authoritative deduplicated dataset for later screening is `SLR/01_all_records.csv` with 246 rows; its DOI count is 155 with DOI and 91 without DOI.
+
+## Current RBL-1 Status
+
+| Step | Status | N |
+| --- | --- | ---: |
+| Raw Google Scholar scraper records | Done | 249 |
+| Deduplicated records in `01_all_records.csv` | Done | 246 |
+| V1 title/abstract screening | Done | 246 |
+| V1 excluded | Done | 131 |
+| V1 included | Done | 45 |
+| V1 unsure | Done | 70 |
+| V2 full-text/prioritization assessed | Done | 115 |
+| V2 excluded | Done | 99 |
+| Final included with extractable numeric evidence | Done | 16 |
+
+## Ghi chu
+
+- Day la ban lam lai tu dau theo RBL-1, khong su dung cac so V1/V2/final tu pipeline cu.
+- Chi su dung mot search string duy nhat tu PICO.
+- Deduplication was done by DOI when available, otherwise by normalized title.
+- `02_after_screening_v1.csv` da duoc tao lai tu 246 record moi.
+- `03_final_included.csv` da duoc tao lai tu 115 record INCLUDE/UNSURE sau V1; final included N = 16, tat ca co ket qua so extractable trong `evidence-table.md` va dat yeu cau RBL-2 N > 5.

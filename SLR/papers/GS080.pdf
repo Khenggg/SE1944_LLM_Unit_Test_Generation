@@ -1,0 +1,53 @@
+%PDF-1.4
+1 0 obj
+<</Type/Catalog/Pages 2 0 R>>
+endobj
+2 0 obj
+<</Type/Pages/Kids[3 0 R]/Count 1>>
+endobj
+3 0 obj
+<</Type/Page/Parent 2 0 R/Resources<< /Font << /F1 << /Type/Font /Subtype/Type1 /BaseFont/Helvetica >> >> >>/MediaBox[0 0 595 842]/Contents 4 0 R>>
+endobj
+4 0 obj
+<</Length 775>>
+stream
+BT
+/F1 14 Tf
+18 TL
+72 750 Td
+(Access Note for GS080) Tj T*
+(=========================================) Tj T*
+T*
+/F1 10 Tf
+14 TL
+(Title:) Tj T*
+  (Prompt engineering in LLMs for automated unit test generation: A) Tj T*
+  (large-scale study) Tj T*
+T*
+(Authors:) Tj T*
+  (Wendkûuni C. Ouédraogo, Abdoul Kader Kaboré, Yinghua Li, Haoye Tian,) Tj T*
+  (Anil Koyuncu, Jacques Klein, David Lo, Tegawendé F. Bissyandé) Tj T*
+T*
+(Year: 2026) Tj T*
+(DOI: 10.1007/s10664-026-10840-4) Tj T*
+T*
+(Publisher URL:) Tj T*
+  (https://link.springer.com/article/10.1007/s10664-026-10840-4) Tj T*
+T*
+(This paper is behind a publisher paywall \(Springer Empirical Software Engineering\) and is closed-access.) Tj T*
+(Therefore, the full-text PDF is not included in this repository.) Tj T*
+ET
+endstream
+endobj
+xref
+0 5
+0000000000 65535 f 
+0000000009 00000 n 
+0000000054 00000 n 
+0000000105 00000 n 
+0000000268 00000 n 
+trailer
+<</Size 5/Root 1 0 R>>
+startxref
+1091
+%%EOF
