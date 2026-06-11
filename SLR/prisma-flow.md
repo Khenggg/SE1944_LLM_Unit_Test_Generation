@@ -34,8 +34,7 @@ Final included papers: 16
 - Count(`v1_decision = INCLUDE`) = 45.
 - Count(`v1_decision = UNSURE`) = 70.
 - Count(`v1_decision = INCLUDE or UNSURE`) = 115.
-- Rows in `SLR/03_final_included.csv` = 246; V1-excluded records keep blank V2 fields.
-- Count(`v2_decision = EXCLUDE`) = 99.
+- Rows in `SLR/03_final_included.csv` = 16 (only the final included papers).
 - Count(`v2_decision = INCLUDE`) = 16.
 - Final included N = 16 > 5, so the SLR passes the RBL-2 minimum paper gate.
 - Rows in `SLR/evidence-table.md` = 16.

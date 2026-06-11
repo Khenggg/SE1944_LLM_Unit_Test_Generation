@@ -54,6 +54,12 @@ Medium cyclomatic complexity is not included as a mandatory search term because 
 | --- | --- | --- |
 | OpenAlex API | Verify DOI/title metadata and fill missing DOI/metadata where confidently matched | 155/246 deduped records have DOI after enrichment; 91/246 still have no DOI |
 
+## Snowballing (Cross-reference Search)
+
+* **Phương pháp:** Backward snowballing — đọc danh sách tham khảo (reference list) của các paper đã lọt vào danh sách included cuối cùng.
+* **Thực hiện:** Đã scan 16 papers trong `evidence-table.md`, sử dụng CrossRef để lookup metadata từ DOI và Google Scholar để kiểm tra.
+* **Kết quả:** Đã scan 16 papers, không có paper mới pass IC.
+
 ## Screening Status
 
 | Step | Status | N |
@@ -72,5 +78,5 @@ Medium cyclomatic complexity is not included as a mandatory search term because 
 
 - Deduplication was done by DOI when available, otherwise by normalized title.
 - `02_after_screening_v1.csv` contains all 246 deduplicated records with V1 decisions.
-- `03_final_included.csv` contains all 246 records with V2 fields; V1-excluded records keep blank V2 fields.
+- `03_final_included.csv` has been filtered to contain only the 16 final included records with V2 fields.
 - Final included N = 16, and all included papers have extractable numeric evidence in `evidence-table.md`.
