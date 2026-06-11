@@ -9,7 +9,7 @@ Tài liệu phác thảo này cung cấp các mô tả chi tiết và giải th�
 Trong thực nghiệm đánh giá chất lượng unit test phần mềm, các chỉ số như độ bao phủ (Branch Coverage) hay điểm đột biến (Mutation Score) có các đặc tính thống kê đặc thù:
 1. **Phân phối không chuẩn (Non-normal distribution):** Các chỉ số này thường bị giới hạn trong khoảng $[0\%, 100\%]$ và có xu hướng lệch trái mạnh (nhiều hàm đạt 100% hoặc 0% coverage), không tuân theo phân phối chuẩn Gauss. Do đó, các phép kiểm định tham số (parametric tests) như t-test **không áp dụng được** vì vi phạm nghiêm trọng giả định về phân phối chuẩn.
 2. **Lựa chọn Kiểm định phi tham số (Non-parametric tests):** 
-   * **One-sample Wilcoxon signed-rank test** được lựa chọn để đối sánh trung vị thực tế của bộ test sinh bởi AI với các giá trị mốc cố định ($30.22\%$ và $35.3\%$) thay vì dùng One-sample t-test.
+   * **One-sample Wilcoxon signed-rank test** được lựa chọn để đối sánh trung vị thực tế của bộ test sinh bởi AI với các giá trị mốc cố định ($30.22\%$) và ($35.3\%$) thay vì dùng One-sample t-test.
    * **Paired Wilcoxon signed-rank test** được lựa chọn để so sánh hiệu năng trực tiếp giữa hai bộ test (AI và sinh viên) chạy trên cùng một tập hàm đối chứng (paired design), thay vì dùng Paired t-test.
    * **Exact Binomial Test** được lựa chọn để kiểm định tỷ lệ thành công kép (đạt đồng thời cả hai chỉ số) vì dữ liệu đầu ra là nhị phân (Đạt / Không đạt).
 
@@ -20,8 +20,8 @@ Trong thực nghiệm đánh giá chất lượng unit test phần mềm, các c
 ### 📊 RQ1 — Ngưỡng Độ bao phủ nhánh (Branch Coverage $\ge$ 30.22%)
 *   **Mục tiêu:** Xác minh xem GPT-4/GPT-4o có đạt được độ bao phủ nhánh tối thiểu bằng mức sàn trung bình của văn liệu hay không.
 *   **Ký hiệu toán học:**
-    *   $H_0: \tilde{\mu}_{\text{BC\_AI}} < 30.22\%$
-    *   $H_1: \tilde{\mu}_{\text{BC\_AI}} \ge 30.22\%$
+    *   $H_0: \tilde{\mu}_{\text{BC-AI}} < 30.22\%$
+    *   $H_1: \tilde{\mu}_{\text{BC-AI}} \ge 30.22\%$
 *   **Thông số kiểm định:**
     *   Mẫu thực nghiệm: $N = 20$ kết quả branch coverage của GPT-4/GPT-4o.
     *   Giá trị kiểm chứng (Hypothesized median): $\theta_0 = 30.22$.
@@ -31,8 +31,8 @@ Trong thực nghiệm đánh giá chất lượng unit test phần mềm, các c
 ### 📊 RQ2 — Ngưỡng Điểm đột biến (Mutation Score $\ge$ 35.3%)
 *   **Mục tiêu:** Xác minh xem các testcase sinh bởi GPT-4/GPT-4o có đạt năng lực phát hiện lỗi logic tối thiểu bằng mức sàn công nghiệp hay không.
 *   **Ký hiệu toán học:**
-    *   $H_0: \tilde{\mu}_{\text{MS\_AI}} < 35.3\%$
-    *   $H_1: \tilde{\mu}_{\text{MS\_AI}} \ge 35.3\%$
+    *   $H_0: \tilde{\mu}_{\text{MS-AI}} < 35.3\%$
+    *   $H_1: \tilde{\mu}_{\text{MS-AI}} \ge 35.3\%$
 *   **Thông số kiểm định:**
     *   Mẫu thực nghiệm: $N = 20$ kết quả mutation score của GPT-4/GPT-4o.
     *   Giá trị kiểm chứng (Hypothesized median): $\theta_0 = 35.3$.
@@ -44,11 +44,11 @@ Trong thực nghiệm đánh giá chất lượng unit test phần mềm, các c
 *   **Phép kiểm định:** Paired Wilcoxon signed-rank test (hai đuôi, $\alpha = 0.05$).
 *   **Các giả thuyết kiểm định:**
     *   **Độ bao phủ nhánh (Branch Coverage):**
-        *   $H_0: \tilde{\mu}_{\text{BC\_AI}} = \tilde{\mu}_{\text{BC\_Student}}$
-        *   $H_1: \tilde{\mu}_{\text{BC\_AI}} \neq \tilde{\mu}_{\text{BC\_Student}}$
+        *   $H_0: \tilde{\mu}_{\text{BC-AI}} = \tilde{\mu}_{\text{BC-Student}}$
+        *   $H_1: \tilde{\mu}_{\text{BC-AI}} \neq \tilde{\mu}_{\text{BC-Student}}$
     *   **Điểm đột biến (Mutation Score):**
-        *   $H_0: \tilde{\mu}_{\text{MS\_AI}} = \tilde{\mu}_{\text{MS\_Student}}$
-        *   $H_1: \tilde{\mu}_{\text{MS\_AI}} \neq \tilde{\mu}_{\text{MS\_Student}}$
+        *   $H_0: \tilde{\mu}_{\text{MS-AI}} = \tilde{\mu}_{\text{MS-Student}}$
+        *   $H_1: \tilde{\mu}_{\text{MS-AI}} \neq \tilde{\mu}_{\text{MS-Student}}$
 
 ### 📊 RQ4 — Tỷ lệ thành công đồng thời (Dual Success Rate)
 *   **Mục tiêu:** Xác minh tỷ lệ số hàm đạt đồng thời cả hai ngưỡng chất lượng có vượt quá mức đa số ngẫu nhiên 50% hay không.
