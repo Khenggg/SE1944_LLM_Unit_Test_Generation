@@ -1,4 +1,9 @@
-# 1. Evidence Table & Distribution
+# Gap Statement Final
+
+**Primary Source:** `team-synthesis/evidence-table-merged.md`
+
+
+## 1. Evidence Table & Distribution
 
 | Evidence Group | Count among 36 unique primary studies | Remarks |
 |---|---:|---|
@@ -7,56 +12,56 @@
 | Evaluates against human or developer-written tests | 5/36 | Comparisons exist (Paper 001, Paper 004, etc.) against professional developers, but this does not accurately represent a student-written baseline. |
 | Utilizes coverage / code coverage / branch coverage | 28/36 | Structural coverage remains the most universally adopted evaluation metric in the extracted studies. |
 | Utilizes mutation score / mutation testing / mutant info | 16/36 | Mutation testing appears less frequently and is predominantly found in studies proposing feedback-driven or mutation-guided methodologies. |
-| Simultaneously evaluates branch coverage and mutation score using GPT-4o | Present but fragmented | Strong evidence exists (e.g., ULT benchmark), but they typically utilize custom corporate/open-source benchmarks without benchmarking against student-written baselines. |
+| Simultaneously evaluates branch coverage and mutation score using GPT-4o | Present but fragmented | Strong evidence exists (e.g., ULT benchmark), but these studies typically rely on custom corporate or open-source benchmarks without student-written baselines. |
 
 ---
 
-# 2. Primary Gap (Gap D) — Dataset & Complexity Focus
+## 2. Primary Gap (Gap D) — Dataset & Complexity Focus
 
 **Primary Gap (Gap D):**  
-Phần lớn các nghiên cứu hiện nay về tự động sinh unit test bằng LLM đang gặp phải khoảng trống lớn về mặt dữ liệu và kiểm soát độ phức tạp (Dataset & Complexity Gap). Các nghiên cứu thực nghiệm hiện tại thường thử nghiệm trên hai thái cực cực đoan: hoặc là các tập dữ liệu quá đơn giản (như HumanEval), hoặc là các kho mã nguồn kế thừa (legacy repositories) vô cùng phức tạp của doanh nghiệp. Hoàn toàn vắng bóng các nghiên cứu thực hiện kiểm soát nghiêm ngặt đối tượng kiểm thử ở cấp độ hàm có độ phức tạp mã nguồn trung bình (Cyclomatic Complexity từ 5 đến 15).
+Most existing research on LLM-based automated unit test generation suffers from a significant dataset and complexity control gap. Current empirical studies typically evaluate models on two extreme types of datasets: overly simple benchmarks (e.g., HumanEval) or highly complex legacy enterprise codebases. There is a complete lack of studies that strictly control for moderate-complexity functions with Cyclomatic Complexity ranging from 5 to 15.
 
-Nghiêm trọng hơn, việc đánh giá hiệu suất của LLM (cụ thể là GPT-4o) trong bối cảnh giáo dục kỹ thuật phần mềm chưa được khai thác, khi dữ liệu nghiên cứu thiếu vắng sự so sánh trực tiếp với một baseline thực tế là các bài kiểm thử do chính sinh viên viết.
-
----
-
-# 3. Secondary Gaps (Gap M) — Methodological & Metric Focus
-
-Sau khi xác định bài toán cốt lõi về tập dữ liệu (Gap D), nghiên cứu này tiếp tục giải quyết các khoảng trống phụ liên quan đến Phương pháp luận và Số đo đánh giá (Gap M):
-
-## Gap M.1 — Phương pháp luận (Methodological Gap)
-Các tài liệu hiện tại có xu hướng coi "GPT-4" hay các LLM nói chung như một khối độc lập (monolith) mà chưa định nghĩa hoặc kiểm soát tường minh các chính sách thiết kế prompt (Prompt Engineering Policies) như: Zero-shot, Chain-of-Thought, hay Iterative Feedback Loops. Điều này làm giảm tính nhất quán và khả năng tái lặp của thực nghiệm.
-
-## Gap M.2 — Số đo đánh giá (Metric Gap)
-Mặc dù tỷ lệ báo cáo độ bao phủ cấu trúc (structural coverage) rất cao (28/36 bài báo), số lượng nghiên cứu kết hợp đánh giá chỉ số đột biến (mutation score) để đo lường năng lực phát hiện lỗi thực tế còn hạn chế (16/36 bài báo). Việc đánh giá đồng thời cả hai chỉ số này trên cùng một bối cảnh thực nghiệm chưa được thực hiện một cách đồng bộ.
+More critically, the evaluation of LLM performance (particularly GPT-4o) in software engineering education contexts remains underexplored, as existing datasets lack a direct baseline comparison against student-written test cases.
 
 ---
 
-# 4. Final Gap Statement (Cấu trúc lại theo D và M)
+## 3. Secondary Gaps (Gap M) — Methodological & Metric Focus
 
-Các nghiên cứu thực nghiệm hiện tại đã chứng minh Large Language Models (LLMs) có khả năng sinh các bộ unit test với độ bao phủ cao khi được hỗ trợ bởi các kỹ thuật prompt nâng cao hoặc vòng lặp phản hồi. Tuy nhiên, y văn hiện tại vẫn tồn tại một khoảng trống nghiên cứu cốt lõi (Gap D) về việc thiếu một tập dữ liệu được kiểm soát nghiêm ngặt ở mức độ phức tạp trung bình (Cyclomatic Complexity = 5–15) của hai ngôn ngữ Java/Python, đồng thời thiếu một baseline đối chứng trực tiếp từ các bài kiểm thử do sinh viên thực hiện trong môi trường học thuật.
+After identifying the core dataset issue (Gap D), this study further highlights secondary gaps related to methodology and evaluation metrics (Gap M):
 
-Bên cạnh đó, các nghiên cứu cũng chưa giải quyết triệt để bài toán phương pháp luận (Gap M) khi chưa phân tách rõ ràng tác động của các chính sách prompt khác nhau (Zero-shot vs. Iterative) và chưa áp dụng đồng bộ hệ thống kiểm thử kép (kết hợp cả Branch Coverage và Mutation Score) để đánh giá toàn diện năng lực tìm lỗi của mã nguồn do GPT-4o tạo ra trên tập dữ liệu đặc thù này.
+### Gap M.1 — Methodological Gap
+Existing literature tends to treat GPT-based LLMs as a monolithic system without explicitly defining or controlling prompt engineering strategies such as zero-shot prompting, chain-of-thought prompting, or iterative feedback loops. This reduces experimental consistency and reproducibility.
+
+### Gap M.2 — Metric Gap
+Although structural coverage metrics are widely reported (28/36 studies), fewer studies incorporate mutation score as a measure of real fault detection capability (16/36 studies). Moreover, very few works systematically combine both branch coverage and mutation score within the same experimental framework.
 
 ---
 
-# 5. Revised Research Direction
+## 4. Final Gap Statement (Reframed under D and M)
 
-Để giải quyết trọn vẹn các khoảng trống nghiên cứu trên, đề tài (ví dụ: dự án SE1944) sẽ triển khai theo lộ trình:
+Existing empirical studies demonstrate that Large Language Models (LLMs) can generate high-coverage unit tests when supported by advanced prompting techniques or iterative feedback mechanisms. However, a core research gap (Gap D) remains regarding the absence of a rigorously controlled dataset with moderate cyclomatic complexity (CC = 5–15) in Java and Python, as well as the lack of a direct baseline based on student-written test cases in academic settings.
 
-## Giải quyết Gap D (Trọng tâm)
-- Tiến hành chọn lọc và xây dựng một tập dữ liệu chuẩn hóa gồm các hàm Java và Python trích xuất từ bài tập của sinh viên.
-- Đảm bảo độ phức tạp Cyclomatic nằm trong khoảng $5 \le CC \le 15$.
-- Thu thập toàn bộ test suite do sinh viên viết để làm baseline đối chứng.
+In addition, methodological limitations (Gap M) persist, as prior work does not clearly isolate the effects of different prompt strategies (e.g., zero-shot vs. iterative prompting) and rarely employs a unified evaluation framework combining both branch coverage and mutation score to comprehensively assess the fault detection capability of GPT-4o-generated tests.
 
-## Giải quyết Gap M (Bổ trợ)
-- Cấu trúc quy trình sinh test của GPT-4o thành các chiến lược prompt rõ ràng (Zero-shot, Few-shot, Iterative, v.v.).
-- Thực hiện kiểm thử và phân tích thống kê ghép cặp (paired statistical comparison).
-- Sử dụng hai trục đánh giá chính:
+---
+
+## 5. Revised Research Direction
+
+To address these gaps, the proposed research (e.g., project SE1944) will follow this direction:
+
+### Addressing Gap D (Core Focus)
+- Construct a standardized dataset of Java and Python functions extracted from student programming assignments.
+- Ensure strict control of Cyclomatic Complexity within the range $5 \le CC \le 15$.
+- Collect corresponding student-written test suites as the primary baseline for comparison.
+
+### Addressing Gap M (Supporting Focus)
+- Structure GPT-4o test generation into explicit prompt strategies (zero-shot, few-shot, iterative prompting, etc.).
+- Conduct empirical evaluation with paired statistical analysis.
+- Use two primary metrics:
   - Branch Coverage  
   - Mutation Score  
-- Kết hợp thêm:
-  - Compilation status  
-  - Pass/fail status  
+- Additionally include:
+  - Compilation success rate  
+  - Test pass/fail outcomes  
 
-=> Từ đó đưa ra kết luận toàn diện về hiệu năng sinh unit test của GPT-4o trong bối cảnh học thuật.
+This enables a comprehensive evaluation of GPT-4o’s unit test generation capability in an educational software engineering context.
