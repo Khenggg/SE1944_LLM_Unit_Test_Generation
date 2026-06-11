@@ -1,121 +1,62 @@
-# Gap Statement Final - LLM for Unit Test Case Generation
+# 1. Evidence Table & Distribution
 
-Evidence table: N = 39 papers from the merged team evidence table (`team-synthesis/evidence-table-merged.md`).
+| Evidence Group | Count among 36 unique primary studies | Remarks |
+|---|---:|---|
+| Directly controls for medium cyclomatic complexity (CC=5–15) | 1/36 | Strict population control for medium cyclomatic complexity is largely absent (only present in Paper 033). Most benchmarks skew toward ultra-simple or legacy enterprise code. |
+| Direct comparison with student-written tests | 1/36 | Only one study (Paper 009) explicitly addresses student programming assignments, highlighting a severe lack of research tailored to educational contexts. |
+| Evaluates against human or developer-written tests | 5/36 | Comparisons exist (Paper 001, Paper 004, etc.) against professional developers, but this does not accurately represent a student-written baseline. |
+| Utilizes coverage / code coverage / branch coverage | 28/36 | Structural coverage remains the most universally adopted evaluation metric in the extracted studies. |
+| Utilizes mutation score / mutation testing / mutant info | 16/36 | Mutation testing appears less frequently and is predominantly found in studies proposing feedback-driven or mutation-guided methodologies. |
+| Simultaneously evaluates branch coverage and mutation score using GPT-4o | Present but fragmented | Strong evidence exists (e.g., ULT benchmark), but these studies typically rely on custom corporate or open-source benchmarks without student-written baselines. |
 
-## 1. Member Gap Synthesis
+---
 
-| Member evidence | Main gap proposed | How it is used in the team gap |
-| --- | --- | --- |
-| Le-The-Khang | GAP-D: no paired GPT-4/GPT-4o vs student-written coursework tests on the same medium-complexity Java/Python units; GAP-M: coverage alone is insufficient. | Adopted as the team primary GAP-D and secondary GAP-M. |
-| pham-an-khang | GAP-D / scale: lack of robust paired comparison with student-written tests on medium-complexity code; automated-tool baselines dominate. | Adopted as supporting evidence for primary GAP-D. |
-| Phuoc | GAP-D / comparison: no student-written test baseline and no strict CC = 5-15 dataset; GAP-M: dual adequacy criteria. | Adopted, but metric threshold values are normalized to the current team evidence. |
-| Nhu-Y | GAP-M: mutation score is not consistently used as a primary fault-detection metric; prompt/pipeline settings are inconsistent. | Retained as secondary GAP-M, not primary, because the team RQ is dataset/comparison-driven. |
-| Do Long Vy | GAP-D: academic/student codebases are unstudied; GAP-M: branch coverage alone causes semantic blindness. | Adopted as supporting evidence for primary GAP-D and secondary GAP-M. |
+# 2. Primary Gap (Gap D) — Dataset & Complexity Focus
 
-Team decision: the final team GAP is not a pure Tool/LLM gap. GPT-family models, including GPT-4/GPT-4o variants, already appear in the literature. The stronger unresolved gap is the missing paired educational comparison: GPT-4o-generated tests versus student-written tests on the exact same medium-complexity Java/Python units.
+**Primary Gap (Gap D):**  
+Most existing research on LLM-based automated unit test generation suffers from a significant dataset and complexity control gap. Current empirical studies typically evaluate models on two extreme types of datasets: overly simple benchmarks (e.g., HumanEval) or highly complex legacy enterprise codebases. There is a complete lack of studies that strictly control for moderate-complexity functions with Cyclomatic Complexity ranging from 5 to 15.
 
-## 2. GAP Table
+More critically, the evaluation of LLM performance (particularly GPT-4o) in software engineering education contexts remains underexplored, as existing datasets lack a direct baseline comparison against student-written test cases.
 
-| Evidence column | Finding from merged evidence | GAP type | Team decision |
-| --- | --- | --- | --- |
-| Tool/LLM | The merged table already includes ChatGPT, GPT-3.5, GPT-4, GPT-4o, GPT-4o-mini, Codex, DeepSeek, Gemini, Claude, LLaMA, multi-agent pipelines, and fine-tuned models. Rows 004, 017, 023, 024, and 036 explicitly involve GPT-4o or GPT-4o-family settings. | GAP-T | Not selected as primary. Tool coverage is broad enough; the issue is not simply that GPT-4o has never been used. |
-| Dataset / comparison baseline | Only row 009 is directly educational/programming-assignment-related, and it does not provide the target paired comparison between GPT-4o-generated test suites and student-written test suites on the exact same medium-complexity Java/Python functions. Rows using professional, benchmark, industrial, or automated-tool baselines do not close this student-baseline gap. | GAP-D | Selected as the primary GAP. |
-| Metric | Coverage-like metrics appear in 35/39 rows, while mutation/mutant-related metrics appear in 22/39 rows. Rows 010 and 026 show why mutation score is needed beside branch coverage: high coverage does not guarantee fault-detection strength. | GAP-M | Selected as the secondary GAP. |
-| Shared limitations | Several rows report benchmark simplicity, data leakage, compilation failures, high API cost, test smells, or limited generalizability. These limitations support GAP-D and GAP-M but are not a separate primary research direction. | GAP-S | Used as supporting rationale only. |
+---
 
-## 3. Primary GAP: GAP-D - Dataset, Complexity, and Student Baseline
+# 3. Secondary Gaps (Gap M) — Methodological & Metric Focus
 
-Current LLM-based unit-test-generation studies evaluate models on public benchmarks, open-source repositories, industrial code, programming-assignment settings, or automated-tool baselines. However, the merged evidence table does not contain a study that directly evaluates GPT-4o-generated unit tests against student-written unit tests on the exact same Java/Python functions while controlling function complexity in the medium range (CC = 5-15).
+After identifying the core dataset issue (Gap D), this study further highlights secondary gaps related to methodology and evaluation metrics (Gap M):
 
-This is the primary gap because the team's intended contribution is educational and comparative. The central question is not only whether GPT-4o can generate tests, but whether those generated tests are competitive with tests written by students on the same code units under the same measurement pipeline.
+## Gap M.1 — Methodological Gap
+Existing literature tends to treat GPT-based LLMs as a monolithic system without explicitly defining or controlling prompt engineering strategies such as zero-shot prompting, chain-of-thought prompting, or iterative feedback loops. This reduces experimental consistency and reproducibility.
 
-Key supporting evidence:
+## Gap M.2 — Metric Gap
+Although structural coverage metrics are widely reported (28/36 studies), fewer studies incorporate mutation score as a measure of real fault detection capability (16/36 studies). Moreover, very few works systematically combine both branch coverage and mutation score within the same experimental framework.
 
-| Evidence row | What it contributes | Why it does not close the primary GAP |
-| --- | --- | --- |
-| 009 | Uses real programming assignments and student submissions. | It evaluates generated tests in an assignment-assessment setting, but not a paired GPT-4o-vs-student-written-test-suite comparison on CC-filtered Java/Python functions. |
-| 010 | Provides real-world function benchmark evidence and key threshold references: 30.22% branch coverage and 40.21% mutation score on ULT. | It benchmarks LLMs on ULT/PLT/TestEval, not student-written tests on the same functions. |
-| 017 | Evaluates ChatGPT GPT-4o and DeepSeek using mutation testing on Java classes with different complexity levels. | It uses six Defects4J classes and no student-written test baseline. |
-| 024 | Includes human-written tests in Classes2Test. | The baseline is professional/open-source human-written tests, not student coursework tests. |
-| 026 | Shows coverage can be misleading because some suites reached 100% coverage but only 4% mutation score. | It is mutation-guided generation against automated baselines, not a student-baseline comparison. |
+---
 
-## 4. Secondary GAP: GAP-M - Dual Metric Evaluation
+# 4. Final Gap Statement (Reframed under D and M)
 
-The merged evidence supports branch/line/statement coverage as common evaluation metrics, but coverage alone is not sufficient for judging test quality. Mutation score must be included because a test suite can execute code paths without detecting faults.
+Existing empirical studies demonstrate that Large Language Models (LLMs) can generate high-coverage unit tests when supported by advanced prompting techniques or iterative feedback mechanisms. However, a core research gap (Gap D) remains regarding the absence of a rigorously controlled dataset with moderate cyclomatic complexity (CC = 5–15) in Java and Python, as well as the lack of a direct baseline based on student-written test cases in academic settings.
 
-The team therefore retains GAP-M as a secondary gap: the experiment should use both branch coverage and mutation score, with compile/pass status reported before interpreting either metric.
+In addition, methodological limitations (Gap M) persist, as prior work does not clearly isolate the effects of different prompt strategies (e.g., zero-shot vs. iterative prompting) and rarely employs a unified evaluation framework combining both branch coverage and mutation score to comprehensively assess the fault detection capability of GPT-4o-generated tests.
 
-Metric design implications:
+---
 
-| Metric decision | Evidence basis | Team use |
-| --- | --- | --- |
-| Branch coverage threshold | Row 010 reports 30.22% average branch coverage on ULT. | Use >= 30.22% as the primary branch-coverage threshold. |
-| Mutation score floor | Row 026 reports the warning case where 100% coverage can pair with only 4% mutation score. | Use >= 4.0% as a strict mutation-score floor. |
-| Mutation score target | Row 010 reports 40.21% average mutation score on ULT. | Use >= 40.21% as a stronger reference target, not as the only pass/fail floor. |
-| Paired comparison | The team GAP requires the same target functions for GPT-generated and student-written tests. | Compare paired differences for branch coverage and mutation score. |
+# 5. Revised Research Direction
 
-## 5. Counter-Evidence Check
+To address these gaps, the proposed research (e.g., project SE1944) will follow this direction:
 
-Claim checked: No row in the merged evidence table fully addresses the team primary GAP, defined as a paired comparison of GPT-4o-generated unit tests versus student-written unit tests on the same medium-complexity Java/Python functions (CC = 5-15), evaluated with branch coverage and mutation score.
+## Addressing Gap D (Core Focus)
+- Construct a standardized dataset of Java and Python functions extracted from student programming assignments.
+- Ensure strict control of Cyclomatic Complexity within the range $5 \le CC \le 15$.
+- Collect corresponding student-written test suites as the primary baseline for comparison.
 
-| Row | Already closes GAP-D? | Counter-evidence note |
-| ---: | --- | --- |
-| 001 | No | Fine-tuned DeepSeek on open-source Python projects; no student-written baseline. |
-| 002 | No | Survey/background literature; no paired experiment. |
-| 003 | No | Java ReAct/Reflexion pipeline on Apache Commons; no student-written baseline. |
-| 004 | No | GPT-4o appears in multi-LLM chaining, but evaluation uses HumanEval/Randoop-style baselines, not student tests. |
-| 005 | No | TestPilot on npm packages with Nessie/existing tests; outside Java/Python student-baseline scope. |
-| 006 | No | ChatGPT capability study; no paired student comparison. |
-| 007 | No | CoT and coverage feedback; no student-written baseline. |
-| 008 | No | Industrial Meta setting augments existing tests; not student coursework tests. |
-| 009 | Partial | Closest education-related row, but it does not compare GPT-4o-generated suites against student-written suites on the same CC-filtered Java/Python units. |
-| 010 | Partial | Strong benchmark/threshold evidence, but no student-written baseline. |
-| 011 | No | ChatGPT vs EvoSuite/SBST on Java classes; automated-tool baseline. |
-| 012 | No | Tool paper; no paired student comparison. |
-| 013 | No | In-context example semantics on Defects4J/industrial code; no student baseline. |
-| 014 | No | Codex/SBST on Python benchmarks/open-source repositories; no student baseline. |
-| 015 | No | Pre-trained LLM test generation; no paired student baseline. |
-| 016 | No | ChatGPT/ChatTester improvement; no student-written baseline. |
-| 017 | Partial | GPT-4o and mutation testing are relevant, but dataset is six Defects4J classes with no student baseline. |
-| 018 | No | ChatGPT-3.5 vs Pynguin/pre-existing tests on Python programs; not GPT-4o vs student tests. |
-| 019 | No | Multi-agent JUnit generation; compares with automated/human-style references, not student coursework tests. |
-| 020 | No | Static-analysis prompt framework on open-source Java projects; no student baseline. |
-| 021 | No | Python unit-test generation; no student-written baseline. |
-| 022 | No | Long-method decomposition; no student-written baseline. |
-| 023 | No | Iterative feedback loops on HumanEval-X; no student-written baseline. |
-| 024 | Partial | Human-written baseline exists, but it is professional/open-source Classes2Test, not student-written coursework tests. |
-| 025 | No | AgoneTest/Classes2Test; no student-written coursework baseline. |
-| 026 | No | Mutation-guided generation and automated baselines; no student-written baseline. |
-| 027 | No | Metadata incomplete in merged table; cannot close GAP-D. |
-| 028 | No | Metadata incomplete in merged table; Methods2test/Defects4J setting, no student baseline shown. |
-| 029 | No | Metadata incomplete in merged table; Defects4J/non-standalone methods, no student baseline shown. |
-| 030 | No | Path-sensitive prompting for Java/Python branch-heavy functions; no student baseline. |
-| 031 | No | Evaluation-metric discussion/background; no paired experiment. |
-| 032 | No | Mutation-guided/mutant-information generation; no student baseline. |
-| 033 | No | Large-scale prompt-engineering study; no student-written baseline and no clear CC = 5-15 paired comparison in the merged row. |
-| 034 | No | Survey/background paper; no paired experiment. |
-| 035 | No | Industry/developer study; developer baseline is not student-written coursework tests. |
-| 036 | No | TestSpark/SBST/Kex comparison on GitBug Java; no student baseline. |
-| 037 | No | Generative AI tool comparison; no student-written baseline. |
-| 038 | No | HumanEval and SF110 Java benchmarks; no student-written baseline. |
-| 039 | No | Open-source Java projects with medium-complexity note; no paired student baseline. |
+## Addressing Gap M (Supporting Focus)
+- Structure GPT-4o test generation into explicit prompt strategies (zero-shot, few-shot, iterative prompting, etc.).
+- Conduct empirical evaluation with paired statistical analysis.
+- Use two primary metrics:
+  - Branch Coverage  
+  - Mutation Score  
+- Additionally include:
+  - Compilation success rate  
+  - Test pass/fail outcomes  
 
-Conclusion: GAP-D is confirmed against the current merged evidence table. Rows 009, 010, 017, 024, 026, and 039 are the closest partial counter-evidence, but none combines all required elements: GPT-4o, student-written tests, same Java/Python units, medium CC = 5-15, branch coverage, and mutation score.
-
-## 6. Feasibility Check - Primary GAP
-
-| Criterion | Level | Note / mitigation |
-| --- | --- | --- |
-| Dataset | Warning | Requires selecting 10-20 Java/Python functions from student programming assignments and filtering for CC = 5-15. Downscope to one language if collection becomes too slow. |
-| Tool/API | Warning | GPT-4o access may require budget/rate-limit planning. Run a small pilot first and log model version, date, prompt, and temperature. |
-| Compute | Safe | Coverage and mutation testing can run locally on CPU for a small dataset. Java can use JaCoCo/PIT; Python can use coverage.py with mutmut or an equivalent tool. |
-| Ground truth | Safe | Student-written tests are comparison artifacts, not manual labels. Their quality is measured by the same automated metrics as GPT-generated tests. |
-| Skills | Safe | The pipeline uses standard unit-test, coverage, and mutation-testing tools. |
-| Time | Safe | Scope is feasible if limited to 10-20 functions, one model configuration, and a fixed zero-shot prompt. |
-| Contribution | Safe | Even negative results are useful because the current evidence lacks a paired GPT-4o-vs-student baseline. |
-
-Result: 0 blockers / 2 warnings. The primary GAP is feasible with controlled scope.
-
-## 7. Final GAP Statement
-
-Existing evidence shows that LLMs can generate unit tests across public benchmarks, open-source repositories, industrial code, and automated-tool comparisons, and many studies report coverage or mutation-related metrics. However, the current literature does not provide a paired comparison between GPT-4o-generated unit tests and student-written unit tests on the same medium-complexity Java/Python functions (CC = 5-15). This study addresses that dataset/comparison gap by evaluating both test sources on identical code units using branch coverage and mutation score, with compile/pass status reported as a prerequisite for valid metric interpretation.
+This enables a comprehensive evaluation of GPT-4o’s unit test generation capability in an educational software engineering context.

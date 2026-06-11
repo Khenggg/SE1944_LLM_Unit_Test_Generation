@@ -1,10 +1,21 @@
-# Merged Evidence Table
+﻿# Merged Evidence Table
 
 Sources: individual evidence tables from `Le-The-Khang/`, `pham-an-khang/`, `Nhu-Y/`, `Phuoc/`, and `Vỹ/`.
 
-Merged evidence table: N = 39 papers after deduplication.
-
 Papers were merged by title, DOI, or URL when the same study could be identified. If a paper appeared in multiple member folders, one representative row was kept and all sources were listed in `Source member`. This table represents the evidence currently available in the repository; metadata conflicts should still be verified against the original papers before final submission.
+
+## Merge Summary
+
+| Item | Count |
+| --- | ---: |
+| Individual evidence rows before deduplication | 51 |
+| Unique papers after clear deduplication | 39 |
+| Clearly duplicated/merged rows | 12 |
+| Papers using coverage/code coverage/branch coverage | 35/39 |
+| Papers using mutation score/mutation testing | 22/39 |
+| Papers comparing against human/developer-written tests | 6/39 |
+| Papers directly comparing against student-written tests | 1/39 |
+| Papers directly controlling medium cyclomatic complexity CC=5-15 | 2/39 |
 
 ## Shared Evidence Table
 
