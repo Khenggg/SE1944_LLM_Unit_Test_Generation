@@ -6,14 +6,14 @@
 
 | Data Column Map | Discovered Pattern / Observation | Identified Gap Type | Counter-Evidence Check Status |
 | :--- | :--- | :---: | :--- |
-| **Tool / LLM** | 4/5 papers use commercial or closed models (GPT-3.5/4, Codex). Only 1 paper integrates localized code-specific models (DeepSeek-Coder/CodeLlama) with structural feedback loops. | **GAP-T** (Technology Gap) | Verified via 5 papers. No paper evaluates the exact combination of GPT-4o and DeepSeek-Coder frameworks under identical algorithmic constraints. |
+| **Tool / LLM** | 4/5 papers use commercial or closed models (GPT-3.5/4, Codex). Only 1 paper integrates localized code-specific models (DeepSeek-Coder) with structural feedback loops. | **GAP-T** (Technology Gap) | Verified via 5 papers. No paper evaluates the exact combination of GPT-4o and DeepSeek-Coder frameworks under identical algorithmic constraints. |
 | **Dataset** | Benchmarks are strictly restricted to industry-standard suites (Defects4J) or production-grade open-source repositories. | **GAP-D** (Dataset Gap) | Verified. 0/5 papers test on intermediate academic code written by Software Engineering students. |
 | **Metric** | 5/5 papers heavily rely on structural coverage (Statement/Branch/Block). However, only 1 paper (IEEE003) incorporates Mutation Testing to measure semantic fault-detection capacity. | **GAP-M** (Metric Gap) | Verified. 4/5 papers suffer from semantic blindness by omitting mutation scores. |
 | **Limitations** | 4/5 papers explicitly report "Structural Coverage Plateaus" and "Syntax/Logical Validity Discrepancies" as major threats to validity. | **GAP-S** (Shared Limitation Gap) | Verified. A recurring roadblock across 80% of the evidence pool. |
 
 ## 2. Primary & Secondary Gap Commitment
 
-* **Primary Gap (GAP-D):** Existing empirical studies strictly validate LLM test generation capabilities on production-grade benchmarks, leaving an absolute omission of assessment frameworks targeted at intermediate academic source code written by Software Engineering undergraduate students.
+* **Primary Gap (GAP-D):** Existing empirical studies strictly validate LLM test generation capabilities on production-grade benchmarks, leaving an absolute omission of assessment frameworks targeted at intermediate academic source code written by Software Engineering undergraduate students compared directly against human student baselines.
 * **Secondary Gap (GAP-M):** Insufficient evaluation of semantic fault-detection strength (Mutation Testing) compared to ubiquitous structural metrics (Branch Coverage) when assessing automated testing boundaries.
 
 ## 3. Counter-Evidence Rigorous Check Matrix

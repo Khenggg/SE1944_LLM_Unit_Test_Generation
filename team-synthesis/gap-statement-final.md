@@ -1,35 +1,62 @@
-# Gap Statement Final
-
-**Primary Source:** `team-synthesis/evidence-table-merged.md`
-
-## Evidence Count
+# 1. Evidence Table & Distribution
 
 | Evidence Group | Count among 36 unique primary studies | Remarks |
-| --- | ---: | --- |
-| Utilizes coverage / code coverage / branch coverage | 28/36 | Structural coverage remains the most universally adopted evaluation metric in the extracted studies. |
-| Utilizes mutation score / mutation testing / mutant information | 16/36 | Mutation testing appears less frequently than structural coverage and is predominantly found in studies proposing feedback-driven or mutation-guided test generation methodologies. |
-| Evaluates against human or developer-written tests | 5/36 | Some evidence exists (Paper 001, Paper 004, Paper 011, Paper 012, Paper 028) comparing LLM generation against professional developers, but this does not perfectly represent a student-written baseline. |
+|---|---:|---|
+| Directly controls for medium cyclomatic complexity (CC=5–15) | 1/36 | Strict population control for medium cyclomatic complexity is largely absent (only present in Paper 033). Most benchmarks skew toward ultra-simple or legacy enterprise code. |
 | Direct comparison with student-written tests | 1/36 | Only one study (Paper 009) explicitly addresses student programming assignments, highlighting a severe lack of research tailored to educational contexts. |
-| Directly controls for medium cyclomatic complexity (CC=5-15) | 1/36 | A few papers focus on "complex methods" or report results on real-world functions (like the [ULT](https://github.com/huangd1999/UnLeakedTestBench) benchmark), but strict population control for medium cyclomatic complexity is largely absent (only present in Paper 033). |
-| Simultaneously evaluates branch coverage and mutation score using GPT-4o | Present but fragmented | Strong evidence exists (studies using the [ULT](https://github.com/huangd1999/UnLeakedTestBench) benchmark, Paper 010) reporting both metrics simultaneously, but they typically utilize custom benchmarks without benchmarking against student-written baselines. |
+| Evaluates against human or developer-written tests | 5/36 | Comparisons exist (Paper 001, Paper 004, etc.) against professional developers, but this does not accurately represent a student-written baseline. |
+| Utilizes coverage / code coverage / branch coverage | 28/36 | Structural coverage remains the most universally adopted evaluation metric in the extracted studies. |
+| Utilizes mutation score / mutation testing / mutant info | 16/36 | Mutation testing appears less frequently and is predominantly found in studies proposing feedback-driven or mutation-guided methodologies. |
+| Simultaneously evaluates branch coverage and mutation score using GPT-4o | Present but fragmented | Strong evidence exists (e.g., ULT benchmark), but these studies typically rely on custom corporate or open-source benchmarks without student-written baselines. |
 
-## Primary Gap (GAP)
+---
 
-Current research on LLM-based unit test generation predominantly reports structural coverage improvements or enhancements in compilation and pass rates. While a smaller subset of studies employs mutation scores to accurately measure fault-detection capabilities, there is an almost complete absence of research that evaluates GPT-4o-generated unit tests on a controlled set of medium-complexity Java/Python functions (Cyclomatic Complexity between 5 and 15) by simultaneously measuring both branch coverage and mutation score, and directly comparing these results against student-written tests.
+# 2. Primary Gap (Gap D) — Dataset & Complexity Focus
 
-## Secondary Gaps
+**Primary Gap (Gap D):**  
+Most existing research on LLM-based automated unit test generation suffers from a significant dataset and complexity control gap. Current empirical studies typically evaluate models on two extreme types of datasets: overly simple benchmarks (e.g., HumanEval) or highly complex legacy enterprise codebases. There is a complete lack of studies that strictly control for moderate-complexity functions with Cyclomatic Complexity ranging from 5 to 15.
 
-| Gap Area | Evidence from Merged Literature | Implications |
-| --- | --- | --- |
-| **Metric Gap** | While 28/36 papers report coverage, only 16/36 report mutation scores. | Relying solely on structural coverage is insufficient to capture the true fault-finding effectiveness of a test suite. Both metrics must be evaluated simultaneously. |
-| **Comparison Gap** | 5/36 papers (Paper 001, Paper 004, Paper 011, Paper 012, Paper 028) compare LLM outputs to developer-written tests, while only 1/36 (Paper 009) compares them to student-written tests. | The SE1944 project has a clear and novel contribution in establishing a student-written baseline, addressing a relatively unexplored area in software engineering education. |
-| **Dataset & Complexity Gap** | Only 1/36 papers (Paper 033) strictly controls for medium complexity (CC=5-15). Most studies either use simplistic benchmarks (like [HumanEval](https://github.com/openai/human-eval)) or highly complex legacy enterprise repositories. | The research must strictly define and curate the dataset at the function level, ensuring all evaluated methods fall within the medium cyclomatic complexity range to avoid skewed results. |
-| **Methodological Gap** | The highest reported results generally depend on complex iterative feedback loops, method slicing, or mutation-guided prompting. | The experiment design must explicitly define the prompt engineering policy (e.g., zero-shot vs. chain-of-thought vs. iterative feedback) rather than treating "GPT-4" as a generalized monolith. |
+More critically, the evaluation of LLM performance (particularly GPT-4o) in software engineering education contexts remains underexplored, as existing datasets lack a direct baseline comparison against student-written test cases.
 
-## Final Gap Statement
+---
 
-Existing empirical studies demonstrate that Large Language Models (LLMs) can generate unit test suites with substantial coverage, particularly when augmented by iterative feedback loops, context-aware method slicing, or mutation guidance. However, the current literature still lacks a direct, rigorously controlled evaluation of GPT-4o-generated unit tests against student-written tests on the exact same medium-complexity Java and Python functions. Specifically, there is a prominent research gap in assessing these test suites simultaneously using both branch coverage and mutation score to determine their comprehensive fault-detection capabilities in an educational context.
+# 3. Secondary Gaps (Gap M) — Methodological & Metric Focus
 
-## Research Direction
+After identifying the core dataset issue (Gap D), this study further highlights secondary gaps related to methodology and evaluation metrics (Gap M):
 
-To address this gap, the research will curate a controlled dataset of Java and Python functions featuring medium cyclomatic complexity. The study will generate unit tests for these functions using GPT-4o, collect corresponding student-written tests for the exact same functions, and perform a paired statistical comparison using structural branch coverage, mutation score, and compilation/pass status as the primary quantitative metrics.
+## Gap M.1 — Methodological Gap
+Existing literature tends to treat GPT-based LLMs as a monolithic system without explicitly defining or controlling prompt engineering strategies such as zero-shot prompting, chain-of-thought prompting, or iterative feedback loops. This reduces experimental consistency and reproducibility.
+
+## Gap M.2 — Metric Gap
+Although structural coverage metrics are widely reported (28/36 studies), fewer studies incorporate mutation score as a measure of real fault detection capability (16/36 studies). Moreover, very few works systematically combine both branch coverage and mutation score within the same experimental framework.
+
+---
+
+# 4. Final Gap Statement (Reframed under D and M)
+
+Existing empirical studies demonstrate that Large Language Models (LLMs) can generate high-coverage unit tests when supported by advanced prompting techniques or iterative feedback mechanisms. However, a core research gap (Gap D) remains regarding the absence of a rigorously controlled dataset with moderate cyclomatic complexity (CC = 5–15) in Java and Python, as well as the lack of a direct baseline based on student-written test cases in academic settings.
+
+In addition, methodological limitations (Gap M) persist, as prior work does not clearly isolate the effects of different prompt strategies (e.g., zero-shot vs. iterative prompting) and rarely employs a unified evaluation framework combining both branch coverage and mutation score to comprehensively assess the fault detection capability of GPT-4o-generated tests.
+
+---
+
+# 5. Revised Research Direction
+
+To address these gaps, the proposed research (e.g., project SE1944) will follow this direction:
+
+## Addressing Gap D (Core Focus)
+- Construct a standardized dataset of Java and Python functions extracted from student programming assignments.
+- Ensure strict control of Cyclomatic Complexity within the range $5 \le CC \le 15$.
+- Collect corresponding student-written test suites as the primary baseline for comparison.
+
+## Addressing Gap M (Supporting Focus)
+- Structure GPT-4o test generation into explicit prompt strategies (zero-shot, few-shot, iterative prompting, etc.).
+- Conduct empirical evaluation with paired statistical analysis.
+- Use two primary metrics:
+  - Branch Coverage  
+  - Mutation Score  
+- Additionally include:
+  - Compilation success rate  
+  - Test pass/fail outcomes  
+
+This enables a comprehensive evaluation of GPT-4o’s unit test generation capability in an educational software engineering context.

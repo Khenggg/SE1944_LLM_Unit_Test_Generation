@@ -1,47 +1,76 @@
 # Hypotheses Draft
 
-The statistical hypotheses defined below are directly aligned with the research questions outlined in `team-synthesis/rq-final.md`. The unit of analysis is strictly maintained: for every individual function/method in the dataset, there will be one paired set of results consisting of the `GPT-4o-generated tests` and the corresponding `student-written tests`.
+The statistical hypotheses defined below are directly aligned with the research questions outlined in `team-synthesis/rq-final.md`. The unit of analysis is strictly maintained: for every individual function/method in the dataset ($N \in [10, 20]$), there will be one paired set of results consisting of the `GPT-4o-generated tests` (model version `gpt-4o-2024-05-13`) and the corresponding `student-written tests`. All tests are conducted at a significance level of $\alpha = 0.05$.
+
+---
 
 ## RQ1 - Branch Coverage Threshold
 
 Do GPT-4o-generated unit tests achieve a branch coverage of >=30.22% on the selected medium-complexity Java and Python functions?
 
-- **H0_1 (Null Hypothesis):** The median branch coverage of GPT-4o-generated unit tests is strictly less than 30.22%.
-- **H1_1 (Alternative Hypothesis):** The median branch coverage of GPT-4o-generated unit tests is at least 30.22%.
+*   **Giả thuyết Không (Null Hypothesis - $H_{0\_1}$):** Trung vị độ bao phủ nhánh của bộ test do GPT-4o sinh ra nhỏ hơn 30.22%.
+    $$H_{0\_1}: \tilde{\mu}_{\text{BC-AI}} < 30.22\%$$
+*   **Giả thuyết Đối (Alternative Hypothesis - $H_{1\_1}$):** Trung vị độ bao phủ nhánh của bộ test do GPT-4o sinh ra lớn hơn hoặc bằng 30.22%.
+    $$H_{1\_1}: \tilde{\mu}_{\text{BC-AI}} \ge 30.22\%$$
 
-**Planned Statistical Test:** One-sample Wilcoxon signed-rank test, evaluating the sample median against the constant threshold value of 30.22%.
+**Planned Statistical Test:** One-sample Wilcoxon signed-rank test, evaluating the sample median against the constant threshold value of 30.22% (derived from Paper [GS017] / [010] - Huang et al., 2026).
 
-## RQ2 - Mutation Score Threshold
+---
 
-Do GPT-4o-generated unit tests achieve a mutation score of >=35.3% on the exact same selected functions?
+## RQ2 - Mutation Score Thresholds
 
-- **H0_2 (Null Hypothesis):** The median mutation score of GPT-4o-generated unit tests is strictly less than 35.3%.
-- **H1_2 (Alternative Hypothesis):** The median mutation score of GPT-4o-generated unit tests is at least 35.3%.
+Do GPT-4o-generated unit tests achieve a mutation score of >=4.0% (empirical floor) and >=40.21% (target) on the exact same selected functions?
 
-**Planned Statistical Test:** One-sample Wilcoxon signed-rank test, evaluating the sample median against the constant threshold value of 35.3%.
+### RQ2a: Mutation Score Floor Threshold (>=4.0%)
+*   **Giả thuyết Không (Null Hypothesis - $H_{0\_2a}$):** Trung vị điểm đột biến của bộ test do GPT-4o sinh ra nhỏ hơn 4.0%.
+    $$H_{0\_2a}: \tilde{\mu}_{\text{MS-AI}} < 4.0\%$$
+*   **Giả thuyết Đối (Alternative Hypothesis - $H_{1\_2a}$):** Trung vị điểm đột biến của bộ test do GPT-4o sinh ra lớn hơn hoặc bằng 4.0%.
+    $$H_{1\_2a}: \tilde{\mu}_{\text{MS-AI}} \ge 4.0\%$$
+
+**Planned Statistical Test:** One-sample Wilcoxon signed-rank test, evaluating the sample median against the floor threshold value of 4.0% (derived from Paper [GS005] / [026] - Wang et al., 2026).
+
+### RQ2b: Mutation Score Target Threshold (>=40.21%)
+*   **Giả thuyết Không (Null Hypothesis - $H_{0\_2b}$):** Trung vị điểm đột biến của bộ test do GPT-4o sinh ra nhỏ hơn 40.21%.
+    $$H_{0\_2b}: \tilde{\mu}_{\text{MS-AI}} < 40.21\%$$
+*   **Giả thuyết Đối (Alternative Hypothesis - $H_{1\_2b}$):** Trung vị điểm đột biến của bộ test do GPT-4o sinh ra lớn hơn hoặc bằng 40.21%.
+    $$H_{1\_2b}: \tilde{\mu}_{\text{MS-AI}} \ge 40.21\%$$
+
+**Planned Statistical Test:** One-sample Wilcoxon signed-rank test, evaluating the sample median against the target threshold value of 40.21% (derived from Paper [GS017] / [010] - Huang et al., 2026).
+
+---
 
 ## RQ3 - Comparison With Student-Written Tests
 
 Is there a statistically significant difference in branch coverage and mutation score when comparing GPT-4o-generated unit tests to student-written unit tests evaluated on the same functions?
 
 ### RQ3a: Branch Coverage Comparison
-- **H0_3a (Null Hypothesis):** There is no statistically significant paired difference in branch coverage between GPT-4o-generated tests and student-written tests.
-- **H1_3a (Alternative Hypothesis):** There is a statistically significant paired difference in branch coverage between GPT-4o-generated tests and student-written tests.
+*   **Giả thuyết Không (Null Hypothesis - $H_{0\_3a}$):** Không có sự khác biệt có ý nghĩa thống kê về độ bao phủ nhánh giữa bộ test do GPT-4o sinh ra và bộ test do sinh viên viết thủ công.
+    $$H_{0\_3a}: \tilde{\mu}_{\text{BC-AI}} = \tilde{\mu}_{\text{BC-Student}}$$
+*   **Giả thuyết Đối (Alternative Hypothesis - $H_{1\_3a}$):** Có sự khác biệt có ý nghĩa thống kê về độ bao phủ nhánh giữa bộ test do GPT-4o sinh ra và bộ test do sinh viên viết thủ công.
+    $$H_{1\_3a}: \tilde{\mu}_{\text{BC-AI}} \neq \tilde{\mu}_{\text{BC-Student}}$$
 
 ### RQ3b: Mutation Score Comparison
-- **H0_3b (Null Hypothesis):** There is no statistically significant paired difference in mutation score between GPT-4o-generated tests and student-written tests.
-- **H1_3b (Alternative Hypothesis):** There is a statistically significant paired difference in mutation score between GPT-4o-generated tests and student-written tests.
+*   **Giả thuyết Không (Null Hypothesis - $H_{0\_3b}$):** Không có sự khác biệt có ý nghĩa thống kê về điểm đột biến giữa bộ test do GPT-4o sinh ra và bộ test do sinh viên viết thủ công.
+    $$H_{0\_3b}: \tilde{\mu}_{\text{MS-AI}} = \tilde{\mu}_{\text{MS-Student}}$$
+*   **Giả thuyết Đối (Alternative Hypothesis - $H_{1\_3b}$):** Có sự khác biệt có ý nghĩa thống kê về điểm đột biến giữa bộ test do GPT-4o sinh ra và bộ test do sinh viên viết thủ công.
+    $$H_{1\_3b}: \tilde{\mu}_{\text{MS-AI}} \neq \tilde{\mu}_{\text{MS-Student}}$$
 
-**Planned Statistical Test:** Paired Wilcoxon signed-rank test, utilized because the two independently generated test suites (LLM vs. Student) are evaluated on the exact same paired functions, representing dependent samples.
+**Planned Statistical Test:** Paired Wilcoxon signed-rank test (two-tailed), utilized because the two independently generated test suites (LLM vs. Student) are evaluated on the exact same paired functions, representing dependent samples.
+
+---
 
 ## RQ4 - Simultaneous Success Rate
 
-What is the proportion of functions where GPT-4o-generated unit tests successfully reach both the branch coverage and mutation score thresholds simultaneously?
+Do GPT-4o-generated unit tests achieve both the branch coverage threshold (>=30.22%) and the mutation score floor threshold (>=4.0%) simultaneously for a statistically significant majority (over 50%) of the functions?
 
-- **H0_4 (Null Hypothesis):** The proportion of functions for which GPT-4o-generated tests simultaneously achieve both branch coverage >=30.22% and mutation score >=35.3% is <= 50%.
-- **H1_4 (Alternative Hypothesis):** The proportion of functions for which GPT-4o-generated tests simultaneously achieve both branch coverage >=30.22% and mutation score >=35.3% is > 50%.
+*   **Giả thuyết Không (Null Hypothesis - $H_{0\_4}$):** Tỷ lệ số hàm đạt đồng thời cả hai ngưỡng chất lượng sàn của bộ test do GPT-4o sinh ra nhỏ hơn hoặc bằng 50%.
+    $$H_{0\_4}: p_{\text{success}} \le 0.50$$
+*   **Giả thuyết Đối (Alternative Hypothesis - $H_{1\_4}$):** Tỷ lệ số hàm đạt đồng thời cả hai ngưỡng chất lượng sàn của bộ test do GPT-4o sinh ra lớn hơn 50%.
+    $$H_{1\_4}: p_{\text{success}} > 0.50$$
 
-**Planned Statistical Test:** Exact binomial test or sign test evaluating the per-function binary pass/fail rate against the 50% majority threshold.
+**Planned Statistical Test:** Exact Binomial Test (one-tailed), evaluating the per-function binary success rate (where success means achieving both $\text{BC} \ge 30.22\%$ and $\text{MS} \ge 4.0\%$ simultaneously) against the hypothesized majority threshold $p_0 = 0.50$ on the sample size $N \in [10, 20]$.
+
+---
 
 ## Analysis Guidelines & Prerequisites
 

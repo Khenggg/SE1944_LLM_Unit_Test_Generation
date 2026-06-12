@@ -1,78 +1,58 @@
-# GAP Analysis - LLM-based Unit Test Generation with Coverage and Mutation Testing
+# GAP Analysis — LLM-based Unit Test Generation with Coverage and Mutation Testing
 
-Evidence table: `SLR/evidence-table.md`  
-Evidence table size: N = 11 papers  
-Date: 2026-06-04  
-RBL-1 source files: `SLR/evidence-table.md`, `SLR/gap-statement.md`
+Evidence table: `SLR/evidence-table.md` | N = 9 papers (empirical) | Date: 2026-06-04
 
-## 1. Evidence Table Gate Check
+## GAP Table
 
-| Gate                  | Pass if                              | Result from current evidence table                                                                                   | Status                                                                       |
-| --------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| P1: Number of papers  | At least 5 papers                    | 11 papers are listed from ACM001 to ACM011.                                                                          | ✅ Pass                                                                      |
-| P2: Tool/LLM column   | At least 90% of rows filled          | All 11 rows have a tool/model/source type such as ChatGPT, LLMs, generative AI tools, or survey/background LLMs.     | ✅ Pass                                                                      |
-| P3: Result column     | At least 50% of rows contain results | Most rows contain result summaries; however, many results are descriptive rather than exact numerical values.        | ✅ Pass for GAP analysis, but not enough for an absolute numerical threshold |
-| P4: Limitation column | At least 50% of rows filled          | 11/11 rows include limitations or notes.                                                                             | ✅ Pass                                                                      |
-| P5: Metric column     | Specific metrics are named           | Metrics include code coverage, branch coverage, mutation score, mutation testing, pass rate, and test effectiveness. | ✅ Pass                                                                      |
+| Column     | Finding                                                                                                                                                        | GAP Type | Counter-check                                                                                                                                                   |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tool/LLM   | Several studies use ChatGPT, LLMs, generative AI tools, or pre-trained LLMs, but prompt strategies and pipelines are not standardized across studies.          | GAP-T    | ✅ Checked 9 papers: ACM001, ACM002, ACM005, ACM007, ACM009 involve LLM-based test generation but do not provide one shared controlled prompt-strategy setting. |
+| Dataset    | The selected studies use different task sources such as unit test generation tasks, mutation-guided settings, real-world functions, or tool-specific settings. | GAP-D    | ✅ Checked 9 papers: ACM001 uses unit test generation tasks; ACM007 uses real-world functions; ACM009 is a tool-based setting.                                  |
+| Metric     | Coverage-related metrics are common, while mutation score is less consistently used as the main evaluation metric across prompt/model settings.                | GAP-M    | ✅ Checked 9 papers: ACM001 and ACM007 mention mutation score; ACM006 uses mutant information; several other records focus on coverage or pass rate only.       |
+| Limitation | Repeated limitations include benchmark size, prompt dependence, model version dependence, and generalization across datasets/projects.                         | GAP-S    | ✅ Checked 5/9 papers: ACM001, ACM002, ACM005, ACM006, ACM007 report limitations related to prompt, benchmark, or generalization.                               |
 
-**Decision:** The evidence table is sufficient to continue RBL-2. However, the table does not provide enough exact numerical results to justify an absolute threshold such as `0.85` or `80%`. Therefore, the final RQ should use a comparative claim instead of an unsupported absolute threshold.
+## Primary GAP: GAP-M
 
-## 2. GAP Table
+Existing LLM-based unit test generation studies commonly report coverage-related evaluation, but mutation score as a fault-detection-oriented metric is not consistently used across different prompt strategies in the same experimental setting.
 
-| Source column | Finding from evidence table                                                                                                                                             | GAP type      | Evidence / counter-check                                                                                                                                                |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tool/LLM      | Several studies use ChatGPT, LLMs, generative AI tools, or pre-trained LLMs, but the prompt strategy and pipeline are not standardized across studies.                  | GAP-T         | ACM001, ACM002, ACM005, ACM007, and ACM009 all involve LLM-based test generation, but they do not provide one shared prompt/pipeline setting.                           |
-| Dataset       | The selected studies use different task sources such as unit test generation tasks, benchmarks, mutation-guided tasks, real-world functions, or tool-specific settings. | GAP-D         | ACM001 uses unit test generation tasks; ACM007 uses real-world functions; ACM009 is a tool-based setting.                                                               |
-| Metric        | Coverage metrics appear frequently, while mutation score or mutation testing is less consistently used across all prompt/model settings.                                | GAP-M         | ACM001 and ACM007 mention mutation score; ACM006 uses mutant information; several other papers focus on coverage, pass rate, or test effectiveness.                     |
-| Limitation    | Repeated limitations include benchmark size, prompt dependence, model version dependence, and generalization across datasets/projects.                                  | GAP-S         | ACM001, ACM002, ACM005, ACM006, and ACM007 report limitations connected to prompt, benchmark, or generalization.                                                        |
-| Comparison    | Direct comparison between different prompt strategies in the same setting using both branch coverage and mutation score is still limited in this evidence table.        | GAP-T + GAP-M | ACM007 is the closest paper because it uses real-world functions with branch coverage and mutation score, but the gap remains for a focused prompt-strategy comparison. |
+## Secondary GAP (if any): GAP-T
 
-## 3. Selected Primary GAP
+Prompt design and pipeline choices influence LLM-generated unit tests. This is treated as secondary because the experiment uses prompt strategy as the comparison factor: zero-shot versus structured/chain-of-thought prompting.
 
-**Primary GAP:** GAP-M + GAP-T
+## Counter-evidence Check Details
 
-Existing LLM-based unit test generation studies often evaluate generated tests with coverage-related metrics. Mutation score appears in some papers, but it is not used consistently across different prompt strategies and pipelines. At the same time, the evidence table shows that prompt design and pipeline choices can affect the quality of generated unit tests. Therefore, this project focuses on comparing LLM-generated unit tests under different prompt strategies in the same experimental setting, using both **mutation score** and **branch coverage**.
+GAP claim: Mutation score is not used consistently as the main evaluation metric for comparing different LLM prompt strategies in the same unit-test-generation setting.
 
-## 4. Secondary GAP
+| Paper                                                                                 | Already fully done?  | Note                                                                                                                                    |
+| ------------------------------------------------------------------------------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| ACM001 — An Initial Investigation of ChatGPT Unit Test Generation Capability          | Partly               | Mentions mutation score but does not compare zero-shot vs structured/CoT prompting in one controlled setting.                           |
+| ACM002 — Evaluating and Improving ChatGPT for Unit Test Generation                    | Partly               | Focuses on improving ChatGPT; mutation score is not the central metric for a paired prompt-strategy comparison.                         |
+| ACM003 — Unit Test Generation using Generative AI: A Comparative Performance Analysis | Partly               | Comparative performance is relevant but has not focused deeply on mutation testing.                                                     |
+| ACM004 — On the Evaluation of Large Language Models in Unit Test Generation           | Partly               | Discusses evaluation metrics but no controlled prompt-strategy experiment with mutation score as primary metric.                        |
+| ACM005 — Automated Unit Test Generation via Chain-of-Thought Prompt and RL            | Partly               | Relevant to CoT prompting but focuses on coverage feedback rather than mutation score as main metric.                                   |
+| ACM006 — PRIMG: Efficient LLM-driven Test Generation Using Mutant Information         | Partly               | Uses mutant information but focuses on mutation-guided generation, not zero-shot vs structured/CoT comparison.                          |
+| ACM007 — Benchmarking LLMs for Unit Test Generation from Real-World Functions         | Strong partial match | Closest base paper: uses real-world functions, branch coverage, and mutation score. Does not perform paired prompt-strategy comparison. |
+| ACM008 — Effective Test Generation Using Pre-trained Large Language Models            | Partly               | Uses coverage/test effectiveness; mutation score is not the central metric.                                                             |
+| ACM009 — ChatUniTest: A ChatGPT-based Automated Unit Test Generation Tool             | Partly               | Tool paper with coverage/pass rate; not focused on mutation testing or controlled prompt-strategy comparison.                           |
+| ACM010 — Software Testing with Large Language Models                                  | Not used             | Background/survey paper, not a direct empirical experiment.                                                                             |
+| ACM011 — A Survey on Large Language Models for Software Testing                       | Not used             | Survey/background paper, used for positioning only.                                                                                     |
 
-**Secondary GAP:** GAP-D
+→ Conclusion: **GAP-M confirmed**. ACM007 is the closest counter-example but does not invalidate the GAP because it does not compare prompt strategies in a controlled setting. GAP-M is retained.
 
-The evidence table also shows that datasets and subject programs are not fully standardized across the selected papers. This makes cross-paper comparison difficult. However, GAP-D is not selected as the primary GAP because creating or collecting a new dataset would be too risky for the RBL-2 timeline. The project will instead reduce this risk by using a small controlled set of unit-test-generation tasks or real-world functions.
+## Feasibility Check — Primary GAP
 
-## 5. Mandatory Counter-evidence Check for the Primary GAP
+| Criterion    | Level | Notes / Mitigation                                                                                                                                         |
+| ------------ | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Dataset      | ⚠️    | Use ULT / UnLeakedTestBench from ACM007. Downscope to 5–8 Python functions only. Replace broken functions from the same benchmark and log the replacement. |
+| Tool/API     | ⚠️    | Use GPT-4o mini by default. Cap pilot at 10–16 calls. Fallback: ChatGPT UI with manual model/date logging.                                                 |
+| Compute      | ✅    | Run locally on Windows/VS Code using Python, pytest, coverage.py, and mutmut. CPU only; no GPU required.                                                   |
+| Ground truth | ✅    | No manual annotation required. Branch coverage and mutation score are computed automatically.                                                              |
+| Skills       | ✅    | Python-only stack. Required tools: pytest, coverage.py, mutmut, pandas, scipy. Tutorials available.                                                        |
+| Time         | ✅    | Estimated 7–13 hours for mini-pilot. Reduce from 8 to 5 functions if time is tight.                                                                        |
+| Contribution | ✅    | A negative result still contributes controlled evidence about prompt strategy effectiveness.                                                               |
 
-**GAP claim:** There is limited evidence in the selected SLR set that compares LLM prompt strategies in the same unit-test-generation setting using both branch coverage and mutation score.
+**Result:** 0 ❌ / 2 ⚠️ → **Safe to proceed** — continue with GAP-M as primary.
 
-| Paper                                                                                                                 | Has this already been done? | Counter-evidence note                                                                                                                                                                                                        |
-| --------------------------------------------------------------------------------------------------------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ACM001 - An Initial Investigation of ChatGPT Unit Test Generation Capability                                          | Partly                      | Uses ChatGPT and includes code coverage/mutation score, but does not clearly focus on comparing multiple prompt strategies in one controlled setting.                                                                        |
-| ACM002 - Evaluating and Improving ChatGPT for Unit Test Generation                                                    | Partly                      | Focuses on improving ChatGPT for unit test generation, but the evidence table does not show a controlled comparison using both branch coverage and mutation score as the main combined metrics.                              |
-| ACM003 - Unit Test Generation using Generative AI: A Comparative Performance Analysis of Autogeneration Tools         | Partly                      | Comparative performance is relevant, but the limitation says it has not deeply focused on mutation testing.                                                                                                                  |
-| ACM004 - On the Evaluation of Large Language Models in Unit Test Generation                                           | Partly                      | Discusses evaluation of LLM-generated tests and suitable metrics, but the evidence table does not show a full controlled prompt-strategy experiment.                                                                         |
-| ACM005 - Automated Unit Test Generation via Chain-of-Thought Prompt and Reinforcement Learning from Coverage Feedback | Partly                      | Very relevant to structured/CoT prompting and coverage feedback, but it still needs verification on more projects/datasets and is not enough to remove the proposed GAP.                                                     |
-| ACM006 - PRIMG: Efficient LLM-driven Test Generation Using Mutant Information                                         | Partly                      | Strongly related to mutation-guided generation, but it focuses on mutant information rather than a general comparison between zero-shot and structured/CoT prompting.                                                        |
-| ACM007 - Benchmarking LLMs for Unit Test Generation from Real-World Functions                                         | Strong partial match        | This is the closest base paper because it uses real-world functions, branch coverage, and mutation score. It will be used as the base pipeline reference, but the proposed focused prompt-strategy comparison remains valid. |
-| ACM008 - Effective Test Generation Using Pre-trained Large Language Models                                            | Partly                      | Uses coverage/test effectiveness, but the evidence table does not show mutation score as a central metric.                                                                                                                   |
-| ACM009 - ChatUniTest: A ChatGPT-based Automated Unit Test Generation Tool                                             | Partly                      | Tool paper with coverage/pass rate, but not focused on mutation testing or controlled prompt-strategy comparison.                                                                                                            |
-| ACM010 - Software Testing with Large Language Models                                                                  | No                          | Background/survey paper, not a direct experiment.                                                                                                                                                                            |
-| ACM011 - A Survey on Large Language Models for Software Testing                                                       | No                          | Survey/background paper, useful for related work but not a direct experiment.                                                                                                                                                |
+## Final GAP Statement
 
-**Conclusion:** The primary GAP is not rejected. ACM007 is the closest counter-example and should be treated as the main base paper, but the final project can still contribute by narrowing the experiment to prompt-strategy comparison under the same benchmark and metrics.
-
-## 6. Feasibility Check for the Primary GAP
-
-| Criterion    | Self-check question                                        | Level | Notes / mitigation                                                                                                                                                                                              |
-| ------------ | ---------------------------------------------------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Dataset      | Is the dataset public and immediately usable?              | ⚠️    | The evidence table mentions unit-test-generation tasks and real-world functions but does not include a ready-to-download dataset link. Mitigation: use 5-10 small public functions or tasks for the mini-pilot. |
-| Tool/API     | Is the LLM/tool accessible with a free or low-cost option? | ⚠️    | GPT/API use may cost money. Mitigation: use GPT-4o mini, ChatGPT manual prompting for a small N, or an open-source LLM if available.                                                                            |
-| Compute      | Can it run on normal hardware?                             | ✅    | Coverage and mutation testing for small Python/Java tasks can run on CPU. GPU is not required if generation is done through API/web.                                                                            |
-| Ground truth | Is manual labeling required?                               | ✅    | No manual label is needed. Coverage and mutation score are computed by tools.                                                                                                                                   |
-| Skills       | Can the group implement the pipeline?                      | ⚠️    | Requires unit testing and mutation testing skills. Mitigation: use a simple stack such as Python + pytest + coverage.py + mutmut, or Java + JUnit + JaCoCo + PIT.                                               |
-| Time         | Can the experiment be completed on time?                   | ✅    | A 5-10 function mini-pilot is feasible. Full experiment can be expanded only if the pilot works.                                                                                                                |
-| Contribution | Is a negative result still valuable?                       | ✅    | Yes. If structured/CoT prompting does not improve mutation score, it still shows that stronger prompting does not necessarily improve fault-detection ability.                                                  |
-
-**Decision:** Continue with this GAP. There are three ⚠️ risks and no ❌ blockers. The project must start with a small mini-pilot and clearly document the testing tools.
-
-## 7. Final GAP Statement
-
-Existing LLM-based unit test generation studies evaluate generated tests with different tools, datasets, prompt strategies, and metrics. Although coverage metrics are common and mutation score appears in some studies, the selected evidence table does not show a consistent controlled comparison of prompt strategies using both branch coverage and mutation score in the same setting. This project addresses that gap by comparing zero-shot prompting with structured/chain-of-thought prompting for LLM-generated unit tests on the same set of unit-test-generation tasks.
+Existing LLM-based unit test generation studies use several evaluation metrics, but mutation score is not consistently used as the primary metric for comparing prompt strategies in the same experimental setting. This project addresses the GAP-M metric gap by comparing zero-shot prompting with structured/chain-of-thought prompting for LLM-generated unit tests, using mutation score as the primary outcome and branch coverage as a secondary outcome.

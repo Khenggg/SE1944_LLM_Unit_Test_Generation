@@ -1,78 +1,94 @@
-# Experiment Design Rationale - LLM-based Unit Test Generation
+# Experiment Design Rationale — LLM-based Unit Test Generation with Coverage and Mutation Testing
 
-Date: 2026-06-04  
-GAP source: `SLR/gap-analysis.md`  
-Evidence source: `SLR/evidence-table.md`
+Date: 2026-06-04 | GAP source: `SLR/gap-analysis.md`
 
-## 1. Design Decision Table
+## Decision Table
 
-| Decision | Value | Source from evidence table / GAP analysis |
-|---|---|---|
-| LLM/tool | GPT-4o mini or another ChatGPT-compatible LLM; exact model and access date must be recorded during experiment execution. | GAP-T; ACM001, ACM002, ACM005, ACM007, and ACM009 all involve ChatGPT/LLM-based unit test generation. |
-| Baseline prompt strategy | Zero-shot prompt. | Simple baseline for LLM-generated unit tests; suitable for a comparative RQ. |
-| Intervention prompt strategy | Structured/chain-of-thought prompt with explicit testing requirements. | ACM005 is related to Chain-of-Thought prompting and coverage feedback. |
-| Dataset / subject programs | 5-10 unit-test-generation tasks or small real-world functions for mini-pilot. Expand only if the pipeline works. | ACM001 uses unit test generation tasks; ACM007 uses real-world functions. |
-| Programming language and framework | One framework only: Python + pytest is preferred; Java + JUnit is the backup. | One consistent framework is required for stable coverage/mutation measurement. |
-| Main metric 1 | Mutation score. | ACM001 and ACM007 include mutation score; ACM006 focuses on mutant information. |
-| Main metric 2 | Branch coverage. | ACM007 includes branch coverage; coverage metrics are common across the table. |
-| Secondary metric | Pass rate / number of compilable tests. | ACM009 uses pass rate; pass/fail filtering is needed because LLM output may contain syntax or runtime errors. |
-| Baseline type | Comparative baseline: structured/CoT prompt vs zero-shot prompt. | This avoids unsupported absolute threshold values and fits RBL-2 comparative claim format. |
-| Threshold RQ1 | No absolute numerical threshold. The comparison is whether structured/CoT has higher mutation score than zero-shot. | Evidence table lacks exact numerical results for a Case 1 or Case 2 threshold. |
-| Threshold RQ2 | No absolute numerical threshold. The comparison is whether structured/CoT has higher branch coverage than zero-shot. | Same reason as RQ1. |
-| Statistical test | Wilcoxon signed-rank test for paired data; Mann-Whitney U only if the data become unpaired. | Both mutation score and branch coverage are numeric. The planned design tests the same tasks under both prompt strategies, so paired non-parametric testing is preferred. |
-| Pipeline base | ACM007 - Benchmarking LLMs for Unit Test Generation from Real-World Functions. | Closest base paper because it includes real-world functions, branch coverage, and mutation score. |
+| Decision         | Value                                                                          | Source / Rationale                                                                                               |
+| ---------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| LLM/Tool         | GPT-4o mini (OpenAI API); fallback: ChatGPT UI with model/date logged manually | GAP-T: Tool/LLM column                                                                                           |
+| Dataset          | ULT / UnLeakedTestBench — 5–8 Python functions sampled from public GitHub repo | GAP-D / benchmark from ACM007                                                                                    |
+| Primary metric   | Mutation score (computed using mutmut)                                         | GAP-M: Metric column                                                                                             |
+| Secondary metric | Branch coverage (computed using coverage.py --branch)                          | Inherited from ACM007                                                                                            |
+| Baseline type    | Comparative — zero-shot prompting                                              | RQ claim type: comparative                                                                                       |
+| Threshold RQ1    | No absolute threshold                                                          | Case 3: evidence table does not provide sufficient consistent numerical results — comparative claim used instead |
+| Threshold RQ2    | Not applicable                                                                 | RQ2 (branch coverage) is secondary/descriptive — no threshold required                                           |
+| Pipeline base    | ACM007 — Huang et al., 2024                                                    | Closest base paper with mutation score + real-world functions + LLM evaluation                                   |
 
-## 2. Threshold Rationale
+## Threshold Rationale
 
-This RBL-2 design does **not** use an absolute threshold such as `mutation score >= 0.80` or `branch coverage >= 85%`.
+**Threshold RQ1 — Case 3: no absolute threshold**
 
-Reason: the current `SLR/evidence-table.md` contains metric names and result summaries, but it does not provide enough exact numerical values to justify a Case 1 or Case 2 threshold. Choosing a number without evidence would violate the RBL-2 rule that every design decision must trace back to the evidence table.
+The evidence table (N = 9 papers) does not provide sufficiently consistent numerical results to apply Case 1 (a paper proposes a specific threshold) or Case 2 (floor value from the lowest reported result). Many records describe results qualitatively or do not compare prompt strategies under the same conditions. Therefore, RQ1 uses a **comparative claim**: structured/CoT prompting is compared with zero-shot prompting on the same set of functions, evaluated using the Wilcoxon signed-rank test. H1 is accepted if p < 0.05 and the median mutation score for structured/CoT is higher than for zero-shot.
 
-Therefore, the project uses a **comparative claim**:
+**Threshold RQ2 — not applicable**
 
-> Structured/chain-of-thought prompting is compared against zero-shot prompting on the same tasks using mutation score and branch coverage.
+Branch coverage is reported as a secondary/descriptive metric. No pass/fail threshold is required because the goal is to describe the relationship between branch coverage and mutation score, not to test a separate hypothesis.
 
-This is allowed because the baseline is a specific system/setting instead of an unsupported numerical threshold.
+## Dataset Rationale
 
-## 3. Pipeline Design
+ULT / UnLeakedTestBench from ACM007 is the most appropriate source because ACM007 is the closest base paper in the evidence table: it evaluates LLMs on real-world Python functions and uses both branch coverage and mutation score as metrics. Using ULT is preferable to creating a new dataset because it is publicly available, immediately downloadable, and reduces GAP-D risk. RBL-2 scope: 5–8 functions with simple dependencies that can run locally without external services.
 
-The experiment will follow this pipeline:
+**Fallback rule:** If a function has dependency errors, replace it with another function from the same ULT benchmark and record the replacement in the experiment log.
 
-1. Select 5-10 small functions/tasks.
-2. For each task, generate unit tests using a zero-shot prompt.
-3. For the same task, generate unit tests using a structured/chain-of-thought prompt.
-4. Run the generated tests.
-5. Remove or separately count tests that do not compile or do not run.
-6. Measure branch coverage.
-7. Measure mutation score.
-8. Compare the two prompt strategies per task.
+## Pipeline Rationale
 
-## 4. Prompt Strategy Definition
+The pipeline is based on the evaluation paradigm of ACM007: input is a Python function, output is a pytest test file, metrics are branch coverage (coverage.py) and mutation score (mutmut). Each component has a clear source:
 
-| Prompt strategy | Description |
-|---|---|
-| Zero-shot | The model receives the function/source code and is directly asked to generate unit tests. No examples or structured testing checklist are provided. |
-| Structured/CoT | The model receives the function/source code and is asked to reason about input classes, edge cases, expected outputs, and then generate unit tests. The final answer must contain only executable tests. |
+| Component             | Specification                          | Source                                            |
+| --------------------- | -------------------------------------- | ------------------------------------------------- |
+| LLM/Tool              | GPT-4o mini, OpenAI API                | GAP-T — Tool/LLM column                           |
+| Prompt strategy       | Zero-shot vs structured/CoT            | ACM005 (CoT); ACM001, ACM007 (zero-shot baseline) |
+| Temperature           | 0 (deterministic, for reproducibility) | Reproducibility requirement                       |
+| Primary metric tool   | mutmut (mutation score)                | GAP-M — Metric column                             |
+| Secondary metric tool | coverage.py --branch (branch coverage) | Inherited from ACM007                             |
+| Baseline type         | Comparative (zero-shot)                | RQ claim type                                     |
 
-## 5. Mini-pilot Plan
+## Prompt Strategy Definition
 
-| Item | Plan |
-|---|---|
-| Number of tasks | 5-10 functions |
-| Number of prompt strategies | 2 strategies: zero-shot and structured/CoT |
-| Number of generations | 1 generation per task/strategy minimum; 3 generations if time allows |
-| Main metric | Mutation score |
-| Secondary metric | Branch coverage |
-| Extra validity metric | Pass rate or compilable-test rate |
-| Preferred tool stack | Python + pytest + coverage.py + mutmut |
-| Backup tool stack | Java + JUnit + JaCoCo + PIT |
+| Prompt strategy | Description                                                                                                                                                                                                                      |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Zero-shot       | The model receives the function/source code and is asked directly to generate pytest unit tests. No examples, checklist, or structured reasoning steps are provided.                                                             |
+| Structured/CoT  | The model receives the function/source code and is asked to: (1) identify input classes, (2) list edge cases, (3) identify expected behavior, and (4) generate executable pytest tests. The final output must contain code only. |
 
-## 6. Risk Mitigation
+## Operating Environment
 
-| Risk | Mitigation |
-|---|---|
-| Public benchmark cannot be downloaded | Use 5-10 small public functions or tasks and document the selection. |
-| LLM API is expensive | Use GPT-4o mini, manual ChatGPT generation, or an open-source model. |
-| Mutation testing is slow | Reduce number of functions or run mutation testing only on the final passing test sets. |
-| Generated tests do not compile | Record pass rate and only compute coverage/mutation score for runnable tests. |
-| Timeline is too tight | Keep only RQ1 as primary and report RQ2 as secondary. |
+| Component           | Planned environment                                               |
+| ------------------- | ----------------------------------------------------------------- |
+| OS                  | Windows 10/11 local machine, or Google Colab if local setup fails |
+| Editor              | VS Code                                                           |
+| Python              | 3.12 (recommended); 3.10+ acceptable                              |
+| Virtual environment | `.venv` inside the project folder                                 |
+| Test framework      | pytest                                                            |
+| Coverage tool       | coverage.py with branch coverage enabled                          |
+| Mutation tool       | mutmut                                                            |
+| Hardware            | CPU only; no GPU required                                         |
+| Output folder       | `experiment/results/`                                             |
+
+## Timeline
+
+| Stage                                    | Time estimate | Output                                              |
+| ---------------------------------------- | ------------- | --------------------------------------------------- |
+| Dataset download and function selection  | 1–2 hours     | `selected-functions.md`                             |
+| Prompt template preparation              | 30–45 minutes | `prompts/zero-shot.md`, `prompts/structured-cot.md` |
+| LLM generation                           | 1–2 hours     | Generated test files                                |
+| Local test execution and environment fix | 1–2 hours     | pytest pass/fail log                                |
+| Coverage and mutation testing            | 2–4 hours     | Raw metric CSV                                      |
+| Statistical analysis and write-up        | 1–2 hours     | Result summary                                      |
+
+Total: ~7–13 hours for the mini-pilot. If time is limited, reduce from 8 to 5 functions first.
+
+## Risk Mitigation
+
+| Risk                             | Level after mitigation | Mitigation                                                                                                               |
+| -------------------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Dataset dependency errors        | ⚠️                     | Select functions with simple dependencies. Replace broken functions from the same ULT benchmark and log the replacement. |
+| API cost or access problem       | ⚠️                     | Use GPT-4o mini, cap at 10–16 calls, and fall back to ChatGPT UI if API is unavailable.                                  |
+| Mutation testing is slow         | ✅                     | Only 5–8 small functions; run mutmut only after pytest passes.                                                           |
+| Generated tests do not compile   | ✅                     | Track pass rate separately. Only valid paired outputs are used for Wilcoxon.                                             |
+| Environment setup takes too long | ✅                     | Python-only stack: pytest, coverage.py, mutmut. No Java/JUnit/PIT required.                                              |
+| Timeline becomes tight           | ✅                     | Keep RQ1 as primary. Treat RQ2 as secondary/descriptive if needed.                                                       |
+
+## Final Design Decision
+
+Primary GAP: **GAP-M** — Secondary GAP: **GAP-T**. The experiment uses 5–8 Python functions from ULT / UnLeakedTestBench (ACM007). It compares zero-shot with structured/CoT prompting using GPT-4o mini. The study runs locally with Python, pytest, coverage.py, and mutmut. Primary metric: mutation score; secondary metric: branch coverage. The claim is comparative rather than threshold-based because the evidence table does not provide sufficient consistent numerical results.
