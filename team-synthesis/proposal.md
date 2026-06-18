@@ -135,10 +135,10 @@ Generally, state-of-the-art LLMs (like GPT-4o) demonstrate strong capabilities i
 | Role | Member | Responsibility in experiment |
 |---|---|---|
 | PL | Le-The-Khang | Coordinate progress, review proposal consistency |
-| DG | Pham-An-Khang | Collect + clean dataset, create ground truth, calculate IAA |
+| DG | Do Long Vy | Collect + clean dataset, create ground truth, calculate IAA |
 | LR | Phuoc | Configure API, run experiment script, batch processing |
 | MS | Nhu-Y | Implement metrics, run statistical tests, calculate effect size |
-| RW | Do Long Vy | Write §1, §7, intro, conclusion; assist DG with §3; create figures |
+| RW | Pham-An-Khang | Write §1, §7, intro, conclusion; assist DG with §3; create figures |
 
 ### 8.1 Resource Inventory
 | Resource | Status | Owner | Note |
