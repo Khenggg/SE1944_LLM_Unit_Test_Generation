@@ -10,21 +10,22 @@ Date: 2026-06-03 | GAP source: SLR/gap-analysis.md
 | Dataset | Java/Python functions categorized with Medium Cyclomatic Complexity | GAP-D: Most current papers do not deeply evaluate the impact of cyclomatic complexity, usually assessing broadly on [HumanEval](https://github.com/openai/human-eval) or [Defects4J](https://github.com/rjust/defects4j) |
 | Primary Metric | Branch coverage, Mutation score | GAP-M: Directly reflects the two core aspects (SS040, SS080, SS109) which are control flow coverage and semantic fault-finding capability |
 | Secondary Metric | Compilation success rate, Test smells | Derived from SS047 (for Compilation) and SS139 (for Test smells) to track compilation feasibility and maintainability |
-| Baseline type | Absolute threshold & Human-level baseline | RQ Objective: Must achieve specific percentages (≥ 30.22% branch, ≥ 40.21% mutation) and directly compare against student-written tests |
-| Threshold RQ1 | Branch coverage ≥ 30.22% | Case 2: Based on paper SS040 where LLMs achieve an average of 30.22% branch coverage on the UnLeakedTestBench (ULT) |
-| Threshold RQ2 | Mutation score ≥ 40.21% (with a ≥ 4.0% floor) | Case 2: Based on paper SS040 reporting an average of 40.21% mutation score, with a 4.0% baseline floor for simple manual test comparisons |
+| Baseline type | Absolute threshold & Human-level baseline | RQ Objective: Must achieve specific percentages (≥ 74% branch, ≥ 58% mutation) and directly compare against student-written tests |
+| Threshold RQ1 | Branch coverage ≥ 74% | Case 2: Based on paper SS040 where the GPT-4 family achieves 74% coverage on real functions, we set the expectation at the 74% floor |
+| Threshold RQ2 | Mutation score ≥ 58% | Case 2: Based on paper SS040 reporting a 58% mutation score, we set the target milestone at the 58% floor |
 | Pipeline base | Benchmark architecture from SS040 and SS174 | SS040 provides a methodology for comparing real code quality; SS174 utilizes a Mutation-guided feedback loop |
 | Temperature | 0 (Zero) | Ensures deterministic test generation for maximum reproducibility across evaluation runs, eliminating creative variations |
 
 ## Threshold Rationale
 
-### Branch Coverage Threshold (≥ 30.22%)
-Our target is established at ≥ 30.22% branch coverage. This value is derived from the empirical findings of paper SS040 (2026), which evaluates LLMs on the UnLeakedTestBench (ULT) dataset. In their evaluation of unit test generation for real-world complex functions, the overall average branch coverage achieved by state-of-the-art models was 30.22%. Rather than setting an arbitrary or inflated milestone, adopting this empirical average provides a realistic, scientifically grounded baseline to evaluate whether GPT-4o-generated unit tests match or exceed average state-of-the-art automated performance on non-trivial codebases.
+Threshold Branch coverage 74% — Case 2 — floor = 74% from paper SS040 (2026). 
 
-### Mutation Score Threshold (Target: ≥ 40.21% | Floor: ≥ 4.0%)
-For mutation testing, we establish a target milestone of ≥ 40.21% and a baseline comparison floor of ≥ 4.0%. 
-1. **Target Milestone (≥ 40.21%):** According to paper SS040, the average mutation score achieved by models on the ULT dataset is 40.21%. Setting our target at this benchmark allows us to measure whether the intervention achieves typical state-of-the-art semantic fault detection on complex functions.
-2. **Baseline Floor (≥ 4.0%):** Standard benchmarks from literature (such as GS005/MutGen) demonstrate a minimal baseline mutation score floor of approximately 4.0% for simple human/student-written tests. This floor serves as a threshold to verify that the generated test suite exhibits non-trivial fault-killing capability when compared to basic human-authored baselines.
+Rationale: SS040 evaluates LLMs on the [UnLeakedTestBench (ULT)](https://github.com/huangd1999/UnLeakedTestBench) dataset. While the average performance across all tested LLMs is much lower (~30.22%), the study explicitly records that the **GPT-4 family achieves a 74% branch coverage peak performance** on these complex functions. To ensure our generated tests approach the quality of actual production code, we set this challenging, model-specific milestone of 74% as our floor.
+
+
+Threshold Mutation score 58% — Case 2 — floor = 58% from paper SS040 (2026). 
+
+Rationale: Similarly, on the [ULT](https://github.com/huangd1999/UnLeakedTestBench) dataset, SS040 documents that the **GPT-4 family specifically achieves a mutation score of 58%**. This 58% threshold is strictly selected as our target milestone to determine if the automated generation possesses sufficient semantic fault-detection capability.
 
 ## Pipeline Rationale
 
