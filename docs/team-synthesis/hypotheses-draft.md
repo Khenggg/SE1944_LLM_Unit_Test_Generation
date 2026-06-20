@@ -13,7 +13,7 @@ Do GPT-4o-mini-generated unit tests achieve a branch coverage of >=30.22% on the
 *   **Giả thuyết Đối (Alternative Hypothesis - $H_{1\_1}$):** Trung vị độ bao phủ nhánh của bộ test do GPT-4o-mini sinh ra lớn hơn hoặc bằng 30.22%.
     $$H_{1\_1}: \tilde{\mu}_{\text{BC-AI}} \ge 30.22\%$$
 
-**Planned Statistical Test:** One-sample Wilcoxon signed-rank test, evaluating the sample median against the constant threshold value of 30.22% (derived from Paper [GS017] / [010] - Huang et al., 2026).
+**Planned Statistical Test:** One-sample Wilcoxon signed-rank test, evaluating the sample median against the constant threshold value of 30.22% (derived from Paper [010] / [GS017] - Huang et al., 2026).
 
 ---
 
@@ -27,7 +27,7 @@ Do GPT-4o-mini-generated unit tests achieve a mutation score of >=4.0% (empirica
 *   **Giả thuyết Đối (Alternative Hypothesis - $H_{1\_2a}$):** Trung vị điểm đột biến của bộ test do GPT-4o-mini sinh ra lớn hơn hoặc bằng 4.0%.
     $$H_{1\_2a}: \tilde{\mu}_{\text{MS-AI}} \ge 4.0\%$$
 
-**Planned Statistical Test:** One-sample Wilcoxon signed-rank test, evaluating the sample median against the floor threshold value of 4.0% (derived from Paper [GS005] / [026] - Wang et al., 2026).
+**Planned Statistical Test:** One-sample Wilcoxon signed-rank test, evaluating the sample median against the floor threshold value of 4.0% (derived from Paper [026] / [IEEE003] - Wang et al., 2026).
 
 ### RQ2b: Mutation Score Target Threshold (>=40.21%)
 *   **Giả thuyết Không (Null Hypothesis - $H_{0\_2b}$):** Trung vị điểm đột biến của bộ test do GPT-4o-mini sinh ra nhỏ hơn 40.21%.
@@ -35,7 +35,7 @@ Do GPT-4o-mini-generated unit tests achieve a mutation score of >=4.0% (empirica
 *   **Giả thuyết Đối (Alternative Hypothesis - $H_{1\_2b}$):** Trung vị điểm đột biến của bộ test do GPT-4o-mini sinh ra lớn hơn hoặc bằng 40.21%.
     $$H_{1\_2b}: \tilde{\mu}_{\text{MS-AI}} \ge 40.21\%$$
 
-**Planned Statistical Test:** One-sample Wilcoxon signed-rank test, evaluating the sample median against the target threshold value of 40.21% (derived from Paper [GS017] / [010] - Huang et al., 2026).
+**Planned Statistical Test:** One-sample Wilcoxon signed-rank test, evaluating the sample median against the target threshold value of 40.21% (derived from Paper [010] / [GS017] - Huang et al., 2026).
 
 ---
 

@@ -20,24 +20,24 @@ Tài liệu này chứa nội dung chi tiết từng slide (Slide-by-slide Conte
 
 ## Slide 2: Research Problem Statement (Đặt vấn đề)
 *   **Bối cảnh:**
-    *   Viết unit test thủ công tốn thời gian và dễ bỏ sót các trường hợp biên [GS017, GS026].
-    *   Sử dụng LLM sinh test tự động là xu thế SOTA hứa hẹn tối ưu hóa quy trình [GS010].
+    *   Viết unit test thủ công tốn thời gian và dễ bỏ sót các trường hợp biên [[017], [026]].
+    *   Sử dụng LLM sinh test tự động là xu thế SOTA hứa hẹn tối ưu hóa quy trình [010].
 *   **State of the Art:**
-    *   GPT-4/LLaMA-3 có năng lực sinh code test tốt [GS010, GS024].
-    *   Tuy nhiên, độ bao phủ (Coverage) cao không đồng nghĩa với năng lực bắt lỗi thực tế (Mutation Score) [GS005, GS026].
+    *   GPT-4/LLaMA-3 có năng lực sinh code test tốt [[010], [024]].
+    *   Tuy nhiên, độ bao phủ (Coverage) cao không đồng nghĩa với năng lực bắt lỗi thực tế (Mutation Score) [[005], [026]].
 *   **GAP Nghiên cứu:**
     *   **GAP-D (Primary):** Chưa có nghiên cứu nào so sánh cặp (paired comparison) giữa GPT-4o-mini và bộ test viết tay của sinh viên (Student Benchmark) trên cùng tập hàm Java của `HumanEval-Java`.
-    *   **GAP-M (Secondary):** Việc đánh giá chất lượng test sinh bởi LLM thường bị thiên lệch nếu thiếu kiểm thử đột biến (Mutation Score) làm đối chứng độc lập [GS026].
+    *   **GAP-M (Secondary):** Việc đánh giá chất lượng test sinh bởi LLM thường bị thiên lệch nếu thiếu kiểm thử đột biến (Mutation Score) làm đối chứng độc lập [026].
 *   **Motivation:** Nếu không giải quyết GAP này, sẽ thiếu cơ sở khoa học để đánh giá năng lực thực tế của AI so với sinh viên, gây khó khăn khi ứng dụng AI hỗ trợ chấm bài tự động hoặc hỗ trợ học tập.
 
 ---
 
 ## Slide 3: Related Work & GAP Mapping (Nghiên cứu liên quan)
 ### Bảng tóm tắt văn liệu tiêu biểu ($N = 39$ papers):
-*   **GS010 (Huang'26):** GPT-4 đạt 74% BC, 58% MS trên 3k+ Python functions (Hạn chế: Chưa đối chứng với con người).
-*   **GS005 (Al-Tse'23):** TestPilot đạt 52.8% BC trên JS (Hạn chế: Không đo điểm đột biến MS).
-*   **GS024 (AgoneTest'25):** GPT-4o-mini & LLaMA3 sinh test trên lớp Java lớn (Hạn chế: Tỷ lệ compile ban đầu thấp).
-*   **GS026 (MutGen'26):** Khẳng định độ bao phủ cao có thể đi kèm assertion rỗng/yếu nếu thiếu feedback đột biến.
+*   **[010] (Huang'26):** GPT-4 đạt 74% BC, 58% MS trên 3k+ Python functions (Hạn chế: Chưa đối chứng với con người).
+*   **[005] (Al-Tse'23):** TestPilot đạt 52.8% BC trên JS (Hạn chế: Không đo điểm đột biến MS).
+*   **[024] (AgoneTest'25):** GPT-4o-mini & LLaMA3 sinh test trên lớp Java lớn (Hạn chế: Tỷ lệ compile ban đầu thấp).
+*   **[026] (MutGen'26):** Khẳng định độ bao phủ cao có thể đi kèm assertion rỗng/yếu nếu thiếu feedback đột biến.
 
 ### GAP Mapping của nhóm:
 *   **GAP-D (Comparative Student Baseline):** Đạt trạng thái **Confirmed (Primary GAP)** — $0$ papers thực hiện đối chứng cặp trên Java.
@@ -48,11 +48,11 @@ Tài liệu này chứa nội dung chi tiết từng slide (Slide-by-slide Conte
 ## Slide 4: Research Questions (Slide quan trọng nhất!)
 *   **RQ1 (Bao phủ nhánh):** Bộ test do GPT-4o-mini sinh ra có đạt trung vị Branch Coverage (BC) $\ge 30.22\%$ không?
     *   *Giả thuyết:* $H_{0\_1}: \tilde{\mu}_{\text{BC-AI}} < 30.22\%$ | $H_{1\_1}: \tilde{\mu}_{\text{BC-AI}} \ge 30.22\%$
-    *   *Ngưỡng:* $30.22\%$ (Case 2 - Hiệu năng trung bình của LLM trên tập ULT [GS010]).
+    *   *Ngưỡng:* $30.22\%$ (Case 2 - Hiệu năng trung bình của LLM trên tập ULT [010]).
     *   *Test:* One-sample Wilcoxon signed-rank test ($\alpha = 0.05$).
 *   **RQ2 (Điểm đột biến):** Bộ test do GPT-4o-mini sinh ra có đạt trung vị Mutation Score (MS) $\ge 4.0\%$ (sàn) và $\ge 40.21\%$ (mục tiêu) không?
     *   *Giả thuyết sàn:* $H_{0\_2a}: \tilde{\mu}_{\text{MS-AI}} < 4.0\%$ | $H_{1\_2a}: \tilde{\mu}_{\text{MS-AI}} \ge 4.0\%$
-    *   *Ngưỡng:* $4.0\%$ (Case 2 - Mức lỗi logic tối thiểu [GS026]); $40.21\%$ (Case 2 - Trung bình ULT [GS010]).
+    *   *Ngưỡng:* $4.0\%$ (Case 2 - Mức lỗi logic tối thiểu [026]); $40.21\%$ (Case 2 - Trung bình ULT [010]).
     *   *Test:* One-sample Wilcoxon signed-rank test ($\alpha = 0.05$).
 *   **RQ3 (So sánh đối chứng):** Có sự khác biệt có ý nghĩa thống kê về BC và MS khi so sánh cặp trực tiếp giữa GPT-4o-mini và Student Benchmark không?
     *   *Giả thuyết (2 đuôi):* $H_{0\_3}: \tilde{\mu}_{\text{AI}} = \tilde{\mu}_{\text{Student}}$ | $H_{1\_3}: \tilde{\mu}_{\text{AI}} \neq \tilde{\mu}_{\text{Student}}$
@@ -149,5 +149,5 @@ Tài liệu này chứa nội dung chi tiết từng slide (Slide-by-slide Conte
 ## Slide 11: Q&A
 *   *Trang kết thúc thuyết trình.*
 *   *(Gợi ý câu hỏi phản biện của GV: **"Vì sao nhóm chọn các ngưỡng 30.22% và 4.0%?"**)*
-    *   *Trả lời:* "Dạ, ngưỡng 30.22% là hiệu năng Branch Coverage trung bình của LLM ghi nhận trong paper thực nghiệm lớn GS010 (Huang'26). Ngưỡng 4.0% là mức lỗi logic tối thiểu (mutation score floor) được ghi nhận trong nghiên cứu GS026 (MutGen'26). Nhóm chọn các ngưỡng này theo Case 2 trong barem RBL nhằm đảm bảo tính thực tiễn khoa học."
+    *   *Trả lời:* "Dạ, ngưỡng 30.22% là hiệu năng Branch Coverage trung bình của LLM ghi nhận trong paper thực nghiệm lớn [010] (Huang'26). Ngưỡng 4.0% là mức lỗi logic tối thiểu (mutation score floor) được ghi nhận trong nghiên cứu [026] (MutGen'26). Nhóm chọn các ngưỡng này theo Case 2 trong barem RBL nhằm đảm bảo tính thực tiễn khoa học."
 *   **Backup Slide (Đính kèm sau trang này):** Bảng tổng hợp Related Work đầy đủ để show ra khi giảng viên hỏi sâu về văn liệu.

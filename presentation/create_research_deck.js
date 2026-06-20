@@ -233,19 +233,20 @@ function src(slide, text) {
   metric(s, 0.65, 1.75, 2.3, "SỐ PAPER", "39", "paper đã tổng hợp", C.navy);
   metric(s, 3.22, 1.75, 2.3, "GAP-D CHÍNH", "0", "paper làm paired Java student baseline", C.red);
   metric(s, 5.79, 1.75, 2.3, "GAP-M PHỤ", "12", "paper ủng hộ dùng 2 metric", C.tealDark);
-  const rows = [
-    ["GS010", "Huang'26", "ULT: 30.22% BC, 40.21% MS", "Chưa có paired baseline với sinh viên"],
-    ["GS005", "Al-Tse'23", "TestPilot: 52.8% Branch Coverage", "Không đo Mutation Score"],
-    ["GS024", "AgoneTest'25", "Có đánh giá GPT-4o-mini trên Java", "Compile ban đầu còn thấp"],
-    ["GS026", "MutGen'26", "100% coverage vẫn có thể chỉ 4% MS", "Mutation feedback tốn tài nguyên"],
+    const rows = [
+    ["[005]", "Al-Tse\'23", "TestPilot: 52.8% Branch Coverage", "Không đo Mutation Score"],
+    ["[010]", "Huang\'26", "ULT: 30.22% BC, 40.21% MS", "Chưa có paired baseline với sinh viên"],
+    ["[019]", "Multi-Agent\'26", "Tương đương test case sinh viên", "Trễ và tốn API token"],
+    ["[024]", "AgoneTest\'25", "Có đánh giá GPT-4o-mini trên Java", "Compile ban đầu còn thấp"],
+    ["[026]", "MutGen\'26", "100% coverage vẫn có thể chỉ 4% MS", "Mutation feedback tốn tài nguyên"],
   ];
   s.addTable([["ID", "Paper", "Bằng chứng chính", "Hạn chế"], ...rows], {
     x: 0.65,
     y: 3.25,
-    w: 11.4,
+    w: 10.8,
     h: 2.6,
     colW: [1.0, 1.55, 4.25, 4.0],
-    rowH: [0.38, 0.55, 0.55, 0.55, 0.55],
+    rowH: [0.38, 0.55, 0.55, 0.55, 0.55, 0.55],
     border: { type: "solid", color: C.line, pt: 0.8 },
     fill: C.white,
     margin: 0.06,
@@ -276,7 +277,7 @@ function src(slide, text) {
     s.addText(r[2], { x: x + 1.03, y: y + 0.58, w: 3.95, h: 0.24, fontSize: 9.3, color: C.ink, margin: 0, fit: "shrink" });
     s.addText(r[3], { x: x + 1.03, y: y + 1.03, w: 2.9, h: 0.16, fontSize: 7.8, bold: true, color: C.tealDark, margin: 0, fit: "shrink" });
   });
-  s.addText("Đóng góp chính: cùng 50 hàm được đo hai lần - test do GPT-4o-mini sinh và Student Benchmark test - bằng cùng pipeline JaCoCo/PIT.", { x: 0.85, y: 6.25, w: 11.4, h: 0.28, fontSize: 10.2, bold: true, color: C.navy, align: "center", margin: 0, fit: "shrink" });
+  s.addText("Đóng góp chính: cùng 50 hàm được đo hai lần - test do GPT-4o-mini sinh và Student Benchmark test - bằng cùng pipeline JaCoCo/PIT.", { x: 0.85, y: 6.25, w: 10.8, h: 0.28, fontSize: 10.2, bold: true, color: C.navy, align: "center", margin: 0, fit: "shrink" });
   src(s, "Nguồn: rq-final.md; hypotheses-draft.md");
 }
 
@@ -351,12 +352,12 @@ function src(slide, text) {
   const s = pptx.addSlide();
   bg(s, "KẾ HOẠCH ĐÁNH GIÁ", "08");
   addTitle(s, "Cách Diễn Giải Kết Quả", "Chỉ reject H0 khi p-value đạt và metric đi đúng hướng mong đợi");
-  const rows = [
-    ["RQ1", "BC >= 30.22%", "p < 0.05 và median >= ngưỡng"],
-    ["RQ2a", "MS >= 4.0%", "p < 0.05 và median >= ngưỡng sàn"],
-    ["RQ2b", "MS >= 40.21%", "p < 0.05 và median >= mục tiêu"],
-    ["RQ3", "AI vs Student", "p < 0.05 cho chênh lệch paired BC/MS"],
-    ["RQ4", "Dual success > 50%", "p < 0.05 và tỷ lệ mẫu > 50%"],
+    const rows = [
+    ["[005]", "Al-Tse\'23", "TestPilot: 52.8% Branch Coverage", "Không đo Mutation Score"],
+    ["[010]", "Huang\'26", "ULT: 30.22% BC, 40.21% MS", "Chưa có paired baseline với sinh viên"],
+    ["[019]", "Multi-Agent\'26", "Tương đương test case sinh viên", "Trễ và tốn API token"],
+    ["[024]", "AgoneTest\'25", "Có đánh giá GPT-4o-mini trên Java", "Compile ban đầu còn thấp"],
+    ["[026]", "MutGen\'26", "100% coverage vẫn có thể chỉ 4% MS", "Mutation feedback tốn tài nguyên"],
   ];
   s.addTable([["RQ", "Tiêu chí", "Reject H0 khi..."], ...rows], {
     x: 0.75,
@@ -459,9 +460,9 @@ function src(slide, text) {
   card(s, 6.85, 1.38, 5.55, 4.55);
   s.addText("Trả lời ngắn", { x: 7.15, y: 1.7, w: 1.8, h: 0.22, fontSize: 13, bold: true, color: C.navy, margin: 0 });
   bullet(s, [
-    "30.22% là average Branch Coverage trên benchmark ULT trong GS010.",
-    "4.0% là mutation-score floor cảnh báo từ GS026: coverage cao vẫn có thể bắt lỗi logic rất yếu.",
-    "40.21% là target Mutation Score từ GS010, dùng làm ngưỡng tham chiếu mạnh hơn.",
+    "30.22% là average Branch Coverage trên benchmark ULT trong [010].",
+    "4.0% là mutation-score floor cảnh báo từ [026]: coverage cao vẫn có thể bắt lỗi logic rất yếu.",
+    "40.21% là target Mutation Score từ [010], dùng làm ngưỡng tham chiếu mạnh hơn.",
     "Các ngưỡng được chọn theo Case 2 trong barem RBL để bảo đảm cơ sở thực nghiệm.",
   ], 7.15, 2.22, 4.78, 2.3, 10);
   s.addText("Backup: bảng Related Work đầy đủ trong evidence-table-merged.md", { x: 7.15, y: 5.35, w: 4.6, h: 0.18, fontSize: 8.4, bold: true, color: C.tealDark, margin: 0, fit: "shrink" });
