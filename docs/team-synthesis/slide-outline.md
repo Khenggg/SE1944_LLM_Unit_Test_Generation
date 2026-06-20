@@ -14,17 +14,17 @@ Tài liệu này chứa nội dung chi tiết từng slide (Slide-by-slide Conte
     *   Phạm An Khang (LR - LLM Runner)
     *   Nguyễn Thị Như Ý (MS - Metrics & Stats)
     *   Đỗ Long Vỹ (RW - Research Writer)
-*   **Ngày bảo vệ:** [Ghi ngày thuyết trình thực tế]
+*   **Ngày bảo vệ:** 26/06/2026 (Tuần 6)
 
 ---
 
 ## Slide 2: Research Problem Statement (Đặt vấn đề)
 *   **Bối cảnh:**
-    *   Viết unit test thủ công tốn thời gian và dễ bỏ sót các trường hợp biên [[017], [026]].
+    *   Viết unit test thủ công tốn thời gian và dễ bỏ sót các trường hợp biên [017], [026].
     *   Sử dụng LLM sinh test tự động là xu thế SOTA hứa hẹn tối ưu hóa quy trình [010].
 *   **State of the Art:**
-    *   GPT-4/LLaMA-3 có năng lực sinh code test tốt [[010], [024]].
-    *   Tuy nhiên, độ bao phủ (Coverage) cao không đồng nghĩa với năng lực bắt lỗi thực tế (Mutation Score) [[005], [026]].
+    *   GPT-4/LLaMA-3 có năng lực sinh code test tốt [010], [024].
+    *   Tuy nhiên, độ bao phủ (Coverage) cao không đồng nghĩa với năng lực bắt lỗi thực tế (Mutation Score) [005], [026].
 *   **GAP Nghiên cứu:**
     *   **GAP-D (Primary):** Chưa có nghiên cứu nào so sánh cặp (paired comparison) giữa GPT-4o-mini và bộ test viết tay của sinh viên (Student Benchmark) trên cùng tập hàm Java của `HumanEval-Java`.
     *   **GAP-M (Secondary):** Việc đánh giá chất lượng test sinh bởi LLM thường bị thiên lệch nếu thiếu kiểm thử đột biến (Mutation Score) làm đối chứng độc lập [026].

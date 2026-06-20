@@ -18,13 +18,13 @@
 ## 2. Research Problem Statement
 
 ### 2.1 Bối cảnh & Tầm quan trọng
-Trong quy trình kỹ nghệ phần mềm và giảng dạy kiểm thử đơn vị (unit testing) cho sinh viên, việc tạo ra các bộ kiểm thử đơn vị có độ bao phủ cấu trúc và năng lực phát hiện lỗi cao là vô cùng quan trọng nhằm đảm bảo chất lượng mã nguồn. Tuy nhiên, việc viết kiểm thử thủ công thường tiêu tốn nhiều thời gian và dễ bỏ sót các trường hợp biên quan trọng [[017, 026]]. Việc ứng dụng các mô hình ngôn ngữ lớn (LLM) để tự động hóa sinh test suite hứa hẹn sẽ tối ưu hóa quy trình kiểm thử phần mềm [010].
+Trong quy trình kỹ nghệ phần mềm và giảng dạy kiểm thử đơn vị (unit testing) cho sinh viên, việc tạo ra các bộ kiểm thử đơn vị có độ bao phủ cấu trúc và năng lực phát hiện lỗi cao là vô cùng quan trọng nhằm đảm bảo chất lượng mã nguồn. Tuy nhiên, việc viết kiểm thử thủ công thường tiêu tốn nhiều thời gian và dễ bỏ sót các trường hợp biên quan trọng [017, 026]. Việc ứng dụng các mô hình ngôn ngữ lớn (LLM) để tự động hóa sinh test suite hứa hẹn sẽ tối ưu hóa quy trình kiểm thử phần mềm [010].
 
 ### 2.2 State of the Art
-Các nghiên cứu của Huang'26 [010] và AgoneTest'25 [024] đã chứng minh năng lực đáng kể của LLM thế hệ mới (như GPT-4, LLaMA-3) trong việc sinh mã kiểm thử. Nhiều công cụ sinh test dựa trên LLM (ví dụ như TestPilot của Al-Tse'23 [005]) đã đạt được độ bao phủ dòng và bao phủ nhánh cao trên các tập dữ liệu chuẩn hoặc mã nguồn mở [[014, 011]]. Dù vậy, hiệu năng thực tế của mã kiểm thử sinh bởi AI khi đối chứng trực tiếp với kiểm thử viết tay bởi con người ở cấp độ đơn vị lập trình độc lập (standalone functions) vẫn còn nhiều tranh cãi [[019, 024]]. Đặc biệt, các nghiên cứu lớn như MutGen'26 [026] và Al-Tse'23 [005] cảnh báo rằng độ bao phủ cao (coverage) không phải lúc nào cũng đồng hành với năng lực bắt lỗi logic (mutation score).
+Các nghiên cứu của Huang'26 [010] và AgoneTest'25 [024] đã chứng minh năng lực đáng kể của LLM thế hệ mới (như GPT-4, LLaMA-3) trong việc sinh mã kiểm thử. Nhiều công cụ sinh test dựa trên LLM (ví dụ như TestPilot của Al-Tse'23 [005]) đã đạt được độ bao phủ dòng và bao phủ nhánh cao trên các tập dữ liệu chuẩn hoặc mã nguồn mở [014, 011]. Dù vậy, hiệu năng thực tế của mã kiểm thử sinh bởi AI khi đối chứng trực tiếp với kiểm thử viết tay bởi con người ở cấp độ đơn vị lập trình độc lập (standalone functions) vẫn còn nhiều tranh cãi [019, 024]. Đặc biệt, các nghiên cứu lớn như MutGen'26 [026] và Al-Tse'23 [005] cảnh báo rằng độ bao phủ cao (coverage) không phải lúc nào cũng đồng hành với năng lực bắt lỗi logic (mutation score).
 
 ### 2.3 GAP
-Dựa trên phân tích bảng tổng hợp văn liệu của nhóm ($N = 39$ papers), hầu hết các nghiên cứu tập trung đánh giá hiệu năng sinh kiểm thử của LLM trên các tập dữ liệu công nghiệp hoặc so sánh LLM với các công cụ sinh test tự động truyền thống (như EvoSuite hoặc Randoop) [[011, 036]]. Chi tiết phân tích GAP phản chứng được nhóm thực hiện tại [gap-statement-final.md](file:///f:/Ky%205/SWT301/Github/SE1944_LLM_Unit_Test_Generation/team-synthesis/gap-statement-final.md) và bảng văn liệu gộp tại [evidence-table-merged.md](file:///f:/Ky%205/SWT301/Github/SE1944_LLM_Unit_Test_Generation/team-synthesis/evidence-table-merged.md).
+Dựa trên phân tích bảng tổng hợp văn liệu của nhóm ($N = 39$ papers), hầu hết các nghiên cứu tập trung đánh giá hiệu năng sinh kiểm thử của LLM trên các tập dữ liệu công nghiệp hoặc so sánh LLM với các công cụ sinh test tự động truyền thống (như EvoSuite hoặc Randoop) [011, 036]. Chi tiết phân tích GAP phản chứng được nhóm thực hiện tại [gap-statement-final.md](file:///f:/Ky%205/SWT301/Github/SE1944_LLM_Unit_Test_Generation/team-synthesis/gap-statement-final.md) và bảng văn liệu gộp tại [evidence-table-merged.md](file:///f:/Ky%205/SWT301/Github/SE1944_LLM_Unit_Test_Generation/team-synthesis/evidence-table-merged.md).
 *   **GAP-D (Primary):** Hiện chưa có nghiên cứu nào thực hiện đánh giá và so sánh cặp (paired comparison) giữa bộ kiểm thử sinh bởi GPT-4o-mini với bộ kiểm thử đối chứng viết tay của sinh viên (student-written benchmark tests) trên cùng một tập các hàm Java của benchmark HumanEval-Java [004, 019, 023].
 *   **GAP-M (Secondary):** Việc đánh giá chất lượng test suite sinh bởi LLM thường bị thiên lệch nếu chỉ sử dụng độ bao phủ nhánh mà thiếu đi sự đánh giá độc lập về kiểm thử đột biến (mutation score) để xác minh năng lực phát hiện lỗi logic thực tế [026].
 
@@ -48,9 +48,9 @@ Dưới đây là bảng tóm tắt các nghiên cứu tiêu biểu liên quan t
 
 ### 3.2 Pattern Analysis
 Qua phân tích văn liệu, nhóm rút ra 3 nhận xét tổng quan sau:
-1.  **Sự thiên lệch về độ bao phủ cấu trúc:** Hầu hết các nghiên cứu tập trung đo đạc độ bao phủ dòng/nhánh làm thước đo chất lượng test suite [[005, 011]]. Tuy nhiên, các paper mới như **[026]** chỉ ra hiện tượng "blindness" khi test suite đạt 100% coverage nhưng chỉ đạt 4% mutation score vì các câu lệnh assertion quá yếu hoặc rỗng.
-2.  **Sự thiếu hụt đối chứng với con người:** Đa số nghiên cứu đối chứng LLM với EvoSuite hoặc Randoop [[011, 036]]. Rất ít công trình thực hiện so sánh trực tiếp với testcase do con người/sinh viên tự viết trên cùng một tập đơn vị kiểm thử cụ thể [[019, 024]].
-3.  **Tác động của độ phức tạp của hàm (CC):** Chất lượng kiểm thử sinh bởi AI giảm mạnh khi Cyclomatic Complexity của hàm tăng lên, đặc biệt là khi phát sinh các dependency phức tạp giữa các lớp [[017, 038]].
+1.  **Sự thiên lệch về độ bao phủ cấu trúc:** Hầu hết các nghiên cứu tập trung đo đạc độ bao phủ dòng/nhánh làm thước đo chất lượng test suite [005, 011]. Tuy nhiên, các paper mới như **[026]** chỉ ra hiện tượng "blindness" khi test suite đạt 100% coverage nhưng chỉ đạt 4% mutation score vì các câu lệnh assertion quá yếu hoặc rỗng.
+2.  **Sự thiếu hụt đối chứng với con người:** Đa số nghiên cứu đối chứng LLM với EvoSuite hoặc Randoop [011, 036]. Rất ít công trình thực hiện so sánh trực tiếp với testcase do con người/sinh viên tự viết trên cùng một tập đơn vị kiểm thử cụ thể [019, 024].
+3.  **Tác động của độ phức tạp của hàm (CC):** Chất lượng kiểm thử sinh bởi AI giảm mạnh khi Cyclomatic Complexity của hàm tăng lên, đặc biệt là khi phát sinh các dependency phức tạp giữa các lớp [017, 038].
 
 ### 3.3 GAP Mapping
 
@@ -147,7 +147,22 @@ Strictly adhere to the following requirements:
 8. The class must be in package humaneval.
 
 Source Code:
-[SOURCE_CODE]
+package humaneval.correct;
+import java.util.List;
+
+public class HAS_CLOSE_ELEMENTS {
+    public static boolean has_close_elements(List<Double> numbers, double threshold) {
+        for (int i = 0; i < numbers.size(); i++) {
+            for (int j = i + 1; j < numbers.size(); j++) {
+                double distance = Math.abs(numbers.get(i) - numbers.get(j));
+                if (distance < threshold) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
 ```
 
 ### 5.4 Measurement
