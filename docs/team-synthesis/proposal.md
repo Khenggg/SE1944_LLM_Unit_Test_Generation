@@ -113,7 +113,7 @@ Qua phân tích văn liệu, nhóm rút ra 3 nhận xét tổng quan sau:
 ### 5.1 Pipeline tổng quan
 Quy trình thực nghiệm được chuẩn hóa qua 6 bước tự động sau:
 1.  **Lọc Dataset ($N=50$):** Lọc ra 50 hàm Java từ repo `human-eval-java` có Cyclomatic Complexity nằm trong khoảng từ 5 đến 16, loại bỏ các hàm quá đơn giản hoặc có phụ thuộc bên ngoài.
-2.  **LLM Prompting:** Sử dụng API OpenAI gửi prompt sinh unit test bằng `gpt-4o-mini-2024-07-18 [023, 024]` với `temperature = 0`. Testcase sinh ra được chỉ định gọi chính xác các lớp trong package `humaneval.correct` để đo đạc chất lượng mã chuẩn.
+2.  **LLM Prompting:** Sử dụng API OpenAI gửi prompt sinh unit test bằng `gpt-4o-mini-2024-07-18` [023, 024] với `temperature = 0`. Testcase sinh ra được chỉ định gọi chính xác các lớp trong package `humaneval.correct` để đo đạc chất lượng mã chuẩn.
 3.  **Hậu xử lý mã nguồn:** Tự động trích xuất mã Java từ phản hồi của LLM, lưu thành các file `TEST_[FUNCTION_NAME].java` đặt trong package `humaneval`.
 4.  **Biên dịch & Sửa lỗi (Compilation & Repair):** Chạy lệnh Maven compiler. Nếu phát sinh lỗi cú pháp cơ bản, cho phép tối đa 1 lượt sửa lỗi tự động bằng cách gửi thông báo lỗi ngược lại cho LLM (1-round self-repair). Những test suite vẫn lỗi biên dịch sau lượt 1 sẽ nhận điểm 0% cho cả coverage và mutation score.
 5.  **Chạy đo lường JaCoCo & PiTest:** 
@@ -129,7 +129,7 @@ Quy trình thực nghiệm được chuẩn hóa qua 6 bước tự động sau:
 *   **Lý do chọn:** Giải quyết triệt để **GAP-D**, đây là benchmark chuẩn hóa có sẵn test đối chứng viết tay chuẩn của con người (được nhóm định nghĩa làm Student Benchmark Baseline) phục vụ so sánh cặp chính xác.
 
 ### 5.3 LLM/Tool Configuration
-*   **Model:** `gpt-4o-mini-2024-07-18 [023, 024]` (OpenAI API chính thức).
+*   **Model:** `gpt-4o-mini-2024-07-18` [023, 024] (OpenAI API chính thức).
 *   **Hyperparameters:** `temperature = 0` (đảm bảo tính deterministic và khả năng tái lập kết quả) [010], `top_p = 1`, `max_tokens = 2000`.
 *   **Prompting strategy:** Zero-shot structured prompt.
 *   **Prompt template nguyên văn:**
