@@ -8,13 +8,13 @@ Tài liệu này chứa nội dung chi tiết từng slide (Slide-by-slide Conte
 *   **Tiêu đề:** Automated Unit Test Case Generation for Java Functions Using GPT-4o-mini: A Paired Comparison Against Student Benchmark Tests
 *   **Topic Code:** RT-SWT-001
 *   **Nhóm:** SE1944 - Nhóm 01
-*   **Thành viên & Vai trò (Role Codes):**
-    *   Lê Thế Khang (PL - Project Lead)
-    *   Huỳnh Cao Phước (DG - Data & Ground Truth)
-    *   Phạm An Khang (LR - LLM Runner)
-    *   Nguyễn Thị Như Ý (MS - Metrics & Stats)
-    *   Đỗ Long Vỹ (RW - Research Writer)
-*   **Ngày bảo vệ:** 26/06/2026 (Tuần 6)
+*   **Thành viên:**
+    *   Lê Thế Khang (MSSV: SE190001) - **PL (Project Lead)**
+    *   Huỳnh Cao Phước (MSSV: SE190002) - **DG (Data & Ground Truth)**
+    *   Phạm An Khang (MSSV: SE190003) - **LR (LLM Runner)**
+    *   Nguyễn Thị Như Ý (MSSV: SE190004) - **MS (Metrics & Stats)**
+    *   Đỗ Long Vỹ (MSSV: SE190005) - **RW (Research Writer)**
+*   **Ngày bảo vệ:** [cập nhật theo lịch thực tế]
 
 ---
 
