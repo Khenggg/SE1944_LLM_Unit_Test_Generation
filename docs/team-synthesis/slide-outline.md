@@ -9,11 +9,11 @@ Tài liệu này chứa nội dung chi tiết từng slide (Slide-by-slide Conte
 *   **Topic Code:** RT-SWT-001
 *   **Nhóm:** SE1944 - Nhóm 01
 *   **Thành viên:**
-    *   Lê Thế Khang (MSSV: SE190001) - **PL (Project Lead)**
-    *   Huỳnh Cao Phước (MSSV: SE190002) - **DG (Data & Ground Truth)**
-    *   Phạm An Khang (MSSV: SE190003) - **LR (LLM Runner)**
-    *   Nguyễn Thị Như Ý (MSSV: SE190004) - **MS (Metrics & Stats)**
-    *   Đỗ Long Vỹ (MSSV: SE190005) - **RW (Research Writer)**
+    *   Lê Thế Khang (MSSV: SE182126) - **PL (Project Lead)**
+    *   Huỳnh Cao Phước (MSSV: SE193271) - **DG (Data & Ground Truth)**
+    *   Phạm An Khang (MSSV: SE200623) - **LR (LLM Runner)**
+    *   Nguyễn Thị Như Ý (MSSV: SE196479) - **MS (Metrics & Stats)**
+    *   Đỗ Long Vỹ (MSSV: SE190064) - **RW (Research Writer)**
 *   **Ngày bảo vệ:** [cập nhật theo lịch thực tế]
 
 ---
