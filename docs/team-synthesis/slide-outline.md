@@ -14,7 +14,7 @@ Tài liệu này chứa nội dung chi tiết từng slide (Slide-by-slide Conte
     *   Phạm An Khang (MSSV: SE200623) - **LR (LLM Runner)**
     *   Nguyễn Thị Như Ý (MSSV: SE196479) - **MS (Metrics & Stats)**
     *   Đỗ Long Vỹ (MSSV: SE190064) - **RW (Research Writer)**
-*   **Ngày bảo vệ:** [cập nhật theo lịch thực tế]
+*   **Ngày bảo vệ:** 23/06/2026
 
 ---
 
