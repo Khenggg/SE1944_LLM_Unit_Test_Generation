@@ -3,13 +3,13 @@ import re
 import shutil
 
 # Paths
-workspace_dir = r"f:\Ky 5\SWT301\Github\SE1944_LLM_Unit_Test_Generation"
-raw_project_dir = os.path.join(workspace_dir, "human-eval-java")
+workspace_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+raw_project_dir = os.path.join(workspace_dir, "extras", "experiments", "human-eval-java")
 correct_source_dir = os.path.join(raw_project_dir, "src", "main", "java", "humaneval", "correct")
 buggy_source_dir = os.path.join(raw_project_dir, "src", "main", "java", "humaneval", "buggy")
 test_source_dir = os.path.join(raw_project_dir, "src", "test", "java", "humaneval")
 
-new_project_dir = os.path.join(workspace_dir, "rbl-project")
+new_project_dir = os.path.join(workspace_dir, "extras", "experiments", "rbl-project")
 new_correct_dir = os.path.join(new_project_dir, "src", "main", "java", "humaneval", "correct")
 new_buggy_dir = os.path.join(new_project_dir, "src", "main", "java", "humaneval", "buggy")
 new_test_dir = os.path.join(new_project_dir, "src", "test", "java", "humaneval")

@@ -62,6 +62,7 @@
             <include>**/TEST_*.java</include>
             <include>**/*_ESTest.java</include>
             <include>**/*_GPTTest.java</include>
+            <include>**/*_RandoopTest.java</include>
           </includes>
         </configuration>
       </plugin>
@@ -107,7 +108,9 @@
         </configuration>
       </plugin>
       
-      <!-- EvoSuite plugin -->
+      <!-- EvoSuite plugin (disabled: requires JDK 8 tools.jar, incompatible with JDK 21)
+           Pre-generated EvoSuite tests in src/test/ will still compile and run normally. -->
+      <!--
       <plugin>
         <groupId>org.evosuite.plugins</groupId>
         <artifactId>evosuite-maven-plugin</artifactId>
@@ -125,6 +128,7 @@
           <timeInMinutesPerClass>1</timeInMinutesPerClass>
         </configuration>
       </plugin>
+      -->
     </plugins>
   </build>
 </project>

@@ -4,8 +4,9 @@ from openai import OpenAI
 
 # Target class
 class_name = "SPECIAL_FILTER"
-src_file_path = r"f:\Ky 5\SWT301\Github\SE1944_LLM_Unit_Test_Generation\rbl-project\src\main\java\humaneval\correct\SPECIAL_FILTER.java"
-output_file_path = r"f:\Ky 5\SWT301\Github\SE1944_LLM_Unit_Test_Generation\rbl-project\src\test\java\humaneval\TEST_SPECIAL_FILTER_AI.java"
+workspace_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+src_file_path = os.path.join(workspace_dir, "extras", "experiments", "rbl-project", "src", "main", "java", "humaneval", "correct", "SPECIAL_FILTER.java")
+output_file_path = os.path.join(workspace_dir, "extras", "experiments", "rbl-project", "src", "test", "java", "humaneval", "TEST_SPECIAL_FILTER_AI.java")
 
 # Initialize client (will read OPENAI_API_KEY from environment)
 api_key = os.environ.get("OPENAI_API_KEY")

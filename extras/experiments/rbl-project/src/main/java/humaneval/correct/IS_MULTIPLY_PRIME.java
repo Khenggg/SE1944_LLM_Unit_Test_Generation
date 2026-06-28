@@ -17,14 +17,14 @@ public class IS_MULTIPLY_PRIME {
     }
 
     public static boolean is_multiply_prime(int a) {
-        for (int i = 2; i < a; i += 1){
+        if (a < 8) return false; // 2 * 2 * 2 = 8 is the smallest product of 3 primes
+        for (int i = 2; i * i * i <= a; i += 1){
             if (! is_prime(i)) continue;
-            for (int j = i; j < a; j += 1) {
+            for (int j = i; i * j * j <= a; j += 1) {
                 if (! is_prime(j)) continue;
-                for (int k = j; k < a; k += 1) {
-                    if (! is_prime(k)) continue;
-                    if (i * j * k == a)
-                        return true;
+                int k = a / (i * j);
+                if (a % (i * j) == 0 && is_prime(k) && k >= j) {
+                    return true;
                 }
             }
         }

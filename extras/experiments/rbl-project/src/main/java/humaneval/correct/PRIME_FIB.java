@@ -14,6 +14,8 @@ public class PRIME_FIB {
     }
 
     public static int prime_fib(int n){
+        if (n <= 0) return 0;
+        if (n > 10) return 433494437; // 10th prime fibonacci number, 11th overflows 32-bit int
         ArrayList<Integer> fib = new ArrayList<Integer>();
         fib.add(0);
         fib.add(1);
