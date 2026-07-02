@@ -4,8 +4,9 @@ import time
 import sys
 
 # Paths
-workspace_dir = os.path.dirname(os.path.abspath(__file__))
-rbl_project_dir = os.path.join(workspace_dir, "rbl-project")
+scripts_dir = os.path.dirname(os.path.abspath(__file__))
+workspace_dir = os.path.dirname(scripts_dir)
+rbl_project_dir = os.path.join(workspace_dir, "experiments", "rbl-project")
 src_correct_dir = os.path.join(rbl_project_dir, "src", "main", "java", "humaneval", "correct")
 test_dest_dir = os.path.join(rbl_project_dir, "src", "test", "java", "humaneval", "correct")
 

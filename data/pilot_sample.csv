@@ -1,0 +1,7 @@
+class_name,cyclomatic_complexity
+BF,6
+COUNT_NUMS,7
+FILE_NAME_CHECK,14
+FIND_ZERO,5
+ORDER_BY_POINTS,8
+SEARCH,7

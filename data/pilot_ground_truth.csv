@@ -1,0 +1,7 @@
+class_name,ground_truth_test_file,status
+BF,TEST_BF.java,verified
+COUNT_NUMS,TEST_COUNT_NUMS.java,verified
+FILE_NAME_CHECK,TEST_FILE_NAME_CHECK.java,verified
+FIND_ZERO,TEST_FIND_ZERO.java,verified
+ORDER_BY_POINTS,TEST_ORDER_BY_POINTS.java,verified
+SEARCH,TEST_SEARCH.java,verified
