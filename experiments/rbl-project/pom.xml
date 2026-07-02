@@ -107,7 +107,7 @@
         </configuration>
       </plugin>
       
-      <!-- EvoSuite plugin -->
+      <!-- EvoSuite plugin
       <plugin>
         <groupId>org.evosuite.plugins</groupId>
         <artifactId>evosuite-maven-plugin</artifactId>
@@ -125,6 +125,7 @@
           <timeInMinutesPerClass>1</timeInMinutesPerClass>
         </configuration>
       </plugin>
+      -->
     </plugins>
   </build>
 </project>
