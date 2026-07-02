@@ -24,7 +24,7 @@ Trong quy trình kỹ nghệ phần mềm và giảng dạy kiểm thử đơn v
 Các nghiên cứu của Huang'26 [010] và AgoneTest'25 [024] đã chứng minh năng lực đáng kể của LLM thế hệ mới (như GPT-4, LLaMA-3) trong việc sinh mã kiểm thử. Nhiều công cụ sinh test dựa trên LLM (ví dụ như TestPilot của Al-Tse'23 [005]) đã đạt được độ bao phủ dòng và bao phủ nhánh cao trên các tập dữ liệu chuẩn hoặc mã nguồn mở [014, 011]. Dù vậy, hiệu năng thực tế của mã kiểm thử sinh bởi AI khi đối chứng trực tiếp với kiểm thử viết tay bởi con người ở cấp độ đơn vị lập trình độc lập (standalone functions) vẫn còn nhiều tranh cãi [019, 024]. Đặc biệt, các nghiên cứu lớn như MutGen'26 [026] và Al-Tse'23 [005] cảnh báo rằng độ bao phủ cao (coverage) không phải lúc nào cũng đồng hành với năng lực bắt lỗi logic (mutation score).
 
 ### 2.3 GAP
-Dựa trên phân tích bảng tổng hợp văn liệu của nhóm ($N = 39$ papers), hầu hết các nghiên cứu tập trung đánh giá hiệu năng sinh kiểm thử của LLM trên các tập dữ liệu công nghiệp hoặc so sánh LLM với các công cụ sinh test tự động truyền thống (như EvoSuite hoặc Randoop) [011, 036]. Chi tiết phân tích GAP phản chứng được nhóm thực hiện tại [gap-statement-final.md](file:///f:/Ky%205/SWT301/Github/SE1944_LLM_Unit_Test_Generation/team-synthesis/gap-statement-final.md) và bảng văn liệu gộp tại [evidence-table-merged.md](file:///f:/Ky%205/SWT301/Github/SE1944_LLM_Unit_Test_Generation/team-synthesis/evidence-table-merged.md).
+Dựa trên phân tích bảng tổng hợp văn liệu của nhóm ($N = 39$ papers), hầu hết các nghiên cứu tập trung đánh giá hiệu năng sinh kiểm thử của LLM trên các tập dữ liệu công nghiệp hoặc so sánh LLM với các công cụ sinh test tự động truyền thống (như EvoSuite hoặc Randoop) [011, 036]. Chi tiết phân tích GAP phản chứng được nhóm thực hiện tại [gap-statement-final.md](file:///f:/Ky%205/SWT301/Github/SE1944_LLM_Unit_Test_Generation/docs/team-synthesis/gap-statement-final.md) và bảng văn liệu gộp tại [evidence-table-merged.md](file:///f:/Ky%205/SWT301/Github/SE1944_LLM_Unit_Test_Generation/docs/team-synthesis/evidence-table-merged.md).
 *   **GAP-D (Primary):** Hiện chưa có nghiên cứu nào thực hiện đánh giá và so sánh cặp (paired comparison) giữa bộ kiểm thử sinh bởi GPT-4o-mini với bộ kiểm thử đối chứng viết tay của sinh viên (student-written benchmark tests) trên cùng một tập các hàm Java của benchmark HumanEval-Java [004, 019, 023].
 *   **GAP-M (Secondary):** Việc đánh giá chất lượng test suite sinh bởi LLM thường bị thiên lệch nếu chỉ sử dụng độ bao phủ nhánh mà thiếu đi sự đánh giá độc lập về kiểm thử đột biến (mutation score) để xác minh năng lực phát hiện lỗi logic thực tế [026].
 
@@ -64,17 +64,17 @@ Qua phân tích văn liệu, nhóm rút ra 3 nhận xét tổng quan sau:
 
 ## 4. Research Questions
 
-> **RQ1:** Đối với 50 hàm Java có độ phức tạp trung bình ($5 \le CC \le 16$) từ benchmark HumanEval-Java, bộ test suite sinh tự động bởi GPT-4o-mini (phiên bản `gpt-4o-mini-2024-07-18` sử dụng zero-shot prompting) có đạt được trung vị độ bao phủ nhánh (branch coverage) $\ge 30.22\%$ không?
+> **RQ1:** Đối với 63 hàm Java có độ phức tạp trung bình ($5 \le CC \le 16$) từ benchmark HumanEval-Java, bộ test suite sinh tự động bởi GPT-4o-mini (phiên bản `gpt-4o-mini-2024-07-18` sử dụng zero-shot prompting) có đạt được trung vị độ bao phủ nhánh (branch coverage) $\ge 30.22\%$ không?
 *   **Loại claim:** Absolute threshold (Ngưỡng tuyệt đối dựa trên văn liệu).
 *   **Giả thuyết Không ($H_{0\_1}$):** Trung vị độ bao phủ nhánh của bộ test do GPT-4o-mini sinh ra nhỏ hơn 30.22%.
     $$H_{0\_1}: \tilde{\mu}_{\text{BC-AI}} < 30.22\%$$
 *   **Giả thuyết Đối ($H_{1\_1}$):** Trung vị độ bao phủ nhánh của bộ test do GPT-4o-mini sinh ra lớn hơn hoặc bằng 30.22%.
     $$H_{1\_1}: \tilde{\mu}_{\text{BC-AI}} \ge 30.22\%$$
 *   **Metric:** Branch coverage (đo bằng công cụ JaCoCo).
-*   **Ngưỡng:** $\ge 30.22\%$ - **Case 2** (Floor value thực nghiệm trung bình của các mô hình LLM trên dữ liệu thực tế ULT từ paper ****).
+*   **Ngưỡng:** $\ge 30.22\%$ - **Case 2** (Floor value thực nghiệm trung bình của các mô hình LLM trên dữ liệu thực tế ULT từ paper [010]).
 *   **Statistical test:** One-sample Wilcoxon signed-rank test ($\alpha = 0.05$, một đuôi).
 
-> **RQ2:** Đối với 50 hàm Java từ HumanEval-Java, bộ test suite sinh tự động bởi GPT-4o-mini có đạt được trung vị điểm đột biến (mutation score) $\ge 4.0\%$ (ngưỡng sàn cảnh báo) và $\ge 40.21\%$ (ngưỡng mục tiêu khoa học) không?
+> **RQ2:** Đối với 63 hàm Java từ HumanEval-Java, bộ test suite sinh tự động bởi GPT-4o-mini có đạt được trung vị điểm đột biến (mutation score) $\ge 4.0\%$ (ngưỡng sàn cảnh báo) và $\ge 40.21\%$ (ngưỡng mục tiêu khoa học) không?
 *   **Loại claim:** Absolute threshold.
 *   **RQ2a - Ngưỡng sàn đột biến (>=4.0%):**
     *   $H_{0\_2a}: \tilde{\mu}_{\text{MS-AI}} < 4.0\%$
@@ -83,10 +83,10 @@ Qua phân tích văn liệu, nhóm rút ra 3 nhận xét tổng quan sau:
     *   $H_{0\_2b}: \tilde{\mu}_{\text{MS-AI}} < 40.21\%$
     *   $H_{1\_2b}: \tilde{\mu}_{\text{MS-AI}} \ge 40.21\%$
 *   **Metric:** Mutation score (đo bằng công cụ PiTest).
-*   **Ngưỡng:** $4.0\%$ - **Case 2** (Ngưỡng sàn lỗi logic tối thiểu từ paper ****); và $40.21\%$ - **Case 2** (Hiệu năng trung bình trên ULT từ paper ****).
+*   **Ngưỡng:** $4.0\%$ - **Case 2** (Ngưỡng sàn lỗi logic tối thiểu từ paper [026]); và $40.21\%$ - **Case 2** (Hiệu năng trung bình trên ULT từ paper [010]).
 *   **Statistical test:** One-sample Wilcoxon signed-rank test ($\alpha = 0.05$, một đuôi).
 
-> **RQ3:** Có sự khác biệt có ý nghĩa thống kê về độ bao phủ nhánh và điểm đột biến khi so sánh trực tiếp bộ test suite sinh tự động bởi GPT-4o-mini với bộ test đối chứng do sinh viên viết sẵn (student benchmark tests) trên cùng 50 hàm Java không?
+> **RQ3:** Có sự khác biệt có ý nghĩa thống kê về độ bao phủ nhánh và điểm đột biến khi so sánh trực tiếp bộ test suite sinh tự động bởi GPT-4o-mini với bộ test đối chứng do sinh viên viết sẵn (student benchmark tests) trên cùng 63 hàm Java không?
 *   **Loại claim:** Comparative (So sánh đối chứng).
 *   **RQ3a - So sánh bao phủ nhánh:**
     *   $H_{0\_3a}: \tilde{\mu}_{\text{BC-AI}} = \tilde{\mu}_{\text{BC-Student}}$
@@ -104,7 +104,7 @@ Qua phân tích văn liệu, nhóm rút ra 3 nhận xét tổng quan sau:
 *   **Giả thuyết Đối ($H_{1\_4}$):** Tỷ lệ số hàm đạt đồng thời cả hai ngưỡng của bộ test do GPT-4o-mini sinh ra lớn hơn 50%.
     $$H_{1\_4}: p_{\text{success}} > 0.50$$
 *   **Metric:** Simultaneous success rate (tỷ lệ thành công kép nhị phân trên từng hàm).
-*   **Statistical test:** Exact Binomial Test ($\alpha = 0.05$, một đuôi, $N = 50$).
+*   **Statistical test:** Exact Binomial Test ($\alpha = 0.05$, một đuôi, $N = 63$).
 
 ---
 
@@ -112,7 +112,7 @@ Qua phân tích văn liệu, nhóm rút ra 3 nhận xét tổng quan sau:
 
 ### 5.1 Pipeline tổng quan
 Quy trình thực nghiệm được chuẩn hóa qua 6 bước tự động sau:
-1.  **Lọc Dataset ($N=50$):** Lọc ra 50 hàm Java từ repo `human-eval-java` có Cyclomatic Complexity nằm trong khoảng từ 5 đến 16, loại bỏ các hàm quá đơn giản hoặc có phụ thuộc bên ngoài.
+1.  **Lọc Dataset ($N=63$):** Lọc ra 63 hàm Java từ repo `human-eval-java` có Cyclomatic Complexity nằm trong khoảng từ 5 đến 16, loại bỏ các hàm quá đơn giản hoặc có phụ thuộc bên ngoài.
 2.  **LLM Prompting:** Sử dụng API OpenAI gửi prompt sinh unit test bằng `gpt-4o-mini-2024-07-18` [023, 024] với `temperature = 0`. Testcase sinh ra được chỉ định gọi chính xác các lớp trong package `humaneval.correct` để đo đạc chất lượng mã chuẩn.
 3.  **Hậu xử lý mã nguồn:** Tự động trích xuất mã Java từ phản hồi của LLM, lưu thành các file `TEST_[FUNCTION_NAME].java` đặt trong package `humaneval`.
 4.  **Biên dịch & Sửa lỗi (Compilation & Repair):** Chạy lệnh Maven compiler. Nếu phát sinh lỗi cú pháp cơ bản, cho phép tối đa 1 lượt sửa lỗi tự động bằng cách gửi thông báo lỗi ngược lại cho LLM (1-round self-repair). Những test suite vẫn lỗi biên dịch sau lượt 1 sẽ nhận điểm 0% cho cả coverage và mutation score.
@@ -124,7 +124,7 @@ Quy trình thực nghiệm được chuẩn hóa qua 6 bước tự động sau:
 ### 5.2 Dataset
 *   **Tên dataset:** HumanEval-Java [004, 019, 023]
 *   **Nguồn:** Public GitHub Repository (đã clone và thiết lập tại workspace)
-*   **Quy mô (N):** 50 hàm Java (được chọn từ 163 hàm gốc dựa trên tiêu chí Cyclomatic Complexity $5 \le CC \le 16$).
+*   **Quy mô (N):** 63 hàm Java (tất cả các hàm trong 163 hàm gốc có Cyclomatic Complexity $5 \le CC \le 16$).
 *   **Domain:** Thuật toán, xử lý chuỗi, cấu trúc dữ liệu cơ bản, tính toán toán học mức độ đơn vị.
 *   **Lý do chọn:** Giải quyết triệt để **GAP-D**, đây là benchmark chuẩn hóa có sẵn test đối chứng viết tay chuẩn của con người (được nhóm định nghĩa làm Student Benchmark Baseline) phục vụ so sánh cặp chính xác.
 
@@ -161,13 +161,13 @@ Source Code:
 
 ### 5.6 Statistical Analysis Plan
 *   **Phép kiểm định thống kê:**
-    *   **Wilcoxon Signed-Rank Test (One-sample):** Dùng cho RQ1 và RQ2 để so sánh trung vị mẫu ($N = 50$) với các giá trị hằng số $30.22\%$ [010], $4.0\%$ [026] và $40.21\%$ [010]. Đây là phép kiểm định phi tham số an toàn vì dữ liệu tỷ lệ độ bao phủ/đột biến thường bị giới hạn trong đoạn $[0, 1]$ và phân phối lệch chuẩn.
+    *   **Wilcoxon Signed-Rank Test (One-sample):** Dùng cho RQ1 và RQ2 để so sánh trung vị mẫu ($N = 63$) với các giá trị hằng số $30.22\%$ [010], $4.0\%$ [026] và $40.21\%$ [010]. Đây là phép kiểm định phi tham số an toàn vì dữ liệu tỷ lệ độ bao phủ/đột biến thường bị giới hạn trong đoạn $[0, 1]$ và phân phối lệch chuẩn.
     *   **Paired Wilcoxon Signed-Rank Test (Two-tailed):** Dùng cho RQ3 để so sánh trực tiếp hiệu năng cặp trên cùng một hàm của AI và Student.
     *   **Exact Binomial Test (One-tailed):** Dùng cho RQ4 để kiểm định xem tỷ lệ thành công kép thực tế $p$ có lớn hơn mức ngẫu nhiên $0.50$ hay không.
 *   **Phân tích lực lượng mẫu (Statistical Power):** 
-    Với cỡ mẫu $N = 50$ và mức ý nghĩa $\alpha = 0.05$:
-    *   Phép kiểm định nhị thức (Exact Binomial Test) với giả thuyết không $p_0 = 0.50$ sẽ đạt lực lượng thống kê $Power \ge 0.85$ để phát hiện tỷ lệ thành công thực tế từ $70\%$ trở lên.
-    *   Phép kiểm định Wilcoxon signed-rank test đạt lực lượng thống kê $Power \ge 0.80$ để phát hiện các Effect Size cỡ trung bình (Cohen's $d \ge 0.42$).
+    Với cỡ mẫu $N = 63$ và mức ý nghĩa $\alpha = 0.05$:
+    *   Phép kiểm định nhị thức (Exact Binomial Test) với giả thuyết không $p_0 = 0.50$ sẽ đạt lực lượng thống kê $Power \ge 0.90$ để phát hiện tỷ lệ thành công thực tế từ $70\%$ trở lên.
+    *   Phép kiểm định Wilcoxon signed-rank test đạt lực lượng thống kê $Power \ge 0.85$ để phát hiện các Effect Size cỡ trung bình (Cohen's $d \ge 0.42$).
 
 ---
 
@@ -200,7 +200,7 @@ Source Code:
 *   **Hành động giảm thiểu (Mitigation):** Cố định tham số model version chính xác là `gpt-4o-mini-2024-07-18` (thay vì dùng tên chung `gpt-4o-mini`), thiết lập `temperature = 0` để triệt tiêu tính ngẫu nhiên, lưu lại toàn bộ lịch sử file raw kết quả cùng thời gian (timestamp) gọi API chi tiết.
 
 ### 7.2 External Validity (Đe dọa bên ngoài)
-*   **Mối đe dọa (Generalizability / Dataset bias):** Tập dữ liệu gồm 50 hàm Java từ HumanEval-Java [004, 019, 023]chủ yếu là các bài toán thuật toán cô lập và có thể không đại diện cho các lớp Java phức tạp trong hệ thống phần mềm doanh nghiệp thực tế.
+*   **Mối đe dọa (Generalizability / Dataset bias):** Tập dữ liệu gồm 63 hàm Java từ HumanEval-Java [004, 019, 023]chủ yếu là các bài toán thuật toán cô lập và có thể không đại diện cho các lớp Java phức tạp trong hệ thống phần mềm doanh nghiệp thực tế.
 *   **Hành động giảm thiểu (Mitigation):** Thừa nhận giới hạn này trong phạm vi nghiên cứu của đồ án; ghi rõ mục tiêu của đề tài là đánh giá trên các hàm cấp độ thuật toán đơn vị độc lập.
 
 ### 7.3 Construct Validity (Đe dọa khái niệm)
@@ -208,7 +208,7 @@ Source Code:
 *   **Hành động giảm thiểu (Mitigation):** Bổ sung thống kê descriptive về tỷ lệ lỗi biên dịch (Compilation Success Rate) và tỷ lệ vượt qua bài test (Pass Rate) để đảm bảo tính thực tiễn tối thiểu của mã kiểm thử sinh ra.
 
 ### 7.4 Conclusion Validity (Đe dọa kết luận)
-*   **Mối đe dọa (Statistical Power):** Cỡ mẫu $N = 50$ có thể bị giảm đi nếu nhiều hàm sinh ra bị lỗi biên dịch nặng không thể chạy đo đạc, dẫn tới thiếu lực lượng thống kê để chạy các phép kiểm định phi tham số.
+*   **Mối đe dọa (Statistical Power):** Cỡ mẫu $N = 63$ có thể bị giảm đi nếu nhiều hàm sinh ra bị lỗi biên dịch nặng không thể chạy đo đạc, dẫn tới thiếu lực lượng thống kê để chạy các phép kiểm định phi tham số.
 *   **Hành động giảm thiểu (Mitigation):** Áp dụng cơ chế tự sửa lỗi cú pháp cơ bản (1-round self-repair) nhằm tăng tối đa tỷ lệ biên dịch thành công; chỉ nộp báo cáo thống kê trên các mẫu biên dịch chạy được và báo cáo riêng nhóm lỗi biên dịch.
 
 ---
@@ -220,7 +220,7 @@ Source Code:
 | Role | Thành viên | Trách nhiệm chính |
 | :--- | :--- | :--- |
 | **PL** (Project Lead) | Lê Thế Khang | Quản lý tiến độ chung, kiểm tra tính nhất quán toán học, nộp tài liệu lên giảng viên. |
-| **DG** (Data & Ground Truth) | Huỳnh Cao Phước | Chọn lọc 50 hàm Java đạt chuẩn CC; kiểm thử và đo đạc baseline của Student. |
+| **DG** (Data & Ground Truth) | Huỳnh Cao Phước | Chọn lọc 63 hàm Java đạt chuẩn CC; kiểm thử và đo đạc baseline của Student. |
 | **LR** (LLM Runner) | Phạm An Khang | Viết script API tự động hóa sinh test, log token, xử lý lượt sửa lỗi compile tự động. |
 | **MS** (Metrics & Stats) | Nguyễn Thị Như Ý | Cài đặt plugin JaCoCo, PiTest trong Maven; viết script Python chạy kiểm định thống kê. |
 | **RW** (Research Writer) | Đỗ Long Vỹ | Soạn thảo các phần liên quan đến RELATED WORK, THREATS; định dạng và thiết kế slide bảo vệ. |
@@ -244,14 +244,14 @@ Source Code:
 | Tuần | Hoạt động chính | Vai trò chịu trách nhiệm | Checkpoint / Sản phẩm đầu ra |
 | :---: | :--- | :--- | :--- |
 | **Tuần 5** | Viết và hoàn thiện Research Proposal bản thảo | Cả nhóm | Draft tài liệu proposal.md hoàn tất mục 1–8. |
-| **Tuần 5** | Trích xuất và chọn lọc 50 hàm Java; chạy thử baseline | **DG** | Danh sách 50 hàm Java đủ điều kiện CC. |
+| **Tuần 5** | Trích xuất và chọn lọc 63 hàm Java; chạy thử baseline | **DG** | Danh sách 63 hàm Java đủ điều kiện CC. |
 | **Tuần 5** | Viết script API kết nối LLM; test chạy thử 1 hàm | **LR** | File `test_api.py` hoạt động tốt. |
 | **Tuần 5** | Cấu hình plugin JaCoCo và PiTest vào dự án | **MS** | Chạy được `mvn clean test` sinh báo cáo JaCoCo. |
 | **Tuần 6** | Hoàn thiện slide bảo vệ đề cương và nộp Proposal | **RW** + **PL** | `proposal.md` v1.0 nộp GV; slide thuyết trình hoàn tất. |
 | **Tuần 6** | **Bảo vệ đề cương nghiên cứu & Chờ GV phê duyệt** | Cả nhóm | Đề cương được thông qua (Hard Gate). |
-| **Tuần 7** | Chạy thí nghiệm thử nghiệm (Pilot Run - 10% mẫu) | **LR** + **MS** | Báo cáo thử nghiệm trên 5 hàm; kiểm tra phân phối dữ liệu. |
+| **Tuần 7** | Chạy thí nghiệm thử nghiệm (Pilot Run - 10% mẫu) | **LR** + **MS** | Báo cáo thử nghiệm trên 6 hàm; kiểm tra phân phối dữ liệu. |
 | **Tuần 7** | Đánh giá và chỉnh sửa quy trình thực nghiệm (nếu có) | Cả nhóm | Biên bản họp review pilot; nộp amendment nếu đổi phép kiểm định. |
-| **Tuần 8** | Chạy thực nghiệm quy mô đầy đủ (Full Run) | **LR** | Bộ testcase sinh ra cho toàn bộ 50 hàm Java. |
+| **Tuần 8** | Chạy thực nghiệm quy mô đầy đủ (Full Run) | **LR** | Bộ testcase sinh ra cho toàn bộ 63 hàm Java. |
 | **Tuần 8** | Chạy đo lường JaCoCo & PIT; tính toán thống kê | **MS** | File `results.csv` chứa điểm số; kết quả p-value các phép test. |
 | **Tuần 8** | Tạo biểu đồ phân phối điểm số | **RW** | Biểu đồ Boxplot và phân phối độ bao phủ cấu trúc/đột biến. |
 | **Tuần 9-10**| Soạn thảo báo cáo kết quả thực nghiệm và thuyết trình | Cả nhóm | Nộp báo cáo nghiên cứu hoàn chỉnh (RBL-4/5). |
@@ -266,7 +266,7 @@ Source Code:
 | Vai trò | Tuần 5 | Tuần 6 | Tuần 7 | Tuần 8 | Tuần 9–10 |
 | :---: | :--- | :--- | :--- | :--- | :--- |
 | **PL** | Review proposal | Nộp proposal | Biên bản họp Pilot | Đồng bộ dữ liệu | Nộp báo cáo cuối |
-| **DG** | Lọc 50 hàm Java | Chuẩn bị baseline | Hỗ trợ pilot | Đo đạc baseline | Soạn thảo kết quả |
+| **DG** | Lọc 63 hàm Java | Chuẩn bị baseline | Hỗ trợ pilot | Đo đạc baseline | Soạn thảo kết quả |
 | **LR** | Viết script API | Kiểm tra tài khoản | Chạy Pilot LLM | Chạy Full LLM | Soạn thảo quy trình |
 | **MS** | Thiết lập JaCoCo/PIT | Chuẩn bị script test | Đo metrics Pilot | Đo metrics Full | Chạy kiểm định |
 | **RW** | Draft Threats/Related | Định dạng proposal | Chuẩn bị slide | Vẽ biểu đồ | Soạn thảo Threats |

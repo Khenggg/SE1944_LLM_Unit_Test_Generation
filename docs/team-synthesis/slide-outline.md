@@ -59,14 +59,14 @@ Tài liệu này chứa nội dung chi tiết từng slide (Slide-by-slide Conte
     *   *Test:* Paired Wilcoxon signed-rank test ($\alpha = 0.05$).
 *   **RQ4 (Độ tin cậy kép):** Bộ test do AI sinh ra có đạt đồng thời cả hai ngưỡng tối thiểu (BC $\ge 30.22\%$ và MS $\ge 4.0\%$) cho trên $50\%$ số hàm không?
     *   *Giả thuyết:* $H_{0\_4}: p \le 0.50$ | $H_{1\_4}: p > 0.50$
-    *   *Test:* Exact Binomial Test ($N = 50, \alpha = 0.05$).
+    *   *Test:* Exact Binomial Test ($N = 63, \alpha = 0.05$).
 
 ---
 
 ## Slide 5: Experiment Protocol - Pipeline (Quy trình thực nghiệm)
 *(Nên vẽ dưới dạng sơ đồ khối/flowchart thay vì để dạng text dài)*
 
-1.  **Lọc Dataset ($N=50$):** Chọn từ benchmark `HumanEval-Java` các hàm có độ phức tạp $5 \le CC \le 16$.
+1.  **Lọc Dataset ($N=63$):** Chọn từ benchmark `HumanEval-Java` các hàm có độ phức tạp $5 \le CC \le 16$.
 2.  **LLM Prompting:** Gọi API OpenAI (`gpt-4o-mini-2024-07-18`, `temp = 0`, zero-shot).
 3.  **Hậu xử lý:** Tách code Java, lưu vào package `humaneval.correct`.
 4.  **Biên dịch & Repair:** Chạy Maven. Cho phép tối đa 1-round self-repair tự động nếu lỗi compile.
@@ -77,7 +77,7 @@ Tài liệu này chứa nội dung chi tiết từng slide (Slide-by-slide Conte
 
 ## Slide 6: Dataset & Baseline (Tập dữ liệu & Đối chứng)
 *   **Tên dataset:** HumanEval-Java (chứa 163 hàm Java thuật toán, xử lý chuỗi và toán học).
-*   **Quy mô mẫu:** $N = 50$ hàm Java được lọc theo độ phức tạp Cyclomatic Complexity ($5 \le CC \le 16$).
+*   **Quy mô mẫu:** $N = 63$ hàm Java được lọc theo độ phức tạp Cyclomatic Complexity ($5 \le CC \le 16$).
     *   *Lý do:* CC trong khoảng này đủ phức tạp để đánh giá năng lực logic, tránh các hàm quá đơn giản.
     *   *Accessible Status:* ✅ Đã tải và xác thực thành công tại local.
 *   **Student Benchmark Baseline:** 
@@ -124,7 +124,7 @@ Tài liệu này chứa nội dung chi tiết từng slide (Slide-by-slide Conte
     *   *Threat:* BC và MS không đo được tính dễ đọc/dễ bảo trì của code test.
     *   *Mitigation:* Bổ sung thống kê descriptive về tỷ lệ lỗi biên dịch (Compilation Success Rate).
 *   **Conclusion Validity (Statistical Power):**
-    *   *Threat:* Mẫu nhỏ $N = 50$ có thể bị thiếu lực lượng thống kê nếu nhiều hàm lỗi compile.
+    *   *Threat:* Mẫu nhỏ $N = 63$ có thể bị thiếu lực lượng thống kê nếu nhiều hàm lỗi compile.
     *   *Mitigation:* Cho phép tối đa 1 lượt tự động sửa lỗi biên dịch (1-round self-repair).
 
 ---

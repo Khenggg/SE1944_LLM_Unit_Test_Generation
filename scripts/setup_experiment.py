@@ -4,12 +4,12 @@ import shutil
 
 # Paths
 workspace_dir = r"f:\Ky 5\SWT301\Github\SE1944_LLM_Unit_Test_Generation"
-raw_project_dir = os.path.join(workspace_dir, "human-eval-java")
+raw_project_dir = os.path.join(workspace_dir, "experiments", "human-eval-java")
 correct_source_dir = os.path.join(raw_project_dir, "src", "main", "java", "humaneval", "correct")
 buggy_source_dir = os.path.join(raw_project_dir, "src", "main", "java", "humaneval", "buggy")
 test_source_dir = os.path.join(raw_project_dir, "src", "test", "java", "humaneval")
 
-new_project_dir = os.path.join(workspace_dir, "rbl-project")
+new_project_dir = os.path.join(workspace_dir, "experiments", "rbl-project")
 new_correct_dir = os.path.join(new_project_dir, "src", "main", "java", "humaneval", "correct")
 new_buggy_dir = os.path.join(new_project_dir, "src", "main", "java", "humaneval", "buggy")
 new_test_dir = os.path.join(new_project_dir, "src", "test", "java", "humaneval")
@@ -43,10 +43,10 @@ for filename in files:
 # Sort by CC descending, then by filename alphabetically
 results.sort(key=lambda x: (x[1], x[0]), reverse=True)
 
-# Select exactly 50 files
-selected = results[:50]
+# Select all files with CC >= 5
+selected = [item for item in results if item[1] >= 5]
 
-print(f"Selected {len(selected)} classes for the experiment dataset (Top 50 by CC):")
+print(f"Selected {len(selected)} classes for the experiment dataset (All with CC >= 5):")
 for idx, (filename, cc) in enumerate(selected, 1):
     print(f"{idx:02d}. {filename:<35} | CC = {cc}")
 

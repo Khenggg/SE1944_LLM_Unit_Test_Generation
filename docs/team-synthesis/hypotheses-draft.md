@@ -1,6 +1,6 @@
 # Hypotheses Draft
 
-The statistical hypotheses defined below are directly aligned with the research questions outlined in `team-synthesis/rq-final.md`. The unit of analysis is strictly maintained: for every individual function/method in the dataset ($N = 50$), there will be one paired set of results consisting of the `GPT-4o-mini-generated tests` (model version `gpt-4o-mini-2024-07-18`) and the corresponding `student benchmark tests`. All tests are conducted at a significance level of $\alpha = 0.05$.
+The statistical hypotheses defined below are directly aligned with the research questions outlined in `team-synthesis/rq-final.md`. The unit of analysis is strictly maintained: for every individual function/method in the dataset ($N = 63$), there will be one paired set of results consisting of the `GPT-4o-mini-generated tests` (model version `gpt-4o-mini-2024-07-18`) and the corresponding `student benchmark tests`. All tests are conducted at a significance level of $\alpha = 0.05$.
 
 ---
 
@@ -68,7 +68,7 @@ Do GPT-4o-mini-generated unit tests achieve both the branch coverage threshold (
 *   **Giả thuyết Đối (Alternative Hypothesis - $H_{1\_4}$):** Tỷ lệ số hàm đạt đồng thời cả hai ngưỡng chất lượng sàn của bộ test do GPT-4o-mini sinh ra lớn hơn 50%.
     $$H_{1\_4}: p_{\text{success}} > 0.50$$
 
-**Planned Statistical Test:** Exact Binomial Test (one-tailed), evaluating the per-function binary success rate (where success means achieving both $\text{BC} \ge 30.22\%$ and $\text{MS} \ge 4.0\%$ simultaneously) against the hypothesized majority threshold $p_0 = 0.50$ on the sample size $N = 50$.
+**Planned Statistical Test:** Exact Binomial Test (one-tailed), evaluating the per-function binary success rate (where success means achieving both $\text{BC} \ge 30.22\%$ and $\text{MS} \ge 4.0\%$ simultaneously) against the hypothesized majority threshold $p_0 = 0.50$ on the sample size $N = 63$.
 
 ---
 
