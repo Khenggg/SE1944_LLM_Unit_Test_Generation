@@ -116,9 +116,11 @@ Script sẽ in ra màn hình bảng thống kê chi tiết về Branch Coverage 
 1. **Lỗi `tools.jar` (JDK 21):**
    * *Mô tả:* Khi chạy `mvn test` trên JDK 21, plugin `evosuite-maven-plugin:1.0.6` bị crash do cố tìm `tools.jar` (đã bị loại bỏ kể từ Java 9).
    * *Xử lý:* Tạm thời comment out plugin `evosuite-maven-plugin` trong `pom.xml` khi chạy các test case thông thường (`*GPTTest`) và hướng dẫn nhóm chuyển sang sử dụng JDK 8 để đồng bộ biên dịch.
-2. **Lỗi `Green Suite` của PITest:**
-   * *Mô tả:* Các test case do AI sinh ra (`*_GPTTest.java`) chứa một số test case bị fail logic trên code gốc, làm cho PITest báo lỗi `Tests failing without mutation` và dừng build.
-   * *Xử lý:* Viết script tự động `ignore_failing_tests.py` để tìm các test case bị lỗi từ báo cáo JUnit XML của Surefire và chèn thêm `@org.junit.Ignore` vào trước các test case này để bỏ qua chúng một cách an toàn.
+2: **Lỗi `Green Suite` của PITest và lặp vô hạn (Infinite Loop):**
+   * *Mô tả:* Các test case do AI sinh ra (`*_GPTTest.java`) chứa một số test case bị fail logic trên code gốc, làm cho PITest báo lỗi và dừng build. Đặc biệt, trong class `FIND_ZERO_GPTTest`, AI đã sinh ra các đầu vào đa thức vô nghiệm thực (như $f(x)=x^2+1$ hoặc hàm hằng $f(x)=5$), khiến thuật toán bisection trong mã nguồn gốc rơi vào vòng lặp vô hạn và làm treo tiến trình `mvn test` hoặc PITest vĩnh viễn.
+   * *Xử lý:* 
+     1. Cấu hình lại các script sinh test (`run_pilot.py` và `generate_gpt_tests.py`) để tự động chèn **`@Test(timeout = 5000)`** (chờ tối đa 5 giây) cho tất cả các test case nhằm ép dừng các test lặp vô hạn và ghi nhận lỗi `TimeoutException` vào báo cáo XML của Maven thay vì làm treo tiến trình.
+     2. Chạy script tự động `ignore_failing_tests.py` để đọc báo cáo JUnit XML, tự động chèn `@org.junit.Ignore` vào tất cả các test case bị lỗi và bị timeout, biến bộ test suite thành "Green" (skipped) một cách tự động 100% để PITest đo đạc thành công.
 
 ### B. Quyết định kỹ thuật sau Pilot (7.4)
 * **Random Seed đã chọn:** `42` (Dùng để sinh ngẫu nhiên 6 hàm trong `data/pilot_sample.csv`).
