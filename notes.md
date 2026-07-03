@@ -107,3 +107,21 @@ Script sẽ in ra màn hình bảng thống kê chi tiết về Branch Coverage 
     python experiments/rbl-project/organize_tests.py
     ```
     *(Các file test EvoSuite 1p sẽ được chuyển gọn gàng vào thư mục `experiments/rbl-project/src/test/java/humaneval/correct/evosuite/`)*
+
+---
+
+## 4. Quyết định kỹ thuật & Nhật ký lỗi (Technical Decisions & Error Log)
+
+### A. Nhật ký lỗi (Error Log)
+1. **Lỗi `tools.jar` (JDK 21):**
+   * *Mô tả:* Khi chạy `mvn test` trên JDK 21, plugin `evosuite-maven-plugin:1.0.6` bị crash do cố tìm `tools.jar` (đã bị loại bỏ kể từ Java 9).
+   * *Xử lý:* Tạm thời comment out plugin `evosuite-maven-plugin` trong `pom.xml` khi chạy các test case thông thường (`*GPTTest`) và hướng dẫn nhóm chuyển sang sử dụng JDK 8 để đồng bộ biên dịch.
+2. **Lỗi `Green Suite` của PITest:**
+   * *Mô tả:* Các test case do AI sinh ra (`*_GPTTest.java`) chứa một số test case bị fail logic trên code gốc, làm cho PITest báo lỗi `Tests failing without mutation` và dừng build.
+   * *Xử lý:* Viết script tự động `ignore_failing_tests.py` để tìm các test case bị lỗi từ báo cáo JUnit XML của Surefire và chèn thêm `@org.junit.Ignore` vào trước các test case này để bỏ qua chúng một cách an toàn.
+
+### B. Quyết định kỹ thuật sau Pilot (7.4)
+* **Random Seed đã chọn:** `42` (Dùng để sinh ngẫu nhiên 6 hàm trong `data/pilot_sample.csv`).
+* **Độ đồng nhất (IAA):** Không áp dụng đối với dự án sinh test (do benchmark code là HumanEval-Java chuẩn có sẵn của con người).
+* **Đánh giá Pipeline:** Pipeline hoạt động chính xác, cấu trúc lưu trữ và backup qua script `manage_gpt_tests.py` chạy mượt mà.
+* **Quyết định:** **TIẾN HÀNH THỰC NGHIỆM CHÍNH THỨC (TUẦN 8) trên toàn bộ 63 hàm.**
