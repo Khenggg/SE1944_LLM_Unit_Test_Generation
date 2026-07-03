@@ -41,6 +41,7 @@ public class SPECIAL_FILTER_GPTTest {
         Assert.assertEquals(0, SPECIAL_FILTER.special_filter(nums));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testBoundaryValues() {
         int[] nums = {10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
@@ -59,6 +60,7 @@ public class SPECIAL_FILTER_GPTTest {
         Assert.assertEquals(0, SPECIAL_FILTER.special_filter(nums));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testMixedOddAndEvenDigits() {
         int[] nums = {21, 34, 45, 56, 67, 78, 89, 90};

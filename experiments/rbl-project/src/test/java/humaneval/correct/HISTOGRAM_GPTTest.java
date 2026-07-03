@@ -64,6 +64,7 @@ public class HISTOGRAM_GPTTest {
         Assert.assertEquals(expected, result);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testCharactersWithSpaces() {
         HashMap<Character, Integer> result = HISTOGRAM.histogram("a   b  a b");
@@ -73,6 +74,7 @@ public class HISTOGRAM_GPTTest {
         Assert.assertEquals(expected, result);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testNoLetters() {
         HashMap<Character, Integer> result = HISTOGRAM.histogram("1 2 3");

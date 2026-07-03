@@ -19,6 +19,7 @@ public class VALID_DATE_GPTTest {
         Assert.assertFalse(VALID_DATE.valid_date("13-01-2012"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testInvalidDaysInMonth() {
         Assert.assertFalse(VALID_DATE.valid_date("04-31-2020")); // April has 30 days

@@ -7,6 +7,7 @@ import java.util.List;
 
 public class FIND_ZERO_GPTTest {
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testFindZeroWithSimplePolynomial() {
         List<Double> coefficients = Arrays.asList(-1.0, 0.0, 1.0); // x^2 - 1
@@ -22,6 +23,7 @@ public class FIND_ZERO_GPTTest {
         Assert.assertEquals(1.0, result, 1e-10);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testFindZeroWithNoRoot() {
         List<Double> coefficients = Arrays.asList(1.0, 1.0); // x + 1
@@ -30,6 +32,7 @@ public class FIND_ZERO_GPTTest {
         Assert.assertTrue(FIND_ZERO.poly(coefficients, result) > 0);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testFindZeroWithMultipleRoots() {
         List<Double> coefficients = Arrays.asList(1.0, 0.0, -1.0); // x^2 - 1
@@ -41,6 +44,7 @@ public class FIND_ZERO_GPTTest {
         Assert.assertEquals(-1.0, FIND_ZERO.poly(coefficients, result2), 1e-10);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testFindZeroWithHighDegreePolynomial() {
         List<Double> coefficients = Arrays.asList(1.0, 0.0, 0.0, -1.0); // x^3 - 1
@@ -49,6 +53,7 @@ public class FIND_ZERO_GPTTest {
         Assert.assertEquals(1.0, FIND_ZERO.poly(coefficients, result), 1e-10);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testFindZeroWithNegativeCoefficients() {
         List<Double> coefficients = Arrays.asList(-1.0, 0.0, 1.0); // -x^2 + 1

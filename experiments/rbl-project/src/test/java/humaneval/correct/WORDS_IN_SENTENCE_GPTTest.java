@@ -12,6 +12,7 @@ public class WORDS_IN_SENTENCE_GPTTest {
         Assert.assertEquals(expected, WORDS_IN_SENTENCE.words_in_sentence(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSingleWordPrimeLength() {
         String input = "a";
@@ -19,6 +20,7 @@ public class WORDS_IN_SENTENCE_GPTTest {
         Assert.assertEquals(expected, WORDS_IN_SENTENCE.words_in_sentence(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSingleWordNonPrimeLength() {
         String input = "abc";
@@ -54,6 +56,7 @@ public class WORDS_IN_SENTENCE_GPTTest {
         Assert.assertEquals(expected, WORDS_IN_SENTENCE.words_in_sentence(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testAllWordsPrimeLengths() {
         String input = "a is it";
@@ -61,6 +64,7 @@ public class WORDS_IN_SENTENCE_GPTTest {
         Assert.assertEquals(expected, WORDS_IN_SENTENCE.words_in_sentence(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLongSentenceWithMixedLengths() {
         String input = "The quick brown fox jumps over the lazy dog";
@@ -68,6 +72,7 @@ public class WORDS_IN_SENTENCE_GPTTest {
         Assert.assertEquals(expected, WORDS_IN_SENTENCE.words_in_sentence(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSingleCharacterWords() {
         String input = "a b c d e";
@@ -75,6 +80,7 @@ public class WORDS_IN_SENTENCE_GPTTest {
         Assert.assertEquals(expected, WORDS_IN_SENTENCE.words_in_sentence(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSentenceWithTwoCharacterWords() {
         String input = "to be or not to be";
@@ -96,6 +102,7 @@ public class WORDS_IN_SENTENCE_GPTTest {
         Assert.assertEquals(expected, WORDS_IN_SENTENCE.words_in_sentence(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSentenceWithFiveCharacterWords() {
         String input = "hello world apple";
@@ -103,6 +110,7 @@ public class WORDS_IN_SENTENCE_GPTTest {
         Assert.assertEquals(expected, WORDS_IN_SENTENCE.words_in_sentence(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSentenceWithSixCharacterWords() {
         String input = "banana orange grape";
@@ -131,6 +139,7 @@ public class WORDS_IN_SENTENCE_GPTTest {
         Assert.assertEquals(expected, WORDS_IN_SENTENCE.words_in_sentence(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSentenceWithTenCharacterWords() {
         String input = "abcdefghijk lmnopqrstuv";

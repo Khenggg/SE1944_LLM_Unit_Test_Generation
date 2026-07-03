@@ -61,6 +61,7 @@ public class MIN_SUBARRAY_SUM_GPTTest {
         Assert.assertEquals(0L, MIN_SUBARRAY_SUM.min_subarray_sum(nums));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLargeNumbers() {
         ArrayList<Long> nums = new ArrayList<>();

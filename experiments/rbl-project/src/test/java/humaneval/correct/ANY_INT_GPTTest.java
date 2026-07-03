@@ -36,6 +36,7 @@ public class ANY_INT_GPTTest {
         Assert.assertFalse(ANY_INT.any_int(-1, -2, -4));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testZeroValues() {
         Assert.assertTrue(ANY_INT.any_int(0, 0, 0));
@@ -49,6 +50,7 @@ public class ANY_INT_GPTTest {
         Assert.assertFalse(ANY_INT.any_int(1000000, 2000000, 4000000));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSmallNumbers() {
         Assert.assertTrue(ANY_INT.any_int(0.0001, 0.0002, 0.0003));

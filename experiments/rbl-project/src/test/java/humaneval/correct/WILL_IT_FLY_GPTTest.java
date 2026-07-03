@@ -30,6 +30,7 @@ public class WILL_IT_FLY_GPTTest {
         Assert.assertFalse(WILL_IT_FLY.will_it_fly(new int[]{1, 2}, 5));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testTwoElementsBalancedUnderWeight() {
         Assert.assertFalse(WILL_IT_FLY.will_it_fly(new int[]{2, 2}, 5));
@@ -50,6 +51,7 @@ public class WILL_IT_FLY_GPTTest {
         Assert.assertTrue(WILL_IT_FLY.will_it_fly(new int[]{3, 2, 3}, 9));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testThreeElementsBalancedEqualWeight() {
         Assert.assertFalse(WILL_IT_FLY.will_it_fly(new int[]{3, 2, 3}, 8));
@@ -70,6 +72,7 @@ public class WILL_IT_FLY_GPTTest {
         Assert.assertTrue(WILL_IT_FLY.will_it_fly(new int[]{1, 2, 3, 2, 1}, 10));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLargeBalancedArrayEqualWeight() {
         Assert.assertFalse(WILL_IT_FLY.will_it_fly(new int[]{1, 2, 3, 2, 1}, 9));
@@ -90,11 +93,13 @@ public class WILL_IT_FLY_GPTTest {
         Assert.assertTrue(WILL_IT_FLY.will_it_fly(new int[]{-1, -2, -1}, 5));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testNegativeElementsBalancedEqualWeight() {
         Assert.assertFalse(WILL_IT_FLY.will_it_fly(new int[]{-1, -2, -1}, 4));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testNegativeElementsBalancedOverWeight() {
         Assert.assertFalse(WILL_IT_FLY.will_it_fly(new int[]{-1, -2, -1}, 3));

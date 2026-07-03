@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 public class SORT_ARRAY_BINARY_GPTTest {
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSortArrayBinaryWithPositiveIntegers() {
         ArrayList<Integer> input = new ArrayList<>(Arrays.asList(1, 5, 2, 3, 4));
@@ -14,6 +15,7 @@ public class SORT_ARRAY_BINARY_GPTTest {
         Assert.assertEquals(expected, SORT_ARRAY_BINARY.sort_array_binary(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSortArrayBinaryWithNegativeIntegers() {
         ArrayList<Integer> input = new ArrayList<>(Arrays.asList(-2, -3, -4, -5, -6));
@@ -21,6 +23,7 @@ public class SORT_ARRAY_BINARY_GPTTest {
         Assert.assertEquals(expected, SORT_ARRAY_BINARY.sort_array_binary(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSortArrayBinaryWithMixedIntegers() {
         ArrayList<Integer> input = new ArrayList<>(Arrays.asList(1, 0, 2, 3, 4));

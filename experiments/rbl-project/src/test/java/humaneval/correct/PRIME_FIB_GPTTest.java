@@ -47,6 +47,7 @@ public class PRIME_FIB_GPTTest {
         Assert.assertFalse(PRIME_FIB.is_prime(100));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testPrimeFibWithZero() {
         Assert.assertEquals(0, PRIME_FIB.prime_fib(0));
@@ -77,11 +78,13 @@ public class PRIME_FIB_GPTTest {
         Assert.assertEquals(89, PRIME_FIB.prime_fib(5));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testPrimeFibWithLargeInput() {
         Assert.assertEquals(233, PRIME_FIB.prime_fib(7));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testPrimeFibWithNegativeInput() {
         try {

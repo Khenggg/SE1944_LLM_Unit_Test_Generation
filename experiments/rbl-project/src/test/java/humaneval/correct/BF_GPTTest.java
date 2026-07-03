@@ -49,6 +49,7 @@ public class BF_GPTTest {
         Assert.assertEquals(expected, BF.bf("Pluto", "Xena"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testPlanetsInReverseOrder() {
         ArrayList<String> expected = new ArrayList<>(Arrays.asList("Mars", "Jupiter", "Saturn"));

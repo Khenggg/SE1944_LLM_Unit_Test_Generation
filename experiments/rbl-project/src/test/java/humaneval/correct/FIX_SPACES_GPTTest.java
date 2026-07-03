@@ -65,6 +65,7 @@ public class FIX_SPACES_GPTTest {
         Assert.assertEquals("_A_B_", FIX_SPACES.fix_spaces(" A B "));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testFixSpaces_ComplexString() {
         Assert.assertEquals("_This-is-a-test-", FIX_SPACES.fix_spaces("  This  is   a test  "));

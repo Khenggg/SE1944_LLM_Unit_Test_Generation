@@ -12,6 +12,7 @@ public class FIND_CLOSEST_ELEMENTS_GPTTest {
         Assert.assertArrayEquals(expected, FIND_CLOSEST_ELEMENTS.find_closest_elements(input), 0.0001);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testFindClosestElementsWithNegativeNumbers() {
         double[] input = {-1.0, -2.0, -3.0, -4.0};

@@ -56,6 +56,7 @@ public class UNIQUE_DIGITS_GPTTest {
         Assert.assertEquals(expected, UNIQUE_DIGITS.unique_digits(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testUniqueDigitsWithNegativeNumbers() {
         ArrayList<Integer> input = new ArrayList<>(Arrays.asList(-15, -33, -1));
@@ -70,6 +71,7 @@ public class UNIQUE_DIGITS_GPTTest {
         Assert.assertEquals(expected, UNIQUE_DIGITS.unique_digits(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testUniqueDigitsWithLeadingZeros() {
         ArrayList<Integer> input = new ArrayList<>(Arrays.asList(0015, 0033, 0001));

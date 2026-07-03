@@ -29,6 +29,7 @@ public class INTERSECTION_GPTTest {
         Assert.assertEquals("NO", INTERSECTION.intersection(new int[]{-1, 0}, new int[]{1, 2}));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testNegativeIntervals() {
         Assert.assertEquals("YES", INTERSECTION.intersection(new int[]{-5, -3}, new int[]{-4, -2}));

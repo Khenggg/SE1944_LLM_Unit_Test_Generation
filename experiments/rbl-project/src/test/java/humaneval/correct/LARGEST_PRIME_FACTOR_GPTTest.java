@@ -35,6 +35,7 @@ public class LARGEST_PRIME_FACTOR_GPTTest {
         Assert.assertEquals(11, LARGEST_PRIME_FACTOR.largest_prime_factor(77));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLargestPrimeFactor_1() {
         // This case is invalid as per the assumption n > 1
@@ -47,6 +48,7 @@ public class LARGEST_PRIME_FACTOR_GPTTest {
         }
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLargestPrimeFactor_2() {
         // This case is invalid as per the assumption n > 1
@@ -58,6 +60,7 @@ public class LARGEST_PRIME_FACTOR_GPTTest {
         }
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLargestPrimeFactor_3() {
         // This case is invalid as per the assumption n > 1
@@ -84,6 +87,7 @@ public class LARGEST_PRIME_FACTOR_GPTTest {
         Assert.assertEquals(7, LARGEST_PRIME_FACTOR.largest_prime_factor(21));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLargestPrimeFactor_1001() {
         Assert.assertEquals(143, LARGEST_PRIME_FACTOR.largest_prime_factor(1001));

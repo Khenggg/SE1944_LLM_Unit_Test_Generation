@@ -29,6 +29,7 @@ public class MIN_PATH_GPTTest {
         Assert.assertArrayEquals(expected, MIN_PATH.min_path(grid, k));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testMinPathWithDifferentK() {
         int[][] grid = {{1, 2}, {3, 4}};
@@ -37,6 +38,7 @@ public class MIN_PATH_GPTTest {
         Assert.assertArrayEquals(expected, MIN_PATH.min_path(grid, k));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testMinPathEdgeCaseKEqualsGridSize() {
         int[][] grid = {{1, 2}, {3, 4}};
@@ -45,6 +47,7 @@ public class MIN_PATH_GPTTest {
         Assert.assertArrayEquals(expected, MIN_PATH.min_path(grid, k));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testMinPathWithNoAdjacentOnes() {
         int[][] grid = {{2, 3}, {4, 1}};
@@ -53,6 +56,7 @@ public class MIN_PATH_GPTTest {
         Assert.assertArrayEquals(expected, MIN_PATH.min_path(grid, k));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testMinPathWithMaxK() {
         int[][] grid = {{1, 2}, {3, 4}};

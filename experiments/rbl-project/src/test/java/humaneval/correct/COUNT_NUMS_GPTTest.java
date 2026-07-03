@@ -19,6 +19,7 @@ public class COUNT_NUMS_GPTTest {
         Assert.assertEquals(1, COUNT_NUMS.count_nums(arr));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSingleNegativeNumber() {
         ArrayList<Integer> arr = new ArrayList<>();
@@ -42,6 +43,7 @@ public class COUNT_NUMS_GPTTest {
         Assert.assertEquals(3, COUNT_NUMS.count_nums(arr));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testMultipleNegativeNumbers() {
         ArrayList<Integer> arr = new ArrayList<>();
@@ -51,6 +53,7 @@ public class COUNT_NUMS_GPTTest {
         Assert.assertEquals(3, COUNT_NUMS.count_nums(arr));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testMixedNumbers() {
         ArrayList<Integer> arr = new ArrayList<>();
@@ -69,6 +72,7 @@ public class COUNT_NUMS_GPTTest {
         Assert.assertEquals(2, COUNT_NUMS.count_nums(arr));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSingleDigitNegative() {
         ArrayList<Integer> arr = new ArrayList<>();
@@ -91,6 +95,7 @@ public class COUNT_NUMS_GPTTest {
         Assert.assertEquals(0, COUNT_NUMS.count_nums(arr));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testPositiveAndNegativeWithZero() {
         ArrayList<Integer> arr = new ArrayList<>();

@@ -30,6 +30,7 @@ public class IS_NESTED_GPTTest {
         Assert.assertFalse(IS_NESTED.is_nested("]"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testMultipleUnmatchedBrackets() {
         Assert.assertFalse(IS_NESTED.is_nested("[][][]"));
@@ -43,6 +44,7 @@ public class IS_NESTED_GPTTest {
         Assert.assertTrue(IS_NESTED.is_nested("[[[[]]]]"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLongInvalidBrackets() {
         Assert.assertFalse(IS_NESTED.is_nested("[][[[]]][]]"));

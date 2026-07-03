@@ -23,6 +23,7 @@ public class IS_SORTED_GPTTest {
         Assert.assertFalse(IS_SORTED.is_sorted(new int[]{1, 3, 2, 4, 5, 6, 7}));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testArrayWithDuplicates() {
         Assert.assertFalse(IS_SORTED.is_sorted(new int[]{1, 2, 2, 2, 3, 4}));
@@ -41,12 +42,14 @@ public class IS_SORTED_GPTTest {
         Assert.assertTrue(IS_SORTED.is_sorted(new int[]{0, 1, 1, 2}));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testArrayWithTwoDuplicates() {
         Assert.assertFalse(IS_SORTED.is_sorted(new int[]{1, 2, 2, 2, 3}));
         Assert.assertFalse(IS_SORTED.is_sorted(new int[]{1, 1, 2, 2, 3}));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLargeArray() {
         Assert.assertTrue(IS_SORTED.is_sorted(new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}));

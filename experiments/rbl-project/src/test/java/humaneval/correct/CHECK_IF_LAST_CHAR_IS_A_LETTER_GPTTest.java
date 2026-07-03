@@ -55,6 +55,7 @@ public class CHECK_IF_LAST_CHAR_IS_A_LETTER_GPTTest {
         Assert.assertFalse(CHECK_IF_LAST_CHAR_IS_A_LETTER.check_if_last_char_is_a_letter("apple pi 3"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLastCharacterIsMixedCase() {
         Assert.assertTrue(CHECK_IF_LAST_CHAR_IS_A_LETTER.check_if_last_char_is_a_letter("apple pi eE"));

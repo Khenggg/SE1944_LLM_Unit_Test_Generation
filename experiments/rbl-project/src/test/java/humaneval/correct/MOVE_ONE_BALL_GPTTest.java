@@ -37,6 +37,7 @@ public class MOVE_ONE_BALL_GPTTest {
         Assert.assertFalse(MOVE_ONE_BALL.move_one_ball(arr));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testUnsortedArray() {
         ArrayList<Integer> arr = new ArrayList<>();
@@ -46,6 +47,7 @@ public class MOVE_ONE_BALL_GPTTest {
         Assert.assertFalse(MOVE_ONE_BALL.move_one_ball(arr));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testArrayWithDuplicates() {
         ArrayList<Integer> arr = new ArrayList<>();

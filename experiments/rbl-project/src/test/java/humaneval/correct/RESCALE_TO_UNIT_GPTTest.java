@@ -12,6 +12,7 @@ public class RESCALE_TO_UNIT_GPTTest {
         Assert.assertArrayEquals(expected, RESCALE_TO_UNIT.rescale_to_unit(input), 0.0001);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testRescaleToUnitWithNegativeNumbers() {
         double[] input = {-5.0, -4.0, -3.0, -2.0, -1.0};
@@ -26,6 +27,7 @@ public class RESCALE_TO_UNIT_GPTTest {
         Assert.assertArrayEquals(expected, RESCALE_TO_UNIT.rescale_to_unit(input), 0.0001);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testRescaleToUnitWithSingleElement() {
         double[] input = {42.0};
@@ -33,6 +35,7 @@ public class RESCALE_TO_UNIT_GPTTest {
         Assert.assertArrayEquals(expected, RESCALE_TO_UNIT.rescale_to_unit(input), 0.0001);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testRescaleToUnitWithIdenticalElements() {
         double[] input = {5.0, 5.0, 5.0};
@@ -40,6 +43,7 @@ public class RESCALE_TO_UNIT_GPTTest {
         Assert.assertArrayEquals(expected, RESCALE_TO_UNIT.rescale_to_unit(input), 0.0001);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testRescaleToUnitWithZeroRange() {
         double[] input = {2.0, 2.0, 2.0, 2.0};
@@ -54,6 +58,7 @@ public class RESCALE_TO_UNIT_GPTTest {
         Assert.assertArrayEquals(expected, RESCALE_TO_UNIT.rescale_to_unit(input), 0.0001);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testRescaleToUnitWithNullArray() {
         RESCALE_TO_UNIT.rescale_to_unit(null);

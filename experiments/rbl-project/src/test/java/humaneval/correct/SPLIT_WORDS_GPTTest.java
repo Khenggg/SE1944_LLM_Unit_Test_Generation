@@ -26,6 +26,7 @@ public class SPLIT_WORDS_GPTTest {
         Assert.assertArrayEquals(expected, result);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSplitWordsWithOnlyLowercaseOddLetters() {
         String[] result = SPLIT_WORDS.split_words("aceg");
@@ -33,6 +34,7 @@ public class SPLIT_WORDS_GPTTest {
         Assert.assertArrayEquals(expected, result);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSplitWordsWithOnlyLowercaseEvenLetters() {
         String[] result = SPLIT_WORDS.split_words("bdfh");
@@ -40,6 +42,7 @@ public class SPLIT_WORDS_GPTTest {
         Assert.assertArrayEquals(expected, result);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSplitWordsWithMixedCase() {
         String[] result = SPLIT_WORDS.split_words("Abcdef");
@@ -47,6 +50,7 @@ public class SPLIT_WORDS_GPTTest {
         Assert.assertArrayEquals(expected, result);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSplitWordsWithSpecialCharacters() {
         String[] result = SPLIT_WORDS.split_words("Hello@world!");
@@ -61,6 +65,7 @@ public class SPLIT_WORDS_GPTTest {
         Assert.assertArrayEquals(expected, result);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSplitWordsWithOnlySpaces() {
         String[] result = SPLIT_WORDS.split_words("   ");
@@ -68,6 +73,7 @@ public class SPLIT_WORDS_GPTTest {
         Assert.assertArrayEquals(expected, result);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSplitWordsWithOnlyCommas() {
         String[] result = SPLIT_WORDS.split_words(",,,");

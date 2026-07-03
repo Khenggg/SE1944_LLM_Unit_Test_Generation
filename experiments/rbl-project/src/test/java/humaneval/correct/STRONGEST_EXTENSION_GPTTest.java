@@ -53,6 +53,7 @@ public class STRONGEST_EXTENSION_GPTTest {
         Assert.assertEquals(expected, STRONGEST_EXTENSION.strongest_extension(className, extensions));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testNullExtensions() {
         String className = "TestClass";

@@ -20,6 +20,7 @@ public class ENCODE_GPTTest {
         Assert.assertEquals("tHKS KS C MGSSCGG", ENCODE.encode("This is a message"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testEncodeAllVowels() {
         Assert.assertEquals("cDgFhJkL", ENCODE.encode("aEIoU"));
@@ -30,6 +31,7 @@ public class ENCODE_GPTTest {
         Assert.assertEquals("", ENCODE.encode(""));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testEncodeSingleCharacter() {
         Assert.assertEquals("B", ENCODE.encode("a"));
@@ -44,28 +46,33 @@ public class ENCODE_GPTTest {
         Assert.assertEquals("w", ENCODE.encode("U"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testEncodeNoVowels() {
         Assert.assertEquals("TST", ENCODE.encode("test"));
         Assert.assertEquals("THS", ENCODE.encode("THIS"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testEncodeAllUppercase() {
         Assert.assertEquals("tHIS IS A MESSG", ENCODE.encode("THIS IS A MESSAGE"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testEncodeAllLowercase() {
         Assert.assertEquals("tHIS IS A MESSG", ENCODE.encode("this is a message"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testEncodeSpecialCharacters() {
         Assert.assertEquals("tHIS IS A MESSG!", ENCODE.encode("this is a message!"));
         Assert.assertEquals("tHIS IS A MESSG@123", ENCODE.encode("this is a message@123"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testEncodeLongString() {
         String input = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";

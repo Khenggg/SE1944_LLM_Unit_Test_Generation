@@ -47,6 +47,7 @@ public class SEARCH_GPTTest {
         Assert.assertEquals(expected, SEARCH.search(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testNoValidElement() {
         int[] input = {1, 1, 2, 2, 3};
@@ -68,6 +69,7 @@ public class SEARCH_GPTTest {
         Assert.assertEquals(expected, SEARCH.search(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLargeNumbers() {
         int[] input = {1000, 1000, 999, 999, 999};
@@ -75,6 +77,7 @@ public class SEARCH_GPTTest {
         Assert.assertEquals(expected, SEARCH.search(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testBoundaryValues() {
         int[] input = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};

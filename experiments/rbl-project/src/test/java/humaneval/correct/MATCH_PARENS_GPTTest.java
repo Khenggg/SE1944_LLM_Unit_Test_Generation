@@ -13,6 +13,7 @@ public class MATCH_PARENS_GPTTest {
         Assert.assertEquals("Yes", MATCH_PARENS.match_parens(new String[]{"((()))", "()"}));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testUnbalancedParentheses() {
         Assert.assertEquals("No", MATCH_PARENS.match_parens(new String[]{")", ")"}));
@@ -28,6 +29,7 @@ public class MATCH_PARENS_GPTTest {
         Assert.assertEquals("No", MATCH_PARENS.match_parens(new String[]{"", ")"}));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSingleParentheses() {
         Assert.assertEquals("No", MATCH_PARENS.match_parens(new String[]{"(", ")"}));

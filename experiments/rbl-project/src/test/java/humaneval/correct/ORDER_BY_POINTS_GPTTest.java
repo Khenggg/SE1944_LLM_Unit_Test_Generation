@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 public class ORDER_BY_POINTS_GPTTest {
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testOrderByPointsWithPositiveNumbers() {
         Integer[] input = {1, 11, 2, 20};
@@ -13,6 +14,7 @@ public class ORDER_BY_POINTS_GPTTest {
         Assert.assertArrayEquals(expected, ORDER_BY_POINTS.order_by_points(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testOrderByPointsWithNegativeNumbers() {
         Integer[] input = {-1, -11, -2, -20};
@@ -41,6 +43,7 @@ public class ORDER_BY_POINTS_GPTTest {
         Assert.assertArrayEquals(expected, ORDER_BY_POINTS.order_by_points(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testOrderByPointsWithSameDigitSum() {
         Integer[] input = {10, 1, 2, 20};
@@ -55,6 +58,7 @@ public class ORDER_BY_POINTS_GPTTest {
         Assert.assertArrayEquals(expected, ORDER_BY_POINTS.order_by_points(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testOrderByPointsWithLargeNumbers() {
         Integer[] input = {1000, 100, 10, 1};

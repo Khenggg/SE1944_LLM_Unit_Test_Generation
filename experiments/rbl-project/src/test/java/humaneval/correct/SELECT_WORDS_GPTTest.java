@@ -53,18 +53,21 @@ public class SELECT_WORDS_GPTTest {
         Assert.assertTrue(result.isEmpty());
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSelectWords_ZeroN() {
         ArrayList<String> result = SELECT_WORDS.select_words("Mary had a little lamb", 0);
         Assert.assertTrue(result.isEmpty());
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSelectWords_SingleCharacterWords() {
         ArrayList<String> result = SELECT_WORDS.select_words("a b c d e f g h i j k l m n o p q r s t u v w x y z", 1);
         Assert.assertTrue(result.isEmpty());
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSelectWords_SpecialCharacters() {
         ArrayList<String> result = SELECT_WORDS.select_words("Hello, world!", 4);
@@ -72,6 +75,7 @@ public class SELECT_WORDS_GPTTest {
         Assert.assertEquals("world", result.get(0));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testSelectWords_MixedCaseWords() {
         ArrayList<String> result = SELECT_WORDS.select_words("aBc DeF gHi", 2);

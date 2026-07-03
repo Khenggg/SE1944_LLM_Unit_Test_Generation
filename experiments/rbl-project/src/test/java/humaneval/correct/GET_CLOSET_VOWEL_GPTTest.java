@@ -48,12 +48,14 @@ public class GET_CLOSET_VOWEL_GPTTest {
         Assert.assertEquals("", GET_CLOSET_VOWEL.get_closet_vowel("ba"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testGetClosestVowelWithMixedCase() {
         Assert.assertEquals("A", GET_CLOSET_VOWEL.get_closet_vowel("bAcdE"));
         Assert.assertEquals("e", GET_CLOSET_VOWEL.get_closet_vowel("bEcdE"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testGetClosestVowelWithLongInput() {
         Assert.assertEquals("o", GET_CLOSET_VOWEL.get_closet_vowel("thisisalongwordwithvowelsandconsonants"));

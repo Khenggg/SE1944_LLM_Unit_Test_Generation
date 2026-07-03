@@ -8,6 +8,7 @@ import java.util.List;
 
 public class LONGEST_GPTTest {
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLongestWithMultipleLongestStrings() {
         List<String> input = Arrays.asList("apple", "banana", "cherry", "blueberry", "kiwi", "strawberry");
@@ -43,6 +44,7 @@ public class LONGEST_GPTTest {
         Assert.assertEquals("abcde", result);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLongestWithNullStrings() {
         List<String> input = Arrays.asList("apple", null, "banana");
@@ -57,6 +59,7 @@ public class LONGEST_GPTTest {
         Assert.assertEquals("abc", result);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLongestWithLongStrings() {
         List<String> input = Arrays.asList("longeststring", "longerstring", "short");
@@ -64,6 +67,7 @@ public class LONGEST_GPTTest {
         Assert.assertEquals("longerstring", result);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLongestWithLeadingAndTrailingSpaces() {
         List<String> input = Arrays.asList("  leading", "trailing  ", "  both  ");

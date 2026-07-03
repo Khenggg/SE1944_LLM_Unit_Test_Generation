@@ -37,6 +37,7 @@ public class PROD_SIGNS_GPTTest {
         Assert.assertEquals(expected, actual);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testArrayWithMixedNumbers() {
         int[] arr = {1, -2, 3, -4};
@@ -77,6 +78,7 @@ public class PROD_SIGNS_GPTTest {
         Assert.assertEquals(expected, actual);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testArrayWithAllPositiveAndNegative() {
         int[] arr = {1, -1, 2, -2};

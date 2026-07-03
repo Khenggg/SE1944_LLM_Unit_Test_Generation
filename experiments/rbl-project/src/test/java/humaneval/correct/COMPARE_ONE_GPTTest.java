@@ -60,6 +60,7 @@ public class COMPARE_ONE_GPTTest {
         Assert.assertEquals(1, COMPARE_ONE.compare_one("-1", 1));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testCompareOneWithStringRepresentingNegativeFloatAndInteger() {
         Assert.assertEquals("-1.5", COMPARE_ONE.compare_one("-1.5", 0));
@@ -70,6 +71,7 @@ public class COMPARE_ONE_GPTTest {
         Assert.assertEquals("3", COMPARE_ONE.compare_one("2.5", "3"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testCompareOneWithNullValues() {
         Assert.assertNull(COMPARE_ONE.compare_one(null, null));

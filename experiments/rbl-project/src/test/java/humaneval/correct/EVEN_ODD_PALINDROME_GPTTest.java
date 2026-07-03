@@ -34,6 +34,7 @@ public class EVEN_ODD_PALINDROME_GPTTest {
         Assert.assertEquals(1, (int) result.get(1)); // Odd palindromes: 1
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testEvenOddPalindromeWithMaxInput() {
         ArrayList<Integer> result = EVEN_ODD_PALINDROME.even_odd_palindrome(1000);

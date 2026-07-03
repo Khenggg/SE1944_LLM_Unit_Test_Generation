@@ -15,6 +15,7 @@ public class GET_MAX_TRIPLES_GPTTest {
         Assert.assertEquals(0, GET_MAX_TRIPLES.get_max_triples(2));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testGetMaxTriplesWithThreeElements() {
         Assert.assertEquals(1, GET_MAX_TRIPLES.get_max_triples(3));
@@ -35,21 +36,25 @@ public class GET_MAX_TRIPLES_GPTTest {
         Assert.assertEquals(4, GET_MAX_TRIPLES.get_max_triples(6));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testGetMaxTriplesWithSevenElements() {
         Assert.assertEquals(6, GET_MAX_TRIPLES.get_max_triples(7));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testGetMaxTriplesWithEightElements() {
         Assert.assertEquals(10, GET_MAX_TRIPLES.get_max_triples(8));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testGetMaxTriplesWithNineElements() {
         Assert.assertEquals(20, GET_MAX_TRIPLES.get_max_triples(9));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testGetMaxTriplesWithTenElements() {
         Assert.assertEquals(35, GET_MAX_TRIPLES.get_max_triples(10));
@@ -60,6 +65,7 @@ public class GET_MAX_TRIPLES_GPTTest {
         Assert.assertEquals(0, GET_MAX_TRIPLES.get_max_triples(0));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testGetMaxTriplesWithNegativeInput() {
         Assert.assertEquals(0, GET_MAX_TRIPLES.get_max_triples(-5));

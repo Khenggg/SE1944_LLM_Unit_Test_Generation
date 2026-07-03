@@ -35,6 +35,7 @@ public class REMOVE_VOWELS_GPTTest {
         Assert.assertEquals("", REMOVE_VOWELS.remove_vowels("AEIOUaeiou"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testStringWithSpacesAndVowels() {
         Assert.assertEquals("  ", REMOVE_VOWELS.remove_vowels(" a e i o u "));

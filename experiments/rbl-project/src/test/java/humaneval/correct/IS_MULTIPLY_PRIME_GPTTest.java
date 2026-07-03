@@ -55,6 +55,7 @@ public class IS_MULTIPLY_PRIME_GPTTest {
         Assert.assertFalse(IS_MULTIPLY_PRIME.is_multiply_prime(6)); // 2 * 3, but only two primes
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testIsMultiplyPrime_InvalidCase7() {
         Assert.assertFalse(IS_MULTIPLY_PRIME.is_multiply_prime(8)); // 2 * 2 * 2
@@ -75,6 +76,7 @@ public class IS_MULTIPLY_PRIME_GPTTest {
         Assert.assertFalse(IS_MULTIPLY_PRIME.is_multiply_prime(11)); // Only one prime
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testIsMultiplyPrime_InvalidCase11() {
         Assert.assertFalse(IS_MULTIPLY_PRIME.is_multiply_prime(12)); // 2 * 2 * 3
@@ -105,6 +107,7 @@ public class IS_MULTIPLY_PRIME_GPTTest {
         Assert.assertFalse(IS_MULTIPLY_PRIME.is_multiply_prime(17)); // Only one prime
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testIsMultiplyPrime_InvalidCase17() {
         Assert.assertFalse(IS_MULTIPLY_PRIME.is_multiply_prime(18)); // 2 * 3 * 3
@@ -115,6 +118,7 @@ public class IS_MULTIPLY_PRIME_GPTTest {
         Assert.assertFalse(IS_MULTIPLY_PRIME.is_multiply_prime(19)); // Only one prime
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testIsMultiplyPrime_InvalidCase19() {
         Assert.assertFalse(IS_MULTIPLY_PRIME.is_multiply_prime(20)); // 2 * 2 * 5
@@ -150,11 +154,13 @@ public class IS_MULTIPLY_PRIME_GPTTest {
         Assert.assertFalse(IS_MULTIPLY_PRIME.is_multiply_prime(26)); // 2 * 13, but only two primes
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testIsMultiplyPrime_InvalidCase26() {
         Assert.assertFalse(IS_MULTIPLY_PRIME.is_multiply_prime(27)); // 3 * 3 * 3
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testIsMultiplyPrime_InvalidCase27() {
         Assert.assertFalse(IS_MULTIPLY_PRIME.is_multiply_prime(28)); // 2 * 2 * 7

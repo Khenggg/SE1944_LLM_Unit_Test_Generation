@@ -61,12 +61,14 @@ public class CLOSEST_INTEGER_GPTTest {
         CLOSEST_INTEGER.closest_integer("invalid");
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testClosestIntegerLargeNumber() {
         Assert.assertEquals(1000000, CLOSEST_INTEGER.closest_integer("1000000.4"));
         Assert.assertEquals(1000000, CLOSEST_INTEGER.closest_integer("1000000.5"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testClosestIntegerSmallNumber() {
         Assert.assertEquals(0, CLOSEST_INTEGER.closest_integer("0.4"));

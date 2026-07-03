@@ -40,6 +40,7 @@ public class SKJKASDKD_GPTTest {
         Assert.assertEquals(expected, SKJKASDKD.skjkasdkd(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLargestPrimeWithAllPrimes() {
         int[] input = {2, 3, 5, 7, 11, 13, 17, 19, 23};
@@ -68,6 +69,7 @@ public class SKJKASDKD_GPTTest {
         Assert.assertEquals(expected, SKJKASDKD.skjkasdkd(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLargestPrimeWithSingleDigitPrimes() {
         int[] input = {2, 3, 5, 7};

@@ -10,6 +10,7 @@ public class SOLVE_STRING_GPTTest {
         Assert.assertEquals("", SOLVE_STRING.solve_string(""));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testNoLetters() {
         Assert.assertEquals("4321", SOLVE_STRING.solve_string("1234"));
@@ -31,6 +32,7 @@ public class SOLVE_STRING_GPTTest {
         Assert.assertEquals("world", SOLVE_STRING.solve_string("WORLD"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testMixedCase() {
         Assert.assertEquals("#A@c", SOLVE_STRING.solve_string("#a@C"));
@@ -38,6 +40,7 @@ public class SOLVE_STRING_GPTTest {
         Assert.assertEquals("1234!@#", SOLVE_STRING.solve_string("1234!@#"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testOnlySpecialCharacters() {
         Assert.assertEquals("!@#$%^&*()", SOLVE_STRING.solve_string("!@#$%^&*()"));

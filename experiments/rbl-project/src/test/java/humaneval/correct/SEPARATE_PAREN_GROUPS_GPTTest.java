@@ -37,18 +37,21 @@ public class SEPARATE_PAREN_GROUPS_GPTTest {
         Assert.assertEquals(Arrays.asList("()", "()", "()"), result);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testMixedContent() {
         List<String> result = SEPARATE_PAREN_GROUPS.separate_paren_groups("a(b)c(d)e(f)g");
         Assert.assertEquals(Arrays.asList("b", "d", "f"), result);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testMultipleNestedPairs() {
         List<String> result = SEPARATE_PAREN_GROUPS.separate_paren_groups("a(b(c)d)e(f(g)h)i");
         Assert.assertEquals(Arrays.asList("b(c)d", "f(g)h"), result);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testUnmatchedOpeningParenthesis() {
         List<String> result = SEPARATE_PAREN_GROUPS.separate_paren_groups("((a+b)");
@@ -61,12 +64,14 @@ public class SEPARATE_PAREN_GROUPS_GPTTest {
         Assert.assertTrue(result.isEmpty());
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testComplexMixedContent() {
         List<String> result = SEPARATE_PAREN_GROUPS.separate_paren_groups("1(2(3)4)5(6)7");
         Assert.assertEquals(Arrays.asList("2(3)4", "6"), result);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testMultipleUnmatchedParentheses() {
         List<String> result = SEPARATE_PAREN_GROUPS.separate_paren_groups("((a)(b))c(d)e(f)g");

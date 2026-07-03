@@ -58,6 +58,7 @@ public class WORDS_STRINGS_GPTTest {
         Assert.assertEquals(expected, WORDS_STRINGS.words_strings(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testInputWithOnlySpaces() {
         String input = "     ";
@@ -94,6 +95,7 @@ public class WORDS_STRINGS_GPTTest {
         Assert.assertEquals(expected, WORDS_STRINGS.words_strings(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testInputWithOnlyCommas() {
         String input = ",,,";

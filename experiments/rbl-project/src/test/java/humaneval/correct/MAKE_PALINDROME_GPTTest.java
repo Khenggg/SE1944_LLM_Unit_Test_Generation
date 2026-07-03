@@ -30,6 +30,7 @@ public class MAKE_PALINDROME_GPTTest {
         Assert.assertFalse(MAKE_PALINDROME.is_palindrome("hello"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testIsPalindrome_SpecialCharacters() {
         Assert.assertTrue(MAKE_PALINDROME.is_palindrome("A man, a plan, a canal, Panama"));
@@ -60,11 +61,13 @@ public class MAKE_PALINDROME_GPTTest {
         Assert.assertEquals("abcba", MAKE_PALINDROME.make_palindrome("abc"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testMakePalindrome_SingleCharacterSuffix() {
         Assert.assertEquals("abccba", MAKE_PALINDROME.make_palindrome("abc"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testMakePalindrome_SpecialCharacters() {
         Assert.assertEquals("A man, a plan, a canal, PanamA man, a plan, a canal, PanamA", 

@@ -43,6 +43,7 @@ public class IS_HAPPY_GPTTest {
         Assert.assertFalse(IS_HAPPY.is_happy("xzz"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testStringWithNonConsecutiveIdenticalCharacters() {
         Assert.assertTrue(IS_HAPPY.is_happy("abac"));
@@ -55,6 +56,7 @@ public class IS_HAPPY_GPTTest {
         Assert.assertTrue(IS_HAPPY.is_happy("abcdeabcde"));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test(timeout = 5000)
     public void testLongStringWithUnhappyPattern() {
         Assert.assertFalse(IS_HAPPY.is_happy("abcdeaa"));
