@@ -11,12 +11,12 @@ def manage_tests():
     evosuite_sub_dir = os.path.join(src_dir, "evosuite")
 
     # Command line argument parser
-    parser = argparse.ArgumentParser(description="Quản lý và sao lưu bộ test case sinh bởi AI (GPT) và EvoSuite")
+    parser = argparse.ArgumentParser(description="Quản lý, gom nhóm, và sao lưu bộ test case sinh bởi AI (GPT) và EvoSuite")
     parser.add_argument(
         "--action", 
-        choices=["archive", "clean"], 
+        choices=["archive", "clean", "organize"], 
         default="archive", 
-        help="Hành động: 'archive' (sao lưu và di chuyển) hoặc 'clean' (xóa sạch)"
+        help="Hành động: 'archive' (sao lưu), 'clean' (xóa sạch), hoặc 'organize' (gom nhóm package cho EvoSuite)"
     )
     parser.add_argument(
         "--type", 
@@ -43,7 +43,41 @@ def manage_tests():
         print(f"Source directory does not exist: {src_dir}")
         return
 
-    # Identify files and directories to search
+    # Handle 'organize' action (EvoSuite specific)
+    if args.action == "organize":
+        if args.tool != "evosuite":
+            print("Lỗi: Hành động 'organize' chỉ áp dụng cho công cụ 'evosuite'!")
+            return
+            
+        es_files = [f for f in os.listdir(src_dir) if f.endswith("_ESTest.java") or f.endswith("_ESTest_scaffolding.java")]
+        if not es_files:
+            print("Không tìm thấy file EvoSuite nào ở thư mục gốc để gom nhóm (có thể đã được gom từ trước).")
+            return
+            
+        os.makedirs(evosuite_sub_dir, exist_ok=True)
+        print(f"Đang gom nhóm và sửa package cho {len(es_files)} file EvoSuite...")
+        
+        count = 0
+        for filename in es_files:
+            src_path = os.path.join(src_dir, filename)
+            dst_path = os.path.join(evosuite_sub_dir, filename)
+            
+            with open(src_path, "r", encoding="utf-8") as f:
+                content = f.read()
+                
+            # Replace package declaration
+            modified_content = content.replace("package humaneval.correct;", "package humaneval.correct.evosuite;")
+            
+            with open(dst_path, "w", encoding="utf-8") as f:
+                f.write(modified_content)
+                
+            os.remove(src_path)
+            count += 1
+            
+        print(f"Đã gom nhóm thành công {count} file EvoSuite vào package 'humaneval.correct.evosuite'!")
+        return
+
+    # Identify files and directories to search for archive/clean
     target_files = [] # list of tuples: (filename, source_directory)
     backup_base_dir = ""
     tool_label = ""

@@ -109,18 +109,18 @@ Script sẽ in ra màn hình bảng thống kê chi tiết về Branch Coverage 
     cd ../..
     python scripts/parse_metrics.py
     ```
-6.  Lưu trữ test case của EvoSuite:
+6.  Gom nhóm (Organize) test case của EvoSuite vào package con:
     ```powershell
-    python experiments/rbl-project/organize_tests.py
+    python scripts/manage_tests.py --action organize --tool evosuite
     ```
-    *(Các file test EvoSuite 1p sẽ được chuyển gọn gàng vào thư mục `experiments/rbl-project/src/test/java/humaneval/correct/evosuite/`)*
+    *(Các file test EvoSuite 1p sẽ được chuyển gọn gàng và tự động sửa package sang `humaneval.correct.evosuite`)*
 
-7.  **Sao lưu và dọn dẹp bộ test EvoSuite (Mới):**
+7.  **Sao lưu và dọn dẹp bộ test EvoSuite:**
     *   **Sao lưu bộ test EvoSuite 1 phút:**
         ```powershell
         python scripts/manage_tests.py --action archive --tool evosuite --type pilot --interval 1m
         ```
-        *(Các test case sẽ được lưu trữ vào thư mục `experiments/rbl-project/evosuite_backups/pilot/1m/run_X_[timestamp]/`)*
+        *(Các test case sẽ được di chuyển vào thư mục lưu trữ `experiments/rbl-project/evosuite_backups/pilot/1m/run_X_[timestamp]/`)*
     *   **Dọn dẹp thư mục test của EvoSuite:**
         ```powershell
         python scripts/manage_tests.py --action clean --tool evosuite
