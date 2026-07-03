@@ -115,6 +115,17 @@ Script sẽ in ra màn hình bảng thống kê chi tiết về Branch Coverage 
     ```
     *(Các file test EvoSuite 1p sẽ được chuyển gọn gàng vào thư mục `experiments/rbl-project/src/test/java/humaneval/correct/evosuite/`)*
 
+7.  **Sao lưu và dọn dẹp bộ test EvoSuite (Mới):**
+    *   **Sao lưu bộ test EvoSuite 1 phút:**
+        ```powershell
+        python scripts/manage_tests.py --action archive --tool evosuite --type pilot --interval 1m
+        ```
+        *(Các test case sẽ được lưu trữ vào thư mục `experiments/rbl-project/evosuite_backups/pilot/1m/run_X_[timestamp]/`)*
+    *   **Dọn dẹp thư mục test của EvoSuite:**
+        ```powershell
+        python scripts/manage_tests.py --action clean --tool evosuite
+        ```
+
 ---
 
 ## 4. Quyết định kỹ thuật & Nhật ký lỗi (Technical Decisions & Error Log)
@@ -134,5 +145,5 @@ Script sẽ in ra màn hình bảng thống kê chi tiết về Branch Coverage 
 ### B. Quyết định kỹ thuật sau Pilot (7.4)
 * **Random Seed đã chọn:** `42` (Dùng để sinh ngẫu nhiên 6 hàm trong `data/pilot_sample.csv`).
 * **Độ đồng nhất (IAA):** Không áp dụng đối với dự án sinh test (do benchmark code là HumanEval-Java chuẩn có sẵn của con người).
-* **Đánh giá Pipeline:** Pipeline hoạt động chính xác, cấu trúc lưu trữ và backup qua script `manage_gpt_tests.py` chạy mượt mà.
+* **Đánh giá Pipeline:** Pipeline hoạt động chính xác, cấu trúc lưu trữ và backup qua script `manage_tests.py` chạy mượt mà.
 * **Quyết định:** **TIẾN HÀNH THỰC NGHIỆM CHÍNH THỨC (TUẦN 8) trên toàn bộ 63 hàm.**
