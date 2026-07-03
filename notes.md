@@ -81,6 +81,12 @@ Chạy script tự động phân tích dữ liệu từ JaCoCo và PIT:
 python scripts/parse_metrics.py
 ```
 Script sẽ in ra màn hình bảng thống kê chi tiết về Branch Coverage và Mutation Score trung bình của 6 hàm chạy thử nghiệm để nhóm phân tích.
+### Bước 6: Sao lưu và dọn dẹp bộ test AI (Sau khi đo đạc xong)
+Để chuẩn bị cho các đợt chạy tiếp theo hoặc tránh xung đột khi chuyển sang chạy EvoSuite đối chứng, hãy sao lưu bộ test AI vừa chạy xong vào thư mục lưu trữ ngoài:
+```powershell
+python scripts/manage_tests.py --action archive --tool gpt --type pilot
+```
+*(Các file test AI sẽ được di chuyển tự động từ thư mục chính vào thư mục lưu trữ ngoài `experiments/rbl-project/gpt_backups/pilot/run_X_[timestamp]/`)*
 
 ---
 
