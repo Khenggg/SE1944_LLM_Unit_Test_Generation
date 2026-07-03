@@ -147,3 +147,46 @@ Script sẽ in ra màn hình bảng thống kê chi tiết về Branch Coverage 
 * **Độ đồng nhất (IAA):** Không áp dụng đối với dự án sinh test (do benchmark code là HumanEval-Java chuẩn có sẵn của con người).
 * **Đánh giá Pipeline:** Pipeline hoạt động chính xác, cấu trúc lưu trữ và backup qua script `manage_tests.py` chạy mượt mà.
 * **Quyết định:** **TIẾN HÀNH THỰC NGHIỆM CHÍNH THỨC (TUẦN 8) trên toàn bộ 63 hàm.**
+
+---
+
+## 5. Hướng dẫn sử dụng Công cụ Quản lý Test (scripts/manage_tests.py)
+
+Script `scripts/manage_tests.py` là công cụ hợp nhất để quản lý các file test case sinh bởi cả AI (GPT) và EvoSuite trong quá trình thực nghiệm.
+
+### Cú pháp lệnh:
+```powershell
+python scripts/manage_tests.py --action [archive|clean|organize] --tool [gpt|evosuite] --type [pilot|full] --interval [1m|3m|5m]
+```
+
+### Các tham số cấu hình:
+1.  **`--action`** *(Hành động thực hiện)*:
+    *   `archive` *(Mặc định)*: Sao lưu toàn bộ các file test hiện tại của công cụ được chọn vào thư mục lịch sử bên ngoài và dọn sạch thư mục test chính.
+    *   `clean`: Xóa vĩnh viễn toàn bộ các file test của công cụ được chọn khỏi thư mục test chính (không sao lưu).
+    *   `organize`: Gom nhóm và cấu hình lại package cho test case của EvoSuite (chỉ áp dụng đối với `--tool evosuite`).
+2.  **`--tool`** *(Công cụ áp dụng)*:
+    *   `gpt` *(Mặc định)*: Áp dụng cho test case của AI (`*_GPTTest.java`).
+    *   `evosuite`: Áp dụng cho test case của EvoSuite (`*_ESTest.java` và `*_ESTest_scaffolding.java`).
+3.  **`--type`** *(Loại thực nghiệm)*:
+    *   `pilot` *(Mặc định)*: Lưu trữ dưới thư mục `pilot`.
+    *   `full`: Lưu trữ dưới thư mục `full` (Thực nghiệm chính thức Tuần 8).
+4.  **`--interval`** *(Mốc thời gian chạy EvoSuite - chỉ có tác dụng với `--tool evosuite`)*:
+    *   `1m` *(Mặc định)*, `3m`, `5m`: Tương ứng với các mốc thời gian sinh test đối chứng.
+
+### Ví dụ sử dụng thường gặp:
+*   **Gom nhóm test case EvoSuite mới sinh:**
+    ```powershell
+    python scripts/manage_tests.py --action organize --tool evosuite
+    ```
+*   **Sao lưu bộ test AI của Pilot (sau khi đo đạc xong):**
+    ```powershell
+    python scripts/manage_tests.py --action archive --tool gpt --type pilot
+    ```
+*   **Sao lưu bộ test EvoSuite mốc 3 phút của thực nghiệm chính thức (Tuần 8):**
+    ```powershell
+    python scripts/manage_tests.py --action archive --tool evosuite --type full --interval 3m
+    ```
+*   **Xóa sạch toàn bộ test case AI hiện tại khỏi thư mục chính:**
+    ```powershell
+    python scripts/manage_tests.py --action clean --tool gpt
+    ```
