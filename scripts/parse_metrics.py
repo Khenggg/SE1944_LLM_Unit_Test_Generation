@@ -2,7 +2,8 @@ import os
 import xml.etree.ElementTree as ET
 
 # Paths
-workspace_dir = r"f:\Ky 5\SWT301\Github\SE1944_LLM_Unit_Test_Generation"
+script_dir = os.path.dirname(os.path.abspath(__file__))
+workspace_dir = os.path.abspath(os.path.join(script_dir, ".."))
 jacoco_xml_path = os.path.join(workspace_dir, "experiments", "rbl-project", "target", "site", "jacoco", "jacoco.xml")
 pit_reports_dir = os.path.join(workspace_dir, "experiments", "rbl-project", "target", "pit-reports")
 
