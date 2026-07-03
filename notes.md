@@ -52,15 +52,22 @@ Di chuyển vào thư mục Maven của dự án thực nghiệm:
 cd experiments/rbl-project
 ```
 
-1.  **Đo Branch Coverage (JaCoCo):**
+1.  **Đo Branch Coverage (JaCoCo) - chấp nhận test failures và khống chế lặp vô hạn:**
     ```powershell
-    mvn clean test -Dtest="*GPTTest"
+    mvn clean test "-Dtest=*GPTTest" "-Dmaven.test.failure.ignore=true"
     ```
     *(Báo cáo JaCoCo sẽ xuất ra file XML tại `target/site/jacoco/jacoco.xml`)*
 
-2.  **Đo Mutation Score (PiTest):**
+2.  **Quay lại thư mục root để chạy script tự động chèn `@Ignore` vào các test case lỗi/timeout:**
     ```powershell
-    mvn pitest:mutationCoverage -Dtest="*GPTTest"
+    cd ../..
+    python experiments/rbl-project/ignore_failing_tests.py
+    ```
+
+3.  **Quay lại thư mục Maven để chạy đo Mutation Score (PITest):**
+    ```powershell
+    cd experiments/rbl-project
+    mvn pitest:mutationCoverage "-Dtest=*GPTTest"
     ```
     *(Báo cáo PiTest sẽ xuất ra file XML/HTML tại `target/pit-reports/`)*
 
@@ -113,14 +120,18 @@ Script sẽ in ra màn hình bảng thống kê chi tiết về Branch Coverage 
 ## 4. Quyết định kỹ thuật & Nhật ký lỗi (Technical Decisions & Error Log)
 
 ### A. Nhật ký lỗi (Error Log)
-1. **Lỗi `tools.jar` (JDK 21):**
-   * *Mô tả:* Khi chạy `mvn test` trên JDK 21, plugin `evosuite-maven-plugin:1.0.6` bị crash do cố tìm `tools.jar` (đã bị loại bỏ kể từ Java 9).
-   * *Xử lý:* Tạm thời comment out plugin `evosuite-maven-plugin` trong `pom.xml` khi chạy các test case thông thường (`*GPTTest`) và hướng dẫn nhóm chuyển sang sử dụng JDK 8 để đồng bộ biên dịch.
-2: **Lỗi `Green Suite` của PITest và lặp vô hạn (Infinite Loop):**
-   * *Mô tả:* Các test case do AI sinh ra (`*_GPTTest.java`) chứa một số test case bị fail logic trên code gốc, làm cho PITest báo lỗi và dừng build. Đặc biệt, trong class `FIND_ZERO_GPTTest`, AI đã sinh ra các đầu vào đa thức vô nghiệm thực (như $f(x)=x^2+1$ hoặc hàm hằng $f(x)=5$), khiến thuật toán bisection trong mã nguồn gốc rơi vào vòng lặp vô hạn và làm treo tiến trình `mvn test` hoặc PITest vĩnh viễn.
+1. **Lỗi thiếu thư viện `tools.jar` của plugin EvoSuite (khi chạy trên JDK 9+ như JDK 21):**
+   * *Mô tả:* Khi chạy lệnh Maven trên JDK 21, plugin `evosuite-maven-plugin:1.0.6` bị lỗi build vì không tìm thấy file thư viện `tools.jar` (thư viện này đã bị Oracle gỡ bỏ hoàn toàn kể từ phiên bản Java 9 trở lên).
    * *Xử lý:* 
-     1. Cấu hình lại các script sinh test (`run_pilot.py` và `generate_gpt_tests.py`) để tự động chèn **`@Test(timeout = 5000)`** (chờ tối đa 5 giây) cho tất cả các test case nhằm ép dừng các test lặp vô hạn và ghi nhận lỗi `TimeoutException` vào báo cáo XML của Maven thay vì làm treo tiến trình.
-     2. Chạy script tự động `ignore_failing_tests.py` để đọc báo cáo JUnit XML, tự động chèn `@org.junit.Ignore` vào tất cả các test case bị lỗi và bị timeout, biến bộ test suite thành "Green" (skipped) một cách tự động 100% để PITest đo đạc thành công.
+     * Tạm thời comment out (vô hiệu hóa) phần cấu hình của plugin `evosuite-maven-plugin` trong [pom.xml](file:///f:/Ky%205/SWT301/Github/SE1944_LLM_Unit_Test_Generation/experiments/rbl-project/pom.xml#L110-L127) khi chạy kiểm thử thông thường (`*GPTTest`) để có thể build thành công trên JDK 21.
+     * Khi cần chạy sinh test đối chứng bằng EvoSuite, nhóm bắt buộc phải chuyển đổi môi trường máy sang sử dụng **JDK 8**.
+2. **Lỗi `Green Suite` của PITest và treo tiến trình do lặp vô hạn (Infinite Loop):**
+   * *Mô tả:* 
+     * PITest yêu cầu test suite phải đạt trạng thái 100% Green (không có test fail) để chạy đột biến, trong khi test case do AI sinh ra chứa một số test case bị assert sai logic trên code gốc dẫn đến build thất bại.
+     * Đặc biệt, trong class `FIND_ZERO_GPTTest`, AI đã sinh ra các đầu vào đa thức vô nghiệm thực (ví dụ $f(x)=x^2+1$ hoặc hàm hằng $f(x)=5$). Điều này khiến thuật toán bisection trong mã nguồn gốc rơi vào vòng lặp vô hạn và treo vĩnh viễn tiến trình chạy Maven/PITest.
+   * *Xử lý:* 
+     1. Cấu hình lại các script sinh test (`run_pilot.py` và `generate_gpt_tests.py`) để tự động chèn thêm **`@Test(timeout = 5000)`** (chờ tối đa 5 giây) cho tất cả các test case nhằm cưỡng chế dừng các test bị lặp vô hạn và ghi nhận lỗi `TimeoutException` vào báo cáo XML.
+     2. Chạy script tự động `ignore_failing_tests.py` để đọc báo cáo XML, tự động chèn `@org.junit.Ignore` vào tất cả các test case bị lỗi và bị timeout, biến bộ test suite thành "Green" (skipped) một cách tự động 100% để PITest đo đạc thành công.
 
 ### B. Quyết định kỹ thuật sau Pilot (7.4)
 * **Random Seed đã chọn:** `42` (Dùng để sinh ngẫu nhiên 6 hàm trong `data/pilot_sample.csv`).
