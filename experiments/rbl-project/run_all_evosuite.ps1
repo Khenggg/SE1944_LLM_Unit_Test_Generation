@@ -7,7 +7,7 @@ param (
 $ErrorActionPreference = 'Stop'
 
 # Set JDK 8 for EvoSuite compatibility
-$env:JAVA_HOME = "E:\java8\zulu@1.8.492"
+$env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-8.0.492.9-hotspot"
 $env:Path = "$env:JAVA_HOME\bin;" + $env:Path
 
 # Move to the project directory containing this script
