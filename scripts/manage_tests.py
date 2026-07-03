@@ -8,6 +8,7 @@ def manage_tests():
     scripts_dir = os.path.dirname(os.path.abspath(__file__))
     workspace_dir = os.path.dirname(scripts_dir)
     src_dir = os.path.join(workspace_dir, "experiments", "rbl-project", "src", "test", "java", "humaneval", "correct")
+    evosuite_sub_dir = os.path.join(src_dir, "evosuite")
 
     # Command line argument parser
     parser = argparse.ArgumentParser(description="Quản lý và sao lưu bộ test case sinh bởi AI (GPT) và EvoSuite")
@@ -37,20 +38,37 @@ def manage_tests():
     )
     args = parser.parse_args()
 
-    # Find all relevant test files
+    # Verify base source directory exists
     if not os.path.exists(src_dir):
         print(f"Source directory does not exist: {src_dir}")
         return
 
+    # Identify files and directories to search
+    target_files = [] # list of tuples: (filename, source_directory)
+    backup_base_dir = ""
+    tool_label = ""
+
     if args.tool == "gpt":
-        target_files = [f for f in os.listdir(src_dir) if f.endswith("_GPTTest.java")]
+        gpt_files = [f for f in os.listdir(src_dir) if f.endswith("_GPTTest.java")]
+        for f in gpt_files:
+            target_files.append((f, src_dir))
         backup_base_dir = os.path.join(workspace_dir, "experiments", "rbl-project", "gpt_backups")
         tool_label = "AI (GPT)"
     else:
-        # EvoSuite has both *_ESTest.java and *_ESTest_scaffolding.java
-        target_files = [f for f in os.listdir(src_dir) if f.endswith("_ESTest.java") or f.endswith("_ESTest_scaffolding.java")]
+        # For EvoSuite, search in both src_dir and src_dir/evosuite
         backup_base_dir = os.path.join(workspace_dir, "experiments", "rbl-project", "evosuite_backups")
         tool_label = f"EvoSuite ({args.interval})"
+        
+        # Search src_dir
+        es_files_main = [f for f in os.listdir(src_dir) if f.endswith("_ESTest.java") or f.endswith("_ESTest_scaffolding.java")]
+        for f in es_files_main:
+            target_files.append((f, src_dir))
+            
+        # Search src_dir/evosuite
+        if os.path.exists(evosuite_sub_dir):
+            es_files_sub = [f for f in os.listdir(evosuite_sub_dir) if f.endswith("_ESTest.java") or f.endswith("_ESTest_scaffolding.java")]
+            for f in es_files_sub:
+                target_files.append((f, evosuite_sub_dir))
 
     if not target_files:
         print(f"Không tìm thấy file test nào của {tool_label} trong thư mục.")
@@ -58,8 +76,8 @@ def manage_tests():
 
     if args.action == "clean":
         print(f"Đang xóa sạch {len(target_files)} file test của {tool_label}...")
-        for filename in target_files:
-            file_path = os.path.join(src_dir, filename)
+        for filename, folder in target_files:
+            file_path = os.path.join(folder, filename)
             os.remove(file_path)
         print(f"Đã xóa sạch các file test của {tool_label} thành công!")
         
@@ -90,8 +108,8 @@ def manage_tests():
         os.makedirs(dest_run_dir, exist_ok=True)
         
         print(f"Đang di chuyển/sao lưu {len(target_files)} file test của {tool_label} vào: {dest_run_dir}...")
-        for filename in target_files:
-            src_path = os.path.join(src_dir, filename)
+        for filename, folder in target_files:
+            src_path = os.path.join(folder, filename)
             dst_path = os.path.join(dest_run_dir, filename)
             shutil.move(src_path, dst_path)
             
