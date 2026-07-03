@@ -137,6 +137,9 @@ Source Code:
             else:
                 generated_code = package_decl + "\n\n" + generated_code
                 
+        # Add timeout to @Test annotations to prevent infinite loops (5 seconds)
+        generated_code = re.sub(r'@Test\b(?!\s*\()', '@Test(timeout = 5000)', generated_code)
+                
         # Write to destination
         with open(output_file_path, "w", encoding="utf-8") as f:
             f.write(generated_code)
