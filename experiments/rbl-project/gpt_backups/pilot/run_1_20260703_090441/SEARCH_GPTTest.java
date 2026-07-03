@@ -40,6 +40,7 @@ public class SEARCH_GPTTest {
         Assert.assertEquals(expected, SEARCH.search(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test
     public void testSearchWithNoValidResult() {
         int[] input = {1, 1, 2, 2, 3};
@@ -47,6 +48,7 @@ public class SEARCH_GPTTest {
         Assert.assertEquals(expected, SEARCH.search(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test
     public void testSearchWithAllUniqueElements() {
         int[] input = {1, 2, 3, 4, 5};
@@ -54,6 +56,7 @@ public class SEARCH_GPTTest {
         Assert.assertEquals(expected, SEARCH.search(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test
     public void testSearchWithLargeNumbers() {
         int[] input = {1000, 1000, 999, 999, 998};
@@ -61,6 +64,7 @@ public class SEARCH_GPTTest {
         Assert.assertEquals(expected, SEARCH.search(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test
     public void testSearchWithZeroFrequency() {
         int[] input = {1, 2, 3, 4, 5, 6};
@@ -75,6 +79,7 @@ public class SEARCH_GPTTest {
         Assert.assertEquals(expected, SEARCH.search(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test
     public void testSearchWithNegativeNumbers() {
         int[] input = {-1, -2, -3};

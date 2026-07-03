@@ -21,6 +21,7 @@ public class FIND_ZERO_GPTTest {
         Assert.assertTrue(result >= -1.0 && result <= 1.0);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test
     public void testFindZeroWithNoRootInRange() {
         List<Double> coefficients = Arrays.asList(1.0, 1.0); // f(x) = x + 1
@@ -28,6 +29,7 @@ public class FIND_ZERO_GPTTest {
         Assert.assertTrue(result > 1.0 || result < -1.0);
     }
 
+    @org.junit.Ignore("Infinite loop")
     @Test
     public void testFindZeroWithMultipleRoots() {
         List<Double> coefficients = Arrays.asList(1.0, 0.0, -1.0); // f(x) = x^2 - 1
@@ -58,6 +60,7 @@ public class FIND_ZERO_GPTTest {
         Assert.assertEquals(1.0, result, 1e-10);
     }
 
+    @org.junit.Ignore("Infinite loop")
     @Test
     public void testFindZeroWithConstantFunction() {
         List<Double> coefficients = Arrays.asList(5.0); // f(x) = 5
@@ -65,6 +68,7 @@ public class FIND_ZERO_GPTTest {
         Assert.assertTrue(result > 1.0 || result < -1.0);
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test
     public void testFindZeroWithEmptyList() {
         List<Double> coefficients = Arrays.asList(); // f(x) = 0

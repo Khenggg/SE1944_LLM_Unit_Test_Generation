@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 public class ORDER_BY_POINTS_GPTTest {
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test
     public void testOrderByPointsWithPositiveNumbers() {
         Integer[] input = {1, 11, 2, 21, 3};
@@ -13,6 +14,7 @@ public class ORDER_BY_POINTS_GPTTest {
         Assert.assertArrayEquals(expected, ORDER_BY_POINTS.order_by_points(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test
     public void testOrderByPointsWithNegativeNumbers() {
         Integer[] input = {-1, -11, -2, -21, -3};
@@ -20,6 +22,7 @@ public class ORDER_BY_POINTS_GPTTest {
         Assert.assertArrayEquals(expected, ORDER_BY_POINTS.order_by_points(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test
     public void testOrderByPointsWithMixedNumbers() {
         Integer[] input = {1, -1, 11, -11, 2, -2};
@@ -41,6 +44,7 @@ public class ORDER_BY_POINTS_GPTTest {
         Assert.assertArrayEquals(expected, ORDER_BY_POINTS.order_by_points(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test
     public void testOrderByPointsWithAllSameDigits() {
         Integer[] input = {10, 1, 100, 1000};
@@ -62,6 +66,7 @@ public class ORDER_BY_POINTS_GPTTest {
         Assert.assertArrayEquals(expected, ORDER_BY_POINTS.order_by_points(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test
     public void testOrderByPointsWithLargeNumbers() {
         Integer[] input = {1000000, 100000, 10000, 1000, 100};
@@ -69,6 +74,7 @@ public class ORDER_BY_POINTS_GPTTest {
         Assert.assertArrayEquals(expected, ORDER_BY_POINTS.order_by_points(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test
     public void testOrderByPointsWithNegativeLargeNumbers() {
         Integer[] input = {-1000000, -100000, -10000, -1000, -100};
@@ -76,6 +82,7 @@ public class ORDER_BY_POINTS_GPTTest {
         Assert.assertArrayEquals(expected, ORDER_BY_POINTS.order_by_points(input));
     }
 
+    @org.junit.Ignore("Generated test failed on correct code")
     @Test
     public void testOrderByPointsWithMixedLargeNumbers() {
         Integer[] input = {1000000, -100000, 10000, -1000, 100};
