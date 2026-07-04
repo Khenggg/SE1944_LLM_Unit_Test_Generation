@@ -1,6 +1,6 @@
 param (
     [Parameter(Mandatory=$true)]
-    [ValidateSet(1, 3, 5)]
+    [ValidateSet(1, 3, 5, 10, 15, 30, 60)]
     [int]$Minutes
 )
 
