@@ -13,6 +13,9 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <timeInMinutesPerClass>1</timeInMinutesPerClass>
+    <!-- Defaults for the GPT measurement run; EvoSuite runs override these properties. -->
+    <rbl4.surefire.include>**/*_GPTTest.java</rbl4.surefire.include>
+    <rbl4.pitest.targetTests>humaneval.correct.*_GPTTest</rbl4.pitest.targetTests>
   </properties>
 
   <dependencies>
@@ -60,9 +63,7 @@
         <version>2.22.1</version>
         <configuration>
           <includes>
-            <include>**/TEST_*.java</include>
-            <include>**/*_ESTest.java</include>
-            <include>**/*_GPTTest.java</include>
+            <include>${rbl4.surefire.include}</include>
           </includes>
         </configuration>
       </plugin>
@@ -99,8 +100,17 @@
             <param>humaneval.correct.*</param>
           </targetClasses>
           <targetTests>
-            <param>humaneval.*</param>
+            <param>${rbl4.pitest.targetTests}</param>
           </targetTests>
+          <!-- These three SUTs were already excluded in the recorded EvoSuite baseline
+               because PIT can exceed the experiment time bound on them. -->
+          <excludedClasses>
+            <param>humaneval.correct.FIND_ZERO</param>
+            <param>humaneval.correct.PRIME_FIB</param>
+            <param>humaneval.correct.IS_MULTIPLY_PRIME</param>
+          </excludedClasses>
+          <timeoutConst>3000</timeoutConst>
+          <timeoutFactor>1.5</timeoutFactor>
           <outputFormats>
             <value>XML</value>
             <value>HTML</value>
@@ -108,24 +118,6 @@
         </configuration>
       </plugin>
       
-      <!-- EvoSuite plugin -->
-      <plugin>
-        <groupId>org.evosuite.plugins</groupId>
-        <artifactId>evosuite-maven-plugin</artifactId>
-        <version>1.0.6</version>
-        <executions>
-          <execution>
-            <id>prepare</id>
-            <phase>process-test-classes</phase>
-            <goals>
-              <goal>prepare</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <timeInMinutesPerClass>${timeInMinutesPerClass}</timeInMinutesPerClass>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 </project>

@@ -1,176 +1,107 @@
-import os
-import re
-import time
-import sys
+"""Run the fresh six-class RBL-4 Pilot with durable API evidence."""
+
+from __future__ import annotations
+
 import csv
-from datetime import datetime
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
 
-# Paths
-workspace_dir = r"f:\Ky 5\SWT301\Github\SE1944_LLM_Unit_Test_Generation"
-data_dir = os.path.join(workspace_dir, "data")
-pilot_csv_path = os.path.join(data_dir, "pilot_sample.csv")
+from rbl4_openai import (
+    MODEL_NAME,
+    build_prompt,
+    extract_java_code,
+    load_workspace_env,
+    request_with_retry,
+    usage_and_cost,
+    write_csv_atomically,
+)
 
-rbl_project_dir = os.path.join(workspace_dir, "experiments", "rbl-project")
-src_correct_dir = os.path.join(rbl_project_dir, "src", "main", "java", "humaneval", "correct")
-test_dest_dir = os.path.join(rbl_project_dir, "src", "test", "java", "humaneval", "correct")
 
-results_dir = os.path.join(workspace_dir, "results")
-os.makedirs(results_dir, exist_ok=True)
-pilot_log_path = os.path.join(results_dir, "pilot_api_log.txt")
-pilot_output_path = os.path.join(results_dir, "pilot_llm_output.csv")
+WORKSPACE = Path(__file__).resolve().parent.parent
+RBL_PROJECT = WORKSPACE / "experiments" / "rbl-project"
+SOURCE_DIR = RBL_PROJECT / "src" / "main" / "java" / "humaneval" / "correct"
+TEST_DIR = RBL_PROJECT / "src" / "test" / "java" / "humaneval" / "correct"
+RESULTS_DIR = WORKSPACE / "results"
+PILOT_SAMPLE = WORKSPACE / "data" / "pilot_sample.csv"
+PILOT_LOG = RESULTS_DIR / "pilot_api_log.txt"
+PILOT_OUTPUT = RESULTS_DIR / "pilot_llm_output.csv"
+FIELDS = [
+    "timestamp", "class_name", "status", "model", "cost_usd", "input_tokens",
+    "output_tokens", "latency_sec", "retries", "error",
+]
 
-# Make sure destination exists
-os.makedirs(test_dest_dir, exist_ok=True)
 
-# Load API Key
-openai_key = os.environ.get("OPENAI_API_KEY")
-if not openai_key:
-    print("Error: OPENAI_API_KEY environment variable not found.")
-    print("Please set it in PowerShell before running:")
-    print('  $env:OPENAI_API_KEY="your-openai-api-key"')
-    sys.exit(1)
+def now_utc() -> str:
+    return datetime.now(timezone.utc).isoformat()
 
-try:
-    from openai import OpenAI
-    client = OpenAI(api_key=openai_key)
-except ImportError:
-    print("Error: The 'openai' library is not installed.")
-    print("Please run: .venv\\Scripts\\pip install openai")
-    sys.exit(1)
 
-model_name = "gpt-4o-mini-2024-07-18"
+def main() -> None:
+    load_workspace_env(WORKSPACE)
+    api_key = __import__("os").environ.get("OPENAI_API_KEY")
+    if not api_key:
+        raise SystemExit("Error: OPENAI_API_KEY is unavailable after loading the local .env.")
+    try:
+        from openai import OpenAI
+    except ImportError as error:
+        raise SystemExit("Error: install the openai package in .venv before running Pilot.") from error
 
-# Read pilot sample classes
-pilot_classes = []
-if not os.path.exists(pilot_csv_path):
-    print(f"Error: Pilot sample CSV not found at {pilot_csv_path}. Run setup_data.py first.")
-    sys.exit(1)
+    with PILOT_SAMPLE.open("r", encoding="utf-8", newline="") as handle:
+        pilot_classes = [row["class_name"] for row in csv.DictReader(handle)]
+    if len(pilot_classes) != 6:
+        raise SystemExit(f"Expected six Pilot classes, found {len(pilot_classes)}.")
 
-with open(pilot_csv_path, "r", encoding="utf-8") as f:
-    reader = csv.DictReader(f)
-    for row in reader:
-        pilot_classes.append(row["class_name"])
+    TEST_DIR.mkdir(parents=True, exist_ok=True)
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    active_tests = list(TEST_DIR.glob("*_GPTTest.java"))
+    if active_tests:
+        raise SystemExit("Active GPT tests exist. Archive or move them before starting a fresh Pilot run.")
 
-print(f"Loaded {len(pilot_classes)} classes for Pilot Run: {pilot_classes}")
+    client = OpenAI(api_key=api_key)
+    rows: list[dict[str, object]] = []
+    with PILOT_LOG.open("w", encoding="utf-8") as log_file:
+        log_file.write(f"--- PILOT RUN START: {now_utc()} | configured_model={MODEL_NAME} ---\n")
+        for index, class_name in enumerate(pilot_classes, 1):
+            source_path = SOURCE_DIR / f"{class_name}.java"
+            output_path = TEST_DIR / f"{class_name}_GPTTest.java"
+            timestamp = now_utc()
+            print(f"[{index}/{len(pilot_classes)}] Generating {class_name}...", end="", flush=True)
+            if not source_path.exists():
+                row = {"timestamp": timestamp, "class_name": class_name, "status": "FAILED_SOURCE_MISSING", "model": MODEL_NAME, "cost_usd": "0.000000", "input_tokens": 0, "output_tokens": 0, "latency_sec": "0.00", "retries": 0, "error": "Source file missing"}
+                rows.append(row)
+                print(" FAILED (source missing)")
+                continue
 
-results_data = []
+            started = time.perf_counter()
+            response, retries, error = request_with_retry(client, build_prompt(class_name, source_path.read_text(encoding="utf-8")))
+            latency = time.perf_counter() - started
+            if response is None:
+                row = {"timestamp": timestamp, "class_name": class_name, "status": "FAILED_API", "model": MODEL_NAME, "cost_usd": "0.000000", "input_tokens": 0, "output_tokens": 0, "latency_sec": f"{latency:.2f}", "retries": retries, "error": error}
+                rows.append(row)
+                log_file.write(f"Timestamp: {timestamp} | Class: {class_name} | Model: {MODEL_NAME} | Status: FAILED_API | Retries: {retries} | Error: {error}\n")
+                print(" FAILED (API)")
+                write_csv_atomically(PILOT_OUTPUT, FIELDS, rows)
+                continue
 
-# Open log file
-with open(pilot_log_path, "a", encoding="utf-8") as log_file:
-    log_file.write(f"\n--- PILOT RUN START: {datetime.now().isoformat()} ---\n")
-    
-    for idx, class_name in enumerate(pilot_classes, 1):
-        filename = f"{class_name}.java"
-        src_file_path = os.path.join(src_correct_dir, filename)
-        output_filename = f"{class_name}_GPTTest.java"
-        output_file_path = os.path.join(test_dest_dir, output_filename)
-        
-        print(f"[{idx}/{len(pilot_classes)}] Generating test for {class_name}...", end="", flush=True)
-        
-        # Read source code
-        if not os.path.exists(src_file_path):
-            print(f" FAILED (Source file {src_file_path} not found)")
-            continue
-            
-        with open(src_file_path, "r", encoding="utf-8") as f:
-            source_code = f.read()
-            
-        # Build Prompt
-        prompt = f"""You are an expert Java developer and software tester.
-Your task is to write a comprehensive JUnit 4 test suite for the following Java class.
-Strictly adhere to the following requirements:
-1. Generate test cases using JUnit 4 (use org.junit.Test, org.junit.Assert).
-2. Do not use JUnit 5 or other test frameworks.
-3. Test all logical paths, edge cases, boundary values, and potential error conditions.
-4. Ensure all assertions are correct and correspond exactly to the expected behavior of the correct code.
-5. The test class must be named {class_name}_GPTTest, corresponding to the target class {class_name}.
-6. The test class must be in package humaneval.correct;
-7. You should import any required packages (like java.util.*).
-8. Provide only the executable Java test class code. Do not include any markdown explanations, text wrapping, or extra commentary.
-
-Source Code:
-{source_code}"""
-
-        t0 = time.time()
-        try:
-            response = client.chat.completions.create(
-                model=model_name,
-                messages=[
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.0,
-                max_tokens=2000
-            )
-            t1 = time.time()
-            latency = t1 - t0
-            
-            content = response.choices[0].message.content
-            
-            # Extract java code block from markdown if present
-            code_match = re.search(r'```java(.*?)```', content, re.DOTALL)
-            if code_match:
-                generated_code = code_match.group(1).strip()
+            generated_code = extract_java_code(response.choices[0].message.content or "")
+            input_tokens, output_tokens, cost_usd = usage_and_cost(response)
+            response_model = getattr(response, "model", MODEL_NAME)
+            if not generated_code:
+                row = {"timestamp": timestamp, "class_name": class_name, "status": "INVALID_EMPTY", "model": response_model, "cost_usd": f"{cost_usd:.6f}", "input_tokens": input_tokens, "output_tokens": output_tokens, "latency_sec": f"{latency:.2f}", "retries": retries, "error": "Empty response content"}
+                print(" INVALID (empty response)")
             else:
-                generated_code = content.strip()
-                if generated_code.startswith("```"):
-                    generated_code = re.sub(r'^```[a-zA-Z]*\n', '', generated_code)
-                    generated_code = re.sub(r'\n```$', '', generated_code)
-            
-            # Ensure package declaration is correct
-            package_decl = "package humaneval.correct;"
-            if package_decl not in generated_code:
-                if "package" in generated_code:
-                    generated_code = re.sub(r'package\s+[\w.]+;', package_decl, generated_code)
-                else:
-                    generated_code = package_decl + "\n\n" + generated_code
-            
-            # Add timeout to @Test annotations to prevent infinite loops (5 seconds)
-            generated_code = re.sub(r'@Test\b(?!\s*\()', '@Test(timeout = 5000)', generated_code)
-            
-            # Save to output file
-            with open(output_file_path, "w", encoding="utf-8") as f:
-                f.write(generated_code)
-                
-            # Calculate cost (gpt-4o-mini pricing: $0.15/1M input, $0.60/1M output tokens)
-            input_tokens = response.usage.prompt_tokens
-            output_tokens = response.usage.completion_tokens
-            cost = (input_tokens * 0.15 / 1000000) + (output_tokens * 0.60 / 1000000)
-            
-            # Log the call
-            timestamp = datetime.now().isoformat()
-            log_line = f"Timestamp: {timestamp} | Class: {class_name} | Model: {response.model} | Input Tokens: {input_tokens} | Output Tokens: {output_tokens} | Cost: ${cost:.6f} | Latency: {latency:.2f}s\n"
-            log_file.write(log_line)
+                output_path.write_text(generated_code, encoding="utf-8")
+                row = {"timestamp": timestamp, "class_name": class_name, "status": "SUCCESS", "model": response_model, "cost_usd": f"{cost_usd:.6f}", "input_tokens": input_tokens, "output_tokens": output_tokens, "latency_sec": f"{latency:.2f}", "retries": retries, "error": ""}
+                print(f" DONE (${cost_usd:.6f})")
+            rows.append(row)
+            log_file.write(f"Timestamp: {timestamp} | Class: {class_name} | Model: {response_model} | Status: {row['status']} | Input Tokens: {input_tokens} | Output Tokens: {output_tokens} | Cost: ${cost_usd:.6f} | Latency: {latency:.2f}s | Retries: {retries} | Error: {row['error']}\n")
             log_file.flush()
-            
-            results_data.append({
-                "class_name": class_name,
-                "status": "SUCCESS",
-                "cost_usd": f"{cost:.6f}",
-                "input_tokens": input_tokens,
-                "output_tokens": output_tokens,
-                "latency_sec": f"{latency:.2f}"
-            })
-            
-            print(f" DONE (Cost: ${cost:.6f})")
+            write_csv_atomically(PILOT_OUTPUT, FIELDS, rows)
             time.sleep(1.0)
-            
-        except Exception as e:
-            print(f" FAILED (Error: {e})")
-            log_file.write(f"Timestamp: {datetime.now().isoformat()} | Class: {class_name} | Error: {e}\n")
-            log_file.flush()
-            results_data.append({
-                "class_name": class_name,
-                "status": f"FAILED: {e}",
-                "cost_usd": "0.000000",
-                "input_tokens": 0,
-                "output_tokens": 0,
-                "latency_sec": "0.00"
-            })
 
-# Save results CSV
-with open(pilot_output_path, "w", encoding="utf-8", newline="") as f:
-    writer = csv.DictWriter(f, fieldnames=["class_name", "status", "cost_usd", "input_tokens", "output_tokens", "latency_sec"])
-    writer.writeheader()
-    writer.writerows(results_data)
+    print(f"Pilot completed: {sum(row['status'] == 'SUCCESS' for row in rows)}/{len(rows)} successful. Evidence: {PILOT_OUTPUT}")
 
-print(f"\nPilot run generation finished! Results saved to {pilot_output_path}, logs saved to {pilot_log_path}")
+
+if __name__ == "__main__":
+    main()

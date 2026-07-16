@@ -10,8 +10,10 @@
 
 **Topic code:** RT-SWT-001  
 **Ngày nộp:** 2026-06-15  
-**Version:** 1.0  
-**Trạng thái:** Đang chờ phê duyệt  
+**Version:** 1.1
+**Trạng thái:** Có amendment RBL-4; chờ xác nhận của giảng viên
+
+> **RBL-4 operational amendment:** Student-written benchmark vẫn là động cơ nghiên cứu ban đầu và hướng đánh giá tiếp theo. Vì chưa có số liệu benchmark sinh viên đã được xác minh theo từng hàm trong cùng pipeline, lần chạy RBL-4 này dùng EvoSuite (ngân sách 1/3/5 phút, cùng 63 SUT) làm đối chứng vận hành tái lập. Không suy luận kết quả EvoSuite thay cho kết quả sinh viên. Xem [amendment](amendments/rbl4-operational-baseline.md).
 
 ---
 
@@ -130,7 +132,7 @@ Quy trình thực nghiệm được chuẩn hóa qua 6 bước tự động sau:
 
 ### 5.3 LLM/Tool Configuration
 *   **Model:** `gpt-4o-mini-2024-07-18` [023, 024] (OpenAI API chính thức).
-*   **Hyperparameters:** `temperature = 0` (đảm bảo tính deterministic và khả năng tái lập kết quả) [010], `top_p = 1`, `max_tokens = 2000`.
+*   **Hyperparameters:** `temperature = 0` (đảm bảo tính deterministic và khả năng tái lập kết quả) [010], `top_p = 1`. Không đặt giới hạn `max_tokens` phía client.
 *   **Prompting strategy:** Zero-shot structured prompt.
 *   **Prompt template nguyên văn:**
 ```text

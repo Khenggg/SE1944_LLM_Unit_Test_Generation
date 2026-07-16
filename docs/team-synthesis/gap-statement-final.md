@@ -119,3 +119,7 @@ Result: 0 blockers / 1 warning. The primary GAP is highly feasible with controll
 ## 7. Final GAP Statement
 
 Existing evidence shows that LLMs can generate unit tests across public benchmarks, open-source repositories, industrial code, and automated-tool comparisons, and many studies report coverage or mutation-related metrics. However, the current literature does not provide a paired comparison between GPT-4o-mini-generated unit tests and student-written benchmark unit tests on the same Java functions from the HumanEval-Java benchmark. This study addresses that dataset/comparison gap by evaluating both test sources on identical code units using branch coverage and mutation score, with compile/pass status reported as a prerequisite for valid metric interpretation.
+
+## 8. RBL-4 Scope Amendment
+
+The student-written benchmark gap above remains the team's original research motivation; it is **not** claimed to be closed by this RBL-4 execution. Because no validated per-function student measurements are available under the same pipeline, the RBL-4 operational evaluation compares GPT-4o-mini with EvoSuite at separate fixed budgets of 1, 3, and 5 minutes on the same 63 SUT. This creates a reproducible automated-tool comparator but must never be described as a student proxy or evidence of student performance. The decision, comparison boundary, and statistical treatment are recorded in [the RBL-4 amendment](amendments/rbl4-operational-baseline.md).
