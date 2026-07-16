@@ -1,0 +1,14 @@
+\section{Threats to Validity}
+\label{sec:threats}
+
+\textbf{Internal validity.} The protocol fixed the model snapshot, prompt, temperature, target sources, and measurement tooling. Nevertheless, model-service behavior and repair outcomes can vary over time. The retained API usage records, raw responses, and timestamps mitigate but do not remove this risk.
+
+\textbf{Construct validity.} Branch coverage and mutation score are proxies for test quality, not complete definitions of it. We mitigate single-metric bias by reporting both measures and execution status. Non-executable suites are not treated as valid evidence of coverage quality.
+
+\textbf{Conclusion validity.} RQ3 is conditional on successful execution, resulting in 14 branch pairs and 13 mutation pairs. The number of non-zero branch differences is particularly small. We report raw and Holm-adjusted p-values, effect sizes, and both paired and ranked sample sizes, but the study has limited power for this subset.
+
+\textbf{External validity.} The 63 Java functions come from one transformed benchmark and one fixed zero-shot model configuration. The findings should not be generalized to other models, prompting strategies, repositories, languages, or student populations without further measurements. In particular, the absence of validated student per-function data means no conclusion about student-written tests is supported.
+
+\textbf{Measurement validity.} The aggregate score denominators are produced by the configured JaCoCo and PIT runs. Three technical mutation exclusions are removed only from the appropriate Wilcoxon samples and are stated in the summary CSV. The project retains exact numerators and class-level rows so that a future change in tool version or inclusion rule can be detected. The study does not claim that these two metrics capture readability, maintainability, or developer effort.
+
+\textbf{Protocol deviation.} The original motivation included a student-written benchmark. It is not substituted with EvoSuite in this paper. The operational amendment limits the technical comparison to retained EvoSuite archives and records instructor confirmation as pending. This disclosure reduces the risk that an implementation convenience is later reported as a completed human-subject comparison.

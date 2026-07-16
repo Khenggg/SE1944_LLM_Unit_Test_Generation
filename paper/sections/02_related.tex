@@ -1,0 +1,20 @@
+\section{Background and Related Work}
+\label{sec:related}
+
+Automated test generation has long used search-based techniques. EvoSuite generates Java unit tests and assertions while optimizing an objective such as coverage \cite{fraser2011evosuite}. It is consequently an appropriate technical reference point for a Java experiment, but its performance should not be interpreted as a measurement of human-written tests.
+
+Language-model evaluation introduced code-generation benchmarks such as HumanEval \cite{chen2021codex}. The local HumanEval-Java material used here transforms that setting into Java programs with correct and buggy variants. In contrast to program synthesis, test generation must construct an executable oracle. A plausible-looking assertion can make the test suite fail even when the SUT is correct; this motivates reporting compile/pass status separately from coverage metrics.
+
+The study uses branch coverage from JaCoCo and mutation score from PIT. These measurements answer different questions. A suite can execute decision paths but still fail to distinguish a mutated implementation from the original. Mutation score is therefore reported alongside branch coverage rather than inferred from it. This distinction is also central to mutation-guided generation: Wang et al. report that a suite can reach 100\% coverage while killing only 4\% of mutants, motivating validation beyond structural reachability \cite{wang2026mutgen}.
+
+Our inferential design follows common guidance for statistical comparisons in software engineering \cite{arcuri2011statistics}. The RQ3 comparisons are paired by SUT, two-sided, and evaluated independently for each EvoSuite budget and metric. The six RQ3 p-values are adjusted with the Holm procedure \cite{holm1979}. This design retains the pairing rather than comparing unrelated aggregate averages.
+
+The thresholds in this study are intentionally not presented as universal targets. Huang et al. report mean branch coverage of 30.22\% and mutation score of 40.21\% across 12 LLMs on the 3,909-function ULT benchmark \cite{huang2026ult}. We use those values as externally derived reference targets, while acknowledging the differences in language and benchmark. The 4.00\% mutation floor is a deliberately low operational screen: it prevents a suite with essentially no observed fault detection from being counted as dual success, but it is not a claim about adequate industrial test quality.
+
+\subsection{Why Execution Status Must Be Reported}
+An executable test suite is a prerequisite for interpreting a test-quality metric. A test class may fail before it reaches the SUT, may contain an incorrect expected value, or may use an unsupported JUnit API. Treating these outcomes as merely formatting defects would overstate an LLM's practical usefulness. We therefore keep three layers of evidence: generation status records whether the service returned content; execution status records whether Maven compiled and passed the suite; and quality metrics report coverage and mutation outcomes after this gate.
+
+This separation is especially important for paired comparisons. If only successful GPT suites are paired, the paired analysis estimates a conditional question: how do the suites that survived validation compare with EvoSuite? It does not estimate the expected quality of an arbitrary GPT response. Conversely, assigning a score only to the passing subset would hide the operational cost of invalid suites. The full-corpus and pass-conditioned views are thus reported side by side throughout this paper.
+
+\subsection{Comparator Scope}
+EvoSuite is a legitimate technical baseline because it generates Java suites automatically under a specified search budget \cite{fraser2011evosuite}. The measured 1-, 3-, and 5-minute archives make that budget explicit. However, an automatic search-based suite and a student-written suite answer different empirical questions. The present comparator is intentionally narrow: it evaluates the current GPT protocol against EvoSuite on identical SUTs. The study does not infer human capability from either tool.

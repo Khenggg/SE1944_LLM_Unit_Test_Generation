@@ -1,0 +1,6 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We evaluated zero-shot GPT-4o-mini test generation on 63 HumanEval-Java functions using execution status, branch coverage, mutation score, and paired EvoSuite comparisons. GPT produced an API response for all targets, but only 14 suites were executable after one repair pass. The full-set branch coverage was 18.90\%, mutation score was 16.21\%, and 13/63 functions achieved the dual threshold; RQ1, RQ2, and RQ4 were not supported. For RQ3, no GPT--EvoSuite comparison was significant after Holm correction on the pass-conditioned subset. Assertion failures were the predominant observed obstacle.
+
+Future work should evaluate feedback-guided or multi-turn repair prompts, repeat the protocol across additional Java benchmarks, and collect verified student-written suites under the same pipeline. These steps would test whether the execution-validity bottleneck can be reduced and would enable the deferred student comparison without conflating human and search-based baselines.
