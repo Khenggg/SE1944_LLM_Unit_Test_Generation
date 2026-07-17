@@ -62,7 +62,9 @@ Budget & Metric & $N_p/N_r$ & GPT mean & Evo mean & $\Delta$ & Raw $p$ & Holm $p
 \end{tabular}
 \end{table*}
 
-No RQ3 comparison was significant after Holm correction. The smallest adjusted p-value was 0.375053 for the five-minute mutation comparison. Figure~\ref{fig:paired} visualizes the paired measurements. For branch coverage, only two non-zero paired differences were ranked; this limited variation is reported directly rather than interpreted as evidence of equality.
+No RQ3 comparison was significant after Holm correction. The smallest adjusted p-value was 0.375053 for the five-minute mutation comparison. Figure~\ref{fig:paired} visualizes the paired measurements.
+
+For branch coverage, only two of the 14 paired SUTs had non-zero score differences; the remaining 12 pairs produced identical scores for both tools. The signed-rank statistic is therefore based on $N_r = 2$ ranked differences, which gives the branch test essentially no statistical power. The non-significant result for branch coverage should be read as an artifact of near-total agreement within this specific pass-conditioned subset rather than as evidence that GPT and EvoSuite branch scores are equivalent in general. The mutation comparisons, by contrast, ranked seven non-zero pairs and produced more informative effect sizes, though none reached significance after correction.
 
 The full EvoSuite aggregates provide a separate descriptive baseline. At one minute, EvoSuite covered 688/762 branches (90.29\%) and killed 610/833 mutants (73.23\%). At three minutes, the corresponding values were 730/762 (95.80\%) and 638/833 (76.59\%). At five minutes, they were 757/762 (99.34\%) and 684/833 (82.11\%). All 63 archived suites passed at every listed budget. These totals demonstrate the technical consistency of the retained comparator; they are not included in the paired hypothesis-test denominator unless the GPT counterpart also passed.
 

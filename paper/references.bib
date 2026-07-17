@@ -1,24 +1,78 @@
-@article{chen2021codex,
-  author  = {Chen, Mark and Tworek, Jerry and Jun, Heewoo and others},
-  title   = {Evaluating Large Language Models Trained on Code},
-  journal = {arXiv preprint arXiv:2107.03374},
-  year    = {2021},
-  doi     = {10.48550/arXiv.2107.03374},
-  url     = {https://arxiv.org/abs/2107.03374}
+% --- Benchmark and LLM Evaluation ---
+
+@misc{chen2021codex,
+  author        = {Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and
+                   de Oliveira Pinto, Henrique Pond{\'e} and Kaplan, Jared and
+                   Edwards, Harri and Burda, Yuri and Joseph, Nicholas and
+                   Brockman, Greg and others},
+  title         = {Evaluating Large Language Models Trained on Code},
+  year          = {2021},
+  eprint        = {2107.03374},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  url           = {https://arxiv.org/abs/2107.03374}
 }
+
+@article{huang2026ult,
+  author  = {Huang, Dong and Zhang, Jie M. and Harman, Mark and Zhang, Qianru
+             and Du, Mingzhe and Ng, See-Kiong},
+  title   = {Benchmarking {LLMs} for Unit Test Generation from Real-World Functions},
+  journal = {ACM Transactions on Software Engineering and Methodology},
+  year    = {2026},
+  doi     = {10.1145/3805043},
+  url     = {https://doi.org/10.1145/3805043}
+}
+
+% --- Search-Based Test Generation ---
 
 @inproceedings{fraser2011evosuite,
   author    = {Fraser, Gordon and Arcuri, Andrea},
   title     = {{EvoSuite}: Automatic Test Suite Generation for Object-Oriented Software},
-  booktitle = {Proceedings of the 19th ACM SIGSOFT Symposium and the 13th European Conference on Foundations of Software Engineering},
+  booktitle = {Proceedings of the 19th ACM SIGSOFT Symposium and the 13th European
+               Conference on Foundations of Software Engineering},
   year      = {2011},
   doi       = {10.1145/2025113.2025179},
   url       = {https://doi.org/10.1145/2025113.2025179}
 }
 
+% --- Mutation Testing ---
+
+@article{wang2026mutgen,
+  author  = {Wang, Guancheng and Xu, Qinghua and Briand, Lionel and Liu, Kui},
+  title   = {Mutation-Guided Unit Test Generation with a Large Language Model},
+  journal = {IEEE Transactions on Software Engineering},
+  volume  = {52},
+  number  = {5},
+  pages   = {1657--1671},
+  year    = {2026},
+  doi     = {10.1109/TSE.2026.3682975},
+  url     = {https://doi.org/10.1109/TSE.2026.3682975}
+}
+
+@inproceedings{coles2016pit,
+  author    = {Coles, Henry and Laurent, Thomas and Henard, Christopher
+               and Papadakis, Mike and Ventresque, Anthony},
+  title     = {{PIT}: A Practical Mutation Testing Tool for Java (Demo Track)},
+  booktitle = {Proceedings of the 25th International Symposium on Software
+               Testing and Analysis},
+  year      = {2016},
+  doi       = {10.1145/2931037.2948707},
+  url       = {https://doi.org/10.1145/2931037.2948707}
+}
+
+% --- Coverage and Statistical Methods ---
+
+@misc{jacoco,
+  author = {Hoffmann, Marc and Janiczak, Brock and Mandrikov, Evgeny},
+  title  = {{JaCoCo}: Java Code Coverage Library},
+  year   = {2009},
+  url    = {https://www.jacoco.org/jacoco/}
+}
+
 @inproceedings{arcuri2011statistics,
   author    = {Arcuri, Andrea and Briand, Lionel},
-  title     = {A Practical Guide for Using Statistical Tests to Assess Randomized Algorithms in Software Engineering},
+  title     = {A Practical Guide for Using Statistical Tests to Assess
+               Randomized Algorithms in Software Engineering},
   booktitle = {Proceedings of the 33rd International Conference on Software Engineering},
   year      = {2011},
   doi       = {10.1145/1985793.1985795},
@@ -37,23 +91,69 @@
   url     = {https://www.jstor.org/stable/4615733}
 }
 
-@article{huang2026ult,
-  author  = {Huang, Dong and Zhang, Jie M. and Harman, Mark and Zhang, Qianru and Du, Mingzhe and Ng, See-Kiong},
-  title   = {Benchmarking {LLMs} for Unit Test Generation from Real-World Functions},
-  journal = {ACM Transactions on Software Engineering and Methodology},
-  year    = {2026},
-  doi     = {10.1145/3805043},
-  url     = {https://doi.org/10.1145/3805043}
+% --- LLM Test Generation: Related Work (from evidence table) ---
+
+@inproceedings{yuan2024junit,
+  author    = {Yuan, Zhiqiang and Liu, Mingwei and Ding, Shiji and Wang, Kaixin
+               and Chen, Yixuan and Peng, Xin and Lou, Yiling},
+  title     = {Using Large Language Models to Generate {JUnit} Tests: An Empirical Study},
+  booktitle = {Proceedings of the 28th International Conference on Evaluation
+               and Assessment in Software Engineering},
+  year      = {2024},
+  doi       = {10.1145/3661167.3661216},
+  url       = {https://doi.org/10.1145/3661167.3661216}
 }
 
-@article{wang2026mutgen,
-  author  = {Wang, Guancheng and Xu, Qinghua and Briand, Lionel and Liu, Kui},
-  title   = {Mutation-Guided Unit Test Generation with a Large Language Model},
-  journal = {IEEE Transactions on Software Engineering},
-  volume  = {52},
-  number  = {5},
-  pages   = {1657--1671},
+@misc{schafer2025agonetest,
+  author        = {Sch{\"{a}}fer, Max and Dixit, Naman and Rajbhandari, Purva and Lal, Akash},
+  title         = {{LLMs} for Automated Unit Test Generation and Assessment in {Java}:
+                   The {AgoneTest} Framework},
+  year          = {2025},
+  eprint        = {2511.20403},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SE},
+  url           = {https://doi.org/10.48550/arxiv.2511.20403}
+}
+
+@inproceedings{yang2024chatgpt,
+  author    = {Yang, Quanjun and Zhao, Chenyan and Liu, Weifeng
+               and Chen, Jiajun and Xu, Chang},
+  title     = {Evaluating and Improving {ChatGPT} for Unit Test Generation},
+  booktitle = {Companion Proceedings of the ACM on Software Engineering},
+  volume    = {1},
+  year      = {2024},
+  doi       = {10.1145/3660783},
+  url       = {https://doi.org/10.1145/3660783}
+}
+
+@article{nie2026prompt,
+  author  = {Nie, Pengyu and Banerjee, Rahul and Li, Junyi Jessy
+             and Mooney, Raymond J. and Gligoric, Milos},
+  title   = {Prompt Engineering in {LLMs} for Automated Unit Test Generation:
+             A Large-Scale Study},
+  journal = {Empirical Software Engineering},
   year    = {2026},
-  doi     = {10.1109/TSE.2026.3682975},
-  url     = {https://doi.org/10.1109/TSE.2026.3682975}
+  doi     = {10.1007/s10664-026-10840-4},
+  url     = {https://link.springer.com/article/10.1007/s10664-026-10840-4}
+}
+
+@inproceedings{lima2025mutation,
+  author    = {Lima, Marcos and Santos, Andr{\'e} and de Souza, Savio},
+  title     = {Evaluating {LLM}-Generated Unit Tests with Mutation Testing:
+               {ChatGPT} vs {DeepSeek}},
+  booktitle = {Anais do XXIV Simp{\'o}sio Brasileiro de Qualidade de Software},
+  year      = {2025},
+  doi       = {10.5753/sbqs.2025.13792},
+  url       = {https://doi.org/10.5753/sbqs.2025.13792}
+}
+
+@inproceedings{alkhateeb2025testwars,
+  author    = {Alkhateeb, Faisal and Kochhar, Pavneet Singh and Gorla, Alessandra},
+  title     = {Test {Wars}: A Comparative Study of {SBST}, Symbolic Execution,
+               and {LLM}-Based Approaches to Unit Test Generation},
+  booktitle = {2025 IEEE International Conference on Software Testing,
+               Verification and Validation},
+  year      = {2025},
+  doi       = {10.1109/ICST62969.2025.10989033},
+  url       = {https://doi.org/10.1109/ICST62969.2025.10989033}
 }
