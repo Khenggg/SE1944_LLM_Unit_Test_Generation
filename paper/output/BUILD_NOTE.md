@@ -12,3 +12,13 @@ From `paper/`, reproduce the PDF with:
 ```
 
 The compiled output is `paper/build/main.pdf`; the deliverable copy is `paper/output/paper_final.pdf`.
+
+### 2026-07-17 Update
+
+The paper was modified to rewrite several major portions, fix and include new data and add all missing citations. The updated `paper_final.pdf` was re-compiled using Tectonic (a modern automated TeX engine) locally:
+
+```powershell
+# Automatically handles multiple passes and BibTeX dependencies
+.\tectonic.exe main.tex
+```
+The newly compiled output was then copied to `paper/output/paper_final.pdf`.
