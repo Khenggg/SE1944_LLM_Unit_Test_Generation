@@ -1,0 +1,78 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{Execution Validity (RQ5)}
+The initial API generation returned content for all 63 targets, with an initial recorded cost of \$0.030982. A single repair pass recorded 55 repair calls costing \$0.036773. After compilation and execution, 14 of the 63 GPT suites passed. Forty-seven suites failed assertions and two failed compilation. Thus, assertion failures accounted for 47 of the 49 invalid suites (95.9\%), making execution-valid oracle construction the predominant observed limitation.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{fig1_execution_status.png}
+  \caption{Execution status of all 63 GPT-generated suites.}
+  \label{fig:execution}
+\end{figure}
+
+\subsection{Threshold Results (RQ1, RQ2, and RQ4)}
+Across all 63 targets, GPT reached 144/762 covered branches (18.90\%) and killed 135/833 eligible mutants (16.21\%). Table~\ref{tab:thresholds} reports the predefined hypothesis tests with the effect size and analysis denominator for each RQ. RQ1 was not supported. The aggregate mutation score exceeded the 4.00\% floor, but the per-SUT one-sided test did not support RQ2 at either the floor or target. For RQ4, only 13/63 SUTs simultaneously passed and met both thresholds (20.63\%); the exact binomial result did not support a majority.
+
+\begin{table*}[t]
+\caption{Threshold and dual-success results.}
+\label{tab:thresholds}
+\centering
+\scriptsize
+\begin{tabular}{llrrrrl}
+\toprule
+RQ & Test & $N$ & Aggregate/Rate & $p$ & Effect & Decision \\
+\midrule
+RQ1 & Branch $>30.22\%$ & 63 & 18.90\% & 0.942967 & $r_{rb}=-0.215$ & Not supported \\
+RQ2 floor & Mutation $>4.00\%$ & 60 & 16.21\% & 0.952447 & $r_{rb}=-0.233$ & Not supported \\
+RQ2 target & Mutation $>40.21\%$ & 60 & 16.21\% & 0.997231 & $r_{rb}=-0.387$ & Not supported \\
+RQ4 & Dual success $>50\%$ & 63 & 13/63 (20.63\%) & 0.9999996 & $RD=-29.37$ pp & Not supported \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+For RQ1 and RQ2, $r_{rb}$ is the rank-biserial effect of the per-SUT difference from the stated threshold; negative values indicate that the ranked differences favor values below the threshold. For RQ4, $RD$ is the observed dual-success rate minus the hypothesized 50\% majority rate. RQ5 is descriptive rather than an inferential hypothesis: its denominator is all 63 targets, and it reports 14 passing suites, 47 assertion failures, and two compilation failures.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=0.92\textwidth]{fig2_gpt_metric_distribution.png}
+  \caption{Distribution of GPT branch coverage and mutation score across the full SUT set.}
+  \label{fig:gptdistribution}
+\end{figure*}
+
+\subsection{Paired Comparison with EvoSuite (RQ3)}
+All retained EvoSuite suites passed for each budget. Its aggregate branch coverage rose from 90.29\% at one minute to 99.34\% at five minutes; mutation score rose from 73.23\% to 82.11\%. The paired analysis is deliberately narrower: it is conditioned on the 14 GPT suites that also passed. This selection is why the pass-conditioned GPT means in Table~\ref{tab:paired} should not be read as full-set GPT performance.
+
+\begin{table*}[t]
+\caption{Paired GPT--EvoSuite results. $N_p/N_r$ denotes paired/non-zero-ranked SUTs; $\Delta$ is GPT minus EvoSuite in percentage points.}
+\label{tab:paired}
+\centering
+\scriptsize
+\begin{tabular}{ccrrrrrrr}
+\toprule
+Budget & Metric & $N_p/N_r$ & GPT mean & Evo mean & $\Delta$ & Raw $p$ & Holm $p$ & $r_{rb}$ \\
+\midrule
+1 min & Branch & 14/2 & 98.09\% & 99.40\% & -1.32 & 0.179712 & 0.898562 & -1.000 \\
+1 min & Mutation & 13/7 & 88.21\% & 79.14\% & +9.07 & 0.204084 & 0.898562 & +0.536 \\
+3 min & Branch & 14/2 & 98.09\% & 99.40\% & -1.32 & 0.179712 & 0.898562 & -1.000 \\
+3 min & Mutation & 13/7 & 88.21\% & 78.20\% & +10.01 & 0.236724 & 0.898562 & +0.500 \\
+5 min & Branch & 14/2 & 98.09\% & 99.40\% & -1.32 & 0.179712 & 0.898562 & -1.000 \\
+5 min & Mutation & 13/7 & 88.21\% & 82.40\% & +5.81 & 0.062509 & 0.375053 & +0.786 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+No RQ3 comparison was significant after Holm correction. The smallest adjusted p-value was 0.375053 for the five-minute mutation comparison. Figure~\ref{fig:paired} visualizes the paired measurements.
+
+For branch coverage, only two of the 14 paired SUTs had non-zero score differences; the remaining 12 pairs produced identical scores for both tools. The signed-rank statistic is therefore based on $N_r = 2$ ranked differences, which gives the branch test essentially no statistical power. The non-significant result for branch coverage should be read as an artifact of near-total agreement within this specific pass-conditioned subset rather than as evidence that GPT and EvoSuite branch scores are equivalent in general. The mutation comparisons, by contrast, ranked seven non-zero pairs and produced more informative effect sizes, though none reached significance after correction.
+
+The full EvoSuite aggregates provide a separate descriptive baseline. At one minute, EvoSuite covered 688/762 branches (90.29\%) and killed 610/833 mutants (73.23\%). At three minutes, the corresponding values were 730/762 (95.80\%) and 638/833 (76.59\%). At five minutes, they were 757/762 (99.34\%) and 684/833 (82.11\%). All 63 archived suites passed at every listed budget. These totals demonstrate the technical consistency of the retained comparator; they are not included in the paired hypothesis-test denominator unless the GPT counterpart also passed.
+
+The observed difference between aggregate and pass-conditioned GPT scores is material. The full corpus includes every generated suite, including the 49 that did not pass. The RQ3 mean branch score of 98.09\% and mutation score of 88.21\% therefore characterize a selected subset, not the overall generator. This is why Tables~\ref{tab:thresholds} and \ref{tab:paired} answer complementary questions rather than conflicting ones.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{fig3_gpt_vs_evosuite_paired.png}
+  \caption{Pass-conditioned paired GPT--EvoSuite comparison.}
+  \label{fig:paired}
+\end{figure}
