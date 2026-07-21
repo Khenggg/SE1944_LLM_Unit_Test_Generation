@@ -18,6 +18,7 @@ GPT-4o-mini (`gpt-4o-mini-2024-07-18`) was run with the recorded zero-shot proto
 - **RQ2 floor (4.00%):** aggregate score is above the floor, but the per-SUT one-sided Wilcoxon result is not supported (p=0.952447).
 - **RQ2 target (40.21%):** not supported (p=0.997231).
 - **RQ4:** dual success is 13/63 (20.63%); not supported for a majority (exact binomial p=1).
+- **RQ5:** execution failure patterns are descriptive: 14 pass, 47 assertion failures, 2 compilation failures.
 
 ## RQ3 paired GPT vs archived EvoSuite tests
 
