@@ -20,3 +20,6 @@ Thumbs.db
 outputs/presentations/rendered/pages/
 
 .git-backups/
+
+pandoc.zip
+pandoc-*/
