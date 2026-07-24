@@ -151,11 +151,12 @@ Run the automated pipeline to regenerate all derived statistics, figures, Jupyte
 
 | STT | Member Name | Student ID | Role | Contribution (%) |
 | :---: | :--- | :---: | :--- | :---: |
-| **1** | **Lê Thế Khang** | *(Project Lead)* | Project Lead & Core Systems Integrator | **23%** |
-| **2** | **Phạm An Khang** | | Research & Paper Lead Writer | **22%** |
-| **3** | **Huỳnh Cao Phước** | | EvoSuite & Environment Owner | **19%** |
-| **4** | **Đỗ Long Vỹ** | | API & Prompt Engineering Co-lead | **18%** |
-| **5** | **Nguyễn Như Ý** | | Data & Pipeline Automation Co-lead | **18%** |
+| **1** | **Lê Thế Khang** | *(Project Lead)* | Project Lead & Core Systems Integrator | **22.5%** |
+| **2** | **Phạm An Khang** | | Research & Paper Lead Writer | **21.5%** |
+| **3** | **Huỳnh Cao Phước** | | EvoSuite & Environment Owner | **21.0%** |
+| **4** | **Đỗ Long Vỹ** | | API & Prompt Engineering Co-lead | **17.5%** |
+| **5** | **Nguyễn Như Ý** | | Data & Pipeline Automation Co-lead | **17.5%** |
+
 
 *For detailed task descriptions and work allocation breakdown, see [`CONTRIBUTION.md`](CONTRIBUTION.md) and [`docs/team-synthesis/rbl5a-work-allocation.md`](docs/team-synthesis/rbl5a-work-allocation.md).*
 
