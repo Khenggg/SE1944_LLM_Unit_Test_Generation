@@ -31,5 +31,7 @@ The study compares GPT-4o-mini with retained EvoSuite suites measured at 1, 3, a
 - IEEE-style paper source: `paper/main.tex`
 - Presentation source and final artifacts: `presentation/`
 - Detailed RBL-4/RBL-5A work allocation (updated 2026-07-16): `docs/team-synthesis/rbl5a-work-allocation.md`
+- Team Contribution Matrix & Grade Allocation: [`CONTRIBUTION.md`](CONTRIBUTION.md)
 
 Compile the paper with a LaTeX distribution from `paper/`. The final PDF is written to `paper/output/paper_final.pdf`. The final deck is `presentation/slides_final.pptx` with an exported PDF at `presentation/slides_final.pdf`.
+

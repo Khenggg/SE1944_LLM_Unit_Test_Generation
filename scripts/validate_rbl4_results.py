@@ -14,8 +14,9 @@ RESULTS = ROOT / "results"
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
-    with path.open("r", newline="", encoding="utf-8") as handle:
+    with path.open("r", newline="", encoding="utf-8-sig") as handle:
         return list(csv.DictReader(handle))
+
 
 
 def check(name: str, condition: bool, detail: str) -> tuple[str, str, str]:

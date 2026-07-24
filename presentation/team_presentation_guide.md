@@ -14,7 +14,7 @@ Tài liệu này phân chia chi tiết vai trò thuyết trình, thứ tự nói
 | **2** | **Phạm An Khang** | **Research & Paper Writer** | Slide 3 (Câu hỏi nghiên cứu) & Slide 8 (Biện luận) | **3:00** | Giải thích cơ sở khoa học của các ngưỡng (thresholds) và tài liệu tham khảo. |
 | **3** | **Đỗ Long Vỹ** | **API & Automation Engineer** | Slide 4 (Quy trình API) & Slide 5 (Lỗi thực thi) | **2:30** | Trả lời về prompt, token, chi phí và cấu hình gọi API OpenAI. |
 | **4** | **Huỳnh Cao Phước** | **EvoSuite & Environment Owner** | Slide 4 (Môi trường) & Slide 7 (So sánh cặp) | **2:00** | Trả lời về cấu hình EvoSuite, phiên bản JDK 8, Maven và PiTest. |
-| **5** | **Nguyễn Thị Như Ý** | **Data & Pipeline Engineer** | Slide 6 (Full Corpus) & Slide 9 (Kết luận & Tương lai) | **2:00** | Trả lời về thống kê, kiểm định Wilcoxon, hiệu chỉnh Holm và dữ liệu thô. |
+| **5** | **Nguyễn Như Ý** | **Data & Pipeline Engineer** | Slide 6 (Full Corpus) & Slide 9 (Kết luận & Tương lai) | **2:00** | Trả lời về thống kê, kiểm định Wilcoxon, hiệu chỉnh Holm và dữ liệu thô. |
 
 ---
 
@@ -82,7 +82,7 @@ Tài liệu này phân chia chi tiết vai trò thuyết trình, thứ tự nói
 
 ---
 
-### NGƯỜI NÓI 5: Nguyễn Thị Như Ý (Data & Pipeline Engineer) — [9:00 - 11:00]
+### NGƯỜI NÓI 5: Nguyễn Như Ý (Data & Pipeline Engineer) — [9:00 - 11:00]
 
 - **Slide phụ trách:**
     - [Slide 6: Results: Full Corpus](file:///f:/Ky%205/SWT301/Github/SE1944_LLM_Unit_Test_Generation/presentation/slides_final.pptx#6)
@@ -111,5 +111,5 @@ Khi Hội đồng đặt câu hỏi phản biện, **Lê Thế Khang (PL)** sẽ
     - *Người trả lời:* **Huỳnh Cao Phước**.
     - *Trọng tâm:* Giải thích EvoSuite 1.0.6 yêu cầu JDK 8 do dependency `tools.jar` và PIT sử dụng bộ toán tử mặc định (`DEFAULTS`).
 4. **Nếu câu hỏi về: Kiểm định Wilcoxon / Holm correction / Cỡ mẫu N / Tại sao kết quả RQ3 không significant**
-    - *Người trả lời:* **Nguyễn Thị Như Ý**.
+    - *Người trả lời:* **Nguyễn Như Ý**.
     - *Trọng tâm:* Giải thích phép kiểm Wilcoxon là phi tham số phù hợp với dữ liệu không chuẩn, và Holm correction giúp kiểm soát tỷ lệ lỗi loại I (Family-wise error rate) khi thực hiện nhiều so sánh đồng thời.

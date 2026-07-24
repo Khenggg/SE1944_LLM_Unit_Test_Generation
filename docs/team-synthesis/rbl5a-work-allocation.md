@@ -31,7 +31,7 @@ Mỗi bước phải để lại file đầu ra có thể truy vết. Các kết
 | --- | --- | --- | --- |
 | **Lê Thế Khang** | Project Lead (PL) | Điều phối, kiểm tra phạm vi nghiên cứu, review và tích hợp bản cuối. | Checklist cuối, branch/release RBL-5A, bản nộp thống nhất. |
 | **Đỗ Long Vỹ** | API & Automation Engineer | Thiết kế luồng gọi API, prompt, retry, tách mã Java và log request/response. | `scripts/rbl4_openai.py`, log generation/repair, định dạng dữ liệu đầu vào. |
-| **Nguyễn Thị Như Ý** | Data & Pipeline Automation Engineer | Xây dựng script lưu dữ liệu, chạy compile/repair, tổng hợp và kiểm tra dữ liệu/metrics. | CSV trạng thái, script phân tích/validation, notebook và báo cáo số liệu. |
+| **Nguyễn Như Ý** | Data & Pipeline Automation Engineer | Xây dựng script lưu dữ liệu, chạy compile/repair, tổng hợp và kiểm tra dữ liệu/metrics. | CSV trạng thái, script phân tích/validation, notebook và báo cáo số liệu. |
 | **Huỳnh Cao Phước** | EvoSuite & Test Environment Owner | Thiết lập Java/Maven/EvoSuite, tạo và lưu baseline EvoSuite, chạy đo ban đầu. | Archive EvoSuite 1/3/5 phút, cấu hình Maven và bằng chứng 63 SUT. |
 | **Phạm An Khang** | Research & Paper Writer | Nghiên cứu tài liệu, viết paper, diễn giải kết quả và chuẩn bị nội dung trình bày. | Nguồn `paper/`, references, hình/bảng được diễn giải đúng, nội dung slide. |
 
@@ -63,7 +63,7 @@ Mỗi bước phải để lại file đầu ra có thể truy vết. Các kết
 
 **Tiêu chí bàn giao:** 63 request có record, mỗi record có định danh SUT; pipeline không lẫn test giữa hàm; người khác có thể đọc CSV/log để đối chiếu một request với source và test được sinh.
 
-### 3.3 Nguyễn Thị Như Ý — Data & Pipeline Automation Engineer
+### 3.3 Nguyễn Như Ý — Data & Pipeline Automation Engineer
 
 **Mục tiêu:** biến output API và kết quả chạy Maven/PIT thành dữ liệu có cấu trúc, có thể tái sinh báo cáo và kiểm chứng.
 
