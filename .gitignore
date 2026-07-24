@@ -12,14 +12,25 @@ target/
 **/.evosuite/
 
 *.log
+*.pid
 *.~lock*
 *.tmp
 .DS_Store
 Thumbs.db
 
 outputs/presentations/rendered/pages/
+presentation/output/
+paper/build/
+paper/output/
+experiments/rbl-project/*.pid
+experiments/rbl-project/target_pre_rbl4_quarantine_*/
+experiments/rbl-project/archive/evosuite_10p/
+experiments/rbl-project/archive/evosuite_15p/
+experiments/rbl-project/archive/evosuite_30p/
+experiments/rbl-project/archive/evosuite_60p/
 
 .git-backups/
 
 pandoc.zip
 pandoc-*/
+
