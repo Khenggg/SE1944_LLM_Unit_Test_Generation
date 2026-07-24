@@ -15,6 +15,27 @@ This document provides a sentence-by-sentence trace of **every quantitative clai
 
 ---
 
+## Key Paper Decisions and Rationale
+
+Before reviewing the claim-by-claim mappings, this section outlines the rationale behind the primary design decisions in the study, including the formulation of the 5 Research Questions (RQ1–RQ5) and the framing of overall test execution outcomes.
+
+### 1. Formulating the 5 Research Questions (RQ1–RQ5)
+The evaluation decomposes automated test suite utility into five complementary research questions:
+- **RQ1 (Branch Coverage Threshold Attainment):** Evaluates whether zero-shot generated test suites achieve a baseline decision-path coverage threshold (30.22% branch coverage, derived from the ULT benchmark by Huang et al. 2026).
+- **RQ2 (Mutation Score Floor and Target Attainment):** Evaluates fault-detection effectiveness against a minimal utility floor (4.00% mutation score, derived from Wang et al. 2026 MutGen) and a benchmark target (40.21% mutation score, derived from ULT).
+- **RQ3 (Paired Comparison with Search-Based Baseline):** Compares executable test suites directly against retained EvoSuite baseline suites measured at 1-, 3-, and 5-minute budgets using two-sided paired Wilcoxon signed-rank tests with Holm correction.
+- **RQ4 (Simultaneous Dual-Threshold Attainment):** Tests whether a majority of targets (> 50% baseline) simultaneously pass execution and satisfy both quality thresholds (Branch Coverage ≥ 30.22% and Mutation Score ≥ 4.00%).
+- **RQ5 (Execution Failure Pattern Analysis):** Provides a descriptive breakdown of invalid test suites, partitioning failures into compilation errors vs. runtime assertion failures.
+
+### 2. Framing Overall Test Execution Outcomes (PASS / FAIL Partition)
+- **Overall Corpus Population (N=63):** Out of 63 Java target functions evaluated, **14 suites passed execution** (22.2%) and **49 suites failed** (77.8%).
+- **Primary Failure Mode (Assertion Failures):** Of the 49 invalid suites, **47 failed runtime assertions** (95.9% of invalid suites) while only **2 failed compilation** (4.1%). This establishes that the primary bottleneck in zero-shot test generation is oracle synthesis (generating correct expected values) rather than Java syntax generation.
+- **Dual-Denominator Reporting Strategy:** 
+  - *Full Corpus Denominator (N=63):* All-target metrics evaluate pipeline performance without discarding failed runs. Non-executable suites retain zero coverage, producing full-corpus averages of 18.90% branch coverage and 16.21% mutation score.
+  - *Pass-Conditioned Subset (N=14 / N=13):* Head-to-head paired comparisons with EvoSuite (RQ3) are restricted to the 14 executable GPT suites to ensure fair metric comparison. Reporting both views prevents selection bias while enabling diagnostic comparison.
+
+---
+
 ## Part 1 — Corpus and Setup
 
 | Paper Location | Claim | Source File | Exact Verification |
