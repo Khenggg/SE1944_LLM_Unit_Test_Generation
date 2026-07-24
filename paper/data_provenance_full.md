@@ -1,7 +1,6 @@
 # Full Data Provenance Mapping
 
 **Last verified:** 2026-07-24
-**Verdict:** All numbers in both paper versions (IEEE and Springer) are 100% consistent with each other and with all canonical source files.
 
 This document provides a sentence-by-sentence trace of **every quantitative claim, decision, threshold, statistical result, and cost figure** in the paper, mapped back to the exact raw file and column that produced it. It also explains, in plain language, why each external paper in the reference list was chosen. Anyone — even someone reading this study for the first time — can pick any number from the paper, find it here, and go directly to the spreadsheet row that proves it.
 
