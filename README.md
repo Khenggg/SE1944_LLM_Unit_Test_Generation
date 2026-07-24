@@ -86,19 +86,20 @@ SE1944_LLM_Unit_Test_Generation/
 
 ## 📊 Summary of Research Hypotheses & Results
 
-| RQ | Analysis Type | Hypothesized Threshold | GPT Value | Comparator | Result ($p$-value) | Conclusion |
+| RQ | Statistical Test | Hypothesized Threshold | GPT Value | Comparator | Result ($p$-value) | $H_0$ Decision |
 | :---: | :--- | :---: | :---: | :---: | :---: | :---: |
-| **RQ1** | One-sample Wilcoxon | Branch Coverage $\ge 30.22\%$ | 18.90% | 30.22% | $p = 0.943$ | **`NOT_SUPPORTED`** |
-| **RQ2_floor** | One-sample Wilcoxon | Mutation Score $\ge 4.00\%$ | 16.21% | 4.00% | $p = 0.952$ | **`NOT_SUPPORTED`** |
-| **RQ2_target**| One-sample Wilcoxon | Mutation Score $\ge 40.21\%$ | 16.21% | 40.21% | $p = 0.997$ | **`NOT_SUPPORTED`** |
-| **RQ3 (1m BC)**| Paired Wilcoxon (Holm) | GPT vs EvoSuite 1m Branch | 98.09% | 99.40% | $p_{adj} = 0.899$ | **`NO_SIGNIFICANT_DIFF`** |
-| **RQ3 (1m MS)**| Paired Wilcoxon (Holm) | GPT vs EvoSuite 1m Mutation | 88.21% | 79.14% | $p_{adj} = 0.899$ | **`NO_SIGNIFICANT_DIFF`** |
-| **RQ3 (3m BC)**| Paired Wilcoxon (Holm) | GPT vs EvoSuite 3m Branch | 98.09% | 99.40% | $p_{adj} = 0.899$ | **`NO_SIGNIFICANT_DIFF`** |
-| **RQ3 (3m MS)**| Paired Wilcoxon (Holm) | GPT vs EvoSuite 3m Mutation | 88.21% | 78.20% | $p_{adj} = 0.899$ | **`NO_SIGNIFICANT_DIFF`** |
-| **RQ3 (5m BC)**| Paired Wilcoxon (Holm) | GPT vs EvoSuite 5m Branch | 98.09% | 99.40% | $p_{adj} = 0.899$ | **`NO_SIGNIFICANT_DIFF`** |
-| **RQ3 (5m MS)**| Paired Wilcoxon (Holm) | GPT vs EvoSuite 5m Mutation | 88.21% | 82.40% | $p_{adj} = 0.375$ | **`NO_SIGNIFICANT_DIFF`** |
-| **RQ4** | Exact Binomial Test | Dual-Success Rate $> 50\%$ | 20.63% | 50.00% | $p = 1.000$ | **`NOT_SUPPORTED`** |
-| **RQ5** | Descriptive Statistics | Failure Mode Partition | 14 Pass | 47 Fail Assert / 2 Fail Compile | N/A | **`Descriptive`** |
+| **RQ1** | One-sample Wilcoxon | Branch Coverage $\ge 30.22\%$ | 18.90% | 30.22% | $p = 0.943$ | **Accept $H_0$** (Not Supported) |
+| **RQ2_floor** | One-sample Wilcoxon | Mutation Score $\ge 4.00\%$ | 16.21% | 4.00% | $p = 0.952$ | **Accept $H_0$** (Not Supported) |
+| **RQ2_target**| One-sample Wilcoxon | Mutation Score $\ge 40.21\%$ | 16.21% | 40.21% | $p = 0.997$ | **Accept $H_0$** (Not Supported) |
+| **RQ3 (1m BC)**| Paired Wilcoxon (Holm) | GPT vs EvoSuite 1m Branch | 98.09% | 99.40% | $p_{adj} = 0.899$ | **Accept $H_0$** (No Significant Diff) |
+| **RQ3 (1m MS)**| Paired Wilcoxon (Holm) | GPT vs EvoSuite 1m Mutation | 88.21% | 79.14% | $p_{adj} = 0.899$ | **Accept $H_0$** (No Significant Diff) |
+| **RQ3 (3m BC)**| Paired Wilcoxon (Holm) | GPT vs EvoSuite 3m Branch | 98.09% | 99.40% | $p_{adj} = 0.899$ | **Accept $H_0$** (No Significant Diff) |
+| **RQ3 (3m MS)**| Paired Wilcoxon (Holm) | GPT vs EvoSuite 3m Mutation | 88.21% | 78.20% | $p_{adj} = 0.899$ | **Accept $H_0$** (No Significant Diff) |
+| **RQ3 (5m BC)**| Paired Wilcoxon (Holm) | GPT vs EvoSuite 5m Branch | 98.09% | 99.40% | $p_{adj} = 0.899$ | **Accept $H_0$** (No Significant Diff) |
+| **RQ3 (5m MS)**| Paired Wilcoxon (Holm) | GPT vs EvoSuite 5m Mutation | 88.21% | 82.40% | $p_{adj} = 0.375$ | **Accept $H_0$** (No Significant Diff) |
+| **RQ4** | Exact Binomial Test | Dual-Success Rate $> 50\%$ | 20.63% | 50.00% | $p = 1.000$ | **Accept $H_0$** (Not Supported) |
+| **RQ5** | Descriptive Statistics | Failure Mode Partition | 14 Pass | 47 Fail Assert / 2 Fail Compile | N/A | **Descriptive** |
+
 
 ---
 
