@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>humaneval</groupId>
+  <artifactId>rbl-project</artifactId>
+  <version>1.0</version>
+  <name>rbl-project</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <timeInMinutesPerClass>1</timeInMinutesPerClass>
+    <!-- Defaults for the GPT measurement run; EvoSuite runs override these properties. -->
+    <rbl4.surefire.include>**/*_GPTTest.java</rbl4.surefire.include>
+    <rbl4.pitest.targetTests>humaneval.correct.*_GPTTest</rbl4.pitest.targetTests>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>2.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>2.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.evosuite</groupId>
+      <artifactId>evosuite-standalone-runtime</artifactId>
+      <version>1.0.6</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Compiler plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      
+      <!-- Surefire plugin for running tests -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.1</version>
+        <configuration>
+          <includes>
+            <include>${rbl4.surefire.include}</include>
+          </includes>
+        </configuration>
+      </plugin>
+
+      <!-- JaCoCo plugin for coverage -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.7</version>
+        <executions>
+          <execution>
+            <id>prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- PiTest plugin for mutation testing -->
+      <plugin>
+        <groupId>org.pitest</groupId>
+        <artifactId>pitest-maven</artifactId>
+        <version>1.7.4</version>
+        <configuration>
+          <targetClasses>
+            <param>humaneval.correct.*</param>
+          </targetClasses>
+          <targetTests>
+            <param>${rbl4.pitest.targetTests}</param>
+          </targetTests>
+          <!-- These three SUTs were already excluded in the recorded EvoSuite baseline
+               because PIT can exceed the experiment time bound on them. -->
+          <excludedClasses>
+            <param>humaneval.correct.FIND_ZERO</param>
+            <param>humaneval.correct.PRIME_FIB</param>
+            <param>humaneval.correct.IS_MULTIPLY_PRIME</param>
+          </excludedClasses>
+          <timeoutConst>3000</timeoutConst>
+          <timeoutFactor>1.5</timeoutFactor>
+          <outputFormats>
+            <value>XML</value>
+            <value>HTML</value>
+          </outputFormats>
+        </configuration>
+      </plugin>
+      
+    </plugins>
+  </build>
+</project>

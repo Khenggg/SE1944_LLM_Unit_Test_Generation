@@ -1,0 +1,5 @@
+﻿process_id=25152
+stdout=F:\Ky 5\SWT301\Github\SE1944_LLM_Unit_Test_Generation\experiments\rbl-project\rbl4_evosuite_3p_maven_20260716_161530.stdout.log
+stderr=F:\Ky 5\SWT301\Github\SE1944_LLM_Unit_Test_Generation\experiments\rbl-project\rbl4_evosuite_3p_maven_20260716_161530.stderr.log
+java_home=C:\Program Files\Eclipse Adoptium\jdk-8.0.492.9-hotspot
+archive=F:\Ky 5\SWT301\Github\SE1944_LLM_Unit_Test_Generation\experiments\rbl-project\archive\evosuite_3p

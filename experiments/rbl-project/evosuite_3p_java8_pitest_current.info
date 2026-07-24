@@ -1,0 +1,4 @@
+﻿process_id=20896
+stdout=F:\Ky 5\SWT301\Github\SE1944_LLM_Unit_Test_Generation\experiments\rbl-project\evosuite_3p_java8_pitest_20260716_155637.stdout.log
+stderr=F:\Ky 5\SWT301\Github\SE1944_LLM_Unit_Test_Generation\experiments\rbl-project\evosuite_3p_java8_pitest_20260716_155637.stderr.log
+java_home=C:\Program Files\Eclipse Adoptium\jdk-8.0.492.9-hotspot

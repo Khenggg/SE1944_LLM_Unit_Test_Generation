@@ -1,0 +1,24 @@
+{
+  "name": "se1944_llm_unit_test_generation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Khenggg/SE1944_LLM_Unit_Test_Generation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Khenggg/SE1944_LLM_Unit_Test_Generation/issues"
+  },
+  "homepage": "https://github.com/Khenggg/SE1944_LLM_Unit_Test_Generation#readme",
+  "dependencies": {
+    "pptxgenjs": "^4.0.1"
+  }
+}

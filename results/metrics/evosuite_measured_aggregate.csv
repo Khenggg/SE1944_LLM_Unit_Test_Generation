@@ -1,0 +1,4 @@
+tool,budget_min,branch_covered,branch_total,branch_coverage_pct,mutation_killed,mutation_total,mutation_score_pct,pass_suites,measurement_source,java_runtime
+EvoSuite,1,688,762,90.28871391076116,610,833,73.22929171668667,63,archive/evosuite_1p,Temurin JDK 8.0.492
+EvoSuite,3,730,762,95.8005249343832,638,833,76.5906362545018,63,archive/evosuite_3p,Temurin JDK 8.0.492
+EvoSuite,5,757,762,99.34383202099738,684,833,82.11284513805522,63,archive/evosuite_5p,Temurin JDK 8.0.492

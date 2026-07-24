@@ -1,0 +1,49 @@
+Evaluation Data Reference Notes
+--------------------------------------------------------------------------------
+
+
+1. UnLeakedTestBench (ULT) & Metric Thresholds
+- Source Paper: SS040 - Benchmarking LLMs for Unit Test Generation from Real-World Functions (2026)
+- Data Location in Paper: 
+  The 30.22% branch coverage and 40.21% mutation score represent the overall empirical averages achieved by LLMs on real-world complex functions within the UnLeakedTestBench (ULT) benchmark.
+  These values are reported in the overall evaluation tables and results section, serving as a realistic, state-of-the-art benchmark average for automated test generation on decontaminated datasets.
+  Context: Using these overall averages ensures the experiment targets a realistic state-of-the-art benchmark rather than an inflated peak or theoretical maximum, which is more scientifically sound for evaluating practical LLM effectiveness on medium-complexity code.
+- Dataset Repository: The ULT dataset contains decontaminated functions designed to prevent training data contamination and is accessible at https://github.com/huangd1999/UnLeakedTestBench
+
+2. Defects4J Dataset & Defect-Focused Baselines
+- Source Papers: SS047, SS080, SS174
+- Data Location in Papers:
+  SS080 (SBQS 2025) uses 6 classes from Defects4J to compare GPT-4o and DeepSeek V3 using mutation testing.
+  SS174 (TSE 2026) uses Defects4J as the primary benchmark to demonstrate an 18% mutation score improvement using Mutation-Guided Generation.
+  SS047 (ASE 2025) evaluates prompt semantics on Defects4J to report a 46% line coverage increase and a 26% downstream compilation rate increase.
+- Dataset Repository: The widely-used Java bug repository https://github.com/rjust/defects4j
+
+3. Student Programming Assignments (Human Baselines)
+- Source Paper: SS032 - Automatic Unit Test Generation for Programming Assignments Using Large Language Models (CSEE&T 2025)
+- Data Location in Paper: 
+  The evaluation methodology specifically focuses on 6 student programming assignments from HPI (Hasso Plattner Institute) in an educational context.
+  The paper reports a 1.7x statement coverage and 2.1x mutation score improvement using an augmented GPT-4o-mini approach compared to vanilla generation.
+- Applicability to our RQ: We derive our methodology of collecting 10-20 medium complexity student assignments directly from this paper, ensuring we have authentic human baselines to compare our generated tests against.
+
+4. HumanEval & Simple Algorithmic Datasets
+- Source Papers: SS014, SS137
+- Context: These papers evaluate LLMs on simple, small-sized algorithmic functions (HumanEval). This is explicitly referenced as part of GAP-D, highlighting why we must shift our focus toward "medium cyclomatic complexity" functions for a more realistic evaluation.
+  SS014 explores LLM capabilities over HumanEval variants.
+  SS137 assesses prompt generation performance on HumanEval-X (covering both Java and Python), focusing on pass rates rather than deep structural coverage.
+- Dataset Repository: The HumanEval dataset repository: https://github.com/openai/human-eval
+
+5. Traditional Tool Comparisons & Code Quality
+- Source Papers: SS109, SS139
+- Context: 
+  SS109 directly compares GPT-4 capabilities against traditional tools like EvoSuite or Randoop, providing evidence for GAP-T (lack of comparison against student baselines).
+  SS139 is the sole paper to explicitly address test smells (GAP-M), alongside standard structural adequacy metrics.
+
+6. Other Methodologies & Contexts
+- Source Papers: SS119, SS131, SS231
+- Context:
+  SS119 provides broader literature context on deep learning based test generation.
+  SS131 uses prompt learning with execution feedback for Java projects.
+  SS231 focuses on test oracle generation via LLMs.
+  These papers contribute to the overall finding that most studies use structural coverage and mutation score, but fall short in medium complexity, educational contexts (GAP statement support).
+
+

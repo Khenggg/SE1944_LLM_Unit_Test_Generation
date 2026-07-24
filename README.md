@@ -1,41 +1,37 @@
-# SE1944 LLM Unit Test Generation
+# SE1944 - LLM Unit-Test Generation
 
-Workspace for the SE1944 research project: evaluating whether GPT-4 generated unit tests can reach branch coverage >= 80% and mutation score >= 60%, compared with student-written tests.
+This repository contains the RBL evidence and final reporting package for an empirical study of zero-shot GPT-4o-mini unit-test generation on 63 HumanEval-Java functions.
 
-## Working Structure
+## RBL-4 evidence
 
-- `docs/`: research question, PICO, scope, and project guidance.
-- `SLR/`: PRISMA search logs, raw paper records, screening files, criteria, evidence table, and research gap.
-- `dataset/`: Java/Python functions and metadata used in the experiment.
-- `prompts/`: fixed prompt versions for AI test generation.
-- `tests_ai/`: AI-generated unit tests.
-- `tests_student/`: student-written baseline unit tests.
-- `experiment/`: experiment logs, execution notes, and tool run records.
-- `results/`: coverage, mutation testing, final results, charts, and analysis.
-- `paper/`: report sections and final writing artifacts.
+- Final execution report: `results/rbl4_final_report.md`
+- Reproducible analysis notebook: `results/full_analysis.ipynb`
+- Statistical summary: `results/summary.csv`
+- Data provenance and validation: `results/rbl4_data_provenance.md` and `results/rbl4_validation.md`
 
-## Suggested Owner Split
+The study compares GPT-4o-mini with retained EvoSuite suites measured at 1, 3, and 5 minutes. EvoSuite is an operational technical comparator; it is not student-written data and must not be reported as such.
 
-The project uses two levels of assignment:
+## Reproduce the analysis
 
-- Phase 1 search assignment: every member searches one source so the SLR starts quickly.
-- Main project role: each member owns one larger workstream after the initial paper collection.
+1. Create the Python environment and install the project requirements.
+2. To regenerate the derived RBL-4 analysis from the retained CSV evidence, run:
 
-| Member | Phase 1 Search Source | Main Project Role | Main Folders |
-| --- | --- | --- | --- |
-| Person 1 | Google Scholar | Leader, RQ/PICO, PRISMA, methodology, final integration | `docs/`, `SLR/`, `paper/` |
-| Person 2 | IEEE Xplore | Literature search support, screening, evidence table | `SLR/` |
-| Person 3 | ACM Digital Library | Literature search support, screening, evidence table | `SLR/` |
-| Person 4 | Semantic Scholar | Dataset, metadata, prompt, AI-generated tests | `dataset/`, `prompts/`, `tests_ai/`, `experiment/` |
-| Person 5 | arXiv + CORE/ResearchGate | Manual tests, JaCoCo/PIT execution, result tables/charts | `tests_student/`, `results/`, `experiment/` |
+   ```powershell
+   .venv\Scripts\python.exe scripts\generate_rbl4_analysis.py
+   .venv\Scripts\python.exe scripts\generate_full_analysis_notebook.py
+   .venv\Scripts\python.exe -m jupyter nbconvert --execute --to notebook --inplace results\full_analysis.ipynb
+   .venv\Scripts\python.exe scripts\validate_rbl4_results.py
+   ```
 
-## Workflow
+3. The archived EvoSuite suites were measured with Temurin JDK 8 because EvoSuite 1.0.6 requires `tools.jar`. Their class-level metrics are under `results/metrics/`.
+4. To repeat an API generation run, set `OPENAI_API_KEY` in a local `.env` file. This file is ignored by Git and must never be committed. API calls incur cost; the existing raw output and usage CSVs are retained for reproducibility.
 
-1. Finalize RQ, PICO, and scope in `docs/`.
-2. Each member searches the assigned Phase 1 source and records the search in `SLR/search_log.csv`.
-3. Merge, deduplicate, and screen papers using the SLR CSV templates.
-4. Build the dataset and metadata under `dataset/`.
-5. Generate AI tests using the fixed prompt in `prompts/prompt_v1.md`.
-6. Write student tests separately under `tests_student/`.
-7. Run coverage and mutation testing, then record results in `results/`.
-8. Write the report sections under `paper/`.
+## Paper and presentation
+
+- IEEE-style paper source: `paper/main.tex`
+- Presentation source and final artifacts: `presentation/`
+- Detailed RBL-4/RBL-5A work allocation (updated 2026-07-16): `docs/team-synthesis/rbl5a-work-allocation.md`
+- Team Contribution Matrix & Grade Allocation: [`CONTRIBUTION.md`](CONTRIBUTION.md)
+
+Compile the paper with a LaTeX distribution from `paper/`. The final PDF is written to `paper/output/paper_final.pdf`. The final deck is `presentation/slides_final.pptx` with an exported PDF at `presentation/slides_final.pdf`.
+
